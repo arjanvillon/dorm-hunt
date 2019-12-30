@@ -1,0 +1,21 @@
+/* SECTION COLORS  */
+.color-scheme1 { 
+    color: #5660F1;
+}
+
+
+/* SECTION CUSTOM TABS */
+.tab-link {
+    color: #C4C4C4 !important;
+}
+
+.tab-link-active {
+    color: #5660F1 !important;
+}
+
+/* SECTION BACKGROUND */
+#tab-1.page-content {
+    background-image: url("/dormHunt/home/static/images/background-circles.png") !important;
+    background-repeat: no-repeat;
+    /* background-color: red !important; */
+}

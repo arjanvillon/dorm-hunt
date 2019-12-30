@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+{% load static %}
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+<!-- SECTION META -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Color theme for statusbar (Android only) -->
+        <meta name="theme-color" content="#2196f3">
+
+        <title>Dorm Hunt App</title>
+<!-- SECTION STYLES -->
+        <link rel="stylesheet" href="{% static '/plugins/framework7/core/css/framework7.bundle.min.css' %}">
+        <link rel="stylesheet" href="{% static '/plugins/framework7/icons/css/framework7-icons.css' %}">
+        
+        <link rel="stylesheet" href="{% static '/home/home.css' %}">
+        
+    </head>
+<!-- SECTION MAIN CONTENT -->
+    <body>
+       
+<!-- App root element -->
+<div id="app">
+
+    <!-- Your main view, should have "view-main" class -->
+    <div class="view view-main">
+      <!-- Initial Page, "data-name" contains page name -->
+      <div data-name="home" class="page">
+
+        
+
+        <!-- Bottom Toolbar -->
+        <div class="toolbar toolbar-bottom">
+            <div class="toolbar-inner">
+                <a href="#tab-1" class="tab-link tab-link-active"><i class="f7-icons">house_alt_fill</i></a>
+                <a href="#tab-2" class="tab-link"><i class="f7-icons">envelope</i></a>
+                <a href="#tab-3" class="tab-link"><i class="f7-icons">heart_fill</i></a>
+                <a href="#tab-4" class="tab-link"><i class="f7-icons">search</i></a>
+            </div>
+        </div>
+        <!-- SECTION TABS CONTENT SAMPLE -->
+        <div class="tabs-swipeable-wrap">
+            <div class="tabs">
+              <div id="tab-1" class="page-content tab tab-active">
+                <div class="block">
+                  <p>Tab 1 content</p>
+                  ...
+                </div>
+              </div>
+              <div id="tab-2" class="page-content tab">
+                <div class="block">
+                  <p>Tab 2 content</p>
+                  ...
+                </div>
+              </div>
+              <div id="tab-3" class="page-content tab">
+                <div class="block">
+                  <p>Tab 3 content</p>
+                  ...
+                </div>
+              </div>
+              <div id="tab-4" class="page-content tab">
+                <div class="block">
+                  <p>Tab 4 content</p>
+                  ...
+                </div>
+              </div>
+            </div>
+          </div>
+        <!-- SECTION TABS CONTENT SAMPLE -->
+
+
+
+        <!-- Scrollable page content -->
+        <div class="page-content">
+          <p>Page content goes here</p>
+          <!-- Link to another page -->
+          <a href="/about/">About app</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+<!-- SECTION SCRIPTS -->
+        <script src="{% static '/plugins/framework7/core/js/framework7.bundle.min.js' %}"></script>
+        <script src="{% static '/home/routes.js' %}"></script>
+        <script src="{% static '/home/home.js' %}"></script>
+    </body>
+</html>
