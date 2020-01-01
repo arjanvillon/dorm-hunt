@@ -47,10 +47,11 @@
         <div class="tabs-swipeable-wrap">
             <div class="tabs">
               <div id="tab-1" class="page-content tab tab-active">
-                <div class="block">
-                  <p>Tab 1 content</p>
-                  ...
-                </div>
+                  <div class="tab1-container">
+                    {% block tab-one %}
+                      
+                    {% endblock tab-one %}
+                  </div>
               </div>
               <div id="tab-2" class="page-content tab">
                 <div class="block">
@@ -90,8 +91,10 @@
 
 
 <!-- SECTION SCRIPTS -->
+        <!-- <script src="{% static '/plugins/jquery/jquery.js' %}"></script> -->
         <script src="{% static '/plugins/framework7/core/js/framework7.bundle.min.js' %}"></script>
         <script src="{% static '/home/routes.js' %}"></script>
         <script src="{% static '/home/home.js' %}"></script>
+       
     </body>
 </html>
