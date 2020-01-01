@@ -1,0 +1,59 @@
+{% extends 'user/base.html' %}
+{% load static %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-100">
+        <p class="text-align-center text-color-white block-title-large no-margin">SIGN UP</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-100">
+        <div class="card">
+            <div class="card-content padding-half">
+                <form method="POST">
+                    {% csrf_token %}
+                        <div class="list">
+                            <ul>
+                                
+                                {% for field in registration_form %}
+                                <li class="item-content item-input item-input-outline">
+                                    <div class="item-inner">
+                                        <div class="item-title margin-bottom-half">{{ field.label_tag }}</div>
+                                        <div class="item-input-wrap">
+                                            {{field}}
+                                        </div>
+                                    </div>
+                                </li>
+                                {% endfor %}
+
+                                
+                                {% if field.help_text %}
+                                    <small class="text-color-gray">{{field.help_text}}</small>
+                                {% endif %}
+
+                                {% for error in field.errors %}
+                                    <small class="text-color-red">{{error}}</small>
+                                {% endfor %}
+                                    
+
+                            </ul>
+                        </div>
+
+                    <input type="submit" value="ENTER" class="button text-color-black margin-top-half"></input>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row margin-top">
+    <div class="col-100 text-align-center">
+        <u class="block-title"><a href="{% url 'user:user_login' %}" class="link external"><p>Sign in</p></a></u>
+    </div>
+</div>
+
+{% endblock content %}
+    

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+{% load static %}
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+<!-- SECTION META -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Color theme for statusbar (Android only) -->
+        <meta name="theme-color" content="#2196f3">
+
+        <title>Dorm Hunt App</title>
+<!-- SECTION STYLES -->
+        <link rel="stylesheet" href="{% static '/plugins/framework7/core/css/framework7.bundle.min.css' %}">
+        <link rel="stylesheet" href="{% static '/plugins/framework7/icons/css/framework7-icons.css' %}">
+        
+        <link rel="stylesheet" href="{% static '/user/css/user.css' %}">
+        
+    </head>
+<!-- SECTION MAIN CONTENT -->
+    <body>
+       
+<!-- App root element -->
+<div id="app">
+
+    <!-- Your main view, should have "view-main" class -->
+    <div class="view view-main">
+      <!-- Initial Page, "data-name" contains page name -->
+      <div data-name="home" class="page">
+
+        <!-- Scrollable page content -->
+        <div class="page-content">
+            <div class="row">
+                <div class="col-100 text-align-center">
+                    <img class="margin-vertical" src="{% static 'user/images/white-logo.png' %}" height="100" width="100" alt="">
+                </div>
+            </div>
+            {% block content %}
+                
+            {% endblock content %}
+              
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+<!-- SECTION SCRIPTS -->
+        <script src="{% static '/plugins/framework7/core/js/framework7.bundle.min.js' %}"></script>
+        <script src="{% static '/home/routes.js' %}"></script>
+        <script src="{% static '/home/home.js' %}"></script>
+    </body>
+</html>
