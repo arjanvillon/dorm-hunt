@@ -15,7 +15,7 @@
 
 /* SECTION BACKGROUND */
 #tab-1.page-content {
-    background-image: url("/dormHunt/home/static/images/background-circles.png") !important;
+    background-image: url("/static/home/images/background-circles.png") !important;
     background-repeat: no-repeat;
     /* background-color: red !important; */
 }
