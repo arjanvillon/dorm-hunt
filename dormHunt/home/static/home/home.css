@@ -1,3 +1,6 @@
+/* SECTION FONTS */
+@import url('https://fonts.googleapis.com/css?family=PT+Sans&display=swap');
+
 /* SECTION COLORS  */
 .color-scheme1 { 
     color: #5660F1;
@@ -417,4 +420,50 @@
 /* SECTION BUTTONS */
 .homesearch-btn {
     background-color: #fff;
+}
+
+/* Back Button */
+.back-btn {
+    font-family: 'PT Sans', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 19px;
+    line-height: 25px;
+    letter-spacing: -0.06em;
+    color: #5660F1;
+}
+
+/* Log Out Button */
+.logout-btn {
+    font-family: 'PT Sans', sans-serif;
+    font-style: normal;
+    line-height: 20px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+}
+.logout-btn:hover {
+    color: #5660F1;
+}
+
+/* LABELS */
+.account-type-label {
+    background: rgba(87, 204, 242, 0.25);
+    color: #5660F1;
+    border-radius: 33px;
+    font-family: 'PT Sans', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 25px;
+    letter-spacing: 0.04em;
+}
+
+/* SECTION TYPOGRAPHY */
+.email-profile {
+    font-family: 'PT Sans', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    letter-spacing: 0.1em;
+}
+.email-container {
+    padding: 4px 0 0 4px;
 }

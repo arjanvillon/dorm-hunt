@@ -17,9 +17,12 @@
 <!-- SECTION STYLES -->
         <link rel="stylesheet" href="{% static '/plugins/framework7/core/css/framework7.bundle.min.css' %}">
         <link rel="stylesheet" href="{% static '/plugins/framework7/icons/css/framework7-icons.css' %}">
-        
         <link rel="stylesheet" href="{% static '/home/home.css' %}">
         
+        {% block css %}
+          
+        {% endblock css %}
+          
     </head>
 <!-- SECTION MAIN CONTENT -->
     <body>
