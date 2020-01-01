@@ -1,0 +1,141 @@
+{% extends 'home/base.html' %}
+
+{% block css %}
+  <!-- TODO add separate style.css -->
+  <style>
+    #tab-1.page-content { 
+      background-image: url("/static/home/images/white-background.png") !important;
+    } 
+  </style>
+{% endblock css %}
+  
+
+{% block tab-one %}
+  <div class="row">
+    <div class="col-50">
+      <!-- FIXME change to static -->
+      <div class="padding">
+        <img src="/static/home/images/back-btn.png" alt="Back">
+      </div>
+    </div>
+    <div class="col-50 float-right">
+      <!-- FIXME change to static -->
+      <div class="padding float-right">
+        <a class="link external" data-transistion="f7-flip" href="{% url 'home:update_user' %}">
+          <img src="/static/home/images/edit-btn.png" alt="Edit">
+        </a>
+      </div>
+    </div>
+  </div>
+  <!-- SECTION User Image -->
+  <div class="row">
+    <div class="col-100 text-align-center">
+      <div class="">
+        <img src="/static/home/images/default-user-profile-image.png" alt="User Image">
+      </div>
+    </div>
+  </div>
+  <!-- SECTION User Profile Name -->
+  <div class="row">
+    <div class="col-100 text-align-center">
+      <h1 class="no-margin">Nikki Abarca</h1>
+    </div>
+  </div>
+  <!-- SECTION ACCOUNT TYPES -->
+  <div class="row justify-content-center">
+    <div class="col-33">
+      <div class="account-type-label text-align-center">
+        TENANT
+      </div>
+    </div>
+  </div>
+  <!-- SECTION  ACCOUNT TYPE LABEL FOR LANDLORD -->
+  <!-- <div class="row justify-content-center">
+    <div class="col-33">
+      <div class="account-type-label text-align-center">
+        LANDLORD
+      </div>
+    </div>
+  </div> -->
+  <!-- SECTION Email and Phone Number Card -->
+  <div class="card margin-horizontal elevation-6">
+    <div class="card-content card-content-padding">
+      <div class="row">
+        <div class="col-100">
+          <!-- SECTION Email -->
+          <div class="row">
+            <div class="col-10">
+              <i class="f7-icons color-scheme1">envelope_circle</i>
+            </div>
+            <div class="col-90 email-container">
+              <span class="email-profile">nikkiabarca.apps@gmail.com</span>
+            </div>
+          </div><!--row end-->
+          <!-- SECTION Phone Number -->
+          <div class="row">
+            <div class="col-10">
+              <i class="f7-icons color-scheme1">phone_circle</i>
+            </div>
+            <div class="col-90 email-container">
+              <span class="email-profile">0921-846-7838</span>
+            </div>
+          </div><!--row end-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- SECTION Other Details -->
+  <div class="card margin-horizontal elevation-6">
+    <div class="card-content card-content-padding">
+      <div class="row">
+        <div class="col-100">
+          <!-- SECTION Birthday -->
+          <div class="row">
+            <div class="col-30">
+              <b>Birthday:</b>
+            </div>
+            <div class="col-70">
+              October 06, 1998
+            </div>
+          </div><!--end row-->
+          <!-- SECTION Age -->
+          <div class="row">
+            <div class="col-30">
+              <b>Age:</b>
+            </div>
+            <div class="col-70">
+              21 years old
+            </div>
+          </div><!--end row-->
+          <!-- SECTION Emergency Contact Person (optional) -->
+          <h4 class="text-align-center">EMERGENCY CONTACT</h4>
+          <!-- Contact Person -->
+          <div class="row">
+            <div class="col-30">
+              <b>Name:</b>
+            </div>
+            <div class="col-70">
+              Bobby B. Abarca
+            </div>
+          </div><!--end row-->
+          <!-- Contact Person -->
+          <div class="row">
+            <div class="col-30">
+              <b>Phone:</b>
+            </div>
+            <div class="col-70">
+              09194037225
+            </div>
+          </div><!--end row-->
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- SECTION LOG OUT BUTTON -->
+  <div class="row">
+    <div class="col-100">
+      <button class="col button color-black logout-btn" style="font-weight: 900 !important;">Log Out</button>
+    </div>
+  </div>
+{% endblock tab-one %}
+  
