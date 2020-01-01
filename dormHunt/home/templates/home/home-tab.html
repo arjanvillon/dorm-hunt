@@ -1,0 +1,36 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block tab-one %}
+    <div class="block">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="float-left">
+                    <h1>Hello Nikki!</h1>
+                </div>
+                <div class="float-right">
+                    <div class="float-right margin-right margin-top">
+                        <a class="link external" href="{% url 'home:test_view' %}" data-transition="f7-cover">
+                            <img src="{% static 'home/images/user-icon.png' %}" alt="user-icon">
+                        </a>
+                    </div>
+                </div><!--float-right end-->
+            </div><!--col-sm-12 end-->
+        </div><!--row end-->
+        <div class="row">
+            <div class="col-100 text-align-center">
+                <img src="{% static 'home/images/bed-home.png' %}" alt="user-icon">
+            </div><!--col-sm-12 end-->
+            <div class="col-100 text-align-center">
+                <h2>Looking for a new home?</h2>
+                <p class="text-align-center home-subtext margin-horizontal no-margin margin-bottom-half">
+                    If you want to rent a new home, start looking from listings here and apply online.
+                </p>
+                <div class="row justify-content-center">
+                    <button class="col-50 button button-outline homesearch-btn">Search Here</button>
+                </div>
+            </div><!--col-sm-12 end-->
+        </div><!--row end-->
+    </div><!--block end-->
+
+{% endblock tab-one %}
+    

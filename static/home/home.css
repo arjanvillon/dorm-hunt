@@ -14,8 +14,396 @@
 }
 
 /* SECTION BACKGROUND */
-#tab-1.page-content {
-    background-image: url("/dormHunt/home/static/images/background-circles.png") !important;
+#tab-1.page-content { 
+    background-image: url("/static/home/images/background/smartphone1.png") !important;
     background-repeat: no-repeat;
-    /* background-color: red !important; */
+    background-size: auto;
+
+} 
+
+/* SECTION MEDIA QUERIES */
+    /* SECTION Smartphones (portrait and landscape) ----------- */
+    @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    /* Styles */
+        #tab-1.page-content { 
+            background-image: url("/static/home/images/background/smartphone1.png") !important;
+        }
+    }
+    
+    /* Smartphones (landscape) ----------- */
+    @media only screen and (min-width : 321px) {
+    /* Styles */
+        #tab-1.page-content { 
+            background-image: url("/static/home/images/background/galaxy3-landscape.png") !important;
+        } 
+    }
+    
+    /* Smartphones (portrait) ----------- */
+    @media only screen and (max-width : 320px) {
+    /* Styles */
+        #tab-1.page-content { 
+            background-image: url("/static/home/images/background/galaxy3-portrait.png") !important;
+        } 
+    }
+
+    /* SECTION iPads (portrait and landscape) ----------- */
+        @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+        /* Styles */
+            #tab-1.page-content { 
+                background-image: url("/static/home/images/background/ipad-portrait.png") !important;
+            } 
+        }
+        
+        /* iPads (landscape) ----------- */
+        @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) {
+        /* Styles */
+            #tab-1.page-content { 
+                background-image: url("/static/home/images/background/ipad-landscape.png") !important;
+            } 
+        }
+        
+        /* iPads (portrait) ----------- */
+        @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) {
+        /* Styles */
+            #tab-1.page-content { 
+                background-image: url("/static/home/images/background/ipad-portrait.png") !important;
+            } 
+        }
+        /**********
+        iPad 3
+        **********/
+        @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : landscape) and (-webkit-min-device-pixel-ratio : 2) {
+        /* Styles */
+        }
+        
+        @media only screen and (min-device-width : 768px) and (max-device-width : 1024px) and (orientation : portrait) and (-webkit-min-device-pixel-ratio : 2) {
+        /* Styles */
+        }
+
+        /* SECTION IPHONE */
+        /* SECTION IPHONES */
+    /* ----------- iPhone 4 and 4S ----------- */
+        /* Portrait and Landscape */
+        @media only screen 
+        and (min-device-width: 320px) 
+        and (max-device-width: 480px)
+        and (-webkit-min-device-pixel-ratio: 2) {
+            #tab-1.page-content { 
+                background-image: url("/static/home/images/background/Galaxy3.png") !important;
+            } 
+        }
+
+        /* Portrait */
+        @media only screen 
+        and (min-device-width: 320px) 
+        and (max-device-width: 480px)
+        and (-webkit-min-device-pixel-ratio: 2)
+        and (orientation: portrait) {
+            #tab-1.page-content { 
+                background-image: url("/static/home/images/background/iphone-portrait.png") !important;
+            } 
+        }
+
+        /* Landscape */
+        @media only screen 
+        and (min-device-width: 320px) 
+        and (max-device-width: 480px)
+        and (-webkit-min-device-pixel-ratio: 2)
+        and (orientation: landscape) {
+            #tab-1.page-content { 
+                background-image: url("/static/home/images/background/iphone-landscape.png") !important;
+            } 
+        }
+
+        /* ----------- iPhone 5, 5S, 5C and 5SE ----------- */
+
+        /* Portrait and Landscape */
+        @media only screen 
+        and (min-device-width: 320px) 
+        and (max-device-width: 568px)
+        and (-webkit-min-device-pixel-ratio: 2) {
+            #tab-1.page-content { 
+                background-image: url("/static/home/images/background/iphone5-portrait.png") !important;
+            } 
+        }
+
+        /* Portrait */
+        @media only screen 
+        and (min-device-width: 320px) 
+        and (max-device-width: 568px)
+        and (-webkit-min-device-pixel-ratio: 2)
+        and (orientation: portrait) {
+            #tab-1.page-content { 
+                background-image: url("/static/home/images/background/iphone5-portrait.png") !important;
+            } 
+        }
+
+        /* Landscape */
+        @media only screen 
+        and (min-device-width: 320px) 
+        and (max-device-width: 568px)
+        and (-webkit-min-device-pixel-ratio: 2)
+        and (orientation: landscape) {
+            #tab-1.page-content { 
+                background-image: url("/static/home/images/background/iphone5-landscape.png") !important;
+            } 
+        }
+
+        /* ----------- iPhone 6, 6S, 7 and 8 ----------- */
+
+        /* Portrait and Landscape */
+        @media only screen 
+        and (min-device-width: 375px) 
+        and (max-device-width: 667px) 
+        and (-webkit-min-device-pixel-ratio: 2) { 
+            #tab-1.page-content { 
+                background-image: url("/static/home/images/background/iphone6-portrait.png") !important;
+            } 
+        }
+
+        /* Portrait */
+        @media only screen 
+        and (min-device-width: 375px) 
+        and (max-device-width: 667px) 
+        and (-webkit-min-device-pixel-ratio: 2)
+        and (orientation: portrait) { 
+            #tab-1.page-content { 
+                background-image: url("/static/home/images/background/iphone6-portrait.png") !important;
+            } 
+        }
+
+        /* Landscape */
+        @media only screen 
+        and (min-device-width: 375px) 
+        and (max-device-width: 667px) 
+        and (-webkit-min-device-pixel-ratio: 2)
+        and (orientation: landscape) { 
+            #tab-1.page-content { 
+                background-image: url("/static/home/images/background/iphone6-landscape.png") !important;
+            } 
+        }
+
+        /* ----------- iPhone 6+, 7+ and 8+ ----------- */
+
+        /* Portrait and Landscape */
+        @media only screen 
+        and (min-device-width: 414px) 
+        and (max-device-width: 736px) 
+        and (-webkit-min-device-pixel-ratio: 3) { 
+            #tab-1.page-content { 
+                background-image: url("/static/home/images/background/iphone7-portrait.png") !important;
+            } 
+        }
+
+        /* Portrait */
+        @media only screen 
+        and (min-device-width: 414px) 
+        and (max-device-width: 736px) 
+        and (-webkit-min-device-pixel-ratio: 3)
+        and (orientation: portrait) { 
+            #tab-1.page-content { 
+                background-image: url("/static/home/images/background/iphone7-portrait.png") !important;
+            } 
+        }
+
+        /* Landscape */
+        @media only screen 
+        and (min-device-width: 414px) 
+        and (max-device-width: 736px) 
+        and (-webkit-min-device-pixel-ratio: 3)
+        and (orientation: landscape) { 
+            #tab-1.page-content { 
+                background-image: url("/static/home/images/background/iphone7-landscape.png") !important;
+            } 
+        }
+
+    /* SECTION GALAXY */
+    /* ----------- Galaxy S3 ----------- */
+
+        /* Portrait and Landscape */
+        @media screen 
+        and (device-width: 360px) 
+        and (device-height: 640px) 
+        and (-webkit-device-pixel-ratio: 2) {
+            #tab-1.page-content { 
+                background-image: url("/static/home/images/background/Galaxy3.png") !important;
+            } 
+        }
+
+        /* Portrait */
+        @media screen 
+        and (device-width: 320px) 
+        and (device-height: 640px) 
+        and (-webkit-device-pixel-ratio: 2) 
+        and (orientation: portrait) {
+            #tab-1.page-content { 
+                background-image: url("/static/home/images/background/galaxy3-portrait.png") !important;
+            } 
+        }
+
+        /* Landscape */
+        @media screen 
+        and (device-width: 320px) 
+        and (device-height: 640px) 
+        and (-webkit-device-pixel-ratio: 2) 
+        and (orientation: landscape) {
+            #tab-1.page-content { 
+                background-image: url("/static/home/images/background/galaxy3-landscape.png") !important;
+            } 
+        }
+
+        /* ----------- Galaxy S4, S5 and Note 3 ----------- */
+
+        /* Portrait and Landscape */
+        @media screen 
+        and (device-width: 320px) 
+        and (device-height: 640px) 
+        and (-webkit-device-pixel-ratio: 3) {
+            #tab-1.page-content { 
+                background-image: url("/static/home/images/background/galaxy3-portrait.png") !important;
+            } 
+        }
+
+        /* Portrait */
+        @media screen 
+        and (device-width: 320px) 
+        and (device-height: 640px) 
+        and (-webkit-device-pixel-ratio: 3) 
+        and (orientation: portrait) {
+            #tab-1.page-content { 
+                background-image: url("/static/home/images/background/galaxy3-portrait.png") !important;
+            } 
+        }
+
+        /* Landscape */
+        @media screen 
+        and (device-width: 320px) 
+        and (device-height: 640px) 
+        and (-webkit-device-pixel-ratio: 3) 
+        and (orientation: landscape) {
+            #tab-1.page-content { 
+                background-image: url("/static/home/images/background/galaxy3-landscape.png") !important;
+            } 
+        }
+
+        /* ----------- Galaxy S6 ----------- */
+
+        /* Portrait and Landscape */
+        @media screen 
+        and (device-width: 360px) 
+        and (device-height: 640px) 
+        and (-webkit-device-pixel-ratio: 4) {
+            #tab-1.page-content { 
+                background-image: url("/static/home/images/background/Galaxy3.png") !important;
+            } 
+        }
+
+        /* Portrait */
+        @media screen 
+        and (device-width: 360px) 
+        and (device-height: 640px) 
+        and (-webkit-device-pixel-ratio: 4) 
+        and (orientation: portrait) {
+            #tab-1.page-content { 
+                background-image: url("/static/home/images/background/Galaxy3.png") !important;
+            } 
+        }
+
+        /* Landscape */
+        @media screen 
+        and (device-width: 360px) 
+        and (device-height: 640px) 
+        and (-webkit-device-pixel-ratio: 4) 
+        and (orientation: landscape) {
+            #tab-1.page-content { 
+                background-image: url("/static/home/images/background/galaxy6-landscape.png") !important;
+            } 
+        }
+        /* ----------- Galaxy S5 ----------- */
+
+        /* Portrait and Landscape */
+        @media screen 
+        and (device-width: 360px) 
+        and (device-height: 640px) 
+        and (-webkit-device-pixel-ratio: 3) {
+            #tab-1.page-content { 
+                background-image: url("/static/home/images/background/Galaxy3.png") !important;
+            } 
+        }
+
+        /* Portrait */
+        @media screen 
+        and (device-width: 360px) 
+        and (device-height: 640px) 
+        and (-webkit-device-pixel-ratio: 3) 
+        and (orientation: portrait) {
+            #tab-1.page-content { 
+                background-image: url("/static/home/images/background/Galaxy3.png") !important;
+            } 
+        }
+
+        /* Landscape */
+        @media screen 
+        and (device-width: 360px) 
+        and (device-height: 640px) 
+        and (-webkit-device-pixel-ratio: 3) 
+        and (orientation: landscape) {
+            #tab-1.page-content { 
+                background-image: url("/static/home/images/background/galaxy6-landscape.png") !important;
+            } 
+        }
+
+/* ANCHOR TRANSITION */
+.router-transition-f7-cover-forward,
+.router-transition-f7-cover-backward {
+  background: #000;
+  perspective: 1200px;
+}
+.router-transition-f7-cover-forward .page-next {
+  animation: f7-cover-next-to-current 450ms forwards;
+}
+.router-transition-f7-cover-forward .page-current {
+  animation: f7-cover-current-to-prev 450ms forwards;
+}
+.router-transition-f7-cover-backward .page-current {
+  animation: f7-cover-current-to-next 450ms forwards;
+}
+.router-transition-f7-cover-backward .page-previous {
+  animation: f7-cover-prev-to-current 450ms forwards;
+}
+@keyframes f7-cover-next-to-current {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+@keyframes f7-cover-current-to-next {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+@keyframes f7-cover-current-to-prev {
+  from {
+    transform: translateZ(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateZ(-300px);
+    opacity: 0.5;
+  }
+}
+@keyframes f7-cover-prev-to-current {
+  from {
+    transform: translateZ(-300px);
+    opacity: 0.5;
+  }
+  to {
+    transform: translateZ(0);
+    opacity: 1;
+  }
 }
