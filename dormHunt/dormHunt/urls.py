@@ -28,6 +28,7 @@ urlpatterns = [
     path('', include('user.urls')),
     path('home/', include('home.urls')),
     path('tenant/', include('tenant.urls')),
+    path('landlord/', include('landlord.urls')),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

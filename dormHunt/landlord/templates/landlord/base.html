@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+  <head>
+    <!-- SECTION META TAGS -->
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Color theme for statusbar (Android only) -->
+    <meta name="theme-color" content="#2196f3">
+
+
+    <!-- Your app title -->
+    <title>Dorm App</title>
+
+    <!-- SECTION STYLES -->
+    <!-- Path to Framework7 Library Bundle CSS -->
+    <link rel="stylesheet" href="{% static '/plugins/framework7/core/css/framework7.bundle.min.css' %}">
+    <link rel="stylesheet" href="{% static '/plugins/framework7/icons/css/framework7-icons.css' %}">
+    <!-- Path to your custom app styles-->
+    <link rel="stylesheet" href="{% static '/landlord/css/landlord.css' %}">
+  </head>
+  <body>
+    <!-- App root element -->
+    <div id="landlordApp">
+
+      <!-- Your main view, should have "view-main" class -->
+      <div class="view view-main">
+        <!-- Initial Page, "data-name" contains page name -->
+        <div data-name="home" class="page">
+
+          <!-- SECTION Toolbar -->
+          <div class="toolbar tabbar toolbar-bottom ">
+            <div class="toolbar-inner">
+                <a href="#" class="tab-link external message-tab"><i class="f7-icons">envelope</i></a>
+                <a href="{% url 'landlord:landlord_home' %}" class="tab-link external home-tab "><i class="f7-icons">house_alt_fill</i></a >
+                <a href="#" class="tab-link external payment-tab"><i class="f7-icons">creditcard_fill</i></a>
+            </div>
+          </div>
+
+          <!-- Scrollable page content -->
+          <!-- <div class="page-content"> -->
+            
+            {% block landlord_content %}
+                
+            {% endblock landlord_content %}
+                
+          <!--</div>page content end-->
+        </div><!--page end-->
+      </div><!--view main end-->
+    </div><!--landlord app end-->
+    
+
+    <!-- SECTION SCRIPTS -->
+    <!-- Path to Framework7 Library Bundle JS-->
+    <script src="{% static '/plugins/framework7/core/js/framework7.bundle.min.js' %}"></script>
+    <!-- Path to your app js-->
+    <script src="{% static '/landlord/js/landlord.js' %}"></script>
+    <script src="{% static '/plugins/jquery/jquery.js' %}"></script>
+    
+    {% block landlordJs %}
+        
+    {% endblock landlordJs %}
+        
+  </body>
+</html>

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'user',
     'tenant',
+    'landlord',
 ]
 
 MIDDLEWARE = [
@@ -130,6 +131,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'user/static/'),
     os.path.join(BASE_DIR, 'home/static/'),
     os.path.join(BASE_DIR, 'tenant/static/'),
+    os.path.join(BASE_DIR, 'landlord/static/'),
 ]
 
 # STATICFILES_DIRS = (

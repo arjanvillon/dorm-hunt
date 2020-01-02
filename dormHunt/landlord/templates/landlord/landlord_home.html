@@ -1,0 +1,112 @@
+{% extends 'landlord/base.html' %}
+{% load static %}
+
+{% block landlord_content %}
+<div class="tabs-swipeable-wrap">
+    <div class="page-content">
+        <div class="block">
+
+            <!-- SECTION User Greetings and User Icon -->
+            <div class="row">
+                <div class="col-100">
+                    <div class="float-left">
+                        <h1 class="username">Hello {{ user.username }}!</h1>
+                    </div>
+                    <div class="float-right">
+                        <div class="float-right margin-right margin-top">
+                            <a href="{% url 'home:view_user' %}" class="link external">
+                                <img src="{% static 'home/images/user-icon.png' %}" alt="View User">
+                            </a>
+                        </div>
+                    </div>
+                </div><!--col-100 end-->
+            </div><!--row end--> 
+
+            <!--SECTION QUICK BUTTONS -->
+            <div class="row justify-content-center text-align-center padding-top">
+                <!-- SECTION Add Tenant -->
+                <div class="col-33">
+                    <a href="#" class="link external">
+                        <div class="row">
+                            <div class="col-100">
+                                <img src="{% static 'landlord/images/buttons/add_new_tenant.png' %}" alt="Add New Tenant">
+                            </div><!--col-100 end-->
+                            <div class="col-100">
+                                <span class="quick-btn-text">
+                                    add new <br> tenant
+                                </span>
+                            </div><!--col-100 end-->
+                        </div><!--row end-->
+                    </a>
+                </div>
+                <!-- SECTION Add Expense -->
+                <div class="col-33">
+                    <a href="#" class="link external">
+                        <div class="row">
+                            <div class="col-100">
+                                <img src="{% static 'landlord/images/buttons/add_new_expense.png' %}" alt="Add New Expense">
+                            </div><!--col-100 end-->
+                            <div class="col-100">
+                                <span class="quick-btn-text">
+                                    add new <br> expense
+                                </span>
+                            </div><!--col-100 end-->
+                        </div><!--row end-->
+                    </a>
+                </div>
+                <!-- SECTION Add Property -->
+                <div class="col-33">
+                    <a href="#" class="link external">
+                        <div class="row">
+                            <div class="col-100">
+                                <img src="{% static 'landlord/images/buttons/add_new_property.png' %}" alt="Add New Property">
+                            </div><!--col-100 end-->
+                            <div class="col-100">
+                                <span class="quick-btn-text">
+                                    add new <br> property
+                                </span>
+                            </div><!--col-100 end-->
+                        </div><!--row end-->
+                    </a>
+                </div>
+            </div><!--row end-->
+
+            <!-- SECTION Properties -->
+            <div class="row padding-top-half">
+                <div class="col-100">
+                    <div class="card card-outline card-property">
+                        <div class="card-content card-content-padding no-padding-top">
+                            <div class="row">
+                                <div class="col-60 text-color-white">
+                                    <h2 class="card-label">Properties</h2>
+                                    <div class="card-label-small">
+                                        Your properties all in one place! Click here to view all your properties
+                                    </div>
+                                </div><!--col-50 end-->
+                                <div class="col-40 padding margin-top justify-content-center text-align-center">
+                                    <div class="numberCircle">
+                                            21
+                                    </div>
+                                </div><!--col-50 end-->
+                            </div><!--row end-->
+                        </div>
+                    </div>
+                </div><!--col-100 end-->
+            </div><!--row end-->
+
+
+
+        </div><!--block end-->
+    </div><!--page-content-->
+</div><!--swipeable wrap-->
+{% endblock landlord_content %}
+    
+
+{% block landlordJs %}
+<script>
+    $('a.home-tab').addClass('tab-link-active');
+    $('a.home-tab i.f7-icons').addClass('size-40');
+    $('.tab-link-highlight').remove();
+</script>
+{% endblock landlordJs %}
+    

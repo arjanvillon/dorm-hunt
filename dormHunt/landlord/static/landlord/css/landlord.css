@@ -1,0 +1,65 @@
+/* ANCHOR FONTS */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=PT+Sans+Caption&display=swap');
+
+/* SECTION TEXT SIZES */
+.size-22 { font-size: 22px }
+.size-25 { font-size: 25px }
+.size-29 { font-size: 29px }
+.size-40 { font-size: 40px }
+
+/* ANCHOR  Home */
+
+/* SECTION Text Styles */
+.username {
+    text-transform: capitalize;
+}
+.quick-btn-text {
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: small;
+    text-align: center;
+    letter-spacing: -0.06em;
+    line-height: 80% !important;
+    text-transform: uppercase;
+    color: #444;
+    text-align: center;
+}
+.quick-btn-text:hover {
+    color: #5660F1;
+}
+
+
+/* SECTION Card */
+.card-property {
+    background-color: #5660F1;
+}
+.card-label {
+    font-family: 'PT Sans Caption', sans-serif;
+    border-bottom: 3px solid #fff;
+    padding-bottom: 3px;
+    width: 40%;
+}
+.card-label-small {
+    font-family:'PT Sans Caption', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: small;
+    line-height: 20px;
+}
+
+/* SECTION Circle */
+.numberCircle {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    padding: 20px;
+
+    background: #fff;
+    border: 2px solid #fff;
+    color: #666;
+    text-align: center;
+
+    font: 32px Arial, sans-serif;
+}

@@ -1,0 +1,32 @@
+/* ANCHOR FONTS */
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
+/* SECTION TEXT SIZES */
+.size-22 { font-size: 22px }
+.size-25 { font-size: 25px }
+.size-29 { font-size: 29px }
+.size-40 { font-size: 40px }
+
+/* ANCHOR  Home */
+
+/* SECTION Text Styles */
+.username {
+    text-transform: capitalize;
+}
+.quick-btn-text {
+    font-family: 'Open Sans', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: small;
+    text-align: center;
+    letter-spacing: -0.06em;
+    line-height: 80% !important;
+    text-transform: uppercase;
+    color: #444;
+    text-align: center;
+}
+.quick-btn-text:hover {
+    color: #5660F1;;
+}
+
+/*  */
