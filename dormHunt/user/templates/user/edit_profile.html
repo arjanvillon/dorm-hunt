@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+{% load static %}
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+<!-- SECTION META -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Color theme for statusbar (Android only) -->
+        <meta name="theme-color" content="#2196f3">
+
+        <title>Dorm Hunt App</title>
+<!-- SECTION STYLES -->
+        <link rel="stylesheet" href="{% static '/plugins/framework7/core/css/framework7.bundle.min.css' %}">
+        <link rel="stylesheet" href="{% static '/plugins/framework7/icons/css/framework7-icons.css' %}">
+        <link rel="stylesheet" href="{% static '/user/css/profile.css' %}">
+        <!-- <link rel="stylesheet" href="{% static '/tenant/css/tenant.css' %}"> -->
+
+          
+    </head>
+<!-- SECTION MAIN CONTENT -->
+    <body>
+       
+<!-- App root element -->
+    <div id="app">
+        <!-- Your main view, should have "view-main" class -->
+        <div class="view view-main">
+        <!-- Initial Page, "data-name" contains page name -->
+            <div data-name="home" class="page">
+                <div class="page-content">
+
+                    <div class="row">
+                        <div class="col-25">
+                            <div class="padding">
+                            <!-- TODO Create a function to return to previous link -->
+                            <!-- NOTE This a link is just temporary -->
+                                <a href="{% url 'user:user_profile' pk=user_profile.user.pk %}" class="link external">
+                                    <div class="row back-btn">
+                                        <div class="col-10">
+                                            <i class="f7-icons">chevron_left</i>
+                                        </div>
+                                        <div class="col-90 padding-left">
+                                            Back
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-50 text-align-center">
+                            <div class="padding">
+                                <h2 class="no-margin">Edit Profile</h2>
+                            </div>
+                        </div>
+
+                        <div class="col-25"></div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-100">
+                            <form method="POST" enctype="multipart/form-data" id="edit_profile_form">
+                                {% csrf_token %}
+
+                                    <div class="list no-harilines-md">
+                                        <ul>
+                                            
+                                            {% for field in form %}
+                                                
+
+                                                    <li class="item-content item-input">
+                                                        <div class="item-inner">
+                                                            <div class="item-title margin-bottom-half signin-label">{{ field.label_tag }}</div>
+                                                            <div class="item-input-wrap">
+                                                                {{field}}
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    
+                                        
+                                            {% endfor %}
+                                                
+                                        </ul>
+                                    </div>
+                        
+                                <input type="submit" class="btn btn-primary" value="Submit">
+                            </form>
+                        </div>
+                    </div>
+
+
+                </div>
+
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+<!-- SECTION SCRIPTS -->
+        <script src="{% static '/plugins/jquery/jquery.js' %}"></script>
+        <script src="{% static '/plugins/framework7/core/js/framework7.bundle.min.js' %}"></script>
+        <script src="{% static '/home/routes.js' %}"></script>
+        <script src="{% static '/home/home.js' %}"></script>
+        <script src="{% static '/user/js/profile.js' %}"></script>
+
+    </body>
+</html>

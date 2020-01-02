@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+{% load static %}
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+<!-- SECTION META -->
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Color theme for statusbar (Android only) -->
+        <meta name="theme-color" content="#2196f3">
+
+        <title>Dorm Hunt App</title>
+<!-- SECTION STYLES -->
+        <link rel="stylesheet" href="{% static '/plugins/framework7/core/css/framework7.bundle.min.css' %}">
+        <link rel="stylesheet" href="{% static '/plugins/framework7/icons/css/framework7-icons.css' %}">
+        <link rel="stylesheet" href="{% static '/user/css/profile.css' %}">
+        <!-- <link rel="stylesheet" href="{% static '/tenant/css/tenant.css' %}"> -->
+
+          
+    </head>
+<!-- SECTION MAIN CONTENT -->
+    <body>
+       
+<!-- App root element -->
+    <div id="app">
+        <!-- Your main view, should have "view-main" class -->
+        <div class="view view-main">
+        <!-- Initial Page, "data-name" contains page name -->
+            <div data-name="home" class="page">
+                <div class="page-content">
+
+                    <div class="row">
+                        <div class="col-50">
+                            <div class="padding">
+                            <!-- TODO Create a function to return to previous link -->
+                            <!-- NOTE This a link is just temporary -->
+                                <a href="{% url 'tenant:tenant' %}" class="link external">
+                                    <div class="row back-btn">
+                                        <div class="col-10">
+                                            <i class="f7-icons">chevron_left</i>
+                                        </div>
+                                        <div class="col-90 padding-left">
+                                            Back
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col-50 float-right">
+                            <div class="padding float-right">
+                                <a class="link external" data-transistion="f7-flip" href="{% url 'user:edit_profile' pk=user_profile.pk %}">
+                                    <img src="{% static 'user/images/edit-btn.png' %}" alt="Edit">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                        <!-- SECTION User Image -->
+                    <div class="row">
+                        <div class="col-100 text-align-center">
+                            <div class="">
+                                <img src="{{ user.userprofile.picture.url }}" alt="User Image">
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- SECTION User Profile Name -->
+                    <div class="row">
+                        <div class="col-100 text-align-center">
+                            {% if not user_profile.first_name %}
+                                <h1 class="no-margin">{{ user.username}}</h1>
+                            {% else %}
+                                <h1 class="no-margin">{{ user_profile.first_name }}</h1>
+                            {% endif %}
+                        </div>
+                    </div>
+                        <!-- SECTION ACCOUNT TYPES -->
+                    <div class="row justify-content-center">
+                        <div class="col-33">
+                            <div class="account-type-label text-align-center">
+                            {{ user.user_type }}
+                            </div>
+                        </div>
+                    </div>
+                        <!-- SECTION  ACCOUNT TYPE LABEL FOR LANDLORD -->
+                        <!-- <div class="row justify-content-center">
+                        <div class="col-33">
+                            <div class="account-type-label text-align-center">
+                            LANDLORD
+                            </div>
+                        </div>
+                        </div> -->
+                        <!-- SECTION Email and Phone Number Card -->
+                    <div class="card margin-horizontal elevation-6">
+                        <div class="card-content card-content-padding">
+                            <div class="row">
+                                <div class="col-100">
+                                    <!-- SECTION Email -->
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <i class="f7-icons color-scheme1">envelope_circle</i>
+                                        </div>
+                                        <div class="col-90 email-container">
+                                            <span class="email-profile">{{ user.email }}</span>
+                                        </div>
+                                    </div><!--row end-->
+                                    <!-- SECTION Phone Number -->
+                                    <div class="row">
+                                        <div class="col-10">
+                                            <i class="f7-icons color-scheme1">phone_circle</i>
+                                        </div>
+                                        <div class="col-90 email-container">
+
+                                            {% if not user_profile.number %}
+                                                <span class="email-profile">Your number</span>
+                                            {% else %}
+                                                <span class="email-profile">{{ user_profile.number }}</span>
+                                            {% endif %}
+                                                
+                                        </div>
+                                    </div><!--row end-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- SECTION Other Details -->
+                    <div class="card margin-horizontal elevation-6">
+                        <div class="card-content card-content-padding">
+                            <div class="row">
+                                <div class="col-100">
+                                    <!-- SECTION Birthday -->
+                                    <div class="row">
+                                        <div class="col-30">
+                                            <b>Birthday:</b>
+                                        </div>
+                                        <div class="col-70">
+                                            
+                                            {% if not user_profile.birthday %}
+                                                Your birthday
+                                            {% else %}
+                                                {{ user_profile.birthday }} 
+                                            {% endif %}
+
+                                        </div>
+                                    </div><!--end row-->
+                                    <!-- SECTION Age -->
+                                    <div class="row">
+                                        <div class="col-30">
+                                            <b>Age:</b>
+                                        </div>
+                                        <div class="col-70">
+                                            
+                                            {% if not user_profile.age %}
+                                                Your age
+                                            {% else %}
+                                                {{ user_profile.age }}
+                                            {% endif %}
+                                                
+                                        </div>
+                                    </div><!--end row-->
+                                    <!-- SECTION Emergency Contact Person (optional) -->
+                                    <h4 class="text-align-center">EMERGENCY CONTACT</h4>
+                                    <!-- Contact Person -->
+                                    <div class="row">
+                                        <div class="col-30">
+                                            <b>Name:</b>
+                                        </div>
+                                        <div class="col-70">
+                                            
+                                            {% if not user_profile.emergency_name %}
+                                                Emergency contact
+                                            {% else %}
+                                                {{ user_profile.emergency_name }}
+                                            {% endif %}
+                                                
+                                        </div>
+                                    </div><!--end row-->
+                                    <!-- Contact Person -->
+                                    <div class="row">
+                                        <div class="col-30">
+                                            <b>Phone:</b>
+                                        </div>
+                                        <div class="col-70">
+                                            
+                                            {% if not user_profile.emergency_number %}
+                                                Emergency contact number
+                                            {% else %}
+                                                {{ user_profile.emergency_number }}
+                                            {% endif %}
+                                                
+                                        </div>
+                                    </div><!--end row-->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                        
+
+                        <!-- SECTION LOG OUT BUTTON -->
+                    <div class="row text-align-center">
+                        <div class="col-100">
+                            <a class="link external" data-transistion="f7-flip" href="{% url 'user:user_logout' %}">
+                            <span class="padding-vertical-half logout-btn color-black">Log Out</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+<!-- SECTION SCRIPTS -->
+        <!-- <script src="{% static '/plugins/jquery/jquery.js' %}"></script> -->
+        <script src="{% static '/plugins/framework7/core/js/framework7.bundle.min.js' %}"></script>
+        
+        <script src="{% static '/home/routes.js' %}"></script>
+        <script src="{% static '/home/home.js' %}"></script>
+    </body>
+</html>
