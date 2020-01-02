@@ -6,14 +6,14 @@
 
 <div class="row">
     <div class="col-100">
-        <p class="text-align-center text-color-white block-title-large no-margin">SIGN IN</p>
+        <p class="text-align-center text-color-white block-title-large no-margin signin-title">SIGN IN</p>
     </div>
 </div>
 
 <div class="row">
     <div class="col-100">
-        <div class="card">
-            <div class="card-content padding">
+        <div class="card margin card-signin">
+            <div class="card-content padding" >
                 <form action="{% url 'user:user_login' %}" method="POST">
                     {% csrf_token %}
                         <div class="list">
@@ -21,7 +21,7 @@
                                 {% for field in login_form %}
                                 <li class="item-content item-input item-input-outline">
                                     <div class="item-inner">
-                                        <div class="item-title margin-bottom-half">{{ field.label_tag }}</div>
+                                        <div class="item-title margin-bottom-half signin-label">{{ field.label_tag }}</div>
                                         <div class="item-input-wrap">
                                             {{field}}
                                         </div>
@@ -37,17 +37,27 @@
                                 
                         </div>
 
-                    <input type="submit" value="LOGIN" class="button text-color-black block-title margin-vertical"></input>
+                    <input type="submit" value="ENTER" class="button text-color-black block-title margin-vertical submit-btn"></input>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
-<div class="row margin-top">
-    <div class="col-100">
-        <u class="float-left block-title"><a href="{% url 'user:register' %}" class="link external"><p>Sign up</p></a></u>
-        <u class="float-right block-title"><p>Forgot Password</p></u>
+<!-- SECTION Create Account and Forgot Password -->
+<div class="row keep-bottom">
+    <div class="col-50">
+        <div class="float-left">
+            <a class="link external" data-transistion="f7-flip" href="{% url 'user:register' %}">
+                <span class="block-title signin-link">Create Account</span>
+            </a>
+        </div>
+</div>
+<div class="col-50 float-right">
+    <div class="float-right">
+        <a class="link external" data-transistion="f7-flip" href="{% url 'user:user_forgot_password' %}">
+            <span class="block-title signin-link">Forgot Password</span>
+        </a>
+    </div>
     </div>
 </div>
     

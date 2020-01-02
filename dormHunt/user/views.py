@@ -32,7 +32,7 @@ def user_login(request):
     user = request.user
 
     if user.is_authenticated:
-        return redirect('home:home_view')
+        return redirect('home:view_home')
 
     if request.method == "POST":
         form = UserAuthenticationForm(request.POST)
@@ -43,7 +43,7 @@ def user_login(request):
 
         if user is not None:
             login(request, user)
-            return redirect('home:home_view')
+            return redirect('home:view_home')
         else:
             return HttpResponse('Not signed in!')
     else:
@@ -52,7 +52,8 @@ def user_login(request):
     context['login_form'] = form
     return render(request, 'user/login.html', context)
 
-
+def user_forgot_password(request):
+    return render(request, 'user/forgot_password.html')
 
 @login_required
 def user_logout(request):

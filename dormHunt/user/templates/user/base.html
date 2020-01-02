@@ -20,6 +20,10 @@
         
         <link rel="stylesheet" href="{% static '/user/css/user.css' %}">
         
+        {% block userCss %}
+            
+        {% endblock userCss %}
+            
     </head>
 <!-- SECTION MAIN CONTENT -->
     <body>
@@ -34,11 +38,15 @@
 
         <!-- Scrollable page content -->
         <div class="page-content">
+            
+            {% block logo %}
             <div class="row">
                 <div class="col-100 text-align-center">
                     <img class="margin-vertical" src="{% static 'user/images/white-logo.png' %}" height="100" width="100" alt="">
                 </div>
             </div>
+            {% endblock logo %}
+                
             {% block content %}
                 
             {% endblock content %}
@@ -55,5 +63,6 @@
         <script src="{% static '/plugins/framework7/core/js/framework7.bundle.min.js' %}"></script>
         <script src="{% static '/home/routes.js' %}"></script>
         <script src="{% static '/home/home.js' %}"></script>
+        <script src="{% static '/user/js/script.js' %}"></script>
     </body>
 </html>

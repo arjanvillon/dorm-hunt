@@ -1,5 +1,5 @@
 {% extends 'home/base.html' %}
-
+{% load static %}
 {% block css %}
   <!-- TODO add separate style.css -->
   <style>
@@ -13,16 +13,28 @@
 {% block tab-one %}
   <div class="row">
     <div class="col-50">
-      <!-- FIXME change to static -->
       <div class="padding">
-        <img src="/static/home/images/back-btn.png" alt="Back">
+        <!-- TODO Create a function to return to previous link -->
+        <!-- NOTE This a link is just temporary -->
+        <a href="{% url 'home:view_home' %}" class="link external">
+          <div class="row back-btn">
+            <div class="col-10">
+              <i class="f7-icons">chevron_left</i>
+            </div>
+            <div class="col-90 padding-left">
+              Back
+            </div>
+          </div>
+        </a>
+
+
+
       </div>
     </div>
     <div class="col-50 float-right">
-      <!-- FIXME change to static -->
       <div class="padding float-right">
         <a class="link external" data-transistion="f7-flip" href="{% url 'home:update_user' %}">
-          <img src="/static/home/images/edit-btn.png" alt="Edit">
+          <img src="{% static 'home/images/edit-btn.png' %}" alt="Edit">
         </a>
       </div>
     </div>
@@ -31,21 +43,22 @@
   <div class="row">
     <div class="col-100 text-align-center">
       <div class="">
-        <img src="/static/home/images/default-user-profile-image.png" alt="User Image">
+        <img src="{% static 'home/images/default-user-profile-image.png' %}" alt="User Image">
       </div>
     </div>
   </div>
   <!-- SECTION User Profile Name -->
   <div class="row">
     <div class="col-100 text-align-center">
-      <h1 class="no-margin">Nikki Abarca</h1>
+      <h1 class="no-margin">My Account</h1>
+      
     </div>
   </div>
   <!-- SECTION ACCOUNT TYPES -->
   <div class="row justify-content-center">
     <div class="col-33">
       <div class="account-type-label text-align-center">
-        TENANT
+        {{ user.user_type }}
       </div>
     </div>
   </div>
@@ -68,7 +81,7 @@
               <i class="f7-icons color-scheme1">envelope_circle</i>
             </div>
             <div class="col-90 email-container">
-              <span class="email-profile">nikkiabarca.apps@gmail.com</span>
+              <span class="email-profile">{{ user.email }}</span>
             </div>
           </div><!--row end-->
           <!-- SECTION Phone Number -->
@@ -132,9 +145,11 @@
     </div>
   </div>
   <!-- SECTION LOG OUT BUTTON -->
-  <div class="row">
+  <div class="row text-align-center">
     <div class="col-100">
-      <button class="col button color-black logout-btn" style="font-weight: 900 !important;">Log Out</button>
+      <a class="link external" data-transistion="f7-flip" href="{% url 'user:user_logout' %}">
+        <span class="padding-top-half logout-btn color-black">Log Out</span>
+      </a>
     </div>
   </div>
 {% endblock tab-one %}

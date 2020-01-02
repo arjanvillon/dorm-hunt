@@ -3,7 +3,8 @@ from django.contrib.auth.models import (
     AbstractBaseUser,
     BaseUserManager
 )
-from user.choices import USER_TYPE_CHOICES
+# NOTE I changed the the choices to picker
+# from user.choices import USER_TYPE_CHOICES
 
 # Create your models here.
 class UserManager(BaseUserManager):
@@ -44,7 +45,7 @@ class UserManager(BaseUserManager):
 class User(AbstractBaseUser):
     username        = models.CharField(max_length=15, unique=True)
     email           = models.EmailField(max_length=60, unique=True)
-    user_type       = models.CharField(max_length=10, choices=USER_TYPE_CHOICES)
+    user_type       = models.CharField(max_length=10)
 
     is_active       = models.BooleanField(default=True)
     is_staff        = models.BooleanField(default=False)

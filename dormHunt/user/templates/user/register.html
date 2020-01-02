@@ -11,7 +11,7 @@
 
 <div class="row">
     <div class="col-100">
-        <div class="card">
+        <div class="card card-signin">
             <div class="card-content padding-half">
                 <form method="POST">
                     {% csrf_token %}
@@ -21,7 +21,7 @@
                                 {% for field in registration_form %}
                                 <li class="item-content item-input item-input-outline">
                                     <div class="item-inner">
-                                        <div class="item-title margin-bottom-half">{{ field.label_tag }}</div>
+                                        <div class="item-title margin-bottom-half signin-label">{{ field.label_tag }}</div>
                                         <div class="item-input-wrap">
                                             {{field}}
                                         </div>
@@ -42,18 +42,30 @@
                             </ul>
                         </div>
 
-                    <input type="submit" value="ENTER" class="button text-color-black margin-top-half"></input>
+                    <input type="submit" value="ENTER" class="button text-color-black block-title margin-vertical submit-btn"></input>
                 </form>
             </div>
         </div>
     </div>
 </div>
-
-<div class="row margin-top">
-    <div class="col-100 text-align-center">
-        <u class="block-title"><a href="{% url 'user:user_login' %}" class="link external"><p>Sign in</p></a></u>
+<!-- SECTION Sign In and Forgot Password -->
+<div class="row">
+    <div class="col-50">
+        <div class="float-left">
+            <a class="link external" data-transistion="f7-flip" href="{% url 'user:user_login' %}">
+                <span class="block-title signin-link">Sign In</span>
+            </a>
+        </div>
+</div>
+<div class="col-50 float-right">
+    <div class="float-right">
+        <a class="link external" data-transistion="f7-flip" href="{% url 'user:user_forgot_password' %}">
+            <span class="block-title signin-link">Forgot Password</span>
+        </a>
+    </div>
     </div>
 </div>
+
 
 {% endblock content %}
     
