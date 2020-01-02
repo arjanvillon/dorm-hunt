@@ -1,6 +1,6 @@
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
-from user.models import User
+from user.models import User, UserProfile
 from django.contrib.auth import authenticate
 
 
@@ -26,3 +26,9 @@ class UserAuthenticationForm(forms.ModelForm):
             password = self.cleaned_data['password']
             if not authenticate(username=username, password=password):
                 raise forms.ValidationError("Invalid login details supplied!")
+
+class UserProfileForm(forms.ModelForm):
+    birthday = forms.DateField(widget=forms.TextInput(attrs={'readonly':'readonly'}))
+    class Meta():
+        model = UserProfile
+        fields = ('first_name', 'last_name', 'number', 'birthday', 'emergency_name', 'emergency_phone', 'picture')

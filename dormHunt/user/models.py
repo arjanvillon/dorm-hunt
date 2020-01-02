@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+from datetime import date
 from django.contrib.auth.models import (
     AbstractBaseUser,
     BaseUserManager
@@ -65,4 +67,29 @@ class User(AbstractBaseUser):
     
     def has_module_perms(self, app_label):
         return True
+    
+class UserProfile(models.Model):
+    user            = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    first_name      = models.CharField(max_length=30, blank=True)
+    last_name       = models.CharField(max_length=30, blank=True)
+    number          = models.CharField(max_length=15, blank=True)
+    birthday        = models.DateField(null=True, blank=True)
+    age             = models.IntegerField(null=True, blank=True)
+    emergency_name  = models.CharField(max_length=60, blank=True)
+    emergency_phone = models.CharField(max_length=15, blank=True)
+    picture         = models.ImageField(default='profile_pictures/default.png', upload_to='profile_pictures', blank=True)
+
+    def __str__(self):
+        return self.user.username
+
+    def get_absolute_url(self):
+        return reverse("user:user_profile", kwargs={"pk": self.user.pk})
+
+    def calculate_age(self):
+        today = date.today()
+        self.age = today.year - self.birthday.year
+        self.save()
+    
+
     

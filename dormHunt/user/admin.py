@@ -1,6 +1,6 @@
 from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin
-from user.models import User
+from user.models import User, UserProfile
 # Register your models here.
 
 
@@ -14,3 +14,14 @@ class UserAdmin(UserAdmin):
     fieldsets = ()
 
 admin.site.register(User, UserAdmin)
+
+# class UserProfileAdmin(UserAdmin):
+#     list_display = ('first_name', 'last_name', 'number', 'birthday')
+#     search_fields = ('first_name', 'last_name')
+#     readonly_fields = ()
+
+#     filter_horizontal = ()
+#     list_filter = ()
+#     fieldsets = ()
+
+admin.site.register(UserProfile)

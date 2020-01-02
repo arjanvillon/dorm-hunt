@@ -1,0 +1,29 @@
+/* Log Out Button */
+.logout-btn {
+    font-family: 'PT Sans', sans-serif;
+    font-style: normal;
+    line-height: 20px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #000 !important;
+    font-weight: 900 !important;
+
+    position: fixed;
+    bottom: 0;
+}
+.logout-btn:hover {
+    color: #5660F1;
+}
+
+/* LABELS */
+.account-type-label {
+    background: rgba(87, 204, 242, 0.25);
+    color: #5660F1;
+    border-radius: 33px;
+    font-family: 'PT Sans', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    line-height: 25px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+}

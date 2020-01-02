@@ -1,11 +1,15 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout, authenticate
-from user.forms import RegistrationForm, UserAuthenticationForm
+from django.views.generic import UpdateView
+from user.forms import RegistrationForm, UserAuthenticationForm, UserProfileForm
+from user.models import User, UserProfile
+from django.core.exceptions import ObjectDoesNotExist
 
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+
 # Create your views here.
 
 def register(request):
@@ -65,3 +69,30 @@ def user_forgot_password(request):
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('user:user_login'))
+
+# class UserDetailView(DetailView):
+#     model = User
+#     template_name = 'user/user_profile.html'
+
+@login_required
+def user_profile(request, pk):
+    user = get_object_or_404(User, pk=pk)
+    context = {}
+
+    try:
+        user.userprofile
+        if user.userprofile.birthday:
+            user.userprofile.calculate_age()
+        context['user_profile'] = user.userprofile
+    except ObjectDoesNotExist:
+        profile = UserProfile(user=user)
+        profile.save()
+        context['user_profile'] = user.userprofile
+
+    return render(request, 'user/user_profile.html', context)
+
+class UserProfileUpdateView(UpdateView):
+    template_name = 'user/edit_profile.html'
+    context_object_name = 'user_profile'
+    form_class = UserProfileForm
+    model = UserProfile
