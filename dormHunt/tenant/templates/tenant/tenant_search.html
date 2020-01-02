@@ -1,0 +1,34 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block css %}
+    <style>
+    #tab-1.page-content {
+            background-image: url("/static/user/images/white-background.png") !important;
+    }
+    </style>
+{% endblock css %}
+    
+
+    
+{% block home_content %}
+<div class="tabs-swipeable-wrap">
+    <div class="tabs">
+        <div id="tab-1" class="page-content">
+            <div class="block">
+                search
+            </div><!--block end-->
+        </div> <!--page content end-->
+    </div><!--tabs end-->
+</div><!--swipeable wrap-->
+{% endblock home_content %}
+    
+
+{% block homeJs %}
+    <script src="{% static '/plugins/jquery/jquery.js' %}"></script>
+    <script>
+        $('a.search-tab').addClass('tab-link-active');
+        $('.tab-link-highlight').remove();
+    </script>
+{% endblock homeJs %}
+    

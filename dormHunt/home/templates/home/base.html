@@ -18,6 +18,7 @@
         <link rel="stylesheet" href="{% static '/plugins/framework7/core/css/framework7.bundle.min.css' %}">
         <link rel="stylesheet" href="{% static '/plugins/framework7/icons/css/framework7-icons.css' %}">
         <link rel="stylesheet" href="{% static '/home/home.css' %}">
+        <link rel="stylesheet" href="{% static '/tenant/css/tenant.css' %}">
         
         {% block css %}
           
@@ -34,58 +35,23 @@
     <div class="view view-main">
       <!-- Initial Page, "data-name" contains page name -->
       <div data-name="home" class="page">
-
+        <div class="toolbar tabbar toolbar-bottom ">
+          <div class="toolbar-inner">
+              <a href="{% url 'tenant:tenant' %}" class="tab-link external home-tab"><i class="f7-icons">house_alt_fill</i></a >
+              <a href="#tab-2" class="tab-link external message-tab"><i class="f7-icons">envelope</i></a>
+              <a href="{% url 'tenant:tenant_favorites' %}" class="tab-link external favorite-tab"><i class="f7-icons">heart_fill</i></a>
+              <a href="{% url 'tenant:dorm_search' %}" class="tab-link external search-tab"><i class="f7-icons">search</i></a>
+          </div>
+        </div>
+        
+        {% block home_content %}
+          
+        {% endblock home_content %}
+          
         
 
-        <!-- Bottom Toolbar -->
-        <div class="toolbar tabbar toolbar-bottom">
-            <div class="toolbar-inner">
-                <a href="#tab-1" class="tab-link tab-link-active"><i class="f7-icons">house_alt_fill</i></a>
-                <a href="#tab-2" class="tab-link"><i class="f7-icons">envelope</i></a>
-                <a href="#tab-3" class="tab-link"><i class="f7-icons">heart_fill</i></a>
-                <a href="#tab-4" class="tab-link"><i class="f7-icons">search</i></a>
-            </div>
-        </div>
-        <!-- SECTION TABS CONTENT SAMPLE -->
-        <div class="tabs-swipeable-wrap">
-            <div class="tabs">
-              <div id="tab-1" class="page-content tab tab-active">
-                  <div class="tab1-container">
-                    {% block tab-one %}
-                      
-                    {% endblock tab-one %}
-                  </div>
-              </div>
-              <div id="tab-2" class="page-content tab">
-                <div class="block">
-                  <p>Tab 2 content</p>
-                  ...
-                </div>
-              </div>
-              <div id="tab-3" class="page-content tab">
-                <div class="block">
-                  <p>Tab 3 content</p>
-                  ...
-                </div>
-              </div>
-              <div id="tab-4" class="page-content tab">
-                <div class="block">
-                  <p>Tab 4 content</p>
-                  ...
-                </div>
-              </div>
-            </div>
-          </div>
-        <!-- SECTION TABS CONTENT SAMPLE -->
+       
 
-
-
-        <!-- Scrollable page content -->
-        <div class="page-content">
-          <p>Page content goes here</p>
-          <!-- Link to another page -->
-          <a href="/about/">About app</a>
-        </div>
       </div>
     </div>
   </div>
@@ -99,5 +65,9 @@
         <script src="{% static '/home/routes.js' %}"></script>
         <script src="{% static '/home/home.js' %}"></script>
        
+       {% block homeJs %}
+         
+       {% endblock homeJs %}
+         
     </body>
 </html>
