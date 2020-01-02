@@ -4,6 +4,7 @@ from . import views
 app_name = 'home'
 
 urlpatterns =[
+    path('test/', views.TestView.as_view(), name='test_view'),
     path('', views.HomeView.as_view(), name='view_home'),
 
     # TODO Temporary

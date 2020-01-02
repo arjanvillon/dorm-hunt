@@ -50,7 +50,6 @@
             {% block content %}
                 
             {% endblock content %}
-              
         </div>
       </div>
     </div>
@@ -60,9 +59,14 @@
 
 
 <!-- SECTION SCRIPTS -->
+        <script src="{% static '/plugins/jquery/jquery.js' %}"></script>
         <script src="{% static '/plugins/framework7/core/js/framework7.bundle.min.js' %}"></script>
         <script src="{% static '/home/routes.js' %}"></script>
         <script src="{% static '/home/home.js' %}"></script>
         <script src="{% static '/user/js/script.js' %}"></script>
+        
+        {% block custom_js %}
+
+        {% endblock custom_js %}
     </body>
 </html>

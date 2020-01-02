@@ -9,13 +9,16 @@
         <p class="text-align-center text-color-white block-title-large no-margin signin-title">SIGN IN</p>
     </div>
 </div>
+    <div class="row">
+        <div class="col-100">
+            <div class="card margin card-signin">
+                <div class="card-content padding">
+                    <form action="{% url 'user:user_login' %}" method="POST" id="login_form">
+                        {% csrf_token %}
+                        {% if login_form.non_field_errors %}
+                            <p class="text-color-red">{{ login_form.non_field_errors }}</p>
+                        {% endif %}
 
-<div class="row">
-    <div class="col-100">
-        <div class="card margin card-signin">
-            <div class="card-content padding" >
-                <form action="{% url 'user:user_login' %}" method="POST">
-                    {% csrf_token %}
                         <div class="list">
                             <ul>
                                 {% for field in login_form %}
@@ -29,20 +32,14 @@
                                 </li>
                                 {% endfor %}
                             </ul>
-
-                            
-                            {% if login_form.non_field_errors %}
-                                <p class="text-color-red">{{ login_form.non_field_errors }}</p>
-                            {% endif %}
-                                
                         </div>
 
-                    <input type="submit" value="ENTER" class="button text-color-black block-title margin-vertical submit-btn"></input>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
+                        <input type="submit" value="ENTER" class="button text-color-black block-title margin-vertical submit-btn"></input>
+                    </form>
+                </div><!--card content end-->
+            </div><!--card-->
+        </div><!--col-100-->
+    </div><!--row end-->
 <!-- SECTION Create Account and Forgot Password -->
 <div class="row keep-bottom">
     <div class="col-50">
@@ -62,4 +59,3 @@
 </div>
     
 {% endblock content %}
-    

@@ -3,44 +3,44 @@
 
 {% block content %}
 
-<div class="row">
-    <div class="col-100">
-        <p class="text-align-center text-color-white block-title-large no-margin">SIGN UP</p>
+    <div class="row">
+        <div class="col-100">
+            <p class="text-align-center text-color-white block-title-large no-margin">SIGN UP</p>
+        </div>
     </div>
-</div>
 
-<div class="row">
-    <div class="col-100">
-        <div class="card card-signin">
-            <div class="card-content padding-half">
-                <form method="POST">
-                    {% csrf_token %}
-                        <div class="list">
-                            <ul>
-                                
-                                {% for field in registration_form %}
-                                <li class="item-content item-input item-input-outline">
-                                    <div class="item-inner">
-                                        <div class="item-title margin-bottom-half signin-label">{{ field.label_tag }}</div>
-                                        <div class="item-input-wrap">
-                                            {{field}}
-                                        </div>
-                                    </div>
-                                </li>
-                                {% endfor %}
-
-                                
-                                {% if field.help_text %}
-                                    <small class="text-color-gray">{{field.help_text}}</small>
-                                {% endif %}
-
-                                {% for error in field.errors %}
-                                    <small class="text-color-red">{{error}}</small>
-                                {% endfor %}
+    <div class="row">
+        <div class="col-100">
+            <div class="card">
+                <div class="card-content padding-half">
+                    <form method="POST" id="registration_form">
+                        {% csrf_token %}
+                            <div class="list">
+                                <ul>
                                     
+                                    {% for field in registration_form %}
+                                    <li class="item-content item-input item-input-outline">
+                                        <div class="item-inner">
+                                            <div class="item-title margin-bottom-half signin-label">{{ field.label_tag }}</div>
+                                            <div class="item-input-wrap">
+                                                {{field}}
+                                            </div>
+                                        </div>
+                                    </li>
+                                    {% endfor %}
 
-                            </ul>
-                        </div>
+                                    
+                                    {% if field.help_text %}
+                                        <small class="text-color-gray">{{field.help_text}}</small>
+                                    {% endif %}
+
+                                    {% for error in field.errors %}
+                                        <small class="text-color-red">{{error}}</small>
+                                    {% endfor %}
+                                        
+
+                                </ul>
+                            </div>
 
                     <input type="submit" value="ENTER" class="button text-color-black block-title margin-vertical submit-btn"></input>
                 </form>
@@ -64,8 +64,14 @@
         </a>
     </div>
     </div>
-</div>
+
+{% block custom_js %}
+    <script src="{% static 'user/js/register.js' %}"></script>
+{% endblock custom_js %}
 
 
 {% endblock content %}
+
+
+    
     

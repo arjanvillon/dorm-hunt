@@ -5,6 +5,7 @@ from user.forms import RegistrationForm, UserAuthenticationForm
 from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 # Create your views here.
 
 def register(request):
@@ -28,24 +29,29 @@ def register(request):
 
 def user_login(request):
     context = {}
-
     user = request.user
 
     if user.is_authenticated:
-        return redirect('home:view_home')
+        # return redirect('home:view_home')
+        return redirect('tenant:tenant')
 
     if request.method == "POST":
         form = UserAuthenticationForm(request.POST)
 
         username = request.POST['username']
         password = request.POST['password']
+
         user = authenticate(username=username, password=password)
 
-        if user is not None:
-            login(request, user)
-            return redirect('home:view_home')
+        if user:
+            if user.is_active:
+                login(request, user)
+                return redirect('tenant:tenant')
+            else:
+                messages.warning(request, "ACCOUNT IS NOT ACTIVE!")
+                return redirect('user:user_login')
         else:
-            return HttpResponse('Not signed in!')
+            messages.error(request, 'Invalid login details supplied!')
     else:
         form = UserAuthenticationForm()
 
