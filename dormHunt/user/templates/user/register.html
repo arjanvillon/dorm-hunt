@@ -27,16 +27,16 @@
                                             </div>
                                         </div>
                                     </li>
+                                        {% for error in field.errors %}
+                                            <small class="text-color-red padding-left">{{error}}</small>
+                                        {% endfor %}
+
                                     {% endfor %}
 
                                     
-                                    {% if field.help_text %}
-                                        <small class="text-color-gray">{{field.help_text}}</small>
-                                    {% endif %}
 
-                                    {% for error in field.errors %}
-                                        <small class="text-color-red">{{error}}</small>
-                                    {% endfor %}
+
+
                                         
 
                                 </ul>
