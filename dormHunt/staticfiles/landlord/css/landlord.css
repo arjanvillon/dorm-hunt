@@ -1,5 +1,6 @@
 /* ANCHOR FONTS */
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=PT+Sans+Caption&display=swap');
 
 /* SECTION TEXT SIZES */
 .size-22 { font-size: 22px }
@@ -26,7 +27,39 @@
     text-align: center;
 }
 .quick-btn-text:hover {
-    color: #5660F1;;
+    color: #5660F1;
 }
 
-/*  */
+
+/* SECTION Card */
+.card-property {
+    background-color: #5660F1;
+}
+.card-label {
+    font-family: 'PT Sans Caption', sans-serif;
+    border-bottom: 3px solid #fff;
+    padding-bottom: 3px;
+    width: 40%;
+}
+.card-label-small {
+    font-family:'PT Sans Caption', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: small;
+    line-height: 20px;
+}
+
+/* SECTION Circle */
+.numberCircle {
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    padding: 20px;
+
+    background: #fff;
+    border: 2px solid #fff;
+    color: #666;
+    text-align: center;
+
+    font: 32px Arial, sans-serif;
+}
