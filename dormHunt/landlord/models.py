@@ -9,7 +9,12 @@ from django.urls import reverse
 class Property(models.Model):
     owner       = models.ForeignKey(User, on_delete=models.CASCADE)
     name        = models.CharField(max_length=50)
-    address     = models.TextField()
+    house_number= models.IntegerField(null=True)
+    street      = models.CharField(max_length=50, null=True)
+    barangay    = models.CharField(max_length=50, null=True)
+    city        = models.CharField(max_length=50, null=True)
+    zip_code    = models.CharField(max_length=5, null=True)
+    address     = models.TextField(blank=True)
     capacity    = models.IntegerField()
     deposit     = models.FloatField()
     price       = models.FloatField()
