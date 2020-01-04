@@ -1,0 +1,113 @@
+{% extends 'landlord/base.html' %}
+{% load static %}
+
+{% block landlord_content %}
+<div class="tabs-swipeable-wrap">
+    <div class="page-content">
+
+        <div class="row">
+            <div class="col-25">
+                <div class="padding">
+                <!-- TODO Create a function to return to previous link -->
+                <!-- NOTE This a link is just temporary -->
+                    <a href="{% url 'landlord:landlord_home' %}" class="link external">
+                        <div class="row back-btn">
+                            <div class="col-10">
+                                <i class="f7-icons">chevron_left</i>
+                            </div>
+                            <div class="col-90 padding-left">
+                                Back
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-50 text-align-center">
+                <div class="padding">
+                    <h2 class="no-margin">Add Property</h2>
+                </div>
+            </div>
+
+            <div class="col-25"></div>
+        </div>
+
+        <div class="row">
+            <div class="col-100">
+                <form method="POST" enctype="multipart/form-data" id="create_property_form">
+                    {% csrf_token %}
+
+                        <div class="list no-hairlines-md">
+                            <ul>
+                                
+                                {% for field in form %}
+                                    <li class="item-content item-input item-input-outline">
+                                        <div class="item-inner">
+                                            <div class="item-title item-floating-label margin-bottom-half signin-label">{{ field.label_tag }}
+
+                                            </div>
+                                            <div class="item-input-wrap">
+                                                {{field}}
+                                            </div>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            <!-- SECTION Custom Image Upload -->
+                    <div class="row padding image-custom-upload">
+                        <div class="col-100">
+                            <div class="padding dashed-repeating-gradient">
+                                <div class="row">
+                                    <div class="col-30">
+                                        <img id="property-image-default" src="{% static 'landlord/images/image_upload_icon.png' %}" alt="Upload Image">
+                                    </div>
+                                    <div class="col-70">
+                                        <span class="color-scheme1 upload-text">Upload a Photo</span>
+                                        <br>
+                                        <span class="thumbnail-description">This photo will represent your property listing in the market.</span>
+                                    </div>
+                                </div>
+                            </div><!--image upload container end-->
+                        </div><!--col-100 end-->
+                    </div><!--row end-->
+                    <!-- SECTION Custom Image Upload End -->
+                        </div><!--list-->
+                        
+                        <input type="submit" class="btn btn-primary" value="Submit">
+                    </form>
+                    
+            </div>
+        </div>
+
+    </div><!--page-content-->
+</div><!--swipeable wrap-->
+{% endblock landlord_content %}
+
+
+{% block landlordJs %}
+<script src="{% static 'landlord/js/property.js' %}"></script>
+<script>
+    $('#id_thumbnail').parent().addClass('image-upload-container');
+    $('.image-custom-upload').insertBefore('#id_thumbnail');
+    $('#id_thumbnail').addClass('upload-btn-hide');
+
+    // SECTION Function to Preview Uploaded Image
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+            
+            reader.onload = function(e) {
+            $('#property-image-default').attr('src', e.target.result);
+            }
+            
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#id_thumbnail").change(function() {
+        readURL(this);
+    });
+
+</script>
+{% endblock landlordJs %}
+    

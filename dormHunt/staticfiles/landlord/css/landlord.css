@@ -63,3 +63,9 @@
 
     font: 32px Arial, sans-serif;
 }
+
+/* SECTION Image Upload Button */
+.image-upload-container {
+    border-image: url('static/landlord/images/border-dash-image.png') 2 round;
+    margin: 0 20px;
+}
