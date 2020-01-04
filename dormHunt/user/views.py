@@ -37,7 +37,11 @@ def user_login(request):
 
     if user.is_authenticated:
         # return redirect('home:view_home')
-        return redirect('tenant:tenant')
+        if user.user_type == "Landlord":
+            return redirect('landlord:landlord_home')
+        else:
+            return redirect('tenant:tenant')
+
 
     if request.method == "POST":
         form = UserAuthenticationForm(request.POST)
@@ -50,7 +54,10 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
-                return redirect('tenant:tenant')
+                if user.user_type == "Landlord":
+                    return redirect('landlord:landlord_home')
+                else:
+                    return redirect('tenant:tenant')
             else:
                 messages.warning(request, "ACCOUNT IS NOT ACTIVE!")
                 return redirect('user:user_login')

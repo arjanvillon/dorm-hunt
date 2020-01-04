@@ -5,7 +5,7 @@ class PropertyForm(forms.ModelForm):
 
     class Meta():
         model = Property
-        fields = ('name', 'address', 'capacity', 'deposit', 'price', 'thumbnail')
+        fields = ('name', 'house_number', 'street', 'barangay', 'city', 'zip_code', 'capacity', 'deposit', 'price', 'thumbnail')
 
         labels = {
             "name": "Property Name" ,
@@ -19,3 +19,4 @@ class PropertyForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         kwargs.setdefault('label_suffix', '')  # globally override the Django >=1.6 default of ':'
         super(PropertyForm, self).__init__(*args, **kwargs)
+        
