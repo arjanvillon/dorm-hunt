@@ -14,7 +14,7 @@
                     </div>
                     <div class="float-right">
                         <div class="float-right margin-right margin-top">
-                            <a href="{% url 'home:view_user' %}" class="link external">
+                            <a href="{% url 'user:user_profile' pk=user.pk %}" class="link external">
                                 <img src="{% static 'home/images/user-icon.png' %}" alt="View User">
                             </a>
                         </div>
@@ -56,7 +56,7 @@
                 </div>
                 <!-- SECTION Add Property -->
                 <div class="col-33">
-                    <a href="#" class="link external">
+                    <a href="{% url 'landlord:property_create' %}" class="link external">
                         <div class="row">
                             <div class="col-100">
                                 <img src="{% static 'landlord/images/buttons/add_new_property.png' %}" alt="Add New Property">

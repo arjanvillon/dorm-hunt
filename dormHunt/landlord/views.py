@@ -1,5 +1,7 @@
 from django.shortcuts import render
-from django.views.generic import (TemplateView)
+from django.views.generic import (TemplateView, CreateView)
+from landlord.forms import PropertyForm
+from landlord.models import Property
 
 
 # Create your views here.
@@ -9,3 +11,12 @@ class Landlord(TemplateView):
 
 class LandlordProperties(TemplateView):
     template_name = 'landlord/landlord_properties.html'
+
+class PropertyCreateView(CreateView):
+    form_class = PropertyForm
+    model = Property
+
+    def form_valid(self, form):
+        form.instance.owner = self.request.user
+        return super().form_valid(form)
+    
