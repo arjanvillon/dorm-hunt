@@ -25,6 +25,7 @@ class Property(models.Model):
     price               = models.FloatField()
     thumbnail           = models.ImageField(default='property_thumbnails/default.png', upload_to='property_thumbnails')
     description         = models.TextField(blank=True)
+    tagline             = models.CharField(max_length=40, null=True)
 
     # Features
     is_air_conditioned  = models.BooleanField(default=False)

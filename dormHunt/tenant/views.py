@@ -1,5 +1,12 @@
 from django.shortcuts import render
-from django.views.generic import (TemplateView)
+from django.views.generic import (
+    TemplateView,
+    ListView
+    )
+
+# SECTION Import Model
+from landlord.models import Property
+
 
 # Create your views here.
 class Tenant(TemplateView):
@@ -8,5 +15,6 @@ class Tenant(TemplateView):
 class TenantFavorites(TemplateView):
     template_name = 'tenant/tenant_favorites.html'
 
-class TenantDormSearch(TemplateView):
+class TenantDormSearch(ListView):
+    model = Property
     template_name = 'tenant/tenant_search.html'
