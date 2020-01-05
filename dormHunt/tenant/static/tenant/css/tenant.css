@@ -4,3 +4,66 @@
     font-family: 'Roboto', sans-serif;
     font-size: larger;
 }
+
+.item-title {
+    font-weight: bold !important;
+    font-size: larger !important;
+    letter-spacing: -0.06em !important;
+    font-family: 'PT Sans Caption', sans-serif !important;
+}
+
+.property-support-label {
+    font-family: 'PT Sans Caption', sans-serif !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: medium !important;
+    line-height: 17px;
+    /* identical to box height */
+
+    letter-spacing: -0.06em !important;
+
+    color: #444444 !important;
+}
+
+/* SECTION Search Filter Icon */
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 51px;
+    height: 46px;
+    margin-left: 10px;
+    border-radius: 6px;
+    background-color: #fff;
+    color: #7690b3;
+    /* color: #2979FF; */
+    font-size: 24px;
+    box-shadow: 0 1px 3px rgba(50,50,93,.15), 0 1px 0 rgba(0,0,0,.02);
+}
+
+/* SECTION Search Bar Filter */
+/* .searchbar-filter {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 51px;
+    height: 46px !important;
+    margin-left: 10px !important;
+    border-radius: 6px !important;
+    color: #7690b3 !important;
+    font-size: 24px !important;
+    box-shadow: 0 1px 3px rgba(50,50,93,.15), 0 1px 0 rgba(0,0,0,.02) !important;
+} */
+
+/* Section Image */
+.property-image-default {
+    width: 100%;
+    min-height: 100%;
+    border-radius: 10%;
+}
+
+/* SECTION Search Bar */
+form.searchbar {
+    margin-left: -20px !important;
+    margin-right: -10px !important;
+}

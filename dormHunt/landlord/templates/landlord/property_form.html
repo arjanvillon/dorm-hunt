@@ -15,7 +15,7 @@
                             <div class="col-10">
                                 <i class="f7-icons">chevron_left</i>
                             </div>
-                            <div class="col-90 padding-left">
+                            <div class="col-90 padding-left text-large">
                                 Back
                             </div>
                         </div>
@@ -32,12 +32,12 @@
             <div class="col-25"></div>
         </div>
 
-        <div class="row">
-            <div class="col-100">
+        <div class="row ">
+            <div class="col-100 add-property-margin">
                 <form method="POST" enctype="multipart/form-data" id="create_property_form">
                     {% csrf_token %}
 
-                        <div class="list no-hairlines-md">
+                        <div class="list no-hairlines-md no-margin-bottom">
                             <ul>
                                 
                                 {% for field in form %}
@@ -53,7 +53,7 @@
                                     </li>
                                 {% endfor %}
                             </ul>
-                            <!-- SECTION Custom Image Upload -->
+                    <!-- SECTION Custom Image Upload -->
                     <div class="row padding image-custom-upload">
                         <div class="col-100">
                             <div class="padding dashed-repeating-gradient">
@@ -73,7 +73,11 @@
                     <!-- SECTION Custom Image Upload End -->
                         </div><!--list-->
                         
-                        <input type="submit" class="btn btn-primary" value="Submit">
+                    <!-- SECTION Submit Button -->
+                    <div class="text-align-center padding-vertical submit-btn-container">
+                        <input type="submit" class="submit-btn button button-raised button-fill button-round" value="Submit"> 
+                    </div>
+
                     </form>
                     
             </div>

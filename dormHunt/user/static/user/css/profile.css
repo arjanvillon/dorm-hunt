@@ -1,3 +1,5 @@
+
+/* SECTION Buttons */
 /* Log Out Button */
 .logout-btn {
     font-family: 'PT Sans', sans-serif;
@@ -15,7 +17,17 @@
     color: #5660F1;
 }
 
-/* LABELS */
+.submit-btn {
+    width: 33.33% !important;;
+}
+
+.submit-btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* SECTION  LABELS */
 .account-type-label {
     background: rgba(87, 204, 242, 0.25);
     color: #5660F1;
@@ -26,4 +38,51 @@
     line-height: 25px;
     letter-spacing: 0.04em;
     text-transform: uppercase;
+}
+
+/* SECTION Margins */
+.add-profile-margin {
+    margin-top: -35px;
+}
+
+/* SECTION Image Upload Button */
+.dashed-repeating-gradient {
+    padding: 10px;
+    background-image: repeating-linear-gradient(to right, #c4c4c4 0%, #c4c4c4 50%, transparent 50%, transparent 100%), repeating-linear-gradient(to right, #c4c4c4 0%, #c4c4c4 50%, transparent 50%, transparent 100%), repeating-linear-gradient(to bottom, #c4c4c4 0%, #c4c4c4 50%, transparent 50%, transparent 100%), repeating-linear-gradient(to bottom, #c4c4c4 0%, #c4c4c4 50%, transparent 50%, transparent 100%);
+    background-position: left top, left bottom, left top, right top;
+    background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+    background-size: 20px 3px, 20px 3px, 3px 20px, 3px 20px;
+}
+
+.image-upload-container {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.upload-btn-hide {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+#user-image-default {
+    width: 100%;
+    min-height: 100%;
+}
+
+/* SECTION Text Styles */
+.upload-text {
+    font-weight: bold;
+    font-size: large;
+}
+
+.thumbnail-description {
+    color: #666;
+    font-size: small;
+}
+.text-large {
+    font-size: large;
 }
