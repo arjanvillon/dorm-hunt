@@ -51,9 +51,11 @@
                 </div>
                 <!-- SECTION Button -->
                 <div class="row justify-content-center">
-                    <button class="col-50 button button-outline homesearch-btn">
-                        Search Here
-                    </button>
+                    <a href="{% url 'tenant:dorm_search' %}" class="link external">
+                        <button class="col-50 button button-outline homesearch-btn">
+                            Search Here
+                        </button>
+                    </a>
                 </div><!--row end-->
             </div><!--block end-->
         </div> <!--page content end-->
