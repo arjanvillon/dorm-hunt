@@ -8,9 +8,15 @@
 .size-29 { font-size: 29px }
 .size-40 { font-size: 40px }
 
+/* SECTION Colors */
+.color-scheme1 {
+    color: #5660F1;
+}
+
 /* ANCHOR  Home */
 
 /* SECTION Text Styles */
+
 .username {
     text-transform: capitalize;
 }
@@ -30,6 +36,19 @@
     color: #5660F1;
 }
 
+.upload-text {
+    font-weight: bold;
+    font-size: large;
+}
+
+.thumbnail-description {
+    color: #666;
+    font-size: small;
+}
+
+.text-large {
+    font-size: large;
+}
 
 /* SECTION Card */
 .card-property {
@@ -65,7 +84,47 @@
 }
 
 /* SECTION Image Upload Button */
+.dashed-repeating-gradient {
+    padding: 10px;
+    background-image: repeating-linear-gradient(to right, #c4c4c4 0%, #c4c4c4 50%, transparent 50%, transparent 100%), repeating-linear-gradient(to right, #c4c4c4 0%, #c4c4c4 50%, transparent 50%, transparent 100%), repeating-linear-gradient(to bottom, #c4c4c4 0%, #c4c4c4 50%, transparent 50%, transparent 100%), repeating-linear-gradient(to bottom, #c4c4c4 0%, #c4c4c4 50%, transparent 50%, transparent 100%);
+    background-position: left top, left bottom, left top, right top;
+    background-repeat: repeat-x, repeat-x, repeat-y, repeat-y;
+    background-size: 20px 3px, 20px 3px, 3px 20px, 3px 20px;
+}
+
 .image-upload-container {
-    border-image: url('static/landlord/images/border-dash-image.png') 2 round;
-    margin: 0 20px;
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.upload-btn-hide {
+    font-size: 100px;
+    position: absolute;
+    left: 0;
+    top: 0;
+    opacity: 0;
+}
+
+#property-image-default {
+    width: 100%;
+    min-height: 100%;
+}
+
+/* SECTION Margins */
+.add-property-margin {
+    margin-top: -35px;
+}
+
+/* SECTION Buttons */
+
+/* SECTION Submit Button */
+.submit-btn {
+    width: 33.33% !important;;
+}
+
+.submit-btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

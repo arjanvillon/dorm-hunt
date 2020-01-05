@@ -16,10 +16,10 @@
     <!-- <div class="tabs swiper-wrapper"> -->
     <div id="tab-1" class="page-content">
         <div class="block margin-top-half">
+            <!-- SECTION User Greetings and Link to User Profile -->
             <div class="row">
                 <div class="col-50">
                     <div class="float-left">
-
                         <div class="row">
                             <div class="col-100">
                                 <h1 class="username no-margin-bottom">Hello {{ user.username }}!</h1>
@@ -42,7 +42,241 @@
                         </div>
                     </div>
                 </div>
+            </div><!--row end-->
+            <!-- SECTION User Greetings and Link to User Profile end-->
+            <!-- ANCHOR Break -->
+            <!-- SECTION Search Options -->
+            <div class="row padding-horizontal no-margin-left no-padding-left">
+                <!-- SECTION Search Bar -->
+                <div class="col-70 no-margin-left no-padding-left">
+                    <form class="searchbar">
+                        <div class="searchbar-inner">
+                            <div class="searchbar-input-wrap ">
+                                <input type="search" class="searchbar-filter" placeholder="Search">
+                                <i class="searchbar-icon"></i>
+                                <span class="input-clear-button"></span>
+                            </div>
+                            <span class="searchbar-disable-button if-not-aurora">Cancel</span>
+                        </div>
+                    </form>                    
+                </div><!--col-60 end-->
+                <!-- SECTION Search Bar end -->
+
+                <!-- SECTION Search by Filter -->
+                <div class="col-15 margin-right padding-top-half ">
+                    <div class="search-container">
+                        <i class="fas fa-filter"></i>
+                    </div>
+                </div><!--col-20 end-->
+                <!-- SECTION Search by Filter end-->
+                
+                <!-- SECTION Search through Map -->
+                <div class="col-15 padding-top-half">
+                    <div class="search-container">
+                        <i class="fas fa-map-marked"></i>
+                    </div>
+                </div><!--col-20 end-->
+                <!-- SECTION Search through Map -->
+
+
+
+            </div><!--row end-->
+
+        <!-- SECTION Search Options end -->
+        <!-- SECTION Search Bar Find -->
+            <!-- Searchbar backdrop -->
+            <div class="searchbar-backdrop"></div>
+            <!-- search target list -->
+            <div class="list searchbar-found">
+            <ul>
+                <!-- SECTION dorm -->
+                <li class="item-content">
+                <div class="item-inner">
+                    <div class="row">
+                        <div class="col-30">
+                            <img src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt="Property Image" class="property-image-default">
+                        </div>
+                        <div class="col-70">
+                            <div class="item-title">Kingcess Dormitory</div>
+                            <div class="property-support-label">Quality Rooms at Affordable Prices</div>
+                        </div>
+                    </div>
+                </div>
+                </li>
+                <!-- SECTION dorm end -->
+                <!-- SECTION dorm -->
+                <li class="item-content">
+                <div class="item-inner">
+                    <div class="row">
+                        <div class="col-30">
+                            <img src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt="Property Image" class="property-image-default">
+                        </div>
+                        <div class="col-70">
+                            <div class="item-title">Kingcess Dormitory</div>
+                            <div class="property-support-label">Quality Rooms at Affordable Prices</div>
+                        </div>
+                    </div>
+                </div>
+                </li>
+                <!-- SECTION dorm end -->
+                <!-- SECTION dorm -->
+                <li class="item-content">
+                <div class="item-inner">
+                    <div class="row">
+                        <div class="col-30">
+                            <img src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt="Property Image" class="property-image-default">
+                        </div>
+                        <div class="col-70">
+                            <div class="item-title">Kingcess Dormitory</div>
+                            <div class="property-support-label">Quality Rooms at Affordable Prices</div>
+                        </div>
+                    </div>
+                </div>
+                </li>
+                <!-- SECTION dorm end -->
+                <!-- SECTION dorm -->
+                <li class="item-content">
+                <div class="item-inner">
+                    <div class="row">
+                        <div class="col-30">
+                            <img src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt="Property Image" class="property-image-default">
+                        </div>
+                        <div class="col-70">
+                            <div class="item-title">Kingcess Dormitory</div>
+                            <div class="property-support-label">Quality Rooms at Affordable Prices</div>
+                        </div>
+                    </div>
+                </div>
+                </li>
+                <!-- SECTION dorm end -->
+                <!-- SECTION dorm -->
+                <li class="item-content">
+                <div class="item-inner">
+                    <div class="row">
+                        <div class="col-30">
+                            <img src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt="Property Image" class="property-image-default">
+                        </div>
+                        <div class="col-70">
+                            <div class="item-title">Kingcess Dormitory</div>
+                            <div class="property-support-label">Quality Rooms at Affordable Prices</div>
+                        </div>
+                    </div>
+                </div>
+                </li>
+                <!-- SECTION dorm end -->
+                <!-- SECTION dorm -->
+                <li class="item-content">
+                <div class="item-inner">
+                    <div class="row">
+                        <div class="col-30">
+                            <img src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt="Property Image" class="property-image-default">
+                        </div>
+                        <div class="col-70">
+                            <div class="item-title">Kingcess Dormitory</div>
+                            <div class="property-support-label">Quality Rooms at Affordable Prices</div>
+                        </div>
+                    </div>
+                </div>
+                </li>
+                <!-- SECTION dorm end -->
+                <!-- SECTION dorm -->
+                <li class="item-content">
+                <div class="item-inner">
+                    <div class="row">
+                        <div class="col-30">
+                            <img src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt="Property Image" class="property-image-default">
+                        </div>
+                        <div class="col-70">
+                            <div class="item-title">Kingcess Dormitory</div>
+                            <div class="property-support-label">Quality Rooms at Affordable Prices</div>
+                        </div>
+                    </div>
+                </div>
+                </li>
+                <!-- SECTION dorm end -->
+                <!-- SECTION dorm -->
+                <li class="item-content">
+                <div class="item-inner">
+                    <div class="row">
+                        <div class="col-30">
+                            <img src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt="Property Image" class="property-image-default">
+                        </div>
+                        <div class="col-70">
+                            <div class="item-title">Kingcess Dormitory</div>
+                            <div class="property-support-label">Quality Rooms at Affordable Prices</div>
+                        </div>
+                    </div>
+                </div>
+                </li>
+                <!-- SECTION dorm end -->
+                <!-- SECTION dorm -->
+                <li class="item-content">
+                <div class="item-inner">
+                    <div class="row">
+                        <div class="col-30">
+                            <img src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt="Property Image" class="property-image-default">
+                        </div>
+                        <div class="col-70">
+                            <div class="item-title">Kingcess Dormitory</div>
+                            <div class="property-support-label">Quality Rooms at Affordable Prices</div>
+                        </div>
+                    </div>
+                </div>
+                </li>
+                <!-- SECTION dorm end -->
+                <!-- SECTION dorm -->
+                <li class="item-content">
+                <div class="item-inner">
+                    <div class="row">
+                        <div class="col-30">
+                            <img src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt="Property Image" class="property-image-default">
+                        </div>
+                        <div class="col-70">
+                            <div class="item-title">Kingcess Dormitory</div>
+                            <div class="property-support-label">Quality Rooms at Affordable Prices</div>
+                        </div>
+                    </div>
+                </div>
+                </li>
+                <!-- SECTION dorm end -->
+                <!-- SECTION dorm -->
+                <li class="item-content">
+                <div class="item-inner">
+                    <div class="row">
+                        <div class="col-30">
+                            <img src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt="Property Image" class="property-image-default">
+                        </div>
+                        <div class="col-70">
+                            <div class="item-title">Kingcess Dormitory</div>
+                            <div class="property-support-label">Quality Rooms at Affordable Prices</div>
+                        </div>
+                    </div>
+                </div>
+                </li>
+                <!-- SECTION dorm end -->
+                <!-- SECTION dorm -->
+                <li class="item-content">
+                <div class="item-inner">
+                    <div class="row">
+                        <div class="col-30">
+                            <img src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt="Property Image" class="property-image-default">
+                        </div>
+                        <div class="col-70">
+                            <div class="item-title">Kingcess Dormitory</div>
+                            <div class="property-support-label">Quality Rooms at Affordable Prices</div>
+                        </div>
+                    </div>
+                </div>
+                </li>
+                <!-- SECTION dorm end -->
+            </ul>
             </div>
+            <!-- Nothing found message -->
+            <div class="block searchbar-not-found">
+            <div class="block-inner">Nothing found</div>
+            </div>
+        <!-- SECTION Search Bar Find -->
+
         </div><!--block end-->
     </div> <!--page content end-->
     <!-- </div>tabs end -->
@@ -52,6 +286,7 @@
 
 {% block homeJs %}
     <script src="{% static '/plugins/jquery/jquery.js' %}"></script>
+    <script src="{% static '/tenant/js/tenant.js' %}"></script>
     <script>
         $('a.search-tab').addClass('tab-link-active');
         $('.tab-link-highlight').remove();

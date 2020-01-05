@@ -32,3 +32,14 @@ class UserProfileForm(forms.ModelForm):
     class Meta():
         model = UserProfile
         fields = ('first_name', 'last_name', 'number', 'birthday', 'emergency_name', 'emergency_phone', 'picture')
+
+        labels = {
+            "number": "Phone Number",
+            "emergency_name": "Name",
+            "emergency_phone": "Phone Number",
+            "picture": "Picture (optional)",
+        }
+
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('label_suffix', '')  # globally override the Django >=1.6 default of ':'
+        super(UserProfileForm, self).__init__(*args, **kwargs)

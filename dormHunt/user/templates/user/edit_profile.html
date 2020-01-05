@@ -32,7 +32,6 @@
         <!-- Initial Page, "data-name" contains page name -->
             <div data-name="home" class="page">
                 <div class="page-content">
-
                     <div class="row">
                         <div class="col-25">
                             <div class="padding">
@@ -43,7 +42,7 @@
                                         <div class="col-10">
                                             <i class="f7-icons">chevron_left</i>
                                         </div>
-                                        <div class="col-90 padding-left">
+                                        <div class="col-90 padding-left text-large">
                                             Back
                                         </div>
                                     </div>
@@ -61,19 +60,24 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-100">
+                        <div class="col-100 add-profile-margin">
                             <form method="POST" enctype="multipart/form-data" id="edit_profile_form">
                                 {% csrf_token %}
 
-                                    <div class="list no-harilines-md">
+                                    <div class="list no-hairlines-md no-margin-bottom">
                                         <ul>
                                             
                                             {% for field in form %}
+                                                    
+                                                    {% if field.label == 'Name' %}
+                                                        <h3 class="padding-left no-padding-bottom no-margin-bottom">Emergency Contact</h3>
+                                                    {% endif %}
+                                                        
                                                 
 
-                                                    <li class="item-content item-input">
+                                                    <li class="item-content item-input item-input-outline">
                                                         <div class="item-inner">
-                                                            <div class="item-title margin-bottom-half signin-label">{{ field.label_tag }}</div>
+                                                            <div class="item-title item-floating-label margin-bottom-half signin-label">{{ field.label_tag }}</div>
                                                             <div class="item-input-wrap">
                                                                 {{field}}
                                                             </div>
@@ -85,8 +89,29 @@
                                                 
                                         </ul>
                                     </div>
-                        
-                                <input type="submit" class="btn btn-primary" value="Submit">
+                                <!-- SECTION Custom Image Upload -->
+                                <div class="row padding image-custom-upload">
+                                    <div class="col-100">
+                                        <div class="padding dashed-repeating-gradient">
+                                            <div class="row">
+                                                <div class="col-30">
+                                                    <img id="user-image-default" src="{% static 'user/images/image_upload_icon.png' %}" alt="Upload Image">
+                                                </div>
+                                                <div class="col-70">
+                                                    <span class="color-scheme1 upload-text">Upload a Photo</span>
+                                                    <br>
+                                                    <span class="thumbnail-description">This photo will represent your profile picture.</span>
+                                                </div>
+                                            </div>
+                                        </div><!--image upload container end-->
+                                    </div><!--col-100 end-->
+                                </div><!--row end-->
+                                <!-- SECTION Custom Image Upload End -->
+                                
+                                <!-- SECTION Submit Button -->
+                                <div class="text-align-center padding-vertical submit-btn-container">
+                                    <input type="submit" class="submit-btn button button-raised button-fill button-round" value="Submit"> 
+                                </div>
                             </form>
                         </div>
                     </div>
@@ -102,13 +127,58 @@
 
 
 
-
 <!-- SECTION SCRIPTS -->
         <script src="{% static '/plugins/jquery/jquery.js' %}"></script>
         <script src="{% static '/plugins/framework7/core/js/framework7.bundle.min.js' %}"></script>
         <script src="{% static '/home/routes.js' %}"></script>
         <script src="{% static '/home/home.js' %}"></script>
         <script src="{% static '/user/js/profile.js' %}"></script>
+        <script>
+             $('#id_picture').parent().addClass('image-upload-container');
+            $('.image-custom-upload').insertBefore('#id_picture');
 
+            $('div.image-upload-container a').hide();
+            $('div.image-upload-container input[type="checkbox"]').hide();
+            $('div.image-upload-container label').hide();
+            // SECTION remove text in a div
+            var replacetext = {
+                "Currently:": "",
+                "Change:": "",
+            };
+
+            $.each(replacetext, function(txtorig, txtnew) {
+                var text = $('div.image-upload-container').html();
+                $('div.image-upload-container').html(text.replace(txtorig, txtnew)); 
+            });
+
+
+            // $('div.image-upload-container').each(function() {
+
+            //     var text = $(this).html();
+            //     $(this).html(text.replace('Change:', '')); 
+
+            // });
+
+
+            $('#id_picture').addClass('upload-btn-hide');
+            // $('#id_picture').parent().addClass();
+
+            // SECTION Function to Preview Uploaded Image
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                    $('#user-image-default').attr('src', e.target.result);
+                    }
+                    
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+
+            $("#id_picture").change(function() {
+                readURL(this);
+            });
+        </script>
     </body>
 </html>

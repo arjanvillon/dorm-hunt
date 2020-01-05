@@ -46,6 +46,10 @@
     font-size: small;
 }
 
+.text-large {
+    font-size: large;
+}
+
 /* SECTION Card */
 .card-property {
     background-color: #5660F1;
@@ -106,3 +110,22 @@
     width: 100%;
     min-height: 100%;
 }
+
+/* SECTION Margins */
+.add-property-margin {
+    margin-top: -35px;
+}
+
+/* SECTION Buttons */
+
+/* SECTION Submit Button */
+.submit-btn {
+    width: 33.33% !important;;
+}
+
+.submit-btn-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
