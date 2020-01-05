@@ -1,17 +1,20 @@
 from django.shortcuts import render
-from django.views.generic import (TemplateView, CreateView)
+from django.views.generic import (TemplateView, ListView, CreateView, DetailView)
+from geopy.geocoders import Nominatim
 
 # SECTION Import Forms
 from landlord.forms import PropertyForm
 
 #SECTION Import Models
 from landlord.models import Property
-from geopy.geocoders import Nominatim
 
 # Create your views here.
-class Landlord(TemplateView):
+class LandlordListView(ListView):
     template_name = 'landlord/landlord_home.html'
+    model = Property
 
+    def get_queryset(self):
+        return Property.objects.all().filter(owner=self.request.user)
 
 class LandlordProperties(TemplateView):
     template_name = 'landlord/landlord_properties.html'
@@ -39,4 +42,6 @@ class PropertyCreateView(CreateView):
 
         print(form.instance.street)
         return super().form_valid(form)
-    
+
+class PropertyDetailView(DetailView):
+    model = Property

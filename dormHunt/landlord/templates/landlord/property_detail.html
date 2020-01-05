@@ -1,0 +1,51 @@
+{% extends 'landlord/base.html' %}
+
+{% block landlord_content %}
+<div class="page-content">
+    <div class="row">
+        <div class="col-25">
+            <div class="padding">
+            <!-- TODO Create a function to return to previous link -->
+            <!-- NOTE This a link is just temporary -->
+                <a href="{% url 'landlord:landlord_home' %}" class="link external">
+                    <div class="row back-btn">
+                        <div class="col-10">
+                            <i class="f7-icons">chevron_left</i>
+                        </div>
+                        <div class="col-90 padding-left">
+                            Back
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-100">
+            <!-- <img src="{{ property.thumbnail.url }}" alt="Property Thumbnail"> -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-100">
+            <h2 class="no-margin property-title padding-left">{{ property.name }}</h2>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-100">
+            <p class="no-margin-vertical property-address padding-horizontal margin">{{ property.address }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-100">
+            <p class="no-margin-vertical margin-horizontal property-price"><strong>Php {{ property.price }}</strong> monthly</p>
+        </div>
+    </div>
+
+    <hr class="margin-horizontal">
+</div>
+{% endblock landlord_content %}
+    

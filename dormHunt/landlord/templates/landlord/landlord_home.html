@@ -72,7 +72,7 @@
             </div><!--row end-->
 
             <!-- SECTION Properties -->
-            <div class="row padding-top-half">
+            <!-- <div class="row padding-top-half">
                 <div class="col-100">
                     <div class="card card-outline card-property">
                         <div class="card-content card-content-padding no-padding-top">
@@ -82,17 +82,31 @@
                                     <div class="card-label-small">
                                         Your properties all in one place! Click here to view all your properties
                                     </div>
-                                </div><!--col-50 end-->
+                                </div>col-50 end
                                 <div class="col-40 padding margin-top justify-content-center text-align-center">
                                     <div class="numberCircle">
                                             21
                                     </div>
-                                </div><!--col-50 end-->
-                            </div><!--row end-->
+                                </div>col-50 end
+                            </div>row end
                         </div>
                     </div>
-                </div><!--col-100 end-->
-            </div><!--row end-->
+                </div>col-100 end
+            </div>row end -->
+
+            
+            {% for property in property_list %}     
+                
+                <div class="row padding-top-half">
+                    <div class="col-100">
+                        <div class="card card-outline">
+                            <div class="card-header"><a class="link external" href="{% url 'landlord:property_detail' pk=property.pk %}">{{ property.name }}</a></div>
+                            <div class="card-content card-content-padding">{{ property.address }}</div>
+                        </div>
+                    </div>
+                </div>
+
+            {% endfor %}
 
 
 
