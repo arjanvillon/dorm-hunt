@@ -1,3 +1,8 @@
+/* SECTION Colors */
+.color-scheme1 {
+    color: #5660F1;
+}
+
 .property-title{
     font-style: normal;
     font-weight: normal;
@@ -14,4 +19,11 @@
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
+}
+
+/* SECTION Links */\
+.view-details {
+    background-color: #5660F1 !important;
+    border-radius: 10px !important;
+    color: #fff !important;
 }

@@ -3,4 +3,6 @@ $(document).ready(function(){
         $(this).attr('validate', '');
         $(this).attr('required', '');
     });
+
+
 });

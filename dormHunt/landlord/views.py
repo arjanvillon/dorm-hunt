@@ -19,6 +19,13 @@ from user.models import User
 class LandlordListView(ListView):
     template_name = 'landlord/landlord_home.html'
     model = Property
+    # context = {}
+    # property_numbers =  Property.objects.all().count()
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['property_numbers'] = Property.objects.all().filter(owner=self.request.user).count()
+        return context
 
     def get_queryset(self):
         return Property.objects.all().filter(owner=self.request.user)

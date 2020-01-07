@@ -106,7 +106,7 @@
     opacity: 0;
 }
 
-#property-image-default {
+#property-image-default, .property-image-default {
     width: 100%;
     min-height: 100%;
 }
@@ -128,3 +128,4 @@
     align-items: center;
     justify-content: center;
 }
+

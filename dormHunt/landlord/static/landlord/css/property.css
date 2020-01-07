@@ -1,3 +1,8 @@
+/* SECTION Colors */
+.color-scheme1 {
+    color: #5660F1;
+}
+
 .property-title{
     font-style: normal;
     font-weight: normal;
@@ -14,4 +19,33 @@
     font-style: normal;
     font-weight: normal;
     font-size: 18px;
+}
+
+/* SECTION Links */
+.view-details {
+    background-color: #666;
+    /* border-radius: 7px; */
+    width: 100%;
+    color: #fff;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    text-align: center;
+    margin-top: 0px;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: small;
+    opacity: 0.6;
+    transition: 0.8s;
+}
+.view-details:hover {
+    /* background-color: #212121; */
+    opacity: 1;
+}
+
+
+.view-slots-left {
+    background-color: #42A840;
+    border-radius: 7px;
+    color: #fff;
+    padding: 2px 5px;
 }
