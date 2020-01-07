@@ -1,0 +1,66 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block home_content %}
+<div class="page-content">
+    <div class="row">
+        <div class="col-25">
+            <div class="padding">
+            <!-- TODO Create a function to return to previous link -->
+            <!-- NOTE This a link is just temporary -->
+                <a href="{% url 'tenant:dorm_search' %}" class="link external">
+                    <div class="row back-btn">
+                        <div class="col-10">
+                            <i class="f7-icons">chevron_left</i>
+                        </div>
+                        <div class="col-90 padding-left">
+                            Back
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- SECTION Images -->
+    <div class="row">
+        <div class="col-100">
+            <!-- <img src="{{ property.thumbnail.url }}" alt="Property Thumbnail"> -->
+            <div data-speed="900" data-pagination='{"el": ".swiper-pagination"}' data-space-between="50" class="swiper-container swiper-init demo-swiper">
+                <div class="swiper-pagination"></div>
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide"><img class="property-image-default-no-border" src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt=""></div>
+                  <div class="swiper-slide"><img class="property-image-default-no-border" src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt=""></div>
+                  <div class="swiper-slide"><img class="property-image-default-no-border" src="{% static 'tenant/images/favorites_default.png' %}" alt=""></div>
+                </div>
+              </div>
+        </div>
+    </div>
+    <!-- SECTION Property Name and Favorites -->
+    <div class="row padding-top-half">
+        <div class="col-80">
+            <h2 class="no-margin property-title padding-left">{{ property.name }}</h2>
+        </div>
+        <div class="col-20">
+            <a href="#">
+                <i class="far fa-heart fa-2x"></i>
+            </a>
+            <!-- <i class="fas fa-heart fa-2x"></i> -->
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-100">
+            <p class="no-margin-vertical property-address padding-horizontal margin">{{ property.address }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-100">
+            <p class="no-margin-vertical margin-horizontal property-price"><strong>Php {{ property.price }}</strong> monthly</p>
+        </div>
+    </div>
+
+    <hr class="margin-horizontal line">
+</div>
+{% endblock home_content %}
+    

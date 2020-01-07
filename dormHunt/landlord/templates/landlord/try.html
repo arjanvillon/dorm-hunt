@@ -1,0 +1,87 @@
+<html>
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>Favorite function</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link href='https://fonts.googleapis.com/css?family=Satisfy' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{% static '/plugins/framework7/icons/css/framework7-icons.css' %}">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+<h1>Favorite Function</h1>
+
+ <table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Favorite</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for data in table_list %}{% csrf_token %}
+            <tr >
+
+                <td></td>
+                <td>{{data.name}}</td>
+                
+                <td><a href="{% url 'landlord:property_favorite' pk=data.pk %}"  class="btn btn-default btn-sm btn-favorite" role="button">
+                    
+                    {% if data.favorite %}
+                        <i class="f7-icons">heart_fill</i>
+                    {% else %}
+                        <i class="f7-icons">heart</i>
+                    {% endif %}
+                        
+                </a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+    <!-- <tbody>
+        {% for data in table_list %}{% csrf_token %}
+            <tr >
+
+                <td>{{data.name}}</td>
+                <td><a href="{% url 'landlord:property_favorite' pk=data.pk %}"  class="btn btn-default btn-sm btn-favorite" role="button"><span class=" glyphicon glyphicon-star {% if data.is_favorite %}active{% endif %}" action=""></span></a></td>
+            </tr>
+        {% endfor %}
+    </tbody> -->
+</table>
+</body>
+<script>
+var ProjectListPage = {
+    init: function() {
+        this.$container = $('.project-container');
+        this.render();
+        this.bindEvents();
+    },
+
+    render: function() {
+
+    },
+
+    bindEvents: function() {
+        $('.btn-favorite', this.$container).on('click', function(e) {
+            console.log('Hola');
+            e.preventDefault();
+
+            var self = $(this);
+            var url = $(this).attr('href');
+            $.getJSON(url, function(result) {
+                if (result.success) {
+                    $('.glyphicon-star', self).toggleClass('active');
+                }
+            });
+
+            return false;
+        });
+    }
+};
+
+$(document).ready(function() {
+    ProjectListPage.init();
+});
+</script>
+</html>

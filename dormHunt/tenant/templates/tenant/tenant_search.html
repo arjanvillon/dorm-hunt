@@ -22,13 +22,14 @@
                     <div class="float-left">
                         <div class="row">
                             <div class="col-100">
-                                <h1 class="username no-margin-bottom">Hello {{ user.username }}!</h1>
+                                <h2 class="username no-margin-bottom">Hello {{ user.username }}!</h1>
                                 
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-100">
                                 <h4 class="no-margin">Looking for a dormitory?</h4>
+                                
                             </div>
                         </div>
                     </div>
@@ -90,184 +91,24 @@
             <div class="list searchbar-found">
             <ul>
                 <!-- SECTION dorm -->
+                
+                {% for property in property_list %}
                 <li class="item-content">
-                <div class="item-inner">
-                    <div class="row">
-                        <div class="col-30">
-                            <img src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt="Property Image" class="property-image-default">
-                        </div>
-                        <div class="col-70">
-                            <div class="item-title">Kingcess Dormitory</div>
-                            <div class="property-support-label">Quality Rooms at Affordable Prices</div>
-                        </div>
+                    <div class="item-inner">
+                        <a href="{% url 'tenant:view_property' pk=property.pk %}" class="link external">
+                            <div class="row">
+                                <div class="col-30">
+                                    <img src="{{ property.thumbnail.url }}" alt="Property Image-{{ property.name }}" class="property-image-default">
+                                </div>
+                                <div class="col-70">
+                                    <div class="item-title">{{ property.name }}</div>
+                                    <div class="property-support-label">{{ property.tagline }}</div>
+                                </div>
+                            </div>
+                        </a>
                     </div>
-                </div>
                 </li>
-                <!-- SECTION dorm end -->
-                <!-- SECTION dorm -->
-                <li class="item-content">
-                <div class="item-inner">
-                    <div class="row">
-                        <div class="col-30">
-                            <img src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt="Property Image" class="property-image-default">
-                        </div>
-                        <div class="col-70">
-                            <div class="item-title">Kingcess Dormitory</div>
-                            <div class="property-support-label">Quality Rooms at Affordable Prices</div>
-                        </div>
-                    </div>
-                </div>
-                </li>
-                <!-- SECTION dorm end -->
-                <!-- SECTION dorm -->
-                <li class="item-content">
-                <div class="item-inner">
-                    <div class="row">
-                        <div class="col-30">
-                            <img src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt="Property Image" class="property-image-default">
-                        </div>
-                        <div class="col-70">
-                            <div class="item-title">Kingcess Dormitory</div>
-                            <div class="property-support-label">Quality Rooms at Affordable Prices</div>
-                        </div>
-                    </div>
-                </div>
-                </li>
-                <!-- SECTION dorm end -->
-                <!-- SECTION dorm -->
-                <li class="item-content">
-                <div class="item-inner">
-                    <div class="row">
-                        <div class="col-30">
-                            <img src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt="Property Image" class="property-image-default">
-                        </div>
-                        <div class="col-70">
-                            <div class="item-title">Kingcess Dormitory</div>
-                            <div class="property-support-label">Quality Rooms at Affordable Prices</div>
-                        </div>
-                    </div>
-                </div>
-                </li>
-                <!-- SECTION dorm end -->
-                <!-- SECTION dorm -->
-                <li class="item-content">
-                <div class="item-inner">
-                    <div class="row">
-                        <div class="col-30">
-                            <img src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt="Property Image" class="property-image-default">
-                        </div>
-                        <div class="col-70">
-                            <div class="item-title">Kingcess Dormitory</div>
-                            <div class="property-support-label">Quality Rooms at Affordable Prices</div>
-                        </div>
-                    </div>
-                </div>
-                </li>
-                <!-- SECTION dorm end -->
-                <!-- SECTION dorm -->
-                <li class="item-content">
-                <div class="item-inner">
-                    <div class="row">
-                        <div class="col-30">
-                            <img src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt="Property Image" class="property-image-default">
-                        </div>
-                        <div class="col-70">
-                            <div class="item-title">Kingcess Dormitory</div>
-                            <div class="property-support-label">Quality Rooms at Affordable Prices</div>
-                        </div>
-                    </div>
-                </div>
-                </li>
-                <!-- SECTION dorm end -->
-                <!-- SECTION dorm -->
-                <li class="item-content">
-                <div class="item-inner">
-                    <div class="row">
-                        <div class="col-30">
-                            <img src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt="Property Image" class="property-image-default">
-                        </div>
-                        <div class="col-70">
-                            <div class="item-title">Kingcess Dormitory</div>
-                            <div class="property-support-label">Quality Rooms at Affordable Prices</div>
-                        </div>
-                    </div>
-                </div>
-                </li>
-                <!-- SECTION dorm end -->
-                <!-- SECTION dorm -->
-                <li class="item-content">
-                <div class="item-inner">
-                    <div class="row">
-                        <div class="col-30">
-                            <img src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt="Property Image" class="property-image-default">
-                        </div>
-                        <div class="col-70">
-                            <div class="item-title">Kingcess Dormitory</div>
-                            <div class="property-support-label">Quality Rooms at Affordable Prices</div>
-                        </div>
-                    </div>
-                </div>
-                </li>
-                <!-- SECTION dorm end -->
-                <!-- SECTION dorm -->
-                <li class="item-content">
-                <div class="item-inner">
-                    <div class="row">
-                        <div class="col-30">
-                            <img src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt="Property Image" class="property-image-default">
-                        </div>
-                        <div class="col-70">
-                            <div class="item-title">Kingcess Dormitory</div>
-                            <div class="property-support-label">Quality Rooms at Affordable Prices</div>
-                        </div>
-                    </div>
-                </div>
-                </li>
-                <!-- SECTION dorm end -->
-                <!-- SECTION dorm -->
-                <li class="item-content">
-                <div class="item-inner">
-                    <div class="row">
-                        <div class="col-30">
-                            <img src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt="Property Image" class="property-image-default">
-                        </div>
-                        <div class="col-70">
-                            <div class="item-title">Kingcess Dormitory</div>
-                            <div class="property-support-label">Quality Rooms at Affordable Prices</div>
-                        </div>
-                    </div>
-                </div>
-                </li>
-                <!-- SECTION dorm end -->
-                <!-- SECTION dorm -->
-                <li class="item-content">
-                <div class="item-inner">
-                    <div class="row">
-                        <div class="col-30">
-                            <img src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt="Property Image" class="property-image-default">
-                        </div>
-                        <div class="col-70">
-                            <div class="item-title">Kingcess Dormitory</div>
-                            <div class="property-support-label">Quality Rooms at Affordable Prices</div>
-                        </div>
-                    </div>
-                </div>
-                </li>
-                <!-- SECTION dorm end -->
-                <!-- SECTION dorm -->
-                <li class="item-content">
-                <div class="item-inner">
-                    <div class="row">
-                        <div class="col-30">
-                            <img src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt="Property Image" class="property-image-default">
-                        </div>
-                        <div class="col-70">
-                            <div class="item-title">Kingcess Dormitory</div>
-                            <div class="property-support-label">Quality Rooms at Affordable Prices</div>
-                        </div>
-                    </div>
-                </div>
-                </li>
+                {% endfor %}
                 <!-- SECTION dorm end -->
             </ul>
             </div>
