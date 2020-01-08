@@ -1,0 +1,76 @@
+{% extends 'home/base.html' %}
+
+{% load static %}
+
+{% block css %}
+    <style>
+ 
+    </style>
+{% endblock css %}
+    
+{% block home_content %}
+<div class="tabs-swipeable-wrap">
+    <div class="tabs">
+        <div id="tab-1" class="page-content">
+            <div class="block">
+                <!-- SECTION User Greetings and User Icon -->
+                <div class="row">
+                    <div class="col-100">
+                        <div class="float-left">
+                            <h1 class="username">Hello, {{ user.username }}!</h1>
+                        </div>
+                        <div class="float-right">
+                            <div class="float-right margin-right margin-top">
+                                <a href="{% url 'user:user_profile' pk=user.pk %}" class="link external">
+                                    <img src="{% static 'home/images/user-icon.png' %}" alt="View User">
+                                </a>
+                            </div>
+                        </div>
+                    </div><!--col-100 end-->
+                </div><!--row end--> 
+                <!-- SECTION User Greetings and User Icon end -->
+                
+                <!-- SECTION Image -->
+                <div class="row">
+                    <div class="col-100 text-align-center">
+                        <img src="{% static 'home/images/bed-home.png' %}" alt="Dorm App Image">
+                    </div>
+                </div><!--row end-->
+                <!-- SECTION Empty Home -->
+                <div class="row text-align-center">
+                    <div class="col-100">
+                        <h2>Looking for a new home?</h2>
+                    </div>
+                   
+                </div><!--end row-->
+                <div class="row">
+                    <div class="col-100">
+                        
+                        <div class="text-align-center home-subtext margin-horizontal no-margin margin-bottom-half">
+                            If you want to rent a new home, start <br>looking from listings here and apply <br>online.
+                        </div>
+                    </div>
+                </div>
+                <!-- SECTION Button -->
+                <div class="row justify-content-center">
+                    <a href="{% url 'tenant:dorm_search' %}" class="link external">
+                        <button class="col-50 button button-outline homesearch-btn">
+                            Search Here
+                        </button>
+                    </a>
+                </div><!--row end-->
+            </div><!--block end-->
+        </div> <!--page content end-->
+    </div><!--tabs end-->
+</div><!--swipeable wrap-->
+{% endblock home_content %}
+
+
+{% block homeJs %}
+    <script src="{% static '/plugins/jquery/jquery.js' %}"></script>
+    <script>
+        $('a.home-tab').addClass('tab-link-active');
+        $('.tab-link-highlight').remove();
+    </script>
+{% endblock homeJs %}
+    

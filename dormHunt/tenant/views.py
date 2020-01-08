@@ -17,7 +17,7 @@ from tenant.forms import ApplicationForm
 
 # Create your views here.
 class Tenant(TemplateView):
-    template_name = 'tenant/tenant_home.html'
+    template_name = 'tenant/tenant_home_no_dorm.html'
 
 class TenantFavorites(TemplateView):
     template_name = 'tenant/tenant_favorites.html'
@@ -91,6 +91,12 @@ class Application(CreateView):
 
     def form_valid(self, form):
         form.instance.tenant = self.request.user
+        pk = self.kwargs['pk']
+        print(pk)
+        query = Property.objects.get(pk=pk)
+        print(query.name)
+        form.instance.dorm = query
+
         return super().form_valid(form)
 
     def get_context_data(self, **kwargs):
@@ -100,5 +106,6 @@ class Application(CreateView):
         context = super().get_context_data(**kwargs)
         context["property"] = query
         return context
-    
 
+class TenantHome(TemplateView):
+    template_name = 'tenant/tenant_home.html'

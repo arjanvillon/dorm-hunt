@@ -167,6 +167,38 @@
     <!-- ANCHOR line break -->
     <hr class="margin-horizontal line">
 
+    <div class="row">
+        <div class="col-100">
+            <form method='POST'>
+                {% csrf_token %}
+                <div class="list no-hairlines-md no-margin-bottom">
+                    <ul>
+                    {% for field in form %}
+                        <li class="item-content item-input item-input-outline">
+                            <div class="item-inner">
+                                <div class="item-title margin-bottom-half signin-label">{{ field.label_tag }}</div>
+                                <div class="item-input-wrap">
+                                    {{field}}
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="text-align-center padding submit-btn-container">
+                    <input type="submit" class="submit-btn button button-raised button-fill button-round" value="Submit"> 
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+    
+
+        
+
     <!-- SECTION Application Form -->
     <div class="row">
         <div class="col-100">
@@ -215,4 +247,10 @@
 
 </div><!--page-content end-->    
 {% endblock home_content %}
+
+
+{% block homeJs %}
+<script src="{% static 'tenant/js/application.js' %}"></script>
+{% endblock homeJs %}
+    
     

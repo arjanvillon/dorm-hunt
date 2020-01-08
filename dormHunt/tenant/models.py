@@ -1,4 +1,6 @@
 from django.db import models
+from django.urls import reverse
+from django.utils import timezone
 from user.models import User
 from landlord.models import Property
 
@@ -11,8 +13,12 @@ class Application(models.Model):
     
     dorm            = models.ForeignKey(Property, on_delete=models.CASCADE)
 
+    created_at      = models.DateTimeField(default=timezone.now)
+
     def __str__(self):
         return self.tenant.username
-    
+
+    def get_absolute_url(self):
+        return reverse("tenant:tenant")
 
 

@@ -13,4 +13,5 @@ urlpatterns = [
 
     # NOTE Temporary, created so i can view my template
     path('search/property/application/<int:pk>', views.Application.as_view(), name='application_form'),
+    path('home/', views.TenantHome.as_view(), name='tenant_home'),
 ]
