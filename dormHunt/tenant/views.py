@@ -23,3 +23,8 @@ class TenantDormSearch(ListView):
 class ViewPropertyDetailView(DetailView):
     model = Property
     template_name = 'tenant/view_property.html'
+
+
+# NOTE Temporary, created so i can view my template
+class Application(TemplateView):
+    template_name = 'tenant/application_form.html'

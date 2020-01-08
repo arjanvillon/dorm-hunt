@@ -1,4 +1,5 @@
 {% extends 'landlord/base.html' %}
+{% load static %}
 
 {% block landlord_content %}
 <div class="page-content">
@@ -12,7 +13,7 @@
                         <div class="col-10">
                             <i class="f7-icons">chevron_left</i>
                         </div>
-                        <div class="col-90 padding-left">
+                        <div class="col-90 padding-left back-btn">
                             Back
                         </div>
                     </div>
@@ -20,22 +21,36 @@
             </div>
         </div>
     </div>
-
+    <!-- SECTION Images -->
     <div class="row">
         <div class="col-100">
             <!-- <img src="{{ property.thumbnail.url }}" alt="Property Thumbnail"> -->
+            <div data-speed="900" data-pagination='{"el": ".swiper-pagination"}' data-space-between="50" class="swiper-container swiper-init demo-swiper">
+                <div class="swiper-pagination"></div>
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide"><img class="property-image-default-no-border" src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt=""></div>
+                  <div class="swiper-slide"><img class="property-image-default-no-border" src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt=""></div>
+                  <div class="swiper-slide"><img class="property-image-default-no-border" src="{% static 'tenant/images/favorites_default.png' %}" alt=""></div>
+                </div>
+              </div>
+        </div>
+    </div>
+    <!-- SECTION Property Name and Favorites -->
+    <div class="row padding-top-half">
+        <div class="col-70">
+            <h2 class="no-margin property-title padding-left text-capitalize">{{ property.name }}</h2>
+        </div>
+        <div class="col-30 padding-right">
+            <a href="#" class="link external" >
+                <button class="padding-horizontal button button-small button-round button-fill">Update</button>
+            </a>
+            <!-- <i class="fas fa-heart fa-2x"></i> -->
         </div>
     </div>
 
     <div class="row">
         <div class="col-100">
-            <h2 class="no-margin property-title padding-left">{{ property.name }}</h2>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-100">
-            <p class="no-margin-vertical property-address padding-horizontal margin">{{ property.address }}</p>
+            <p class="no-margin-vertical property-address padding-horizontal margin">{{ property.address }}, {{ property.zip_code }}</p>
         </div>
     </div>
 
@@ -45,7 +60,194 @@
         </div>
     </div>
 
-    <hr class="margin-horizontal">
+    <!-- ANCHOR line break -->
+    <hr class="margin-horizontal line">
+
+    <!-- SECTION Important Features -->
+    <div class="row padding-top">
+        <div class="col-33">
+            <!-- SECTION Feature 1 -->
+            <div class="row text-align-center">
+                <div class="col-100">
+                    <span class="feature-name">TYPE</span>
+                </div><!--col-100 end-->
+                <div class="col-100 padding-vertical-half">
+                    <span class="feature-icon"><img src="{% static 'tenant/images/features/home.png' %}" alt="type image"></span>
+                </div><!--col-100 end-->
+                <div class="col-100">
+                    <span class="feature-detail">Bedspace</span>
+                </div><!--col-100 end-->
+            </div><!--row end-->
+            <!-- SECTION Feature 1 end -->
+        </div><!--col-33 end-->
+        <div class="col-33">
+            <!-- SECTION Feature 2 -->
+            <div class="row text-align-center">
+                <div class="col-100">
+                    <span class="feature-name">BEDS</span>
+                </div><!--col-100 end-->
+                <div class="col-100 padding-vertical-half">
+                    <span class="feature-icon"><img src="{% static 'tenant/images/features/bed.png' %}" alt="bed image"></span>
+                </div><!--col-100 end-->
+                <div class="col-100">
+                    <span class="feature-detail">10/22</span>
+                </div><!--col-100 end-->
+            </div><!--row end-->
+            <!-- SECTION Feature 2 end -->
+        </div><!--col-33 end-->
+        <div class="col-33">
+            <!-- SECTION Feature 3 -->
+            <div class="row text-align-center">
+                <div class="col-100">
+                    <span class="feature-name">BATHS</span>
+                </div><!--col-100 end-->
+                <div class="col-100 padding-vertical-half">
+                    <span class="feature-icon"><img src="{% static 'tenant/images/features/water-drop.png' %}" alt="bath image"></span>
+                </div><!--col-100 end-->
+                <div class="col-100">
+                    <span class="feature-detail">2</span>
+                </div><!--col-100 end-->
+            </div><!--row end-->
+            <!-- SECTION Feature 3 end -->
+        </div><!--col-33 end-->
+    </div><!--row end-->
+    <!-- SECTION Second row -->
+    <div class="row padding-top ">
+        <div class="col-50 text-align-center justify-content-center">
+            <!-- SECTION Feature 1 -->
+            <div class="row ">
+                <div class="col-100">
+                    <span class="feature-name-two">Furnished</span>
+                </div><!--col-100 end-->
+                <div class="col-50 padding-top-half text-align-right">
+                    <span class="feature-icon"><img src="{% static 'tenant/images/features/shelf.png' %}" alt="furnished image"></span>
+                </div><!--col-100 end-->
+                <div class="col-50 justify-content-center text-align-left padding-top">
+                    <span class="feature-answer-two">Yes</span>
+                </div><!--col-100 end-->
+            </div><!--row end-->
+            <!-- SECTION Feature 1 end -->
+        </div><!--col-50 end-->
+        <div class="col-50 text-align-center justify-content-center">
+            <!-- SECTION Feature 2 -->
+            <div class="row ">
+                <div class="col-100">
+                    <span class="feature-name-two">Pets Allowed</span>
+                </div><!--col-100 end-->
+                <div class="col-50 padding-top-half text-align-right">
+                    <span class="feature-icon"><img src="{% static 'tenant/images/features/paw.png' %}" alt="furnished image"></span>
+                </div><!--col-100 end-->
+                <div class="col-50 justify-content-center text-align-left padding-top">
+                    <span class="feature-answer-two">Yes</span>
+                </div><!--col-100 end-->
+            </div><!--row end-->
+            <!-- SECTION Feature 2 end -->
+        </div><!--col-50 end-->
+    </div><!--row end-->
+    <!-- SECTION Important Features -->
+
+    <!-- SECTION Description -->
+    <div class="row padding">
+        <div class="col-100">
+            <span class="feature-name-two">Description</span>
+        </div><!--col-100 end-->
+        <div class="col-100 description-content">
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque accusantium debitis, placeat recusandae odit ut architecto excepturi eos dolorem, eveniet nostrum quo perferendis mollitia nesciunt voluptatibus aut. Aut, quidem asperiores. Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis ducimus exercitationem saepe architecto non ut est, magni dolorem illum in eos aliquid sunt expedita soluta beatae temporibus. Ea, incidunt reiciendis!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque accusantium debitis, placeat recusandae odit ut architecto excepturi eos dolorem, eveniet nostrum quo perferendis mollitia nesciunt voluptatibus aut. Aut, quidem asperiores. Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis ducimus exercitationem saepe architecto non ut est, magni dolorem illum in eos aliquid sunt expedita soluta beatae temporibus. Ea, incidunt reiciendis!
+            </p>
+        </div><!--col-100 end-->
+    </div><!--row end-->
+    <!-- SECTION Description End -->
+
+    <!-- SECTION Features and Amenities -->
+    <div class="row padding-horizontal">
+        <div class="col-100">
+            <span class="feature-name-two">Features & Amenities/ Inclusions</span>
+        </div><!--col-100 end-->
+        <div class="col-100 padding-top-half padding-left inclusions">
+            Laundry Area
+            <br>
+            Parking
+            <br>
+            Storage
+            <br>
+            Air conditioning
+            <br>
+            Ceiling Fans
+            <br>
+            Sink
+            <br>
+            Garbage Disposal System
+            <br>
+            Hardwood floors
+            <br>
+            Internet
+            <br>
+            Microwave
+            <br>
+            Refrigerator
+            <br>
+            Stove
+            <br>
+            Telephone
+            <br>
+            Tile
+            <br>
+            Window Coverings
+            <br>
+            Elevator
+        </div><!--col-100 end-->
+    </div><!--row end-->
+    <!-- SECTION Features and Amenities end-->
+
+    <!-- ANCHOR Line Break -->
+    <hr class="margin-horizontal line">
+    
+    <!-- SECTION Finance Details -->
+    <div class="row padding">
+        <div class="col-100">
+            <span class="feature-name-two">SECURITY DEPOSIT</span>
+            <br>
+            <span class="finance-details padding-left padding-top">Php 2000.00</span>
+        </div><!--col-100 end-->
+        <div class="col-100 padding-top">
+            <span class="feature-name-two">LEASE TERMS</span>
+            <br>
+            <span class="finance-details padding-left padding-top text-capitalize">monthly</span>
+        </div><!--col-100 end-->
+        <div class="col-100 padding-top">
+            <span class="feature-name-two">DATE AVAILABLE</span>
+            <br>
+            <span class="finance-details padding-left padding-top">01/21/2020</span>
+        </div><!--col-100 end-->
+    </div><!--row end-->
+    <!-- SECTION Finance Details end -->
+    
+    <!-- ANCHOR Line Break -->
+    <hr class="margin-horizontal line">
+    
+    <!-- SECTION Contact Person -->
+    <div class="row">
+        <div class="col-100 padding-left">
+            <span class="feature-name-two">CONTACT PERSON</span>
+        </div><!--col-100 end-->
+        <div class="col-30 text-align-center padding">
+            <img src="{% static 'tenant/images/contact-property-default.png' %}" alt="{{ property.name }}">
+        </div><!--col-30 end-->
+        <div class="col-70 padding">
+            <span class="contact-property-name">{{ property.name }}</span>
+            <span class="contact-property-link">{{ property.owner.email }}</span>
+            <span class="contact-property-link">{{ property.owner.number }}</span>
+        </div><!--col-70 end-->
+    </div><!--row end-->
+    <!-- SECTION Contact Person end -->
+
+
+
+
 </div>
 {% endblock landlord_content %}
     

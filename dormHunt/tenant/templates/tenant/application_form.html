@@ -3,65 +3,53 @@
 
 {% block home_content %}
 <div class="page-content">
+    <!-- SECTION Back Button and Label -->
     <div class="row">
         <div class="col-25">
             <div class="padding">
             <!-- TODO Create a function to return to previous link -->
             <!-- NOTE This a link is just temporary -->
-                <a href="{% url 'tenant:dorm_search' %}" class="link external">
-                    <div class="row back-btn">
-                        <div class="col-10">
+            <a href="{% url 'tenant:tenant' %}" class="link external">
+                <div class="row back-btn">
+                    <div class="col-10">
                             <i class="f7-icons">chevron_left</i>
                         </div>
-                        <div class="col-90 padding-left">
+                        <div class="col-90 padding-left text-large">
                             Back
                         </div>
                     </div>
                 </a>
             </div>
         </div>
-    </div>
-    <!-- SECTION Images -->
-    <div class="row">
-        <div class="col-100">
-            <!-- <img src="{{ property.thumbnail.url }}" alt="Property Thumbnail"> -->
-            <div data-speed="900" data-pagination='{"el": ".swiper-pagination"}' data-space-between="50" class="swiper-container swiper-init demo-swiper">
-                <div class="swiper-pagination"></div>
-                <div class="swiper-wrapper">
-                  <div class="swiper-slide"><img class="property-image-default-no-border" src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt=""></div>
-                  <div class="swiper-slide"><img class="property-image-default-no-border" src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt=""></div>
-                  <div class="swiper-slide"><img class="property-image-default-no-border" src="{% static 'tenant/images/favorites_default.png' %}" alt=""></div>
-                </div>
-              </div>
+        
+        <div class="col-50 text-align-center">
+            <div class="padding">
+                <h2 class="no-margin">Application</h2>
+            </div>
         </div>
+        
+        <div class="col-25"></div>
     </div>
-    <!-- SECTION Property Name and Favorites -->
-    <div class="row padding-top-half">
-        <div class="col-80">
-            <h2 class="no-margin property-title padding-left text-capitalize">{{ property.name }}</h2>
-        </div>
-        <div class="col-20">
-            <a href="#">
-                <i class="far fa-heart fa-2x"></i>
-            </a>
-            <!-- <i class="fas fa-heart fa-2x"></i> -->
-        </div>
-    </div>
+    <!-- SECTION Back Button and Label end -->
 
-    <div class="row">
-        <div class="col-100">
-            <p class="no-margin-vertical property-address padding-horizontal margin">{{ property.address }}, {{ property.zip_code }}</p>
-        </div>
-    </div>
-
-    <div class="row">
-        <div class="col-100">
-            <p class="no-margin-vertical margin-horizontal property-price"><strong>Php {{ property.price }}</strong> monthly</p>
-        </div>
-    </div>
-
-    <!-- ANCHOR line break -->
-    <hr class="margin-horizontal line">
+    <!-- SECTION Listing Information -->
+    <div class="listing-container margin-horizontal ">
+        <div class="row">
+            <div class="col-100 padding">
+                <div class="listing-label">Listing Information</div>
+                <div class="listing-label font-weight-normal padding-left padding-top-half">KingCess Dormitory</div>
+            </div><!--col-100 end-->
+            <div class="col-100 padding-horizontal">
+                <div class="listing-label color-link">Address</div>
+                <div class="listing-label font-weight-normal padding-left padding-top-half no-letter-spacing">2042 Jose Abad Santos Street, Sta. Mesa, Manila</div>
+            </div><!--col-100 end-->
+            <div class="col-100 padding">
+                <div class="listing-label color-link">Rent</div>
+                <div class="listing-label font-weight-normal padding-left padding-top-half no-letter-spacing"><strong>Php 2000.00</strong> monthly</div>
+            </div><!--col-100 end-->
+        </div><!--row end-->
+    </div><!--listing container end-->
+    <!-- SECTION Listing Information end-->
 
     <!-- SECTION Important Features -->
     <div class="row padding-top">
@@ -146,133 +134,76 @@
     </div><!--row end-->
     <!-- SECTION Important Features -->
 
-    <!-- SECTION Description -->
-    <div class="row padding">
-        <div class="col-100">
-            <span class="feature-name-two">Description</span>
-        </div><!--col-100 end-->
-        <div class="col-100 description-content">
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque accusantium debitis, placeat recusandae odit ut architecto excepturi eos dolorem, eveniet nostrum quo perferendis mollitia nesciunt voluptatibus aut. Aut, quidem asperiores. Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis ducimus exercitationem saepe architecto non ut est, magni dolorem illum in eos aliquid sunt expedita soluta beatae temporibus. Ea, incidunt reiciendis!
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque accusantium debitis, placeat recusandae odit ut architecto excepturi eos dolorem, eveniet nostrum quo perferendis mollitia nesciunt voluptatibus aut. Aut, quidem asperiores. Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis ducimus exercitationem saepe architecto non ut est, magni dolorem illum in eos aliquid sunt expedita soluta beatae temporibus. Ea, incidunt reiciendis!
-            </p>
-        </div><!--col-100 end-->
-    </div><!--row end-->
-    <!-- SECTION Description End -->
-
-    <!-- SECTION Features and Amenities -->
-    <div class="row padding-horizontal">
-        <div class="col-100">
-            <span class="feature-name-two">Features & Amenities/ Inclusions</span>
-        </div><!--col-100 end-->
-        <div class="col-100 padding-top-half padding-left inclusions">
-            Laundry Area
-            <br>
-            Parking
-            <br>
-            Storage
-            <br>
-            Air conditioning
-            <br>
-            Ceiling Fans
-            <br>
-            Sink
-            <br>
-            Garbage Disposal System
-            <br>
-            Hardwood floors
-            <br>
-            Internet
-            <br>
-            Microwave
-            <br>
-            Refrigerator
-            <br>
-            Stove
-            <br>
-            Telephone
-            <br>
-            Tile
-            <br>
-            Window Coverings
-            <br>
-            Elevator
-        </div><!--col-100 end-->
-    </div><!--row end-->
-    <!-- SECTION Features and Amenities end-->
-
-    <!-- ANCHOR Line Break -->
+    <!-- ANCHOR line break -->
     <hr class="margin-horizontal line">
-    
-    <!-- SECTION Finance Details -->
-    <div class="row padding">
-        <div class="col-100">
-            <span class="feature-name-two">SECURITY DEPOSIT</span>
-            <br>
-            <span class="finance-details padding-left padding-top">Php 2000.00</span>
-        </div><!--col-100 end-->
-        <div class="col-100 padding-top">
-            <span class="feature-name-two">LEASE TERMS</span>
-            <br>
-            <span class="finance-details padding-left padding-top text-capitalize">monthly</span>
-        </div><!--col-100 end-->
-        <div class="col-100 padding-top">
-            <span class="feature-name-two">DATE AVAILABLE</span>
-            <br>
-            <span class="finance-details padding-left padding-top">01/21/2020</span>
-        </div><!--col-100 end-->
-    </div><!--row end-->
-    <!-- SECTION Finance Details end -->
-    
-    <!-- ANCHOR Line Break -->
-    <hr class="margin-horizontal line">
-    
-    <!-- SECTION Contact Person -->
-    <div class="row">
-        <div class="col-100 padding-left">
-            <span class="feature-name-two">CONTACT PERSON</span>
-        </div><!--col-100 end-->
-        <div class="col-30 text-align-center padding">
-            <img src="{% static 'tenant/images/contact-property-default.png' %}" alt="{{ property.name }}">
-        </div><!--col-30 end-->
-        <div class="col-70 padding">
-            <span class="contact-property-name">{{ property.name }}</span>
-            <span class="contact-property-link">{{ property.owner.email }}</span>
-            <span class="contact-property-link">{{ property.owner.number }}</span>
-        </div><!--col-70 end-->
-    </div><!--row end-->
-    <!-- SECTION Contact Person end -->
 
-    <!-- SECTION Requests -->
+    <!-- SECTION Terms of Agreement -->
     <div class="row">
-        <div class="col-60 padding-horizontal">
-            <button class=" button button-round button-outline request-btn">REQUEST TOUR</button>
-        </div><!--col-60 end-->
-        <div class="col-40 padding-right">
-            <div class="row">
-                <div class="col-50">
-                    <img src="{% static 'tenant/images/features/message.png' %}" alt="message">
-                </div>
-                <div class="col-50">
-                    <img src="{% static 'tenant/images/features/flag.png' %}" alt="report">
-                </div>
+        <div class="col-100">
+            <div class="application-label padding-horizontal padding-top">
+                Terms of Agreement
             </div>
-        </div><!--col-40 end-->
+        </div><!--col-100 end-->
+        <div class="col-100 description-content padding-horizontal">
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque accusantium debitis, placeat recusandae odit ut architecto excepturi eos dolorem, eveniet nostrum quo perferendis mollitia nesciunt voluptatibus aut. Aut, quidem asperiores. Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis ducimus exercitationem saepe architecto non ut est, magni dolorem illum in eos aliquid sunt expedita soluta beatae temporibus. Ea, incidunt reiciendis!
+            </p>
+            <p>
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque accusantium debitis, placeat recusandae odit ut architecto excepturi eos dolorem, eveniet nostrum quo perferendis mollitia nesciunt voluptatibus aut. Aut, quidem asperiores. Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis ducimus exercitationem saepe architecto non ut est, magni dolorem illum in eos aliquid sunt expedita soluta beatae temporibus. Ea, incidunt reiciendis!
+            </p>
+        </div><!--col-100 end-->
     </div><!--row end-->
-    <!-- SECTION Requests end-->
+    <!-- SECTION Terms of Agreement end -->
 
-    <!-- SECTION Apply Button -->
+    <!-- ANCHOR line break -->
+    <hr class="margin-horizontal line">
+
+    <!-- SECTION Application Form -->
     <div class="row">
-        <div class="col-100 padding">
-            <button class="button button-round apply-btn">Apply Now</button>
-        </div><!--col-100-->
+        <div class="col-100">
+            <div class="application-label padding-horizontal padding-top">
+                Application Form
+            </div>
+        </div><!--col-100 end-->
+        <div class="col-100">
+            <div class="application-instruction padding">
+                Please provide the contact information and specify the preferred move-in date if available.
+            </div><!--application-instruction end-->
+        </div><!--col-100 end-->
     </div><!--row end-->
-    <!-- SECTION Apply Button end -->
+    <!-- SECTION Application Form end -->
 
 
+    <!-- FIXME get input template from framework7 -->
+    <!-- SECTION Sub Instructions -->
+        <!-- SECTION Describe Yourself -->
+        <div class="row">
+            <div class="col-100">
+                <div class="sub-instruction-label padding-left">
+                    Describe Yourself
+                </div>
+                <div class="sub-instruction-content padding-horizontal padding-top-half">
+                    Please provide a short description about yourself to make your application stand out.
+                </div>
+            </div><!--col-100 end-->
+        </div><!--row end-->
+        <!-- SECTION Describe Yourself end-->
 
-</div>
+        <!-- SECTION Emergency Contact -->
+        <!-- NOTE if user already has emergency contact, the inputs are automatically filled out -->
+        <div class="row padding-vertical">
+            <div class="col-100">
+                <div class="sub-instruction-label padding-left">
+                    Emergency Contact
+                </div>
+                <div class="sub-instruction-content padding-horizontal padding-top-half">
+                    Please, provide the emergency contact below.
+                </div>
+            </div><!--col-100 end-->
+        </div><!--row end-->
+        <!-- SECTION Describe Yourself end-->
+    <!-- SECTION Sub Instructions end-->
+
+</div><!--page-content end-->    
 {% endblock home_content %}
     

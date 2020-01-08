@@ -49,3 +49,129 @@
     color: #fff;
     padding: 2px 5px;
 }
+
+/* SECTION Features */
+.feature-name, .feature-detail {
+    font-family: 'PT Sans Caption', sans-serif;
+    font-style: normal;
+    font-weight: 700 ;
+    font-size: small;
+    line-height: 12px;
+
+}
+
+.feature-icon {
+    width: 100%;
+}
+
+.feature-name-two {
+    font-family: 'PT Sans Caption', sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: medium;
+    text-transform: uppercase;
+    line-height: 19px;
+    letter-spacing: -0.06em;
+}
+
+.feature-answer-two {
+    font-family: 'PT Sans Caption', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: large;
+    text-transform: capitalize;
+    line-height: 19px;
+    letter-spacing: -0.06em;
+}
+
+.description-content {
+    font-family: 'PT Sans Caption', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: medium;
+    line-height: 25px;
+    letter-spacing: -0.07em;
+    color: #444444;
+    text-indent: 50px;
+    text-align: justify;
+}
+
+.inclusions {
+    font-family: 'PT Sans Caption', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: medium;
+    line-height: 25px;
+    letter-spacing: -0.07em;
+    color: #444444;
+}
+
+.finance-details {
+    font-family: 'PT Sans Caption', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: medium;
+    line-height: 17px;
+    letter-spacing: -0.06em;
+    color: #000000;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+.contact-property-name {
+    font-family:'PT Sans Caption', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: large;
+    text-transform: capitalize;
+    line-height: 19px;
+    letter-spacing: -0.06em;
+    color: #000000;
+}
+
+.contact-property-link {
+    font-family: 'PT Sans Caption', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: large;
+    line-height: 18px;
+    letter-spacing: -0.06em;
+    color: #5660F1;
+}
+
+.request-btn {
+    font-family: 'PT Sans Caption', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: large;
+    line-height: 22px;
+    color: #5660F1;
+}
+
+.apply-btn {
+    font-family: 'PT Sans Caption', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: large;
+    line-height: 25px;
+    color: #FFFFFF;
+    background: #5660F1;
+}
+
+.property-image-default-no-border {
+    width: 100%; 
+    min-height: 100%;
+}
+
+/* Back Button */
+.back-btn {
+    font-family: 'PT Sans', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 19px;
+    line-height: 25px;
+    letter-spacing: -0.06em;
+    color: #5660F1;
+}
