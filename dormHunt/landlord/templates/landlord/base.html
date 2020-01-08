@@ -18,10 +18,21 @@
     <!-- Path to Framework7 Library Bundle CSS -->
     <link rel="stylesheet" href="{% static '/plugins/framework7/core/css/framework7.bundle.min.css' %}">
     <link rel="stylesheet" href="{% static '/plugins/framework7/icons/css/framework7-icons.css' %}">
-    <!-- Path to your custom app styles-->
+
+    <!-- SECTION Fontawesome Icons -->
+    <link rel="stylesheet" href="{% static '/plugins/fontawesome/css/all.css' %}">
+    <link rel="stylesheet" href="{% static '/plugins/fontawesome/css/fontawesome.css' %}">
+    <link rel="stylesheet" href="{% static '/plugins/fontawesome/css/brands.css' %}">
+    <link rel="stylesheet" href="{% static '/plugins/fontawesome/css/solid.css' %}">
+
+    <!-- SECTION  Path to your custom app styles-->
     <link rel="stylesheet" href="{% static '/landlord/css/landlord.css' %}">
     <link rel="stylesheet" href="{% static '/landlord/css/property.css' %}">
-
+    
+    {% block propertyCss %}
+      
+    {% endblock propertyCss %}
+      
   </head>
   <body>
     <!-- App root element -->
@@ -64,7 +75,7 @@
 
     
     {% block landlordJs %}
-        
+    
     {% endblock landlordJs %}
         
   </body>

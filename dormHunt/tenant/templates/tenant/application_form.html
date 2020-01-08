@@ -1,0 +1,218 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block home_content %}
+<div class="page-content">
+    <!-- SECTION Back Button and Label -->
+    <div class="row">
+        <div class="col-25">
+            <div class="padding">
+            <!-- TODO Create a function to return to previous link -->
+            <!-- NOTE This a link is just temporary -->
+            <a href="{% url 'tenant:view_property' pk=property.pk %}" class="link external">
+                <div class="row back-btn">
+                    <div class="col-10">
+                            <i class="f7-icons">chevron_left</i>
+                        </div>
+                        <div class="col-90 padding-left text-large">
+                            Back
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <div class="col-50 text-align-center">
+            <div class="padding">
+                <h2 class="no-margin">Application</h2>
+            </div>
+        </div>
+        
+        <div class="col-25"></div>
+    </div>
+    <!-- SECTION Back Button and Label end -->
+
+    <!-- SECTION Listing Information -->
+    <div class="listing-container margin-horizontal ">
+        <div class="row">
+            <div class="col-100 padding">
+                <div class="listing-label color-link">Listing Information</div>
+                <div class="listing-label font-weight-normal padding-left padding-top-half">{{ property.name }}</div>
+            </div><!--col-100 end-->
+            <div class="col-100 padding-horizontal">
+                <div class="listing-label color-link">Address</div>
+                <div class="listing-label font-weight-normal padding-left padding-top-half no-letter-spacing">{{ property.address }}</div>
+            </div><!--col-100 end-->
+            <div class="col-100 padding">
+                <div class="listing-label color-link">Rent</div>
+                <div class="listing-label font-weight-normal padding-left padding-top-half no-letter-spacing"><strong>Php {{ property.price }}</strong> monthly</div>
+            </div><!--col-100 end-->
+        </div><!--row end-->
+    </div><!--listing container end-->
+    <!-- SECTION Listing Information end-->
+
+    <!-- SECTION Important Features -->
+    <div class="row padding-top">
+        <div class="col-33">
+            <!-- SECTION Feature 1 -->
+            <div class="row text-align-center">
+                <div class="col-100">
+                    <span class="feature-name">TYPE</span>
+                </div><!--col-100 end-->
+                <div class="col-100 padding-vertical-half">
+                    <span class="feature-icon"><img src="{% static 'tenant/images/features/home.png' %}" alt="type image"></span>
+                </div><!--col-100 end-->
+                <div class="col-100">
+                    <span class="feature-detail">{{ property.property_type }}</span>
+                </div><!--col-100 end-->
+            </div><!--row end-->
+            <!-- SECTION Feature 1 end -->
+        </div><!--col-33 end-->
+        <div class="col-33">
+            <!-- SECTION Feature 2 -->
+            <div class="row text-align-center">
+                <div class="col-100">
+                    <span class="feature-name">BEDS</span>
+                </div><!--col-100 end-->
+                <div class="col-100 padding-vertical-half">
+                    <span class="feature-icon"><img src="{% static 'tenant/images/features/bed.png' %}" alt="bed image"></span>
+                </div><!--col-100 end-->
+                <div class="col-100">
+                    <span class="feature-detail">{{ property.capacity }}</span>
+                </div><!--col-100 end-->
+            </div><!--row end-->
+            <!-- SECTION Feature 2 end -->
+        </div><!--col-33 end-->
+        <div class="col-33">
+            <!-- SECTION Feature 3 -->
+            <div class="row text-align-center">
+                <div class="col-100">
+                    <span class="feature-name">BATHS</span>
+                </div><!--col-100 end-->
+                <div class="col-100 padding-vertical-half">
+                    <span class="feature-icon"><img src="{% static 'tenant/images/features/water-drop.png' %}" alt="bath image"></span>
+                </div><!--col-100 end-->
+                <div class="col-100">
+                    <span class="feature-detail">{{ property.bathroom }}</span>
+                </div><!--col-100 end-->
+            </div><!--row end-->
+            <!-- SECTION Feature 3 end -->
+        </div><!--col-33 end-->
+    </div><!--row end-->
+    <!-- SECTION Second row -->
+    <div class="row padding-top ">
+        <div class="col-50 text-align-center justify-content-center">
+            <!-- SECTION Feature 1 -->
+            <div class="row ">
+                <div class="col-100">
+                    <span class="feature-name-two">Furnished</span>
+                </div><!--col-100 end-->
+                <div class="col-50 padding-top-half text-align-right">
+                    <span class="feature-icon"><img src="{% static 'tenant/images/features/shelf.png' %}" alt="furnished image"></span>
+                </div><!--col-100 end-->
+                <div class="col-50 justify-content-center text-align-left padding-top">
+                    <span class="feature-answer-two">
+                        {% if property.is_furnished %}
+                            Yes
+                        {% else %}
+                            No
+                        {% endif %}
+                    </span>
+                </div><!--col-100 end-->
+            </div><!--row end-->
+            <!-- SECTION Feature 1 end -->
+        </div><!--col-50 end-->
+        <div class="col-50 text-align-center justify-content-center">
+            <!-- SECTION Feature 2 -->
+            <div class="row ">
+                <div class="col-100">
+                    <span class="feature-name-two">Pets Allowed</span>
+                </div><!--col-100 end-->
+                <div class="col-50 padding-top-half text-align-right">
+                    <span class="feature-icon"><img src="{% static 'tenant/images/features/paw.png' %}" alt="furnished image"></span>
+                </div><!--col-100 end-->
+                <div class="col-50 justify-content-center text-align-left padding-top">
+                    <span class="feature-answer-two">
+                        {% if property.is_pets_allowed %}
+                            Yes
+                        {% else %}
+                            No
+                        {% endif %}
+                    </span>
+                </div><!--col-100 end-->
+            </div><!--row end-->
+            <!-- SECTION Feature 2 end -->
+        </div><!--col-50 end-->
+    </div><!--row end-->
+    <!-- SECTION Important Features -->
+
+    <!-- ANCHOR line break -->
+    <hr class="margin-horizontal line">
+
+    <!-- SECTION Terms of Agreement -->
+    <div class="row">
+        <div class="col-100">
+            <div class="application-label padding-horizontal padding-top">
+                Terms of Agreement
+            </div>
+        </div><!--col-100 end-->
+        <div class="col-100 description-content padding-horizontal">
+            <p>
+                {{ property.terms_of_agreement }}
+            </p>
+        </div><!--col-100 end-->
+    </div><!--row end-->
+    <!-- SECTION Terms of Agreement end -->
+
+    <!-- ANCHOR line break -->
+    <hr class="margin-horizontal line">
+
+    <!-- SECTION Application Form -->
+    <div class="row">
+        <div class="col-100">
+            <div class="application-label padding-horizontal padding-top">
+                Application Form
+            </div>
+        </div><!--col-100 end-->
+        <div class="col-100">
+            <div class="application-instruction padding">
+                Please provide the contact information and specify the preferred move-in date if available.
+            </div><!--application-instruction end-->
+        </div><!--col-100 end-->
+    </div><!--row end-->
+    <!-- SECTION Application Form end -->
+
+
+    <!-- FIXME get input template from framework7 -->
+    <!-- SECTION Sub Instructions -->
+        <!-- SECTION Describe Yourself -->
+        <div class="row">
+            <div class="col-100">
+                <div class="sub-instruction-label padding-left">
+                    Describe Yourself
+                </div>
+                <div class="sub-instruction-content padding-horizontal padding-top-half">
+                    Please provide a short description about yourself to make your application stand out.
+                </div>
+            </div><!--col-100 end-->
+        </div><!--row end-->
+        <!-- SECTION Describe Yourself end-->
+
+        <!-- SECTION Emergency Contact -->
+        <!-- NOTE if user already has emergency contact, the inputs are automatically filled out -->
+        <div class="row padding-vertical">
+            <div class="col-100">
+                <div class="sub-instruction-label padding-left">
+                    Emergency Contact
+                </div>
+                <div class="sub-instruction-content padding-horizontal padding-top-half">
+                    Please, provide the emergency contact below.
+                </div>
+            </div><!--col-100 end-->
+        </div><!--row end-->
+        <!-- SECTION Describe Yourself end-->
+    <!-- SECTION Sub Instructions end-->
+
+</div><!--page-content end-->    
+{% endblock home_content %}
+    

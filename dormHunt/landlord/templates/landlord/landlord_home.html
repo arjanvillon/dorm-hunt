@@ -1,6 +1,100 @@
 {% extends 'landlord/base.html' %}
 {% load static %}
 
+{% block propertyCss %}
+<style>
+
+.accordion {
+  font-size: 1rem;
+  width: 30vw;
+  margin: 0 auto;
+  border-radius: 5px;
+}
+
+.accordion-header,
+.accordion-body {
+  background: white;
+}
+
+.accordion-header {
+  padding: 1.5em 1.5em;
+  background: #3F51B5;
+  color: white;
+  cursor: pointer;
+  font-size: .8em;
+  letter-spacing: .1em;
+  transition: all .3s;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.accordion__item {
+    border-bottom: 1px solid #3a4ba4;
+}
+
+.accordion__item .accordion__item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.accordion-header:hover {
+  background: #2D3D99;
+  position: relative;
+  z-index: 5;
+}
+
+.accordion-body {
+  background: #fcfcfc;
+  color: #353535;
+  display: none;
+}
+
+.accordion-body__contents {
+  padding: 1.5em 1.5em;
+  font-size: .85em;
+}
+
+.accordion__item.active:last-child .accordion-header {
+  border-radius: none;
+}
+
+.accordion:first-child > .accordion__item > .accordion-header {
+  border-bottom: 1px solid transparent;
+}
+
+.accordion__item > .accordion-header:after {
+  content: "\f106";
+  font-family: 'Font Awesome 5 Free';
+  font-size: 1.2em;
+  float: right;
+  position: relative;
+  top: -2px;
+  transition: .3s all;
+  transform: rotate(0deg);
+  font-weight: 900;
+}
+
+.accordion__item.active > .accordion-header:after {
+  transform: rotate(-180deg);
+}
+
+.accordion__item.active .accordion-header {
+  background: #2D3D99;
+}
+
+.accordion__item .accordion__item .accordion-header {
+  background: #f1f1f1;
+  color: #353535;
+}
+
+@media screen and (max-width: 1000px) {
+
+  .accordion {
+    width: 100%;
+  }
+}
+</style>
+{% endblock propertyCss %}
+    
 {% block landlord_content %}
 <div class="tabs-swipeable-wrap">
     <div class="page-content">
@@ -95,7 +189,7 @@
             </div>row end -->
 
             
-            {% for property in property_list %}     
+            <!-- {% for property in property_list %}     
                 
                 <div class="row padding-top-half">
                     <div class="col-100">
@@ -106,9 +200,53 @@
                     </div>
                 </div>
 
-            {% endfor %}
+            {% endfor %} -->
+            <!-- SECTION Property List-->
+            <div class="accordion js-accordion padding-top-half">
+                <div class="accordion__item js-accordion-item">
+                  <div class="accordion-header js-accordion-header">PROPERTIES <span class="badge color-blue">{{ property_numbers }}</span></div> 
+                <div class="accordion-body js-accordion-body">
+                  <!-- <div class="accordion-body__contents">
+                        <strong>Total Properties : </strong>21
+                  </div> -->
+                    <div class="accordion js-accordion">
+                        {% for property in property_list %}     
+                        <div class="accordion__item js-accordion-item">
+                            <div class="accordion-header js-accordion-header color-scheme1">{{ property.name }}</div> 
+                            <div class="accordion-body js-accordion-body">
+                                <div class="accordion-body__contents">
+                                    <!-- <img class="property-image-default" src="{{ property.thumbnail }}" alt="{{ property.name }} Image"> -->
+                                    <img class="property-image-default" src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt="{{ property.name }} Image">
+                                    <div class="view-details">
+                                        <a class="link external  text-align-center justify-content-center" href="{% url 'landlord:property_detail' pk=property.pk %}">
+                                            <div class="text-color-white text-align-center">
+                                                View Details
+                                            </div>
+                                        </a>
 
+                                    </div>
+                                    <br>
+                                    <strong>Address: </strong>
+                                    {{ property.address }}
+                                    <br>
+                                    <strong>Capacity: </strong>
+                                    {{ property.capacity }}
+                                    <a href="" class="view-slots-left">10 slots left</a>
+                                </div><!-- end of sub accordion item body contents -->
+                            </div><!-- end of sub accordion item body -->
+                        </div><!-- end of sub accordion item -->
+                        {% endfor %}
+                
 
+                    </div><!-- end of sub accordion -->
+                  </div
+                  </div><!-- end of accordion body -->
+                </div><!-- end of accordion item -->
+                    <div class="padding">
+                        Other data
+
+                    </div>
+                 
 
         </div><!--block end-->
     </div><!--page-content-->
@@ -121,6 +259,60 @@
     $('a.home-tab').addClass('tab-link-active');
     $('a.home-tab i.f7-icons').addClass('size-40');
     $('.tab-link-highlight').remove();
+
+var accordion = (function(){
+  
+  var $accordion = $('.js-accordion');
+  var $accordion_header = $accordion.find('.js-accordion-header');
+  var $accordion_item = $('.js-accordion-item');
+ 
+  // default settings 
+  var settings = {
+    // animation speed
+    speed: 2000,
+    
+    // close all other accordion items if true
+    oneOpen: false
+  };
+    
+  return {
+    // pass configurable object literal
+    init: function($settings) {
+      $accordion_header.on('click', function() {
+        accordion.toggle($(this));
+      });
+      
+      $.extend(settings, $settings); 
+      
+      // ensure only one accordion is active if oneOpen is true
+      if(settings.oneOpen && $('.js-accordion-item.active').length > 1) {
+        $('.js-accordion-item.active:not(:first)').removeClass('active');
+      }
+      
+      // reveal the active accordion bodies
+      $('.js-accordion-item.active').find('> .js-accordion-body').show();
+    },
+    toggle: function($this) {
+            
+      if(settings.oneOpen && $this[0] != $this.closest('.js-accordion').find('> .js-accordion-item.active > .js-accordion-header')[0]) {
+        $this.closest('.js-accordion')
+               .find('> .js-accordion-item') 
+               .removeClass('active')
+               .find('.js-accordion-body')
+               .slideUp()
+      }
+      
+      // show/hide the clicked accordion item
+      $this.closest('.js-accordion-item').toggleClass('active');
+      $this.next().stop().slideToggle(settings.speed);
+    }
+  }
+})();
+
+$(document).ready(function(){
+  accordion.init({ speed: 500, oneOpen: true });
+});
+  
 </script>
 {% endblock landlordJs %}
     

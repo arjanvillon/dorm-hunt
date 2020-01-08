@@ -95,19 +95,21 @@
                 <!-- SECTION dorm -->
                 
                 {% for property in property_list %}
-                <li class="item-content">
-                    <div class="item-inner">
-                        <div class="row">
-                            <div class="col-30">
-                                <img src="{{ property.thumbnail.url }}" alt="Property Image-{{ property.name }}" class="property-image-default">
-                            </div>
-                            <div class="col-70">
-                                <div class="item-title">{{ property.name }}</div>
-                                <div class="property-support-label">{{ property.tagline }}</div>
-                            </div>
+                    <li class="item-content">
+                        <div class="item-inner">
+                            <a href="{% url 'tenant:view_property' pk=property.pk %}" class="link external">
+                                <div class="row">
+                                    <div class="col-30">
+                                        <img src="{{ property.thumbnail.url }}" alt="Property Image-{{ property.name }}" class="property-image-default">
+                                    </div>
+                                    <div class="col-70">
+                                        <div class="item-title">{{ property.name }}</div>
+                                        <div class="property-support-label">{{ property.tagline }}</div>
+                                    </div>
+                                </div>
+                            </a>
                         </div>
-                    </div>
-                </li>
+                    </li>
                 {% endfor %}
                 <!-- SECTION dorm end -->
             </ul>

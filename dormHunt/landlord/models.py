@@ -6,10 +6,11 @@ from django.urls import reverse
 
 
 from landlord.choices import PROPERTY_TYPE_CHOICES
-
+from user.models import User
 
 # Create your models here.
 class Property(models.Model):
+
     owner               = models.ForeignKey(User, on_delete=models.CASCADE)
     name                = models.CharField(max_length=50)
     # Address
@@ -20,14 +21,26 @@ class Property(models.Model):
     zip_code            = models.CharField(max_length=5, null=True)
     address             = models.TextField(blank=True)
 
-    capacity            = models.IntegerField()
     deposit             = models.FloatField()
     price               = models.FloatField()
     thumbnail           = models.ImageField(default='property_thumbnails/default.png', upload_to='property_thumbnails')
-    description         = models.TextField(blank=True)
     tagline             = models.CharField(max_length=40, null=True)
+    description         = models.TextField(blank=True)
+    
+    favorite            = models.ManyToManyField(User, related_name='favorite', verbose_name='users that likes the property', blank=True)
+    property_type       = models.CharField(max_length=30, blank=True)
+    capacity            = models.IntegerField()
+    bathroom            = models.IntegerField(default=0)
 
     # Features
+    is_furnished        = models.BooleanField(default=False)
+    is_pets_allowed     = models.BooleanField(default=False)
+
+    # bath no
+    # room type
+    is_laundry          = models.BooleanField(default=False)
+    is_parking          = models.BooleanField(default=False)
+    is_storage          = models.BooleanField(default=False)
     is_air_conditioned  = models.BooleanField(default=False)
     is_ceiling_fans     = models.BooleanField(default=False)
     is_sink             = models.BooleanField(default=False)
@@ -36,17 +49,13 @@ class Property(models.Model):
     is_internet         = models.BooleanField(default=False)
     is_microwave        = models.BooleanField(default=False)
     is_refrigerator     = models.BooleanField(default=False)
-    is_storage          = models.BooleanField(default=False)
     is_stove            = models.BooleanField(default=False)
     is_telephone        = models.BooleanField(default=False)
     is_tile             = models.BooleanField(default=False)
     is_window_covering  = models.BooleanField(default=False)
-    is_laundry          = models.BooleanField(default=False)
-    is_parking          = models.BooleanField(default=False)
     is_elevator         = models.BooleanField(default=False)
-    is_furnished        = models.BooleanField(default=False)
-    is_pets_allowed     = models.BooleanField(default=False)
-    
+
+    terms_of_agreement  = models.TextField(blank=True)
 
     # Geopy
     latitude            = models.FloatField(null=True, blank=True)
@@ -58,5 +67,7 @@ class Property(models.Model):
 
     def get_absolute_url(self):
         return reverse("landlord:landlord_home")
+
+
     
     

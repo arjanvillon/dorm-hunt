@@ -7,6 +7,7 @@
 
 .item-title {
     font-weight: bold !important;
+    font-size: larger !important;
     letter-spacing: -0.06em !important;
     font-family: 'PT Sans Caption', sans-serif !important;
 }
@@ -15,13 +16,47 @@
     font-family: 'PT Sans Caption', sans-serif !important;
     font-style: normal;
     font-weight: normal;
-    font-size: xx-small !important;
+    font-size: medium !important;
     line-height: 17px;
     /* identical to box height */
 
     letter-spacing: -0.06em !important;
 
     color: #444444 !important;
+}
+
+.property-title {
+    font-family: 'PT Sans Caption', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: x-large;
+    line-height: 27px;
+    letter-spacing: -0.06em;
+}
+
+.property-address {
+    font-family: 'PT Sans Caption', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: large;
+    line-height: 22px;
+    letter-spacing: -0.1em;
+    color: #444444;
+}
+
+.property-price {
+    font-family: 'PT Sans Caption', sans-serif;
+    font-style: normal;
+    font-size: large;
+    line-height: 23px;
+    letter-spacing: -0.02em;
+    color: #000000;
+}
+
+
+/* SECTION Horizontal Line */
+.line {
+    border: 3px solid rgba(87, 204, 242, 0.25);
 }
 
 /* SECTION Search Filter Icon */
@@ -55,7 +90,21 @@
 } */
 
 /* Section Image */
-#property-image-default {
-    width: 100%;
+.property-image-default {
+    width: 100%; 
     min-height: 100%;
+    border-radius: 10%;
+    /* background-position: center center;
+    background-repeat: no-repeat; */
+}
+
+.property-image-default-no-border {
+    width: 100%; 
+    min-height: 100%;
+}
+
+/* SECTION Search Bar */
+form.searchbar {
+    margin-left: -20px !important;
+    margin-right: -10px !important;
 }

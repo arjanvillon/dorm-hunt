@@ -1,0 +1,272 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block home_content %}
+<div class="page-content">
+    <div class="row">
+        <div class="col-25">
+            <div class="padding">
+            <!-- TODO Create a function to return to previous link -->
+            <!-- NOTE This a link is just temporary -->
+                <a href="{% url 'tenant:dorm_search' %}" class="link external">
+                    <div class="row back-btn">
+                        <div class="col-10">
+                            <i class="f7-icons">chevron_left</i>
+                        </div>
+                        <div class="col-90 padding-left">
+                            Back
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- SECTION Images -->
+    <div class="row">
+        <div class="col-100">
+            <!-- <img src="{{ property.thumbnail.url }}" alt="Property Thumbnail"> -->
+            <div data-speed="900" data-pagination='{"el": ".swiper-pagination"}' data-space-between="50" class="swiper-container swiper-init demo-swiper">
+                <div class="swiper-pagination"></div>
+                <div class="swiper-wrapper">
+                  <!-- <div class="swiper-slide"><img class="property-image-default-no-border" src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt=""></div>
+                  <div class="swiper-slide"><img class="property-image-default-no-border" src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt=""></div>
+                  <div class="swiper-slide"><img class="property-image-default-no-border" src="{% static 'tenant/images/favorites_default.png' %}" alt=""></div> -->
+                  <div class="swiper-slide">
+                      <img class="property-image-default-no-border" src="{{ property.thumbnail.url }}"></img>
+                  </div>
+                </div>
+              </div>
+        </div>
+    </div>
+    <!-- SECTION Property Name and Favorites -->
+    <div class="row padding-top-half">
+        <div class="col-80">
+            <h2 class="no-margin property-title padding-left text-capitalize">{{ property.name }}</h2>
+        </div>
+        <div class="col-20">
+            <a class="link external" href="{% url 'tenant:favorite_property' pk=property.pk %}">
+                {% if user in users %}
+                    <i class="fas fa-heart fa-2x"></i>
+                {% else %}
+                    <i class="far fa-heart fa-2x"></i>
+                {% endif %}
+            </a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-100">
+            <p class="no-margin-vertical property-address padding-horizontal margin">{{ property.address }}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-100">
+            <p class="no-margin-vertical margin-horizontal property-price"><strong>Php {{ property.price }}</strong> monthly</p>
+        </div>
+    </div>
+
+    <!-- ANCHOR line break -->
+    <hr class="margin-horizontal line">
+
+    <!-- SECTION Important Features -->
+    <div class="row padding-top">
+        <div class="col-33">
+            <!-- SECTION Feature 1 -->
+            <div class="row text-align-center">
+                <div class="col-100">
+                    <span class="feature-name">TYPE</span>
+                </div><!--col-100 end-->
+                <div class="col-100 padding-vertical-half">
+                    <span class="feature-icon"><img src="{% static 'tenant/images/features/home.png' %}" alt="type image"></span>
+                </div><!--col-100 end-->
+                <div class="col-100">
+                    <span class="feature-detail">{{ property.property_type }}</span>
+                </div><!--col-100 end-->
+            </div><!--row end-->
+            <!-- SECTION Feature 1 end -->
+        </div><!--col-33 end-->
+        <div class="col-33">
+            <!-- SECTION Feature 2 -->
+            <div class="row text-align-center">
+                <div class="col-100">
+                    <span class="feature-name">BEDS</span>
+                </div><!--col-100 end-->
+                <div class="col-100 padding-vertical-half">
+                    <span class="feature-icon"><img src="{% static 'tenant/images/features/bed.png' %}" alt="bed image"></span>
+                </div><!--col-100 end-->
+                <div class="col-100">
+                    <span class="feature-detail">{{ property.capacity }}</span>
+                </div><!--col-100 end-->
+            </div><!--row end-->
+            <!-- SECTION Feature 2 end -->
+        </div><!--col-33 end-->
+        <div class="col-33">
+            <!-- SECTION Feature 3 -->
+            <div class="row text-align-center">
+                <div class="col-100">
+                    <span class="feature-name">BATHS</span>
+                </div><!--col-100 end-->
+                <div class="col-100 padding-vertical-half">
+                    <span class="feature-icon"><img src="{% static 'tenant/images/features/water-drop.png' %}" alt="bath image"></span>
+                </div><!--col-100 end-->
+                <div class="col-100">
+                    <span class="feature-detail">{{ property.bathroom }}</span>
+                </div><!--col-100 end-->
+            </div><!--row end-->
+            <!-- SECTION Feature 3 end -->
+        </div><!--col-33 end-->
+    </div><!--row end-->
+    <!-- SECTION Second row -->
+    <div class="row padding-top ">
+        <div class="col-50 text-align-center justify-content-center">
+            <!-- SECTION Feature 1 -->
+            <div class="row ">
+                <div class="col-100">
+                    <span class="feature-name-two">Furnished</span>
+                </div><!--col-100 end-->
+                <div class="col-50 padding-top-half text-align-right">
+                    <span class="feature-icon"><img src="{% static 'tenant/images/features/shelf.png' %}" alt="furnished image"></span>
+                </div><!--col-100 end-->
+                <div class="col-50 justify-content-center text-align-left padding-top">
+                    <span class="feature-answer-two">
+                        {% if property.is_furnished %}
+                            Yes
+                        {% else %}
+                            No
+                        {% endif %}
+                    </span>
+                </div><!--col-100 end-->
+            </div><!--row end-->
+            <!-- SECTION Feature 1 end -->
+        </div><!--col-50 end-->
+        <div class="col-50 text-align-center justify-content-center">
+            <!-- SECTION Feature 2 -->
+            <div class="row ">
+                <div class="col-100">
+                    <span class="feature-name-two">Pets Allowed</span>
+                </div><!--col-100 end-->
+                <div class="col-50 padding-top-half text-align-right">
+                    <span class="feature-icon"><img src="{% static 'tenant/images/features/paw.png' %}" alt="furnished image"></span>
+                </div><!--col-100 end-->
+                <div class="col-50 justify-content-center text-align-left padding-top">
+                    <span class="feature-answer-two">
+                        {% if property.is_pets_allowed %}
+                            Yes
+                        {% else %}
+                            No
+                        {% endif %}
+                    </span>
+                </div><!--col-100 end-->
+            </div><!--row end-->
+            <!-- SECTION Feature 2 end -->
+        </div><!--col-50 end-->
+    </div><!--row end-->
+    <!-- SECTION Important Features -->
+
+    <!-- SECTION Description -->
+    <div class="row padding">
+        <div class="col-100">
+            <span class="feature-name-two">Description</span>
+        </div><!--col-100 end-->
+        <div class="col-100 description-content">
+            <p>
+                {{ property.description }}
+            </p>
+        </div><!--col-100 end-->
+    </div><!--row end-->
+    <!-- SECTION Description End -->
+
+    <!-- SECTION Features and Amenities -->
+    <div class="row padding-horizontal">
+        <div class="col-100">
+            <span class="feature-name-two">Features & Amenities/ Inclusions</span>
+        </div><!--col-100 end-->
+        <div class="col-100 padding-top-half padding-left inclusions">
+            Laundry Area
+            <br>
+            Parking
+            <br>
+            Storage
+            <br>
+            Air conditioning
+            <br>
+            Ceiling Fans
+            <br>
+            Sink
+            <br>
+            Garbage Disposal System
+            <br>
+            Hardwood floors
+            <br>
+            Internet
+            <br>
+            Microwave
+            <br>
+            Refrigerator
+            <br>
+            Stove
+            <br>
+            Telephone
+            <br>
+            Tile
+            <br>
+            Window Coverings
+            <br>
+            Elevator
+        </div><!--col-100 end-->
+    </div><!--row end-->
+    <!-- SECTION Features and Amenities end-->
+
+    <!-- ANCHOR Line Break -->
+    <hr class="margin-horizontal line">
+    
+    <!-- SECTION Finance Details -->
+    <div class="row padding">
+        <div class="col-100">
+            <span class="feature-name-two">SECURITY DEPOSIT</span>
+            <br>
+            <span class="finance-details padding-left padding-top">{{ property.deposit }}</span>
+        </div><!--col-100 end-->
+        <div class="col-100 padding-top">
+            <span class="feature-name-two">LEASE TERMS</span>
+            <br>
+            <span class="finance-details padding-left padding-top text-capitalize">monthly</span>
+        </div><!--col-100 end-->
+    </div><!--row end-->
+    <!-- SECTION Finance Details end -->
+    
+    <!-- ANCHOR Line Break -->
+    <hr class="margin-horizontal line">
+    
+    <!-- SECTION Contact Person -->
+    <div class="row">
+        <div class="col-100 padding-left">
+            <span class="feature-name-two">CONTACT PERSON</span>
+        </div><!--col-100 end-->
+        <div class="col-40 text-align-center padding">
+            <img src="{{ property.owner.userprofile.picture.url }}" alt="{{ property.name }}" width="75" height="75">
+        </div><!--col-30 end-->
+        <div class="col-60 padding">
+            <span class="contact-property-name">{{ property.name }}</span>
+            <span class="contact-property-link">{{ property.owner.email }}</span>
+            <span class="contact-property-link">{{ property.owner.userprofile.number }}</span>
+        </div><!--col-70 end-->
+    </div><!--row end-->
+    <!-- SECTION Contact Person end -->
+
+    <!-- SECTION Apply Button -->
+    <div class="row">
+        <div class="col-100 padding">
+            <a class="link external" href="{% url 'tenant:application_form' pk=property.pk %}">
+                <button class="button button-round apply-btn">Apply Now</button>
+            </a>
+        </div><!--col-100-->
+    </div><!--row end-->
+    <!-- SECTION Apply Button end -->
+
+
+
+</div>
+{% endblock home_content %}
+    
