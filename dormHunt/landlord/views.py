@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.views.generic import (TemplateView, ListView, CreateView, DetailView)
 from geopy.geocoders import Nominatim
+from geopy.exc import GeocoderTimedOut
 
 # SECTION Import Forms
 from landlord.forms import PropertyForm
@@ -28,7 +29,7 @@ class PropertyCreateView(CreateView):
         # Address
         address = "{0}, {1}, {2}, Metro Manila, {3}, Philippines".format(form.instance.street, form.instance.barangay, form.instance.city, form.instance.zip_code)
         # Function to store Latitude and Longitude
-        geolocator = Nominatim(user_agent="dormHunt")
+        geolocator = Nominatim(user_agent="dormHunt", timeout=None)
         location = geolocator.geocode(address)
 
         if location.latitude != None and location.longitude != None:
