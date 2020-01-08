@@ -11,4 +11,5 @@ urlpatterns = [
 
     # NOTE Temporary, created so i can view my template
     path('apply/', views.Application.as_view(), name='apply'),
+    path('home/', views.TenantHome.as_view(), name='tenant_home'),
 ]

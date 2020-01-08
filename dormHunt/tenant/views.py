@@ -11,7 +11,7 @@ from landlord.models import Property
 
 # Create your views here.
 class Tenant(TemplateView):
-    template_name = 'tenant/tenant_home.html'
+    template_name = 'tenant/tenant_home_no_dorm.html'
 
 class TenantFavorites(TemplateView):
     template_name = 'tenant/tenant_favorites.html'
@@ -28,3 +28,6 @@ class ViewPropertyDetailView(DetailView):
 # NOTE Temporary, created so i can view my template
 class Application(TemplateView):
     template_name = 'tenant/application_form.html'
+
+class TenantHome(TemplateView):
+    template_name = 'tenant/tenant_home.html'
