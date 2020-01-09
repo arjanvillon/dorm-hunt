@@ -48,7 +48,8 @@
       <div class="view view-main">
         <!-- Initial Page, "data-name" contains page name -->
         <div data-name="home" class="page">
-
+          
+          {% block toolbar %}
           <!-- SECTION Toolbar -->
           <div class="toolbar tabbar toolbar-bottom ">
             <div class="toolbar-inner">
@@ -57,6 +58,9 @@
                 <a href="#" class="tab-link external payment-tab"><i class="f7-icons">creditcard_fill</i></a>
             </div>
           </div>
+            
+          {% endblock toolbar %}
+            
 
           <!-- Scrollable page content -->
           <!-- <div class="page-content"> -->

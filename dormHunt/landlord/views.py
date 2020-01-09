@@ -67,3 +67,6 @@ class LandlordMessages(ListView):
 
     def get_queryset(self):
         return Property.objects.all().filter(owner=self.request.user)
+
+class LandlordIndividualMessages(TemplateView):
+    template_name = 'landlord/landlord_ind_messages.html'
