@@ -28,9 +28,12 @@
             <div data-speed="900" data-pagination='{"el": ".swiper-pagination"}' data-space-between="50" class="swiper-container swiper-init demo-swiper">
                 <div class="swiper-pagination"></div>
                 <div class="swiper-wrapper">
+                  <!-- <div class="swiper-slide"><img class="property-image-default-no-border" src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt=""></div>
                   <div class="swiper-slide"><img class="property-image-default-no-border" src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt=""></div>
-                  <div class="swiper-slide"><img class="property-image-default-no-border" src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt=""></div>
-                  <div class="swiper-slide"><img class="property-image-default-no-border" src="{% static 'tenant/images/favorites_default.png' %}" alt=""></div>
+                  <div class="swiper-slide"><img class="property-image-default-no-border" src="{% static 'tenant/images/favorites_default.png' %}" alt=""></div> -->
+                  <div class="swiper-slide">
+                      <img class="property-image-default-no-border" src="{{ property.thumbnail.url }}"></img>
+                  </div>
                 </div>
               </div>
         </div>
@@ -41,16 +44,19 @@
             <h2 class="no-margin property-title padding-left text-capitalize">{{ property.name }}</h2>
         </div>
         <div class="col-20">
-            <a href="#">
-                <i class="far fa-heart fa-2x"></i>
+            <a class="link external" href="{% url 'tenant:favorite_property' pk=property.pk %}">
+                {% if user in users %}
+                    <i class="fas fa-heart fa-2x"></i>
+                {% else %}
+                    <i class="far fa-heart fa-2x"></i>
+                {% endif %}
             </a>
-            <!-- <i class="fas fa-heart fa-2x"></i> -->
         </div>
     </div>
 
     <div class="row">
         <div class="col-100">
-            <p class="no-margin-vertical property-address padding-horizontal margin">{{ property.address }}, {{ property.zip_code }}</p>
+            <p class="no-margin-vertical property-address padding-horizontal margin">{{ property.address }}</p>
         </div>
     </div>
 
@@ -75,7 +81,7 @@
                     <span class="feature-icon"><img src="{% static 'tenant/images/features/home.png' %}" alt="type image"></span>
                 </div><!--col-100 end-->
                 <div class="col-100">
-                    <span class="feature-detail">Bedspace</span>
+                    <span class="feature-detail">{{ property.property_type }}</span>
                 </div><!--col-100 end-->
             </div><!--row end-->
             <!-- SECTION Feature 1 end -->
@@ -90,7 +96,7 @@
                     <span class="feature-icon"><img src="{% static 'tenant/images/features/bed.png' %}" alt="bed image"></span>
                 </div><!--col-100 end-->
                 <div class="col-100">
-                    <span class="feature-detail">10/22</span>
+                    <span class="feature-detail">{{ property.capacity }}</span>
                 </div><!--col-100 end-->
             </div><!--row end-->
             <!-- SECTION Feature 2 end -->
@@ -105,7 +111,7 @@
                     <span class="feature-icon"><img src="{% static 'tenant/images/features/water-drop.png' %}" alt="bath image"></span>
                 </div><!--col-100 end-->
                 <div class="col-100">
-                    <span class="feature-detail">2</span>
+                    <span class="feature-detail">{{ property.bathroom }}</span>
                 </div><!--col-100 end-->
             </div><!--row end-->
             <!-- SECTION Feature 3 end -->
@@ -123,7 +129,13 @@
                     <span class="feature-icon"><img src="{% static 'tenant/images/features/shelf.png' %}" alt="furnished image"></span>
                 </div><!--col-100 end-->
                 <div class="col-50 justify-content-center text-align-left padding-top">
-                    <span class="feature-answer-two">Yes</span>
+                    <span class="feature-answer-two">
+                        {% if property.is_furnished %}
+                            Yes
+                        {% else %}
+                            No
+                        {% endif %}
+                    </span>
                 </div><!--col-100 end-->
             </div><!--row end-->
             <!-- SECTION Feature 1 end -->
@@ -138,7 +150,13 @@
                     <span class="feature-icon"><img src="{% static 'tenant/images/features/paw.png' %}" alt="furnished image"></span>
                 </div><!--col-100 end-->
                 <div class="col-50 justify-content-center text-align-left padding-top">
-                    <span class="feature-answer-two">Yes</span>
+                    <span class="feature-answer-two">
+                        {% if property.is_pets_allowed %}
+                            Yes
+                        {% else %}
+                            No
+                        {% endif %}
+                    </span>
                 </div><!--col-100 end-->
             </div><!--row end-->
             <!-- SECTION Feature 2 end -->
@@ -153,10 +171,7 @@
         </div><!--col-100 end-->
         <div class="col-100 description-content">
             <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque accusantium debitis, placeat recusandae odit ut architecto excepturi eos dolorem, eveniet nostrum quo perferendis mollitia nesciunt voluptatibus aut. Aut, quidem asperiores. Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis ducimus exercitationem saepe architecto non ut est, magni dolorem illum in eos aliquid sunt expedita soluta beatae temporibus. Ea, incidunt reiciendis!
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque accusantium debitis, placeat recusandae odit ut architecto excepturi eos dolorem, eveniet nostrum quo perferendis mollitia nesciunt voluptatibus aut. Aut, quidem asperiores. Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis ducimus exercitationem saepe architecto non ut est, magni dolorem illum in eos aliquid sunt expedita soluta beatae temporibus. Ea, incidunt reiciendis!
+                {{ property.description }}
             </p>
         </div><!--col-100 end-->
     </div><!--row end-->
@@ -211,17 +226,12 @@
         <div class="col-100">
             <span class="feature-name-two">SECURITY DEPOSIT</span>
             <br>
-            <span class="finance-details padding-left padding-top">Php 2000.00</span>
+            <span class="finance-details padding-left padding-top">{{ property.deposit }}</span>
         </div><!--col-100 end-->
         <div class="col-100 padding-top">
             <span class="feature-name-two">LEASE TERMS</span>
             <br>
             <span class="finance-details padding-left padding-top text-capitalize">monthly</span>
-        </div><!--col-100 end-->
-        <div class="col-100 padding-top">
-            <span class="feature-name-two">DATE AVAILABLE</span>
-            <br>
-            <span class="finance-details padding-left padding-top">01/21/2020</span>
         </div><!--col-100 end-->
     </div><!--row end-->
     <!-- SECTION Finance Details end -->
@@ -234,39 +244,23 @@
         <div class="col-100 padding-left">
             <span class="feature-name-two">CONTACT PERSON</span>
         </div><!--col-100 end-->
-        <div class="col-30 text-align-center padding">
-            <img src="{% static 'tenant/images/contact-property-default.png' %}" alt="{{ property.name }}">
+        <div class="col-40 text-align-center padding">
+            <img src="{{ property.owner.userprofile.picture.url }}" alt="{{ property.name }}" width="75" height="75">
         </div><!--col-30 end-->
-        <div class="col-70 padding">
+        <div class="col-60 padding">
             <span class="contact-property-name">{{ property.name }}</span>
             <span class="contact-property-link">{{ property.owner.email }}</span>
-            <span class="contact-property-link">{{ property.owner.number }}</span>
+            <span class="contact-property-link">{{ property.owner.userprofile.number }}</span>
         </div><!--col-70 end-->
     </div><!--row end-->
     <!-- SECTION Contact Person end -->
 
-    <!-- SECTION Requests -->
-    <div class="row">
-        <div class="col-60 padding-horizontal">
-            <button class=" button button-round button-outline request-btn">REQUEST TOUR</button>
-        </div><!--col-60 end-->
-        <div class="col-40 padding-right">
-            <div class="row">
-                <div class="col-50">
-                    <img src="{% static 'tenant/images/features/message.png' %}" alt="message">
-                </div>
-                <div class="col-50">
-                    <img src="{% static 'tenant/images/features/flag.png' %}" alt="report">
-                </div>
-            </div>
-        </div><!--col-40 end-->
-    </div><!--row end-->
-    <!-- SECTION Requests end-->
-
     <!-- SECTION Apply Button -->
     <div class="row">
         <div class="col-100 padding">
-            <button class="button button-round apply-btn">Apply Now</button>
+            <a class="link external" href="{% url 'tenant:application_form' pk=property.pk %}">
+                <button class="button button-round apply-btn">Apply Now</button>
+            </a>
         </div><!--col-100-->
     </div><!--row end-->
     <!-- SECTION Apply Button end -->

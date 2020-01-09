@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.5.1/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.5.1/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://rawcdn.githack.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css"/>
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_0681cdad73b543b4b206ca8438914d25 {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_0681cdad73b543b4b206ca8438914d25" ></div>
+        
+</body>
+<script>    
+    
+            var map_0681cdad73b543b4b206ca8438914d25 = L.map(
+                "map_0681cdad73b543b4b206ca8438914d25",
+                {
+                    center: [14.644000053405762, 121.03800201416016],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 11,
+                    zoomControl: true,
+                    preferCanvas: false,
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_576dc21ac06b4effa2dbdf68db114195 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_0681cdad73b543b4b206ca8438914d25);
+        
+    
+            var marker_7767ecabb70e4c659c886afedd137bef = L.marker(
+                [14.6248901, 121.098257],
+                {}
+            ).addTo(map_0681cdad73b543b4b206ca8438914d25);
+        
+    
+            var icon_2cb6cc8484104d099f8cadc0e7ec19ac = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_7767ecabb70e4c659c886afedd137bef.setIcon(icon_2cb6cc8484104d099f8cadc0e7ec19ac);
+        
+    
+        var popup_0fdb3f978ab0426db83f42cfaa1bedb0 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_4924e36436c740079f4eb412334c5ec0 = $(`<div id="html_4924e36436c740079f4eb412334c5ec0" style="width: 100.0%; height: 100.0%;">KingCess Dormitory</div>`)[0];
+            popup_0fdb3f978ab0426db83f42cfaa1bedb0.setContent(html_4924e36436c740079f4eb412334c5ec0);
+        
+
+        marker_7767ecabb70e4c659c886afedd137bef.bindPopup(popup_0fdb3f978ab0426db83f42cfaa1bedb0)
+        ;
+
+        
+    
+    
+            var marker_e76fa0125c0d4c4298152101ab16e053 = L.marker(
+                [14.6002507, 121.0061418],
+                {}
+            ).addTo(map_0681cdad73b543b4b206ca8438914d25);
+        
+    
+            var icon_de7149283d274ae78461a1d643137e49 = L.AwesomeMarkers.icon(
+                {"extraClasses": "fa-rotate-0", "icon": "home", "iconColor": "white", "markerColor": "blue", "prefix": "glyphicon"}
+            );
+            marker_e76fa0125c0d4c4298152101ab16e053.setIcon(icon_de7149283d274ae78461a1d643137e49);
+        
+    
+        var popup_fbafe01cc44949e8b22305b966d5feef = L.popup({"maxWidth": "100%"});
+
+        
+            var html_8d6230090761438287f8fa7b19baa520 = $(`<div id="html_8d6230090761438287f8fa7b19baa520" style="width: 100.0%; height: 100.0%;">Arjan Dormitory</div>`)[0];
+            popup_fbafe01cc44949e8b22305b966d5feef.setContent(html_8d6230090761438287f8fa7b19baa520);
+        
+
+        marker_e76fa0125c0d4c4298152101ab16e053.bindPopup(popup_fbafe01cc44949e8b22305b966d5feef)
+        ;
+
+        
+    
+</script>

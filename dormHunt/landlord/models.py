@@ -25,13 +25,12 @@ class Property(models.Model):
     price               = models.FloatField()
     thumbnail           = models.ImageField(default='property_thumbnails/default.png', upload_to='property_thumbnails')
     tagline             = models.CharField(max_length=40, null=True)
-
-
     description         = models.TextField(blank=True)
     
-    favorite            = models.ManyToManyField(User, related_name='favorite', blank=True)
-    # is_favorite         = models.BooleanField(default=False)
+    favorite            = models.ManyToManyField(User, related_name='favorite', verbose_name='users that likes the property', blank=True)
+    property_type       = models.CharField(max_length=30, blank=True)
     capacity            = models.IntegerField()
+    bathroom            = models.IntegerField(default=0)
 
     # Features
     is_furnished        = models.BooleanField(default=False)
@@ -39,8 +38,6 @@ class Property(models.Model):
 
     # bath no
     # room type
-
-
     is_laundry          = models.BooleanField(default=False)
     is_parking          = models.BooleanField(default=False)
     is_storage          = models.BooleanField(default=False)
@@ -57,7 +54,8 @@ class Property(models.Model):
     is_tile             = models.BooleanField(default=False)
     is_window_covering  = models.BooleanField(default=False)
     is_elevator         = models.BooleanField(default=False)
-    
+
+    terms_of_agreement  = models.TextField(blank=True)
 
     # Geopy
     latitude            = models.FloatField(null=True, blank=True)

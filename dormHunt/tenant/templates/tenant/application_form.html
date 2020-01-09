@@ -9,7 +9,7 @@
             <div class="padding">
             <!-- TODO Create a function to return to previous link -->
             <!-- NOTE This a link is just temporary -->
-            <a href="{% url 'tenant:tenant' %}" class="link external">
+            <a href="{% url 'tenant:view_property' pk=property.pk %}" class="link external">
                 <div class="row back-btn">
                     <div class="col-10">
                             <i class="f7-icons">chevron_left</i>
@@ -36,16 +36,16 @@
     <div class="listing-container margin-horizontal ">
         <div class="row">
             <div class="col-100 padding">
-                <div class="listing-label">Listing Information</div>
-                <div class="listing-label font-weight-normal padding-left padding-top-half">KingCess Dormitory</div>
+                <div class="listing-label color-link">Listing Information</div>
+                <div class="listing-label font-weight-normal padding-left padding-top-half">{{ property.name }}</div>
             </div><!--col-100 end-->
             <div class="col-100 padding-horizontal">
                 <div class="listing-label color-link">Address</div>
-                <div class="listing-label font-weight-normal padding-left padding-top-half no-letter-spacing">2042 Jose Abad Santos Street, Sta. Mesa, Manila</div>
+                <div class="listing-label font-weight-normal padding-left padding-top-half no-letter-spacing">{{ property.address }}</div>
             </div><!--col-100 end-->
             <div class="col-100 padding">
                 <div class="listing-label color-link">Rent</div>
-                <div class="listing-label font-weight-normal padding-left padding-top-half no-letter-spacing"><strong>Php 2000.00</strong> monthly</div>
+                <div class="listing-label font-weight-normal padding-left padding-top-half no-letter-spacing"><strong>Php {{ property.price }}</strong> monthly</div>
             </div><!--col-100 end-->
         </div><!--row end-->
     </div><!--listing container end-->
@@ -63,7 +63,7 @@
                     <span class="feature-icon"><img src="{% static 'tenant/images/features/home.png' %}" alt="type image"></span>
                 </div><!--col-100 end-->
                 <div class="col-100">
-                    <span class="feature-detail">Bedspace</span>
+                    <span class="feature-detail">{{ property.property_type }}</span>
                 </div><!--col-100 end-->
             </div><!--row end-->
             <!-- SECTION Feature 1 end -->
@@ -78,7 +78,7 @@
                     <span class="feature-icon"><img src="{% static 'tenant/images/features/bed.png' %}" alt="bed image"></span>
                 </div><!--col-100 end-->
                 <div class="col-100">
-                    <span class="feature-detail">10/22</span>
+                    <span class="feature-detail">{{ property.capacity }}</span>
                 </div><!--col-100 end-->
             </div><!--row end-->
             <!-- SECTION Feature 2 end -->
@@ -93,7 +93,7 @@
                     <span class="feature-icon"><img src="{% static 'tenant/images/features/water-drop.png' %}" alt="bath image"></span>
                 </div><!--col-100 end-->
                 <div class="col-100">
-                    <span class="feature-detail">2</span>
+                    <span class="feature-detail">{{ property.bathroom }}</span>
                 </div><!--col-100 end-->
             </div><!--row end-->
             <!-- SECTION Feature 3 end -->
@@ -111,7 +111,13 @@
                     <span class="feature-icon"><img src="{% static 'tenant/images/features/shelf.png' %}" alt="furnished image"></span>
                 </div><!--col-100 end-->
                 <div class="col-50 justify-content-center text-align-left padding-top">
-                    <span class="feature-answer-two">Yes</span>
+                    <span class="feature-answer-two">
+                        {% if property.is_furnished %}
+                            Yes
+                        {% else %}
+                            No
+                        {% endif %}
+                    </span>
                 </div><!--col-100 end-->
             </div><!--row end-->
             <!-- SECTION Feature 1 end -->
@@ -126,7 +132,13 @@
                     <span class="feature-icon"><img src="{% static 'tenant/images/features/paw.png' %}" alt="furnished image"></span>
                 </div><!--col-100 end-->
                 <div class="col-50 justify-content-center text-align-left padding-top">
-                    <span class="feature-answer-two">Yes</span>
+                    <span class="feature-answer-two">
+                        {% if property.is_pets_allowed %}
+                            Yes
+                        {% else %}
+                            No
+                        {% endif %}
+                    </span>
                 </div><!--col-100 end-->
             </div><!--row end-->
             <!-- SECTION Feature 2 end -->
@@ -146,10 +158,7 @@
         </div><!--col-100 end-->
         <div class="col-100 description-content padding-horizontal">
             <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque accusantium debitis, placeat recusandae odit ut architecto excepturi eos dolorem, eveniet nostrum quo perferendis mollitia nesciunt voluptatibus aut. Aut, quidem asperiores. Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis ducimus exercitationem saepe architecto non ut est, magni dolorem illum in eos aliquid sunt expedita soluta beatae temporibus. Ea, incidunt reiciendis!
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Itaque accusantium debitis, placeat recusandae odit ut architecto excepturi eos dolorem, eveniet nostrum quo perferendis mollitia nesciunt voluptatibus aut. Aut, quidem asperiores. Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis ducimus exercitationem saepe architecto non ut est, magni dolorem illum in eos aliquid sunt expedita soluta beatae temporibus. Ea, incidunt reiciendis!
+                {{ property.terms_of_agreement }}
             </p>
         </div><!--col-100 end-->
     </div><!--row end-->
@@ -157,6 +166,38 @@
 
     <!-- ANCHOR line break -->
     <hr class="margin-horizontal line">
+
+    <div class="row">
+        <div class="col-100">
+            <form method='POST'>
+                {% csrf_token %}
+                <div class="list no-hairlines-md no-margin-bottom">
+                    <ul>
+                    {% for field in form %}
+                        <li class="item-content item-input item-input-outline">
+                            <div class="item-inner">
+                                <div class="item-title margin-bottom-half signin-label">{{ field.label_tag }}</div>
+                                <div class="item-input-wrap">
+                                    {{field}}
+                                </div>
+                            </div>
+                        </li>
+                    {% endfor %}
+                    </ul>
+                </div>
+
+                <div class="text-align-center padding submit-btn-container">
+                    <input type="submit" class="submit-btn button button-raised button-fill button-round" value="Submit"> 
+                </div>
+            </form>
+        </div>
+    </div>
+
+
+
+    
+
+        
 
     <!-- SECTION Application Form -->
     <div class="row">
@@ -206,4 +247,10 @@
 
 </div><!--page-content end-->    
 {% endblock home_content %}
+
+
+{% block homeJs %}
+<script src="{% static 'tenant/js/application.js' %}"></script>
+{% endblock homeJs %}
+    
     

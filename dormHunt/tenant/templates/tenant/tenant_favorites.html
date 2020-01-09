@@ -2,6 +2,16 @@
 {% load static %}
 
 {% block css %}
+    
+    {% if favorites %}
+    <style>
+        #tab-1.page-content {
+                background-image: url("/static/user/images/white-background.png") !important;
+        }
+    </style>
+    {% endif %}
+        
+
 {% endblock css %}
     
 
@@ -13,7 +23,13 @@
             <div class="block">
                 <!-- SECTION User Greetings and User Icon -->
                 <div class="row">
-                    <div class="col-100">
+                    <div class="col-25">
+
+                    </div>
+                    <div class="col-50">
+                        <h1>Favorites</h1>
+                    </div>
+                    <div class="col-25">
                         <div class="float-right">
                             <div class="float-right margin-right margin-top">
                                 <a href="{% url 'home:view_user' %}" class="link external">
@@ -23,35 +39,65 @@
                         </div>
                     </div><!--col-100 end-->
                 </div><!--row end--> 
-                <!-- SECTION Image -->
-                <div class="row padding-vertical">
-                    <div class="col-100 text-align-center">
-                        <img src="{% static 'tenant/images/favorites_default.png' %}" alt="Favorites Image">
-                    </div>
-                </div><!--row end-->
-                <!-- SECTION Empty Home -->
-                <div class="row text-align-center">
-                    <div class="col-100">
-                        <h2>No Favorites</h2>
-                    </div>
-                   
-                </div><!--end row-->
-                <div class="row">
-                    <div class="col-100">
-                        
-                        <div class="text-align-center home-subtext margin-horizontal no-margin margin-bottom-half">
-                            You have not marked any listing as your favorite. Don’t worry we know you’ll find your ideal home soon.
+
+                {% if not favorites %}
+                    <!-- SECTION Image -->
+                    <div class="row padding-vertical">
+                        <div class="col-100 text-align-center">
+                            <img src="{% static 'tenant/images/favorites_default.png' %}" alt="Favorites Image">
+                        </div>
+                    </div><!--row end-->
+                    <!-- SECTION Empty Home -->
+                    <div class="row text-align-center">
+                        <div class="col-100">
+                            <h2>No Favorites</h2>
+                        </div>
+                    
+                    </div><!--end row-->
+                    <div class="row">
+                        <div class="col-100">
+                            
+                            <div class="text-align-center home-subtext margin-horizontal no-margin margin-bottom-half">
+                                You have not marked any listing as your favorite. Don’t worry we know you’ll find your ideal home soon.
+                            </div>
                         </div>
                     </div>
-                </div>
-                <!-- SECTION Button -->
-                <div class="row color-scheme1">
-                    <div class="col-100 text-align-center no-margin-right no-padding-right">
-                        <a href="{% url 'tenant:dorm_search' %}" class="link external">
-                            <span class="search-text">Search for dormitory &#8921;</span>
-                        </a>
+                    <!-- SECTION Button -->
+                    <div class="row color-scheme1">
+                        <div class="col-100 text-align-center no-margin-right no-padding-right">
+                            <a href="{% url 'tenant:dorm_search' %}" class="link external">
+                                <span class="search-text">Search for dormitory &#8921;</span>
+                            </a>
+                        </div>
+                    </div><!--row end-->
+
+                {% else %}
+                    <div class="list">
+
+                    <ul>
+                    {% for property in favorites %}
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <a href="{% url 'tenant:view_property' pk=property.pk %}" class="link external">
+                                    <div class="row">
+                                        <div class="col-30">
+                                            <img src="{{ property.thumbnail.url }}" alt="Property Image-{{ property.name }}" class="property-image-default">
+                                        </div>
+                                        <div class="col-70">
+                                            <div class="item-title">{{ property.name }}</div>
+                                            <div class="property-support-label">{{ property.tagline }}</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+                    {% endfor %}
+                    </ul>
                     </div>
-                </div><!--row end-->
+
+                {% endif %}
+                    
+
             </div><!--block end-->
         </div> <!--page content end-->
     </div><!--tabs end-->
