@@ -9,4 +9,6 @@ urlpatterns = [
     path('property/create', views.PropertyCreateView.as_view(), name='property_create'),
     path('property/detail/<int:pk>', views.PropertyDetailView.as_view(), name='property_detail'),
 
+    # NOTE For viewing purposes only
+    path('message/', views.LandlordMessages.as_view(), name='landlord_messages'),
 ]

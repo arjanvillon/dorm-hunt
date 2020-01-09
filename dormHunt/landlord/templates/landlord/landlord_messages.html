@@ -1,0 +1,253 @@
+{% extends 'landlord/base.html' %}
+{% load static %}
+
+{% block messageCss %}
+<style>
+.text-lowercase {
+    text-transform: lowercase !important;
+}
+.message-tab .tab-link-highlight {
+    display: none;
+}
+.message-toolbar {
+    background-color: #fff;
+    box-shadow: none;
+}
+.tab-link-active strong:after {
+    content:""; 
+    float:left; 
+    background: #2c9bf3; 
+    width:120%; 
+    height:3px; 
+    border-radius: 3px;
+}
+.property-container {
+    background-color: aliceblue;
+    border-radius: 3px;
+}
+.image-cropper {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    /* border: 2px solid white; */
+}
+.image-cropper-user {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    /* border: 2px solid white; */
+}
+
+img.property-sms-img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+}
+.property-name {
+    text-transform: capitalize !important;
+    font-weight: bold;
+}
+.message-preview {
+    font-family: 'PT Sans Caption', sans-serif;
+    color: #444;
+    font-size: x-small;
+    line-height: 1;
+}
+.message-time {
+    color: #2c9bf3;
+    font-weight: 600;
+    font-size: x-small;
+}
+.text-view-details {
+    text-decoration: underline;
+    font-size: small;
+}
+.text-view-details:hover {
+    color: #2c9bf3;
+}
+.short-bio {
+    border: 1px solid #c4c4c4;
+    padding: 10px;
+    border-radius: 5px;
+}
+</style>
+{% endblock messageCss %}
+    
+{% block landlord_content %}
+<div class="page-content">
+     <!-- SECTION User Greetings and User Icon -->
+     <div class="row padding-horizontal padding-top">
+        <div class="col-100">
+            <div class="float-left">
+                <h1 class="username">Messages</h1>
+            </div>
+            <div class="float-right">
+                <div class="float-right margin-right margin-top">
+                    <a href="{% url 'user:user_profile' pk=user.pk %}" class="link external">
+                        <img src="{% static 'home/images/user-icon.png' %}" alt="View User">
+                    </a>
+                </div>
+            </div>
+        </div><!--col-100 end-->
+    </div><!--row end--> 
+
+    <div class="toolbar tabbar message-toolbar">
+        <div class="toolbar-inner message-tab">
+            <!-- SECTION Unread -->
+            <a href="#tab-1" class="tab-link text-lowercase tab-link-active">
+                <div class="row">
+                    <div class="col-60 ">
+                        <strong>inbox</strong>
+                    </div>
+                    <div class="col-40 float-left">
+                        <span class="badge color-blue">2</span>
+                    </div>
+                </div>
+            </a>
+            <!-- SECTION Unread end -->
+            <!-- SECTION read -->
+            <a href="#tab-2" class="tab-link text-lowercase">
+                <div class="row">
+                    <div class="col-60 ">
+                        <strong>applications</strong>
+                    </div>
+                </div>
+            </a>
+            <!-- SECTION read end -->
+        </div>
+      </div>
+    <div class="tabs-swipeable-wrap">
+        <div class="tabs">
+            <div id="tab-1" class="page-content tab tab-active">
+
+                <!-- SECTION Create a Reminder or a New Message -->
+                <div class="row">
+                    <div class="col-50 padding-horizontal text-align-right">
+                        <div class="chip color-blue">
+                            <div class="chip-media bg-color-blue">
+                                <i class="icon f7-icons">bell_circle</i>
+                            </div>
+                            <div class="chip-label">New Reminder</div>
+                        </div>
+                    </div><!--col-50 end-->
+                    <div class="col-50 padding-horizontal text-align-left">
+                        <div class="chip color-blue">
+                            <div class="chip-media bg-color-blue">
+                                <i class="icon f7-icons">plus_circle</i>
+                            </div>
+                            <div class="chip-label">New Message</div>
+                        </div>
+                    </div><!--col-50 end-->
+                </div><!--row end-->
+                <!-- SECTION Create a Reminder or a New Message end-->
+
+                <!-- SECTION Messages -->
+                <div class="block">    
+                    {% for property in property_list %}
+                        <div class="property-container padding-half margin-bottom-half">
+                            <div class="row">
+                                <div class="col-20">
+                                    <div class="image-cropper align-self-center">
+                                        <img class="property-sms-img" src="{{ property.thumbnail.url }}" class="rounded" />
+                                    </div>
+                                </div><!--col-20 end-->
+                                <div class="col-80 align-self-center property-name">
+                                    {{ property.name }}
+                                    <div class="message-time padding-bottom-half">
+                                        5 minutes ago
+                                    </div>
+                                    <div class="message-preview">
+                                        <!-- Preview of last message -->
+                                        Initial message Lorem ipsum dolor sit amet consectetur ...
+                                    </div>
+                                </div><!--col-80 end-->
+                            </div><!--row end-->
+                        </div><!--property-container end-->
+                    {% endfor %}
+                        
+              </div>
+            </div>
+            <div id="tab-2" class="page-content tab">
+                <div class="block">
+                    <div class="property-container padding-half margin-bottom-half">
+                        <div class="row">
+                            <div class="col-20">
+                                <div class="image-cropper align-self-center">
+                                    <img class="property-sms-img" src="{% static 'tenant/images/contact-property-default.png' %}" class="rounded" />
+                                </div>
+                            </div><!--col-20 end-->
+                            <div class="col-80 align-self-center property-name">
+                                Nikki Abarca
+                                <div class="message-time padding-bottom-half">
+                                    January 21, 2020 11:59am
+                                </div>
+                                <div class="message-preview">
+                                    <!-- Preview of last message -->
+                                    <span class="text-view-details sheet-open" data-sheet=".my-sheet-swipe-to-close">View Details</span>
+                                </div>
+                            </div><!--col-80 end-->
+                        </div><!--row end-->
+                    </div><!--property-container end--> 
+                </div>
+                <div class="sheet-modal my-sheet-swipe-to-close" style="height:auto; --f7-sheet-bg-color: #fff;">
+                    <div class="sheet-modal-inner">
+                        <div class="page-content">
+                            <div class="row">
+                                <div class="col-70">
+                                    <div class="block-title block-title-large no-margin-bottom">Nikki Abarca</div>
+                                    <b class="padding-left">October 06, 1998</b>
+                                </div><!--col-70 end-->
+                                <div class="col-30 padding">
+                                    <div class="padding-top image-cropper-user align-self-center">
+                                        <img class="property-sms-img" src="{% static 'user/images/default-user-profile-image.png' %}" class="rounded" />
+                                    </div>
+                                </div>
+                            </div><!--row end-->
+                            <div class="block no-margin-top">
+                                <p><b>Email: </b><b class="color-scheme1">abarcanikki@gmail.com</b></p>
+                                <p><b>Phone Number: </b><b class="color-scheme1">09218467838</b></p>
+                                <p><b>Preferred Move in Date: </b><b class="color-scheme1">January 21, 2020</b></p>
+                                <b>Short Bio:</b>
+                                <div class="short-bio">
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, officiis molestiae nam repellendus excepturi officia vel! Laudantium, architecto quod quasi nulla cum doloribus aut fuga deserunt molestiae quaerat iure vel?
+                                </div><!--short-bio end-->
+                                <!-- SECTION Approve Disapprove -->
+                                <div class="row padding-top">
+                                    <div class="col-50">
+                                        <button class="col button button-raised button-fill color-red">Disapprove</button>
+                                    </div><!--col-50 end-->
+                                    <div class="col-50">
+                                        <button class="col button button-raised button-fill">Approve</button>
+                                    </div><!--col-50 end-->
+                                </div><!--row end-->
+                            </div><!--block end-->
+                        </div><!--page-content end-->
+                        </div><!--sheet-modal-inner end-->
+                  </div><!--sheet-modal end-->
+                
+            </div><!--tab2 end-->
+        </div><!--tabs end-->
+    </div><!--tabs-swieable-wrap end-->
+        
+</div><!--page-content end-->
+{% endblock landlord_content %}
+    
+
+
+
+{% block landlordJs %}
+<script src="{% static '/plugins/jquery/jquery.js' %}"></script>
+<script>
+    $(document).ready(function(){
+        $('a.message-tab').addClass('tab-link-active');
+        $('a.message-tab i.f7-icons').addClass('size-40');
+        $('.tab-link-highlight').remove();
+    });
+    
+</script>
+{% endblock landlordJs %}
