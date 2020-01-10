@@ -11,9 +11,11 @@ from django.core.exceptions import ObjectDoesNotExist
 
 # SECTION Import Forms
 from landlord.forms import PropertyForm
+from landlord.forms import ReminderForm
 
 #SECTION Import Models
 from landlord.models import Property
+from landlord.models import Reminder
 from user.models import User
 
 # Create your views here.
@@ -70,3 +72,12 @@ class LandlordMessages(ListView):
 
 class LandlordIndividualMessages(TemplateView):
     template_name = 'landlord/landlord_ind_messages.html'
+
+class LandlordReminder(TemplateView):
+    template_name = 'landlord/landlord_reminder.html'
+
+# Reminders
+
+class ReminderCreateView(CreateView):
+    form_class = ReminderForm
+    model = Reminder

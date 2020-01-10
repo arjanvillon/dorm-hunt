@@ -108,3 +108,247 @@ form.searchbar {
     margin-left: -20px !important;
     margin-right: -10px !important;
 }
+
+/* SECTION Features */
+.feature-name, .feature-detail {
+    font-family: 'PT Sans Caption', sans-serif;
+    font-style: normal;
+    font-weight: 700 ;
+    font-size: small;
+    line-height: 12px;
+
+}
+
+.feature-icon {
+    width: 100%;
+}
+
+.feature-name-two {
+    font-family: 'PT Sans Caption', sans-serif;
+    font-style: normal;
+    font-weight: 800;
+    font-size: medium;
+    text-transform: uppercase;
+    line-height: 19px;
+    letter-spacing: -0.06em;
+}
+
+.feature-answer-two {
+    font-family: 'PT Sans Caption', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: large;
+    text-transform: capitalize;
+    line-height: 19px;
+    letter-spacing: -0.06em;
+}
+
+.description-content {
+    font-family: 'PT Sans Caption', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: medium;
+    line-height: 25px;
+    letter-spacing: -0.07em;
+    color: #444444;
+    text-indent: 50px;
+    text-align: justify;
+}
+
+.inclusions {
+    font-family: 'PT Sans Caption', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: medium;
+    line-height: 25px;
+    letter-spacing: -0.07em;
+    color: #444444;
+}
+
+.finance-details {
+    font-family: 'PT Sans Caption', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: medium;
+    line-height: 17px;
+    letter-spacing: -0.06em;
+    color: #000000;
+}
+
+.text-capitalize {
+    text-transform: capitalize;
+}
+
+.contact-property-name {
+    font-family:'PT Sans Caption', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: large;
+    text-transform: capitalize;
+    line-height: 19px;
+    letter-spacing: -0.06em;
+    color: #000000;
+}
+
+.contact-property-link {
+    font-family: 'PT Sans Caption', sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: large;
+    line-height: 18px;
+    letter-spacing: -0.06em;
+    color: #5660F1;
+}
+
+.request-btn {
+    font-family: 'PT Sans Caption', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: large;
+    line-height: 22px;
+    color: #5660F1;
+}
+
+.apply-btn {
+    font-family: 'PT Sans Caption', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: large;
+    line-height: 25px;
+    color: #FFFFFF;
+    background: #5660F1;
+}
+
+
+/* SECTION Application */
+.listing-container {
+    background: rgba(87, 204, 242, 0.25);
+    border-radius: 18px;
+}
+
+.listing-label {
+    font-family:' Roboto', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: large;
+    line-height: 20px;
+    letter-spacing: 0.02em;
+    color: #000000;
+}
+
+.font-weight-normal {
+    font-weight: normal;
+}
+
+.color-link {
+    color: #2979FF;
+} 
+
+.no-letter-spacing {
+    letter-spacing: 0.0em;
+}
+
+.application-label {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: bold;
+    font-size: large;
+    line-height: 16px;
+    letter-spacing: 0.03em;
+    text-transform: uppercase;
+    color: #2979FF;
+}
+
+.application-instruction {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: 300;
+    font-size: medium;
+    line-height: 114.5%;
+    color: #444444;
+}
+
+.sub-instruction-label {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: medium;
+    line-height: 16px;
+    letter-spacing: 0.03em;
+    text-transform: capitalize;
+    color: #2979FF;
+}
+
+.sub-instruction-content {
+    font-family: 'Roboto', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: small;
+    line-height: 16px;
+    letter-spacing: 0.03em;
+    text-transform: capitalize;
+    color: #444;
+}
+
+/* SECTION Tenant Home if Landlord and Tenant is connected */
+.dorm-info-container {
+    background-color: #5660F1;
+    color: #fff;
+    border-radius: 18px;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+}
+.dorm-info-container:hover {
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.5);
+}
+
+.image-cropper {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 50%;
+    border: 2px solid white;
+}
+
+img.home-dorm {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+}
+
+.dorm-name {
+    font-size: large;
+    font-weight: bold;
+}
+
+.text-size-35 {
+    font-size: 35px;
+}
+
+.room-info-container {
+    background-color: #fff;
+    border-radius: 14px;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+}
+
+.room-info-container:hover {
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.5);
+}
+
+.room-title {
+    font-family: 'Rambla', sans-serif;
+    font-style: normal;
+    font-weight: bold;
+    font-size: medium;
+    line-height: 20px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    letter-spacing: -0.02em;
+    color: #000000;
+}
+
+.room-content {
+    color: #757575;
+}

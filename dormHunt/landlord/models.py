@@ -1,3 +1,6 @@
+import datetime
+from django.utils.translation import gettext as _
+
 from django.db import models
 from user.models import User
 from django.utils import timezone
@@ -67,6 +70,18 @@ class Property(models.Model):
 
     def get_absolute_url(self):
         return reverse("landlord:landlord_home")
+
+class Reminder(models.Model):
+    property_name       = models.ForeignKey(Property, on_delete=models.CASCADE)
+    category            = models.CharField(max_length=30)
+    sub_category        = models.CharField(max_length=30, blank=True)
+    issue               = models.CharField(max_length=80, blank=True)
+    # gen info
+    next_service        = models.DateField(_("Date"), default=datetime.date.today)
+    days_before         = models.CharField(max_length=30)
+    description         = models.TextField(blank=True)
+
+
 
 
     
