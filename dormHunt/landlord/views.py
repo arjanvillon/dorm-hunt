@@ -73,9 +73,6 @@ class LandlordMessages(ListView):
 class LandlordIndividualMessages(TemplateView):
     template_name = 'landlord/landlord_ind_messages.html'
 
-class LandlordReminder(TemplateView):
-    template_name = 'landlord/landlord_reminder.html'
-
 # Reminders
 
 class ReminderCreateView(CreateView):
