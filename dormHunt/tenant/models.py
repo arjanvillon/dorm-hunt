@@ -12,13 +12,21 @@ class Application(models.Model):
     bio             = models.TextField()
     
     dorm            = models.ForeignKey(Property, on_delete=models.CASCADE)
+    is_approved     = models.BooleanField(default=False)
+    is_disapproved  = models.BooleanField(default=False)
 
     created_at      = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return self.tenant.username
+        return "{} is applying for {}".format(self.tenant.username, self.dorm.name)
 
     def get_absolute_url(self):
         return reverse("tenant:tenant")
 
+    def approve(self):
+        self.is_approved = True
+        self.save()
 
+    def disapprove(self):
+        self.is_disapproved = True
+        self.save()
