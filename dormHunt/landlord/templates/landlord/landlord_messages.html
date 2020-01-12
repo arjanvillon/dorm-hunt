@@ -178,61 +178,74 @@ img.property-sms-img {
             </div>
             <div id="tab-2" class="page-content tab">
                 <div class="block">
-                    <div class="property-container padding-half margin-bottom-half">
-                        <div class="row">
-                            <div class="col-20">
-                                <div class="image-cropper align-self-center">
-                                    <img class="property-sms-img" src="{% static 'tenant/images/contact-property-default.png' %}" class="rounded" />
-                                </div>
-                            </div><!--col-20 end-->
-                            <div class="col-80 align-self-center property-name">
-                                Nikki Abarca
-                                <div class="message-time padding-bottom-half">
-                                    January 21, 2020 11:59am
-                                </div>
-                                <div class="message-preview">
-                                    <!-- Preview of last message -->
-                                    <span class="text-view-details sheet-open" data-sheet=".my-sheet-swipe-to-close">View Details</span>
-                                </div>
-                            </div><!--col-80 end-->
-                        </div><!--row end-->
-                    </div><!--property-container end--> 
-                </div>
-                <div class="sheet-modal my-sheet-swipe-to-close" style="height:auto; --f7-sheet-bg-color: #fff;">
-                    <div class="sheet-modal-inner">
-                        <div class="page-content">
+                    
+                    {% for application in application_list %}
+                        <div class="property-container padding-half margin-bottom-half">
                             <div class="row">
-                                <div class="col-70">
-                                    <div class="block-title block-title-large no-margin-bottom">Nikki Abarca</div>
-                                    <b class="padding-left">October 06, 1998</b>
-                                </div><!--col-70 end-->
-                                <div class="col-30 padding">
-                                    <div class="padding-top image-cropper-user align-self-center">
-                                        <img class="property-sms-img" src="{% static 'user/images/default-user-profile-image.png' %}" class="rounded" />
+                                <div class="col-20">
+                                    <div class="image-cropper align-self-center">
+                                        <img class="property-sms-img" src="{{ application.tenant.userprofile.picture.url }}" class="rounded" />
                                     </div>
-                                </div>
+                                </div><!--col-20 end-->
+                                <div class="col-80 align-self-center property-name">
+                                    {{ application.tenant.userprofile.first_name }} {{ application.tenant.userprofile.last_name }}
+                                    <div class="message-time padding-bottom-half">
+                                        {{ application.created_at }}
+                                    </div>
+                                    <div class="message-preview">
+                                        <!-- Preview of last message -->
+                                        <span class="text-view-details sheet-open" data-sheet=".my-sheet-swipe-to-close">View Details</span>
+                                    </div>
+                                </div><!--col-80 end-->
                             </div><!--row end-->
-                            <div class="block no-margin-top">
-                                <p><b>Email: </b><b class="color-scheme1">abarcanikki@gmail.com</b></p>
-                                <p><b>Phone Number: </b><b class="color-scheme1">09218467838</b></p>
-                                <p><b>Preferred Move in Date: </b><b class="color-scheme1">January 21, 2020</b></p>
-                                <b>Short Bio:</b>
-                                <div class="short-bio">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem, officiis molestiae nam repellendus excepturi officia vel! Laudantium, architecto quod quasi nulla cum doloribus aut fuga deserunt molestiae quaerat iure vel?
-                                </div><!--short-bio end-->
-                                <!-- SECTION Approve Disapprove -->
-                                <div class="row padding-top">
-                                    <div class="col-50">
-                                        <button class="col button button-raised button-fill color-red">Disapprove</button>
-                                    </div><!--col-50 end-->
-                                    <div class="col-50">
-                                        <button class="col button button-raised button-fill">Approve</button>
-                                    </div><!--col-50 end-->
-                                </div><!--row end-->
-                            </div><!--block end-->
-                        </div><!--page-content end-->
-                        </div><!--sheet-modal-inner end-->
-                  </div><!--sheet-modal end-->
+                        </div><!--property-container end--> 
+
+                        <div class="sheet-modal my-sheet-swipe-to-close" style="height:auto; --f7-sheet-bg-color: #fff;">
+                            <div class="sheet-modal-inner">
+                                <div class="page-content">
+                                    <div class="row">
+                                        <div class="col-70">
+                                            <div class="block-title block-title-large no-margin-bottom">{{ application.tenant.userprofile.first_name }} {{ application.tenant.userprofile.last_name }}</div>
+                                            <b class="padding-left">{{ application.tenant.userprofile.birthday}}</b>
+                                        </div><!--col-70 end-->
+                                        <div class="col-30 padding">
+                                            <div class="padding-top image-cropper-user align-self-center">
+                                                <img class="property-sms-img" src="{{ application.tenant.userprofile.picture.url }}" class="rounded" />
+                                            </div>
+                                        </div>
+                                    </div><!--row end-->
+                                    <div class="block no-margin-top">
+                                        <p><b>Email: </b><b class="color-scheme1">{{ application.tenant.email }}</b></p>
+                                        <p><b>Phone Number: </b><b class="color-scheme1">{{ application.tenant.userprofile.number }}</b></p>
+                                        <p><b>Preferred Move in Date: </b><b class="color-scheme1">{{ application.move_in_date }}</b></p>
+                                        <b>Short Bio:</b>
+                                        <div class="short-bio">
+                                            {{ application.bio }}
+                                        </div><!--short-bio end-->
+                                        <!-- SECTION Approve Disapprove -->
+                                        <div class="row padding-top">
+                                            <div class="col-50">
+                                                <a class="link external" href="{% url 'landlord:disapprove_application' pk=application.pk %}">
+                                                    <button class="col button button-raised button-fill color-red">Disapprove</button>
+                                                </a>
+                                            </div><!--col-50 end-->
+                                            <div class="col-50">
+                                                <a class="link external" href="{% url 'landlord:approve_application' pk=application.pk %}">
+                                                    <button class="col button button-raised button-fill">Approve</button>
+                                                </a>
+                                            </div><!--col-50 end-->
+                                        </div><!--row end-->
+                                    </div><!--block end-->
+                                </div><!--page-content end-->
+                                </div><!--sheet-modal-inner end-->
+                          </div><!--sheet-modal end-->
+                    {% endfor %}
+                        
+
+
+
+                </div>
+
                 
             </div><!--tab2 end-->
         </div><!--tabs end-->

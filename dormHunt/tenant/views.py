@@ -24,11 +24,19 @@ class TenantFavorites(TemplateView):
 
     def get_context_data(self, **kwargs):
         user = self.request.user
-        get_favorites = user.property_set.all()
-        print(get_favorites)
+        favorites = []
+
+        properties = Property.objects.all()
+
+        for p in properties:
+            if p.favorite.filter(pk=user.pk).exists():
+                favorites.append(p)
+            else:
+                pass
+        print(favorites)
 
         context = super().get_context_data(**kwargs)
-        context["favorites"] = get_favorites
+        context["favorites"] = favorites
         return context
     
 

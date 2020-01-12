@@ -1,6 +1,6 @@
 from django.http import JsonResponse
 
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import (TemplateView, ListView, CreateView, DetailView)
 from geopy.geocoders import Nominatim
 from geopy.exc import GeocoderTimedOut
@@ -17,6 +17,7 @@ from landlord.forms import ReminderForm
 from landlord.models import Property
 from landlord.models import Reminder
 from user.models import User
+from tenant.models import Application
 
 # Create your views here.
 class LandlordListView(ListView):
@@ -70,6 +71,35 @@ class LandlordMessages(ListView):
     def get_queryset(self):
         return Property.objects.all().filter(owner=self.request.user)
 
+    def get_context_data(self, **kwargs):
+        properties = self.request.user.property_set.all()
+        application_list = []
+
+        try:
+            for p in properties:
+                applications = Application.objects.filter(dorm=p, is_approved=False, is_disapproved=False)
+                for application in applications:
+                    application_list.append(application)
+            print(len(application_list))
+            application_count = len(application_list)
+
+        except ObjectDoesNotExist:
+            application_list = ''
+
+        context = super().get_context_data(**kwargs)
+        context["application_list"] = application_list
+        context["application_count"] = application_count
+        return context
+
+def approve_application(request, pk):
+    application = get_object_or_404(Application, pk=pk)
+    application.approve()
+    return redirect('landlord:landlord_messages')
+
+def disapprove_application(request, pk):
+    application = get_object_or_404(Application, pk=pk)
+    application.disapprove()
+    return redirect('landlord:landlord_messages')
 class LandlordIndividualMessages(TemplateView):
     template_name = 'landlord/landlord_ind_messages.html'
 
