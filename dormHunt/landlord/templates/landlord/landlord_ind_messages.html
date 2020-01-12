@@ -1,0 +1,293 @@
+{% extends 'landlord/base.html' %}
+{% load static %}
+
+
+{% block toolbar %}
+    
+{% endblock toolbar %}
+    
+{% block messageCss %}
+<style>
+.text-lowercase {
+    text-transform: lowercase !important;
+}
+.message-tab .tab-link-highlight {
+    display: none;
+}
+.message-toolbar {
+    background-color: #fff;
+    box-shadow: none;
+}
+.tab-link-active strong:after {
+    content:""; 
+    float:left; 
+    background: #2c9bf3; 
+    width:120%; 
+    height:3px; 
+    border-radius: 3px;
+}
+.property-container {
+    background-color: aliceblue;
+    border-radius: 3px;
+}
+.image-cropper {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    /* border: 2px solid white; */
+}
+.image-cropper-ind {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    /* border: 2px solid white; */
+}
+.image-cropper-sm {
+    width: 35px;
+    height: 35px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
+    /* border: 2px solid white; */
+}
+.image-cropper-user {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    /* border: 2px solid white; */
+}
+
+img.property-sms-img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+}
+.property-name {
+    text-transform: capitalize !important;
+    font-weight: bold;
+}
+.message-preview {
+    font-family: 'PT Sans Caption', sans-serif;
+    color: #444;
+    font-size: x-small;
+    line-height: 1;
+}
+.message-time {
+    color: #2c9bf3;
+    font-weight: 600;
+    font-size: x-small;
+}
+.text-view-details {
+    text-decoration: underline;
+    font-size: small;
+}
+.text-view-details:hover {
+    color: #2c9bf3;
+}
+.short-bio {
+    border: 1px solid #c4c4c4;
+    padding: 10px;
+    border-radius: 5px;
+}
+.text-size-large {
+    font-size: large;
+}
+.online-label {
+    font-size: small;
+    color: #979797;
+}
+</style>
+{% endblock messageCss %}
+    
+{% block landlord_content %}
+<div class="page-content">
+   <!-- SECTION Back Button -->
+    <div class="row">
+        <div class="col-15 padding-top-half padding-left">
+            <div class="padding-top">
+            <!-- TODO Create a function to return to previous link -->
+            <!-- NOTE This a link is just temporary -->
+                <a href="{% url 'landlord:landlord_messages' %}" class="link external">
+                    <div class="row back-btn">
+                        <div class="col-10">
+                            <i class="f7-icons">chevron_left</i>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div><!--col-25 end-->
+        <div class="col-85 padding-top">
+            <div class="row">
+                <div class="col-20">
+                    <div class="image-cropper-ind align-self-center">
+                        <img class="property-sms-img" src="{% static 'tenant/images/contact-property-default.png' %}" class="rounded" />
+                    </div>
+                </div><!--ccol-30 end-->
+                <div class="col-80 align-self-center">
+                    <div class="row">
+                        <div class="col-100">
+                            <b class="text-capitalize text-size-large">blackClaw's</b>
+                        </div>
+                        <div class="col-100">
+                            <span class="online-label">online</span>
+                        </div>
+                    </div>
+                    
+                </div><!--ccol-30 end-->
+            </div><!--row end-->
+        </div><!--col-25 end-->
+    </div><!--row end-->
+   <!-- SECTION Back Button end -->
+
+
+   <!-- SECTION First Convo -->
+   <!-- <div class="page"> -->
+
+    <div class="page-content messages-content">
+      <div class="messages">
+        <!-- Messages title -->
+        <div class="messages-title"><b>Sunday, Feb 9,</b> 12:58</div>
+        <!-- Full layout sent message -->
+        <div class="message message-sent">
+          <div class="message-avatar" style="background-image:url(https://cdn.framework7.io/placeholder/people-100x100-7.jpg);"></div>
+          <div class="message-content">
+            <div class="message-name">John Doe</div>
+            <div class="message-header">Message header</div>
+            <div class="message-bubble">
+              <div class="message-text-header">Text header</div>
+              <div class="message-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
+              <div class="message-text-footer">Text footer</div>
+            </div>
+            <div class="message-footer">Message footer</div>
+          </div>
+        </div>
+        <!-- Full layout received message -->
+        <div class="message message-received">
+          <div class="message-avatar" style="background-image:url(https://cdn.framework7.io/placeholder/people-100x100-7.jpg);"></div>
+          <div class="message-content">
+            <div class="message-name">John Doe</div>
+            <div class="message-header">Message header</div>
+            <div class="message-bubble">
+              <div class="message-text-header">Text header</div>
+              <div class="message-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
+              <div class="message-text-footer">Text footer</div>
+            </div>
+            <div class="message-footer">Message footer</div>
+          </div>
+        </div>
+        <!-- Messages -->
+        <div class="message message-sent">
+          <div class="message-content">
+            <div class="message-bubble">
+              <div class="message-text">Hi, Kate</div>
+            </div>
+          </div>
+        </div>
+        <div class="message message-sent">
+          <div class="message-content">
+            <div class="message-bubble">
+              <div class="message-text">How are you?</div>
+            </div>
+          </div>
+        </div>
+        <div class="message message-received">
+          <div class="message-avatar" style="background-image:url(https://cdn.framework7.io/placeholder/people-100x100-9.jpg);"></div>
+          <div class="message-content">
+            <div class="message-name">Kate</div>
+            <div class="message-bubble">
+              <div class="message-text">Hi, I am good!</div>
+            </div>
+          </div>
+        </div>
+        <div class="message message-received">
+          <div class="message-avatar" style="background-image:url(https://cdn.framework7.io/placeholder/people-100x100-7.jpg);"></div>
+          <div class="message-content">
+            <div class="message-name">Blue Ninja</div>
+            <div class="message-bubble">
+              <div class="message-text">Hi there, I am also fine, thanks! And how are you?</div>
+            </div>
+          </div>
+        </div>
+        <div class="message message-sent">
+          <div class="message-content">
+            <div class="message-bubble">
+              <div class="message-text">Hey, Blue Ninja! Glad to see you ;)</div>
+            </div>
+          </div>
+        </div>
+        <div class="message message-sent">
+          <div class="message-content">
+            <div class="message-bubble">
+              <div class="message-text">Hey, look, cutest kitten ever!</div>
+            </div>
+          </div>
+        </div>
+        <div class="message message-sent">
+          <div class="message-content">
+            <div class="message-bubble">
+              <div class="message-image"><img src="https://cdn.framework7.io/placeholder/cats-200x260-4.jpg" style="width:200px; height: 260px;"></div>
+            </div>
+          </div>
+        </div>
+        <div class="message message-received">
+          <div class="message-avatar" style="background-image:url(https://cdn.framework7.io/placeholder/people-100x100-9.jpg);"></div>
+          <div class="message-content">
+            <div class="message-name">Kate</div>
+            <div class="message-bubble">
+              <div class="message-text">Nice!</div>
+            </div>
+          </div>
+        </div>
+        <div class="message message-received">
+          <div class="message-avatar" style="background-image:url(https://cdn.framework7.io/placeholder/people-100x100-9.jpg);"></div>
+          <div class="message-content">
+            <div class="message-name">Kate</div>
+            <div class="message-bubble">
+              <div class="message-text">Like it very much!</div>
+            </div>
+          </div>
+        </div>
+        <div class="message message-received">
+          <div class="message-avatar" style="background-image:url(https://cdn.framework7.io/placeholder/people-100x100-7.jpg);"></div>
+          <div class="message-content">
+            <div class="message-name">Blue Ninja</div>
+            <div class="message-bubble">
+              <div class="message-text">Awesome!</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="toolbar messagebar">
+        <div class="toolbar-inner">
+          <div class="messagebar-area">
+            <textarea class="resizable" placeholder="Message"></textarea>
+          </div><a class="link send-link" href="#">Send</a>
+        </div>
+      </div>
+  <!-- </div> -->
+   <!-- SECTION First Convo end -->
+</div><!--page-content end-->
+{% endblock landlord_content %}
+    
+
+
+
+{% block landlordJs %}
+<script src="{% static '/plugins/jquery/jquery.js' %}"></script>
+<script>
+    $(document).ready(function(){
+        $('a.message-tab').addClass('tab-link-active');
+        $('a.message-tab i.f7-icons').addClass('size-40');
+        $('.tab-link-highlight').remove();
+    });
+    
+</script>
+{% endblock landlordJs %}

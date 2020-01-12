@@ -1,0 +1,157 @@
+{% extends 'landlord/base.html' %}
+{% load static %}
+
+{% block landlordCss %}
+    <link rel="stylesheet" href="{% static '/plugins/select2/css/select2.css' %}">
+{% endblock landlordCss %}
+    
+{% block landlord_content %}
+<div class="tabs-swipeable-wrap">
+    <div class="page-content">
+
+        <div class="row">
+            <div class="col-25">
+                <div class="padding">
+                <!-- TODO Create a function to return to previous link -->
+                <!-- NOTE This a link is just temporary -->
+                    <a href="{% url 'landlord:landlord_home' %}" class="link external">
+                        <div class="row back-btn">
+                            <div class="col-10">
+                                <i class="f7-icons">chevron_left</i>
+                            </div>
+                            <div class="col-90 padding-left text-large">
+                                Back
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-50 text-align-center">
+                <div class="padding">
+                    <h3 class="no-margin">Add Reminder</h3>
+                </div>
+            </div>
+
+            <div class="col-25"></div>
+        </div>
+
+        <div class="row ">
+            <div class="col-100 add-property-margin">
+                <form method="POST" enctype="multipart/form-data" id="create_property_form">
+                    {% csrf_token %}
+
+                        <div class="list no-hairlines-md no-margin-bottom">
+                            <ul>
+                                {% for field in form %}
+                                    <li class="item-content item-input item-input-outline">
+                                        <div class="item-inner">
+                                            <div class="item-title item-floating-label margin-bottom-half signin-label">
+                                                
+                                                {{ field.label_tag }}
+
+                                            </div>
+                                            <div class="item-input-wrap">
+                                                {{field}}
+                                            </div>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div><!--list-->
+                        
+                    <!-- SECTION Submit Button -->
+                    <div class="text-align-center padding-vertical submit-btn-container">
+                        <input type="submit" class="submit-btn button button-raised button-fill button-round" value="Submit"> 
+                    </div>
+
+                    </form>
+                    
+            </div>
+        </div>
+
+    </div><!--page-content-->
+</div><!--swipeable wrap-->
+{% endblock landlord_content %}
+
+
+{% block landlordJs %}
+<script src="/plugins/select2/js/select2.js"></script>
+<script>
+    
+
+    $('#id_thumbnail').parent().addClass('image-upload-container');
+    $('.image-custom-upload').insertBefore('#id_thumbnail');
+    $('#id_thumbnail').addClass('upload-btn-hide');
+
+    $(document).ready(function() {
+        $('#id_category').change(function(){
+            if($(this).val() == "Plumbing"){
+                var pickerDevice = app.picker.create({
+                    inputEl: '#id_sub_category',
+                    cols: [
+                    {
+                        textAlign: 'center',
+                        values: ['Toilet', 'Sink', 'Leak', 'Shower/Tub', 'Sprinklers', 'Other']
+                    }
+                    ]
+                });
+            } else if ($(this).val() == "Appliances"){
+                var pickerDevice = app.picker.create({
+                    inputEl: '#id_sub_category',
+                    cols: [
+                    {
+                        textAlign: 'center',
+                        values: ['Refrigerator', 'Dishwater', 'Air Conditioner', 'Laundry', 'Stove', 'Heater', 'Other']
+                    }
+                    ]
+                });
+            } else if ($(this).val() == "Household"){
+                var pickerDevice = app.picker.create({
+                    inputEl: '#id_sub_category',
+                    cols: [
+                    {
+                        textAlign: 'center',
+                        values: ['Doors & Windows', 'Flooring', 'Ceiling', 'Walls % Cabinets', 'Pest Control', 'Other']
+                    }
+                    ]
+                });
+            } else if ($(this).val() == "Outdoors"){
+                var pickerDevice = app.picker.create({
+                    inputEl: '#id_sub_category',
+                    cols: [
+                    {
+                        textAlign: 'center',
+                        values: ['Fencing & Roof', 'Garbage', 'Parking', 'Landscaping', 'Other']
+                    }
+                    ]
+                });
+            } else if ($(this).val() == "Electrical"){
+                var pickerDevice = app.picker.create({
+                    inputEl: '#id_sub_category',
+                    cols: [
+                    {
+                        textAlign: 'center',
+                        values: ['Lights', 'Outlets', 'Ceiling Fan', 'Communication', 'Internet', 'Other']
+                    }
+                    ]
+                });
+            } else if ($(this).val() == "House Exterior"){
+                var pickerDevice = app.picker.create({
+                    inputEl: '#id_sub_category',
+                    cols: [
+                    {
+                        textAlign: 'center',
+                        values: ['Concrete', 'Roofs & Gutters', 'Sliding/Exterior', 'Other']
+                    }
+                    ]
+                });
+            }
+
+
+
+        });
+    });
+</script>
+{% endblock landlordJs %}
+    

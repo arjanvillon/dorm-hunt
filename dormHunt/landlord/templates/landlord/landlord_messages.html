@@ -128,19 +128,21 @@ img.property-sms-img {
                 <!-- SECTION Create a Reminder or a New Message -->
                 <div class="row">
                     <div class="col-50 padding-horizontal text-align-right">
-                        <div class="chip color-blue">
-                            <div class="chip-media bg-color-blue">
-                                <i class="icon f7-icons">bell_circle</i>
+                        <a href="{% url 'landlord:reminders' %}" class="link external">
+                            <div class="chip color-blue">
+                                <div class="chip-media bg-color-blue">
+                                    <i class="icon f7-icons">bell_circle</i>
+                                </div>
+                                <div class="chip-label">New Reminder</div>
                             </div>
-                            <div class="chip-label">New Reminder</div>
-                        </div>
+                        </a><!--link end-->
                     </div><!--col-50 end-->
-                    <div class="col-50 padding-horizontal text-align-left">
+                    <div class="col-50 text-align-left">
                         <div class="chip color-blue">
                             <div class="chip-media bg-color-blue">
-                                <i class="icon f7-icons">plus_circle</i>
+                                <i class="icon f7-icons">envelope_circle</i>
                             </div>
-                            <div class="chip-label">New Message</div>
+                            <div class="chip-label">Notify Due Date</div>
                         </div>
                     </div><!--col-50 end-->
                 </div><!--row end-->
@@ -150,23 +152,25 @@ img.property-sms-img {
                 <div class="block">    
                     {% for property in property_list %}
                         <div class="property-container padding-half margin-bottom-half">
-                            <div class="row">
-                                <div class="col-20">
-                                    <div class="image-cropper align-self-center">
-                                        <img class="property-sms-img" src="{{ property.thumbnail.url }}" class="rounded" />
-                                    </div>
-                                </div><!--col-20 end-->
-                                <div class="col-80 align-self-center property-name">
-                                    {{ property.name }}
-                                    <div class="message-time padding-bottom-half">
-                                        5 minutes ago
-                                    </div>
-                                    <div class="message-preview">
-                                        <!-- Preview of last message -->
-                                        Initial message Lorem ipsum dolor sit amet consectetur ...
-                                    </div>
-                                </div><!--col-80 end-->
-                            </div><!--row end-->
+                            <a href="{% url 'landlord:individual_messages' %}" class="link external">
+                                <div class="row">
+                                    <div class="col-20">
+                                        <div class="image-cropper align-self-center">
+                                            <img class="property-sms-img" src="{{ property.thumbnail.url }}" class="rounded" />
+                                        </div>
+                                    </div><!--col-20 end-->
+                                    <div class="col-80 align-self-center property-name">
+                                        {{ property.name }}
+                                        <div class="message-time padding-bottom-half">
+                                            5 minutes ago
+                                        </div>
+                                        <div class="message-preview">
+                                            <!-- Preview of last message -->
+                                            Initial message Lorem ipsum dolor sit amet consectetur ...
+                                        </div>
+                                    </div><!--col-80 end-->
+                                </div><!--row end-->
+                            </a><!--a end-->
                         </div><!--property-container end-->
                     {% endfor %}
                         

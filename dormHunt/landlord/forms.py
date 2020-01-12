@@ -1,5 +1,5 @@
 from django import forms
-from landlord.models import Property
+from landlord.models import Property, Reminder
 
 class PropertyForm(forms.ModelForm):
 
@@ -20,4 +20,25 @@ class PropertyForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         kwargs.setdefault('label_suffix', '')  # globally override the Django >=1.6 default of ':'
         super(PropertyForm, self).__init__(*args, **kwargs)
+
+class ReminderForm(forms.ModelForm):
+
+    class Meta():
+        model = Reminder
+        fields = ('property_name', 'category', 'sub_category', 'issue', 'next_service', 'days_before', 'description')
+        # labels = {
+        #     "name": "Property Name" ,
+        #     "address": "Address",
+        #     "capacity": "Capacity", 
+        #     "deposit": "Security Deposit",
+        #     "price": "Monthly Payment",
+        #     "thumbnail": "Thumbnail",
+        #     "tagline": "Short Description",
+        # }
+
+    def __init__(self, *args, **kwargs):
+        kwargs.setdefault('label_suffix', '')  # globally override the Django >=1.6 default of ':'
+        super(ReminderForm, self).__init__(*args, **kwargs)
+
+        
         
