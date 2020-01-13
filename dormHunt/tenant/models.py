@@ -18,7 +18,7 @@ class Application(models.Model):
     created_at      = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return "{} is applying for {}".format(self.tenant.username, self.dorm.name)
+        return self.tenant
 
     def get_absolute_url(self):
         return reverse("tenant:tenant")

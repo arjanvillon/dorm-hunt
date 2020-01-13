@@ -1,4 +1,6 @@
 from django.http import JsonResponse
+from django.contrib import messages
+
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import (TemplateView, ListView, CreateView, DetailView)
@@ -10,13 +12,11 @@ from django.core.exceptions import ObjectDoesNotExist
 
 
 # SECTION Import Forms
-from landlord.forms import PropertyForm
-from landlord.forms import ReminderForm
+from landlord.forms import PropertyForm, ReminderForm, AddTenantForm
 
 #SECTION Import Models
-from landlord.models import Property
-from landlord.models import Reminder
-from user.models import User
+from landlord.models import Property, Reminder, AddTenant
+from user.models import User, UserProfile
 from tenant.models import Application
 
 # Create your views here.
@@ -108,3 +108,18 @@ class LandlordIndividualMessages(TemplateView):
 class ReminderCreateView(CreateView):
     form_class = ReminderForm
     model = Reminder
+
+
+# Add to Tenant
+class TenantAddCreateView(CreateView):
+    model = AddTenant
+    form_class = AddTenantForm
+
+    def form_valid(self, form):
+        
+        try:
+            query = User.objects.get(email=form.instance.account_user)
+        except ObjectDoesNotExist:
+            messages.add_message(self.request, messages.INFO, 'The email you entered is not yet a user of this application. Do advise your tenant to sign up to our application for your convenience. Thank you!')
+            return redirect('landlord:add_tenant')
+        return super().form_valid(form)

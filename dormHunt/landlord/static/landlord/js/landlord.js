@@ -14,6 +14,8 @@ var app = new Framework7({
     ],
     // ... other parameters
   });
+
+  var $$ = Dom7;
   
   var mainView = app.views.create('.view-main');
 
@@ -38,3 +40,4 @@ var app = new Framework7({
       }
     ]
   });
+

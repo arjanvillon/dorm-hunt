@@ -39,19 +39,393 @@
 
                         <div class="list no-hairlines-md no-margin-bottom">
                             <ul>
-                                
-                                {% for field in form %}
-                                    <li class="item-content item-input item-input-outline">
-                                        <div class="item-inner">
-                                            <div class="item-title item-floating-label margin-bottom-half signin-label">{{ field.label_tag }}
+                            <!-- SECTION Property Name -->
+                            <li class="item-content item-input item-input-outline">
+                                <div class="item-inner">
+                                    <div class="item-title item-floating-label margin-bottom-half signin-label">{{ form.name.label_tag }}
+                                        
+                                    </div>
+                                    <div class="item-input-wrap">
+                                        {{form.name}}
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- SECTION Property Name end-->
 
-                                            </div>
-                                            <div class="item-input-wrap">
-                                                {{field}}
-                                            </div>
-                                        </div>
-                                    </li>
-                                {% endfor %}
+
+                            <!-- SECTION House Number -->
+                            <li class="item-content item-input item-input-outline">
+                                <div class="item-inner">
+                                    <div class="item-title item-floating-label margin-bottom-half signin-label">{{ form.house_number.label_tag }}
+
+                                    </div>
+                                    <div class="item-input-wrap">
+                                        {{form.house_number}}
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- SECTION House Number end-->
+                            
+                            
+                            <!-- SECTION Street -->
+                            <li class="item-content item-input item-input-outline">
+                                <div class="item-inner">
+                                    <div class="item-title item-floating-label margin-bottom-half signin-label">{{ form.street.label_tag }}
+
+                                    </div>
+                                    <div class="item-input-wrap">
+                                        {{form.street}}
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- SECTION Street end-->
+
+
+                            <!-- SECTION Barangay -->
+                            <li class="item-content item-input item-input-outline">
+                                <div class="item-inner">
+                                    <div class="item-title item-floating-label margin-bottom-half signin-label">{{ form.barangay.label_tag }}
+
+                                    </div>
+                                    <div class="item-input-wrap">
+                                        {{form.barangay}}
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- SECTION Barangay end-->
+
+
+                            <!-- SECTION City -->
+                            <li class="item-content item-input item-input-outline">
+                                <div class="item-inner">
+                                    <div class="item-title item-floating-label margin-bottom-half signin-label">{{ form.city.label_tag }}
+
+                                    </div>
+                                    <div class="item-input-wrap">
+                                        {{form.city}}
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- SECTION City end-->
+
+
+                            <!-- SECTION Zip Code -->
+                            <li class="item-content item-input item-input-outline">
+                                <div class="item-inner">
+                                    <div class="item-title item-floating-label margin-bottom-half signin-label">{{ form.zip_code.label_tag }}
+
+                                    </div>
+                                    <div class="item-input-wrap">
+                                        {{form.zip_code}}
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- SECTION Zip Code end-->
+
+
+                            <!-- SECTION Capacity -->
+                            <li class="item-content item-input item-input-outline">
+                                <div class="item-inner">
+                                    <div class="item-title item-floating-label margin-bottom-half signin-label">{{ form.capacity.label_tag }}
+
+                                    </div>
+                                    <div class="item-input-wrap">
+                                        {{form.capacity}}
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- SECTION Capacity end-->
+
+
+                            <!-- SECTION Security deposit -->
+                            <li class="item-content item-input item-input-outline">
+                                <div class="item-inner">
+                                    <div class="item-title item-floating-label margin-bottom-half signin-label">{{ form.deposit.label_tag }}
+
+                                    </div>
+                                    <div class="item-input-wrap">
+                                        {{form.deposit}}
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- SECTION Security deposit end-->
+
+
+                            <!-- SECTION Monthly Payment -->
+                            <li class="item-content item-input item-input-outline">
+                                <div class="item-inner">
+                                    <div class="item-title item-floating-label margin-bottom-half signin-label">{{ form.price.label_tag }}
+
+                                    </div>
+                                    <div class="item-input-wrap">
+                                        {{form.price}}
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- SECTION Monthly Payment end-->
+
+
+                            <!-- SECTION Thumbnail -->
+                            <li class="item-content item-input item-input-outline">
+                                <div class="item-inner">
+                                    <div class="item-title item-floating-label margin-bottom-half signin-label">{{ form.thumbnail.label_tag }}
+
+                                    </div>
+                                    <div class="item-input-wrap">
+                                        {{form.thumbnail}}
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- SECTION Thumbnail end-->
+
+
+                            <!-- SECTION Description -->
+                            <li class="item-content item-input item-input-outline">
+                                <div class="item-inner">
+                                    <div class="item-title item-floating-label margin-bottom-half signin-label">{{ form.description.label_tag }}
+
+                                    </div>
+                                    <div class="item-input-wrap">
+                                        {{form.description}}
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- SECTION Description end-->
+
+
+                            <!-- SECTION Short Description -->
+                            <li class="item-content item-input item-input-outline">
+                                <div class="item-inner">
+                                    <div class="item-title item-floating-label margin-bottom-half signin-label">{{ form.tagline.label_tag }}
+
+                                    </div>
+                                    <div class="item-input-wrap">
+                                        {{form.tagline}}
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- SECTION Short Description end-->
+
+                            <!-- ANCHOR FEATURES -->
+                            <h3 class="color-scheme1 padding-left">Features and Inclusions</h3>
+                            <!-- SECTION Is Airconditioned -->
+                            <li class="padding-left">
+                                <label class="item-checkbox item-content">
+                                    {{form.is_air_conditioned}}
+                                    <i class="icon icon-checkbox"></i>
+                                    <div class="item-inner">
+                                        <div class="item-title">{{form.is_air_conditioned.label_tag}}</div>
+                                    </div>
+                                </label>
+                            </li>
+                            <!-- SECTION Is Airconditioned end-->
+
+
+                            <!-- SECTION Is Ceiling Fans -->
+                            <li class="padding-left">
+                                <label class="item-checkbox item-content">
+                                    {{form.is_ceiling_fans}}
+                                    <i class="icon icon-checkbox"></i>
+                                    <div class="item-inner">
+                                        <div class="item-title">{{form.is_ceiling_fans.label_tag}}</div>
+                                    </div>
+                                </label>
+                            </li>
+                            <!-- SECTION Is Ceiling Fans end-->
+
+
+                            <!-- SECTION Is Sink -->
+                            <li class="padding-left">
+                                <label class="item-checkbox item-content">
+                                    {{form.is_sink}}
+                                    <i class="icon icon-checkbox"></i>
+                                    <div class="item-inner">
+                                        <div class="item-title">{{form.is_sink.label_tag}}</div>
+                                    </div>
+                                </label>
+                            </li>
+                            <!-- SECTION Is Sink end-->
+
+                            <!-- SECTION Is Garbage Disposal -->
+                            <li class="padding-left">
+                                <label class="item-checkbox item-content">
+                                    {{form.is_garbage_disposal}}
+                                    <i class="icon icon-checkbox"></i>
+                                    <div class="item-inner">
+                                        <div class="item-title">{{form.is_garbage_disposal.label_tag}}</div>
+                                    </div>
+                                </label>
+                            </li>
+                            <!-- SECTION Is Garbage Disposal end-->
+
+
+                            <!-- SECTION Is Hardwood Floors -->
+                            <li class="padding-left">
+                                <label class="item-checkbox item-content">
+                                    {{form.is_hardwood_floors}}
+                                    <i class="icon icon-checkbox"></i>
+                                    <div class="item-inner">
+                                        <div class="item-title">{{form.is_hardwood_floors.label_tag}}</div>
+                                    </div>
+                                </label>
+                            </li>
+                            <!-- SECTION Is Hardwood Floors end-->
+
+
+                            <!-- SECTION Is Internet -->
+                            <li class="padding-left">
+                                <label class="item-checkbox item-content">
+                                    {{form.is_internet}}
+                                    <i class="icon icon-checkbox"></i>
+                                    <div class="item-inner">
+                                        <div class="item-title">{{form.is_internet.label_tag}}</div>
+                                    </div>
+                                </label>
+                            </li>
+                            <!-- SECTION Is Internet end-->
+
+
+                            <!-- SECTION Is Microwave -->
+                            <li class="padding-left">
+                                <label class="item-checkbox item-content">
+                                    {{form.is_microwave}}
+                                    <i class="icon icon-checkbox"></i>
+                                    <div class="item-inner">
+                                        <div class="item-title">{{form.is_microwave.label_tag}}</div>
+                                    </div>
+                                </label>
+                            </li>
+                            <!-- SECTION Is Microwave end-->
+
+
+                            <!-- SECTION Is Refrigerator -->
+                            <li class="padding-left">
+                                <label class="item-checkbox item-content">
+                                    {{form.is_refrigerator}}
+                                    <i class="icon icon-checkbox"></i>
+                                    <div class="item-inner">
+                                        <div class="item-title">{{form.is_refrigerator.label_tag}}</div>
+                                    </div>
+                                </label>
+                            </li>
+                            <!-- SECTION Is Refrigerator end-->
+
+
+                            <!-- SECTION Is Storage -->
+                            <li class="padding-left">
+                                <label class="item-checkbox item-content">
+                                    {{form.is_storage}}
+                                    <i class="icon icon-checkbox"></i>
+                                    <div class="item-inner">
+                                        <div class="item-title">{{form.is_storage.label_tag}}</div>
+                                    </div>
+                                </label>
+                            </li>
+                            <!-- SECTION Is Storage end-->
+
+
+                            <!-- SECTION Is Stove -->
+                            <li class="padding-left">
+                                <label class="item-checkbox item-content">
+                                    {{form.is_stove}}
+                                    <i class="icon icon-checkbox"></i>
+                                    <div class="item-inner">
+                                        <div class="item-title">{{form.is_stove.label_tag}}</div>
+                                    </div>
+                                </label>
+                            </li>
+                            <!-- SECTION Is Stove end-->
+
+
+                            <!-- SECTION Is Telephone -->
+                            <li class="padding-left">
+                                <label class="item-checkbox item-content">
+                                    {{form.is_telephone}}
+                                    <i class="icon icon-checkbox"></i>
+                                    <div class="item-inner">
+                                        <div class="item-title">{{form.is_telephone.label_tag}}</div>
+                                    </div>
+                                </label>
+                            </li>
+                            <!-- SECTION Is Telephone end-->
+
+
+                            <!-- SECTION Is Tile -->
+                            <li class="padding-left">
+                                <label class="item-checkbox item-content">
+                                    {{form.is_tile}}
+                                    <i class="icon icon-checkbox"></i>
+                                    <div class="item-inner">
+                                        <div class="item-title">{{form.is_tile.label_tag}}</div>
+                                    </div>
+                                </label>
+                            </li>
+                            <!-- SECTION Is Tile end-->
+
+
+                            <!-- SECTION Is Window Covering -->
+                            <li class="padding-left">
+                                <label class="item-checkbox item-content">
+                                    {{form.is_window_covering}}
+                                    <i class="icon icon-checkbox"></i>
+                                    <div class="item-inner">
+                                        <div class="item-title">{{form.is_window_covering.label_tag}}</div>
+                                    </div>
+                                </label>
+                            </li>
+                            <!-- SECTION Is Window Covering end-->
+
+
+                            <!-- SECTION Is Laundry -->
+                            <li class="padding-left">
+                                <label class="item-checkbox item-content">
+                                    {{form.is_laundry}}
+                                    <i class="icon icon-checkbox"></i>
+                                    <div class="item-inner">
+                                        <div class="item-title">{{form.is_laundry.label_tag}}</div>
+                                    </div>
+                                </label>
+                            </li>
+                            <!-- SECTION Is Laundry end-->
+
+
+                            <!-- SECTION Is Parking -->
+                            <li class="padding-left">
+                                <label class="item-checkbox item-content">
+                                    {{form.is_parking}}
+                                    <i class="icon icon-checkbox"></i>
+                                    <div class="item-inner">
+                                        <div class="item-title">{{form.is_parking.label_tag}}</div>
+                                    </div>
+                                </label>
+                            </li>
+                            <!-- SECTION Is Parking end-->
+
+
+                            <!-- SECTION Is Furnished -->
+                            <li class="padding-left">
+                                <label class="item-checkbox item-content">
+                                    {{form.is_furnished}}
+                                    <i class="icon icon-checkbox"></i>
+                                    <div class="item-inner">
+                                        <div class="item-title">{{form.is_furnished.label_tag}}</div>
+                                    </div>
+                                </label>
+                            </li>
+                            <!-- SECTION Is Furnished end-->
+
+                            <!-- SECTION Is Pets Allowed -->
+                            <li class="padding-left">
+                                <label class="item-checkbox item-content">
+                                    {{form.is_pets_allowed}}
+                                    <i class="icon icon-checkbox"></i>
+                                    <div class="item-inner">
+                                        <div class="item-title">{{form.is_pets_allowed.label_tag}}</div>
+                                    </div>
+                                </label>
+                            </li>
+                            <!-- SECTION Is Pets Allowed end-->
+                    
                             </ul>
                     <!-- SECTION Custom Image Upload -->
                     <div class="row padding image-custom-upload">
@@ -111,6 +485,9 @@
         readURL(this);
     });
 
+    // item-content item-input item-input-outline
+    // $('#id_is_air_conditioned').parent().parent().parent().removeClass('item-content item-input item-input-outline');
+    // alert($('#id_is_air_conditioned').parent().parent().parent().html());
 </script>
 {% endblock landlordJs %}
     
