@@ -43,15 +43,14 @@
                                 {% for field in form %}
                                     <li class="item-content item-input item-input-outline">
                                         <div class="item-inner">
-                                            <div class="item-title item-floating-label margin-bottom-half signin-label">{{ field.label_tag }}
-
-                                            </div>
+                                            <div class="item-title item-floating-label margin-bottom-half signin-label">{{ field.label_tag }}</div>
                                             <div class="item-input-wrap">
                                                 {{field}}
                                             </div>
                                         </div>
                                     </li>
                                 {% endfor %}
+
                             </ul>
                     <!-- SECTION Custom Image Upload -->
                     <div class="row padding image-custom-upload">
@@ -89,6 +88,8 @@
 
 
 {% block landlordJs %}
+<!-- Algolia -->
+
 <script>
     $('#id_thumbnail').parent().addClass('image-upload-container');
     $('.image-custom-upload').insertBefore('#id_thumbnail');

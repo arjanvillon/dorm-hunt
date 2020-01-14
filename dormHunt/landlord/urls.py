@@ -12,7 +12,7 @@ urlpatterns = [
     # NOTE For viewing purposes only
     path('message/', views.LandlordMessages.as_view(), name='landlord_messages'),
     path('message/application/approve/<int:pk>/', views.approve_application, name='approve_application'),
-    path('message/application/disapprove/<int:pk>/', views.disapprove_application, name='disapprove_application')
+    path('message/application/disapprove/<int:pk>/', views.disapprove_application, name='disapprove_application'),
     path('message/individual', views.LandlordIndividualMessages.as_view(), name='individual_messages'),
     path('reminder', views.LandlordReminder.as_view(), name='reminders'),
     

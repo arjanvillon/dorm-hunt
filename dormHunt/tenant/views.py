@@ -13,6 +13,7 @@ import json
 from landlord.models import Property
 from tenant.models import Application
 from tenant.forms import ApplicationForm
+from user.models import User
 
 
 # Create your views here.
@@ -58,7 +59,8 @@ def tenant_map(request):
 
     for marker in marker_query:
         folium.Marker([marker.latitude, marker.longitude], 
-                      popup=marker.name,
+                      popup= folium.Popup("""   <a href="/tenant/search/property/{}" target="_self"> <h4>{}</h4> </a>
+                                                <img src="{}" alt="Dorm" width="250" height="150"> """.format(marker.pk, marker.name, marker.thumbnail.url)),
                       icon=folium.Icon(icon='home', color='blue')).add_to(tenant_map),
 
     # folium.CircleMarker(location=[latitude, longitude], radius=30, popup='Your Location', color='#3186cc', fill=True, fill_color='#3186cc').add_to(tenant_map),
@@ -109,10 +111,12 @@ class Application(CreateView):
 
     def get_context_data(self, **kwargs):
         pk = self.kwargs['pk']
-        query = Property.objects.get(pk=pk)
+        property_query = Property.objects.get(pk=pk)
+        user_query = User.objects.get(pk=self.request.user.pk)
 
         context = super().get_context_data(**kwargs)
-        context["property"] = query
+        context["property"] = property_query
+        context["user"] = user_query
         return context
 
 class TenantHome(TemplateView):

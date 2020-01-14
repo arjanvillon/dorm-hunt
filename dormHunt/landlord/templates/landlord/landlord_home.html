@@ -216,7 +216,7 @@
                             <div class="accordion-body js-accordion-body">
                                 <div class="accordion-body__contents">
                                     <!-- <img class="property-image-default" src="{{ property.thumbnail }}" alt="{{ property.name }} Image"> -->
-                                    <img class="property-image-default" src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" alt="{{ property.name }} Image">
+                                    <img class="property-image-default" src="{{ property.thumbnail.url }}" alt="{{ property.name }} Image">
                                     <div class="view-details">
                                         <a class="link external  text-align-center justify-content-center" href="{% url 'landlord:property_detail' pk=property.pk %}">
                                             <div class="text-color-white text-align-center">
