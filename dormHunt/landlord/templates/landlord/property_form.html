@@ -52,75 +52,44 @@
                             </li>
                             <!-- SECTION Property Name end-->
 
-
-                            <!-- SECTION House Number -->
+                            <!-- SECTION Address -->
                             <li class="item-content item-input item-input-outline">
                                 <div class="item-inner">
-                                    <div class="item-title item-floating-label margin-bottom-half signin-label">{{ form.house_number.label_tag }}
+                                    <div class="item-title item-floating-label margin-bottom-half signin-label">{{ form.address.label_tag }}
 
                                     </div>
                                     <div class="item-input-wrap">
-                                        {{form.house_number}}
+                                        {{form.address}}
                                     </div>
                                 </div>
                             </li>
-                            <!-- SECTION House Number end-->
-                            
-                            
-                            <!-- SECTION Street -->
+                            <!-- SECTION Address end-->
+
+                            <!-- SECTION Lat -->
                             <li class="item-content item-input item-input-outline">
                                 <div class="item-inner">
-                                    <div class="item-title item-floating-label margin-bottom-half signin-label">{{ form.street.label_tag }}
+                                    <div class="item-title item-floating-label margin-bottom-half signin-label">{{ form.latitude.label_tag }}
 
                                     </div>
                                     <div class="item-input-wrap">
-                                        {{form.street}}
+                                        {{form.latitude}}
                                     </div>
                                 </div>
                             </li>
-                            <!-- SECTION Street end-->
+                            <!-- SECTION Lat end-->
 
-
-                            <!-- SECTION Barangay -->
+                            <!-- SECTION Lng -->
                             <li class="item-content item-input item-input-outline">
                                 <div class="item-inner">
-                                    <div class="item-title item-floating-label margin-bottom-half signin-label">{{ form.barangay.label_tag }}
+                                    <div class="item-title item-floating-label margin-bottom-half signin-label">{{ form.longitude.label_tag }}
 
                                     </div>
                                     <div class="item-input-wrap">
-                                        {{form.barangay}}
+                                        {{form.longitude}}
                                     </div>
                                 </div>
                             </li>
-                            <!-- SECTION Barangay end-->
-
-
-                            <!-- SECTION City -->
-                            <li class="item-content item-input item-input-outline">
-                                <div class="item-inner">
-                                    <div class="item-title item-floating-label margin-bottom-half signin-label">{{ form.city.label_tag }}
-
-                                    </div>
-                                    <div class="item-input-wrap">
-                                        {{form.city}}
-                                    </div>
-                                </div>
-                            </li>
-                            <!-- SECTION City end-->
-
-
-                            <!-- SECTION Zip Code -->
-                            <li class="item-content item-input item-input-outline">
-                                <div class="item-inner">
-                                    <div class="item-title item-floating-label margin-bottom-half signin-label">{{ form.zip_code.label_tag }}
-
-                                    </div>
-                                    <div class="item-input-wrap">
-                                        {{form.zip_code}}
-                                    </div>
-                                </div>
-                            </li>
-                            <!-- SECTION Zip Code end-->
+                            <!-- SECTION Lng end-->
 
 
                             <!-- SECTION Capacity -->
@@ -463,6 +432,8 @@
 
 
 {% block landlordJs %}
+<!-- Algolia -->
+
 <script>
     $('#id_thumbnail').parent().addClass('image-upload-container');
     $('.image-custom-upload').insertBefore('#id_thumbnail');

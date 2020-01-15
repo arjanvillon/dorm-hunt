@@ -167,13 +167,48 @@
     <!-- ANCHOR line break -->
     <hr class="margin-horizontal line">
 
+    <!-- SECTION Application Form -->
+    <div class="row">
+        <div class="col-100">
+            <div class="application-label padding-horizontal padding-top">
+                Application Form
+            </div>
+        </div><!--col-100 end-->
+        <div class="col-100">
+            <div class="application-instruction padding">
+                Please provide the contact information and specify the preferred move-in date if available.
+            </div><!--application-instruction end-->
+        </div><!--col-100 end-->
+    </div><!--row end-->
+    <!-- SECTION Application Form end -->
+
+
     <div class="row">
         <div class="col-100">
             <form method='POST'>
                 {% csrf_token %}
-                <div class="list no-hairlines-md no-margin-bottom">
+                <div class="list no-hairlines-md no-margin">
                     <ul>
                     {% for field in form %}
+                        
+                        {% if field.label == "Bio" %}
+                            <br>
+                            <!-- FIXME get input template from framework7 -->
+                            <!-- SECTION Sub Instructions -->
+                                <!-- SECTION Describe Yourself -->
+                                <div class="row">
+                                    <div class="col-100">
+                                        <div class="sub-instruction-label padding-left">
+                                            Describe Yourself
+                                        </div>
+                                        <div class="sub-instruction-content padding-horizontal padding-top-half">
+                                            Please provide a short description about yourself to make your application stand out.
+                                        </div>
+                                    </div><!--col-100 end-->
+                                </div><!--row end-->
+                                <!-- SECTION Describe Yourself end-->
+                        {% endif %}
+                            
                         <li class="item-content item-input item-input-outline">
                             <div class="item-inner">
                                 <div class="item-title margin-bottom-half signin-label">{{ field.label_tag }}</div>
@@ -192,58 +227,6 @@
             </form>
         </div>
     </div>
-
-
-
-    
-
-        
-
-    <!-- SECTION Application Form -->
-    <div class="row">
-        <div class="col-100">
-            <div class="application-label padding-horizontal padding-top">
-                Application Form
-            </div>
-        </div><!--col-100 end-->
-        <div class="col-100">
-            <div class="application-instruction padding">
-                Please provide the contact information and specify the preferred move-in date if available.
-            </div><!--application-instruction end-->
-        </div><!--col-100 end-->
-    </div><!--row end-->
-    <!-- SECTION Application Form end -->
-
-
-    <!-- FIXME get input template from framework7 -->
-    <!-- SECTION Sub Instructions -->
-        <!-- SECTION Describe Yourself -->
-        <div class="row">
-            <div class="col-100">
-                <div class="sub-instruction-label padding-left">
-                    Describe Yourself
-                </div>
-                <div class="sub-instruction-content padding-horizontal padding-top-half">
-                    Please provide a short description about yourself to make your application stand out.
-                </div>
-            </div><!--col-100 end-->
-        </div><!--row end-->
-        <!-- SECTION Describe Yourself end-->
-
-        <!-- SECTION Emergency Contact -->
-        <!-- NOTE if user already has emergency contact, the inputs are automatically filled out -->
-        <div class="row padding-vertical">
-            <div class="col-100">
-                <div class="sub-instruction-label padding-left">
-                    Emergency Contact
-                </div>
-                <div class="sub-instruction-content padding-horizontal padding-top-half">
-                    Please, provide the emergency contact below.
-                </div>
-            </div><!--col-100 end-->
-        </div><!--row end-->
-        <!-- SECTION Describe Yourself end-->
-    <!-- SECTION Sub Instructions end-->
 
 </div><!--page-content end-->    
 {% endblock home_content %}
