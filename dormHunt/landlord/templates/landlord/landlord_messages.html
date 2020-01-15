@@ -128,7 +128,7 @@ img.property-sms-img {
                 <!-- SECTION Create a Reminder or a New Message -->
                 <div class="row">
                     <div class="col-50 padding-horizontal text-align-right">
-                        <a href="{% url 'landlord:reminders' %}" class="link external">
+                        <a href="{% url 'landlord:reminder_create' %}" class="link external">
                             <div class="chip color-blue">
                                 <div class="chip-media bg-color-blue">
                                     <i class="icon f7-icons">bell_circle</i>
@@ -224,12 +224,12 @@ img.property-sms-img {
                                         </div><!--short-bio end-->
                                         <!-- SECTION Approve Disapprove -->
                                         <div class="row padding-top">
-                                            <div class="col-50">
+                                            <div class="col-50 padding-left">
                                                 <a class="link external" href="{% url 'landlord:disapprove_application' pk=application.pk %}">
                                                     <button class="col button button-raised button-fill color-red">Disapprove</button>
                                                 </a>
                                             </div><!--col-50 end-->
-                                            <div class="col-50">
+                                            <div class="col-50 padding-left">
                                                 <a class="link external" href="{% url 'landlord:approve_application' pk=application.pk %}">
                                                     <button class="col button button-raised button-fill">Approve</button>
                                                 </a>

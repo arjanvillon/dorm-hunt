@@ -1,8 +1,12 @@
 $(document).ready(function(){
     $('#create_property_form input, #create_property_form textarea').each(function(){
-        console.log($(this).attr('type'));
-        $(this).attr('validate', '');
-        $(this).attr('required', '');
+        if($(this).attr('type') === 'checkbox'){
+            console.log('test');
+        }
+        else{
+            $(this).attr('validate', '');
+            $(this).attr('required', '');
+        }
     });
 
     $('#id_latitude').parent().parent().parent().hide()
@@ -12,17 +16,28 @@ $(document).ready(function(){
     $('#id_address').attr('type', 'search');
 });
 
-const fixedOptions = {
+
+var address = places({
     appId: 'plG0SZE6PIBV',
     apiKey: 'dea587bdeb69aa54404efbc5b73b6f62',
-    container: '#id_address',
-};
+    container: document.getElementById('id_address'),
+});
 
-const reconfigurableOptions = {
-    useDeviceLocation: true,
-};
+// const fixedOptions = {
+//     appId: 'plG0SZE6PIBV',
+//     apiKey: 'dea587bdeb69aa54404efbc5b73b6f62',
+//     container: '#id_address',
+// };
 
-address = places(fixedOptions).configure(reconfigurableOptions);
+// const reconfigurableOptions = {
+//     useDeviceLocation: true,
+// };
+
+// address = places(fixedOptions).configure(reconfigurableOptions);
 
 address.on('change', e => document.getElementById('id_latitude').value = e.suggestion.latlng.lat);
 address.on('change', e => document.getElementById('id_longitude').value = e.suggestion.latlng.lng);
+
+$("#algolia-places-listbox-0").on("click", function(){
+    alert("hello");
+});

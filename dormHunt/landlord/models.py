@@ -76,6 +76,14 @@ class Reminder(models.Model):
     days_before         = models.CharField(max_length=30)
     description         = models.TextField(blank=True)
 
+class AddTenant(models.Model):
+    # account_user        = models.ForeignKey(User, on_delete=models.CASCADE)
+    account_user        = models.EmailField(max_length=60)
+    dorm                = models.ForeignKey(Property, on_delete=models.CASCADE)
+    room_description    = models.CharField(max_length=80)
+
+    def get_absolute_url(self):
+        return reverse('landlord:landlord_home')
 
 
 
