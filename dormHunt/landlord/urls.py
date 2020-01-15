@@ -9,15 +9,17 @@ urlpatterns = [
     path('property/create', views.PropertyCreateView.as_view(), name='property_create'),
     path('property/detail/<int:pk>', views.PropertyDetailView.as_view(), name='property_detail'),
 
-    # NOTE For viewing purposes only
-    path('message/', views.LandlordMessages.as_view(), name='landlord_messages'),
-    path('message/application/approve/<int:pk>/', views.approve_application, name='approve_application'),
-    path('message/application/disapprove/<int:pk>/', views.disapprove_application, name='disapprove_application'),
-    path('message/individual', views.LandlordIndividualMessages.as_view(), name='individual_messages'),
     
     # Reminder
     path('reminder/create', views.ReminderCreateView.as_view(), name='reminder_create'),
 
     # Add Tenant
     path('add-tenant', views.TenantAddCreateView.as_view(), name='add_tenant'),
+
+    # NOTE For viewing purposes only
+    path('message/', views.LandlordMessages.as_view(), name='landlord_messages'),
+    path('message/application/approve/<int:pk>/', views.approve_application, name='approve_application'),
+    path('message/application/disapprove/<int:pk>/', views.disapprove_application, name='disapprove_application'),
+    path('message/individual', views.LandlordIndividualMessages.as_view(), name='individual_messages'),
+    path('payment/', views.Payment.as_view(), name='payment'),
 ]

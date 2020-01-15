@@ -8,6 +8,15 @@
         #tab-1.page-content {
                 background-image: url("/static/user/images/white-background.png") !important;
         }
+        div.line-fave:after {
+            content:""; 
+            float:left; 
+            /* background:#2196f3;  */
+            background:#d5f2fc; 
+            width:100%; 
+            height:2px; 
+            border-radius: 3px;
+        }
     </style>
     {% endif %}
         
@@ -76,21 +85,24 @@
 
                     <ul>
                     {% for property in favorites %}
-                        <li class="item-content">
-                            <div class="item-inner">
-                                <a href="{% url 'tenant:view_property' pk=property.pk %}" class="link external">
-                                    <div class="row">
-                                        <div class="col-30">
-                                            <img src="{{ property.thumbnail.url }}" alt="Property Image-{{ property.name }}" class="property-image-default">
+                        <div class="line-fave">
+                            <li class="item-content">
+                                <div class="item-inner">
+                                    <a href="{% url 'tenant:view_property' pk=property.pk %}" class="link external">
+                                        <div class="row">
+                                            <div class="col-30">
+                                                <img src="{{ property.thumbnail.url }}" alt="Property Image-{{ property.name }}" class="property-image-default">
+                                            </div>
+                                            <div class="col-70">
+                                                <div class="item-title">{{ property.name }}</div>
+                                                <div class="property-support-label">{{ property.tagline }}</div>
+                                            </div>
                                         </div>
-                                        <div class="col-70">
-                                            <div class="item-title">{{ property.name }}</div>
-                                            <div class="property-support-label">{{ property.tagline }}</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
+                                    </a>
+                                </div>
+                            </li>
+
+                        </div>
                     {% endfor %}
                     </ul>
                     </div>

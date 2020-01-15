@@ -120,5 +120,8 @@ class TenantAddCreateView(CreateView):
             return redirect('landlord:add_tenant')
         return super().form_valid(form)
 
+# NOTE for viewing purposes only
+class Payment(TemplateView):
+    template_name = 'landlord/payment.html'
 
 
