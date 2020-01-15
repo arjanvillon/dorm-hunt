@@ -5,6 +5,7 @@ from django.views.generic import (
     DetailView,
     CreateView
     )
+from django.core.exceptions import ObjectDoesNotExist
 import folium
 import requests
 import json
@@ -45,6 +46,21 @@ class TenantDormSearch(ListView):
     model = Property
     template_name = 'tenant/tenant_search.html'
 
+    def get_context_data(self, **kwargs):
+        order = self.kwargs['order']
+        if order == 1:
+            query = Property.objects.order_by('-created_at')
+        elif order == 2:
+            query = Property.objects.order_by('-views')
+        else:
+            query = Property.objects.all()
+
+        context = super().get_context_data(**kwargs)
+        context["order"] = order
+        context["property_list"] = query
+        return context
+    
+
 def tenant_map(request):
     url = "http://api.ipstack.com/check?access_key=41fc2af18a10d4c05cfa0d92f26ba0a8"
     location_request = requests.get(url)
@@ -59,8 +75,9 @@ def tenant_map(request):
 
     for marker in marker_query:
         folium.Marker([marker.latitude, marker.longitude], 
-                      popup= folium.Popup("""   <a href="/tenant/search/property/{}" target="_self"> <h4>{}</h4> </a>
-                                                <img src="{}" alt="Dorm" width="250" height="150"> """.format(marker.pk, marker.name, marker.thumbnail.url)),
+                      popup= folium.Popup("""   <a href="/tenant/search/property/{}" target="_self"> <h4 style="margin-bottom:0;">{}</h4> </a>
+                                                <p style="margin-top:0;">{}</p>
+                                                <img src="{}" alt="Dorm" width="250" height="150"> """.format(marker.pk, marker.name, marker.address, marker.thumbnail.url)),
                       icon=folium.Icon(icon='home', color='blue')).add_to(tenant_map),
 
     # folium.CircleMarker(location=[latitude, longitude], radius=30, popup='Your Location', color='#3186cc', fill=True, fill_color='#3186cc').add_to(tenant_map),
@@ -76,6 +93,10 @@ class ViewPropertyDetailView(DetailView):
         pk = self.kwargs['pk']
         query = Property.objects.get(pk=pk)
         users = query.favorite.all()
+
+        # Add 1 view
+        query.views += 1
+        query.save()
 
         context = super().get_context_data(**kwargs)
         context["users"] = users

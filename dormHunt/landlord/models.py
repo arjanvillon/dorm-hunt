@@ -54,7 +54,7 @@ class Property(models.Model):
     is_elevator         = models.BooleanField(default=False)
 
     terms_of_agreement  = models.TextField(blank=True)
-
+    views               = models.IntegerField()
     # Geopy
     latitude            = models.FloatField(null=True, blank=True)
     longitude           = models.FloatField(null=True, blank=True)

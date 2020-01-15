@@ -6,6 +6,17 @@
     #tab-1.page-content {
             background-image: url("/static/user/images/white-background.png") !important;
     }
+    .menu-item{
+        background: white !important;
+        color: #7690b3 !important;
+    }
+    .menu-dropdown, .menu-dropdown-right::before, .menu-dropdown-content{
+        background: white !important;
+        z-index: 2;
+    }
+    .menu-dropdown-link{
+        color: #7690b3 !important;
+    }
     </style>
 {% endblock css %}
     
@@ -64,9 +75,26 @@
                 <!-- SECTION Search Bar end -->
 
                 <!-- SECTION Search by Filter -->
+
                 <div class="col-15 margin-right padding-top-half ">
                     <div class="search-container">
-                        <i class="fas fa-filter"></i>
+                        <div class="menu-item menu-item-dropdown">
+                            <div class="menu-item-content no-padding">
+                                <i class="fas fa-filter"></i>
+
+                            </div>
+                            <div class="menu-dropdown menu-dropdown-right">
+                                <div class="menu-dropdown-content">
+                                    <a href="{% url 'tenant:dorm_search' order=1 %}" class="menu-dropdown-link menu-close link external">
+                                        <span>Newest</span>
+                                    </a>
+                                    <a href="{% url 'tenant:dorm_search' order=2 %}" class="menu-dropdown-link menu-close link external">
+                                        <span>Popular</span>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div><!--col-20 end-->
                 <!-- SECTION Search by Filter end-->
@@ -85,12 +113,26 @@
 
             </div><!--row end-->
 
-        <!-- SECTION Search Options end -->
-        <!-- SECTION Search Bar Find -->
+            <!-- SECTION Search Options end -->
+            <!-- SECTION Search Bar Find -->
             <!-- Searchbar backdrop -->
             <div class="searchbar-backdrop"></div>
             <!-- search target list -->
-            <div class="list searchbar-found">
+            <div class="row">
+                <div class="col-100">
+                    <h2 class="text-align-center margin-half">
+                        {% if order == 1 %}
+                            Newest Dorms
+                        {% elif order == 2 %}
+                            Popular Dorms
+                        {% else %}
+                            Available Dorms
+                        {% endif %}
+                    </h2>
+                </div>
+            </div>
+
+            <div class="list searchbar-found margin-top-half">
             <ul>
                 <!-- SECTION dorm -->
                 
