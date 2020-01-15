@@ -175,36 +175,84 @@
             <span class="feature-name-two">Features & Amenities/ Inclusions</span>
         </div><!--col-100 end-->
         <div class="col-100 padding-top-half padding-left inclusions">
-            Laundry Area
+            {% if property.is_laundry %}
+                <i class="fas fa-check padding-right"></i>
+            {% endif %}
+            Laundry Area 
             <br>
+            {% if property.is_parking %}
+                <i class="fas fa-check padding-right"></i>
+            {% endif %}
             Parking
             <br>
+            {% if property.is_storage %}
+                <i class="fas fa-check padding-right"></i>
+            {% endif %}
             Storage
             <br>
+            {% if property.is_air_conditioned %}
+                <i class="fas fa-check padding-right"></i>
+            {% endif %}
             Air conditioning
             <br>
+            {% if property.is_ceiling_fans %}
+                <i class="fas fa-check padding-right"></i>
+            {% endif %}
             Ceiling Fans
             <br>
+            {% if property.is_sink %}
+                <i class="fas fa-check padding-right"></i>
+            {% endif %}
             Sink
             <br>
+            {% if property.is_garbage_disposal %}
+                <i class="fas fa-check padding-right"></i>
+            {% endif %}
             Garbage Disposal System
             <br>
+            {% if property.is_hardwood_floors %}
+                <i class="fas fa-check padding-right"></i>
+            {% endif %}
             Hardwood floors
             <br>
+            {% if property.is_internet%}
+                <i class="fas fa-check padding-right"></i>
+            {% endif %}
             Internet
             <br>
+            {% if property.is_microwave %}
+                <i class="fas fa-check padding-right"></i>
+            {% endif %}
             Microwave
             <br>
+            {% if property.is_refrigerator %}
+                <i class="fas fa-check padding-right"></i>
+            {% endif %}
             Refrigerator
             <br>
+            {% if property.is_stove %}
+                <i class="fas fa-check padding-right"></i>
+            {% endif %}
             Stove
             <br>
+            {% if property.is_telephone %}
+                <i class="fas fa-check padding-right"></i>
+            {% endif %}
             Telephone
             <br>
+            {% if property.is_tile %}
+                <i class="fas fa-check padding-right"></i>
+            {% endif %}
             Tile
             <br>
+            {% if property.is_window_covering %}
+                <i class="fas fa-check padding-right"></i>
+            {% endif %}
             Window Coverings
             <br>
+            {% if property.is_elevator %}
+                <i class="fas fa-check padding-right"></i>
+            {% endif %}
             Elevator
         </div><!--col-100 end-->
     </div><!--row end-->

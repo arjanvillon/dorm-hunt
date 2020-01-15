@@ -15,6 +15,8 @@ class Application(models.Model):
     is_approved     = models.BooleanField(default=False)
     is_disapproved  = models.BooleanField(default=False)
 
+    schedule        = models.DateField(blank=True, null=True)
+
     created_at      = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
