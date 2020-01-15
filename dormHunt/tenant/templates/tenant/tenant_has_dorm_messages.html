@@ -1,0 +1,146 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+
+{% block css %}
+<style>
+    .text-lowercase {
+        text-transform: lowercase !important;
+    }
+    .message-tab .tab-link-highlight {
+        display: none;
+    }
+    .message-toolbar {
+        background-color: #fff;
+        box-shadow: none;
+    }
+    .property-container {
+        background-color: aliceblue;
+        border-radius: 3px;
+    }
+    .image-cropper {
+        width: 50px;
+        height: 50px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+        /* border: 2px solid white; */
+    }
+    .image-cropper-user {
+        width: 60px;
+        height: 60px;
+        position: relative;
+        overflow: hidden;
+        border-radius: 20px;
+        /* border: 2px solid white; */
+    }
+    
+    img.property-sms-img {
+        display: inline;
+        margin: 0 auto;
+        height: 100%;
+        width: auto;
+    }
+    .property-name {
+        text-transform: capitalize !important;
+        font-weight: bold;
+    }
+    .message-preview {
+        font-family: 'PT Sans Caption', sans-serif;
+        color: #444;
+        font-size: x-small;
+        line-height: 1;
+    }
+    .message-time {
+        color: #2c9bf3;
+        font-weight: 600;
+        font-size: x-small;
+    }
+    .text-view-details {
+        text-decoration: underline;
+        font-size: small;
+    }
+    .text-view-details:hover {
+        color: #2c9bf3;
+    }
+    .short-bio {
+        border: 1px solid #c4c4c4;
+        padding: 10px;
+        border-radius: 5px;
+    }
+    .inbox {
+        color: #2c9bf3;
+        font-weight: bolder;
+    }
+    </style>
+{% endblock css %}
+    
+
+{% block home_content %}
+    <!-- SECTION User Greetings and User Icon -->
+    <div class="row padding-horizontal padding-top">
+        <div class="col-100">
+            <div class="float-left">
+                <h1 class="username">Messages</h1>
+            </div>
+            <div class="float-right">
+                <div class="float-right margin-right margin-top">
+                    <a href="{% url 'user:user_profile' pk=user.pk %}" class="link external">
+                        <img src="{% static 'home/images/user-icon.png' %}" alt="View User">
+                    </a>
+                </div>
+            </div>
+        </div><!--col-100 end-->
+    </div><!--row end-->
+
+            <!-- SECTION Unread -->
+                <div class="row">
+                    <div class="col-100 padding-left">
+                        <div class="inbox">
+                            <strong class="line-under padding-right-half">inbox</strong><span class="badge color-blue">2</span>
+                        </div>
+                    </div>
+                </div>
+            <!-- SECTION Unread end -->
+           
+               
+
+                <!-- SECTION Messages -->
+                <div class="block">    
+                        <div class="property-container padding-half margin-bottom-half">
+                            <a href="{% url 'tenant:individual_messages' %}" class="link external">
+                                <div class="row">
+                                    <div class="col-20">
+                                        <div class="image-cropper align-self-center">
+                                            <img class="property-sms-img" src="{{ property.thumbnail.url }}" class="rounded" />
+                                        </div>
+                                    </div><!--col-20 end-->
+                                    <div class="col-80 align-self-center property-name">
+                                        {{ property.name }}Blackclaw's
+                                        <div class="message-time padding-bottom-half">
+                                            5 minutes ago
+                                        </div>
+                                        <div class="message-preview">
+                                            <!-- Preview of last message -->
+                                            Initial message Lorem ipsum dolor sit amet consectetur ...
+                                        </div>
+                                    </div><!--col-80 end-->
+                                </div><!--row end-->
+                            </a><!--a end-->
+                        </div><!--property-container end-->
+                        
+              </div><!--block end-->
+
+{% endblock home_content %}
+
+{% block homeJs %}
+<script src="{% static '/plugins/jquery/jquery.js' %}"></script>
+<script>
+    $(document).ready(function(){
+
+        $('a.message-tab').addClass('tab-link-active');
+        $('.tab-link-highlight').remove();
+    });
+    
+</script>
+{% endblock homeJs %}

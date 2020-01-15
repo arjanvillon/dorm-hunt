@@ -1,0 +1,21 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+    
+{% block home_content %}
+<div class="page-content">
+message
+</div><!--page-content end-->
+{% endblock home_content %}
+    
+
+
+
+{% block homeJs %}
+<script src="{% static '/plugins/jquery/jquery.js' %}"></script>
+<script>
+    $(document).ready(function(){
+    });
+    
+</script>
+{% endblock homeJs %}

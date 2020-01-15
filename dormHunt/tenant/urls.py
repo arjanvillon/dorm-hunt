@@ -4,7 +4,16 @@ from tenant import views
 app_name = 'tenant'
 
 urlpatterns = [
-    path('', views.Tenant.as_view(), name='tenant'),
+    # Home
+    path('', views.Home_Tenant, name='tenant'),
+    path('no-dorm', views.no_dorm.as_view(), name='no_dorm'),
+    path('dorm/', views.has_dorm.as_view(), name='has_dorm'),
+
+    # Messages
+    path('messages/', views.Messages_Tenant, name='messages'),
+    path('no-dorm/messages', views.No_Dorm_Messages.as_view(), name='no_dorm-messages'),
+    path('dorm/messages', views.Has_Dorm_Messages.as_view(), name='has_dorm-messages'),
+
     path('favorites/', views.TenantFavorites.as_view(), name='tenant_favorites'),
     path('search/<int:order>/', views.TenantDormSearch.as_view(), name='dorm_search'),
     path('search/map/', views.tenant_map, name='tenant_map'),
@@ -13,5 +22,5 @@ urlpatterns = [
 
     # NOTE Temporary, created so i can view my template
     path('search/property/application/<int:pk>', views.Application.as_view(), name='application_form'),
-    path('home/', views.TenantHome.as_view(), name='tenant_home'),
+    path('dorm/messages/individual', views.TenantIndMessages.as_view(), name='individual_messages'),
 ]

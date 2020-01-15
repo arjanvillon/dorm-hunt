@@ -60,7 +60,6 @@ class PropertyDetailView(DetailView):
     model = Property
 
 
-# NOTE For viewing purposes only
 class LandlordMessages(ListView):
     template_name = 'landlord/landlord_messages.html'
     model = Property
@@ -120,3 +119,6 @@ class TenantAddCreateView(CreateView):
             messages.add_message(self.request, messages.INFO, 'The email you entered is not yet a user of this application. Do advise your tenant to sign up to our application for your convenience. Thank you!')
             return redirect('landlord:add_tenant')
         return super().form_valid(form)
+
+
+
