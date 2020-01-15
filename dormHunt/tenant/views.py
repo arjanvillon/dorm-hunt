@@ -25,7 +25,8 @@ from django.core.exceptions import ObjectDoesNotExist
 class no_dorm(TemplateView):
     template_name = 'tenant/tenant_home_no_dorm.html'
 
-class has_dorm(TemplateView):
+class has_dorm(ListView):
+    model = AddTenant
     template_name = 'tenant/tenant_home.html'
 
 def Home_Tenant(request):
@@ -134,5 +135,19 @@ class Application(CreateView):
         context["user"] = user_query
         return context
 
-class TenantHome(TemplateView):
-    template_name = 'tenant/tenant_home.html'
+class No_Dorm_Messages(TemplateView):
+    template_name = 'tenant/tenant_no_dorm_messages.html'
+
+class Has_Dorm_Messages(TemplateView):
+    template_name = 'tenant/tenant_has_dorm_messages.html'
+
+def Messages_Tenant(request):
+    try:
+       tenant_email = AddTenant.objects.get(account_user=request.user.email)
+    except ObjectDoesNotExist:
+        return redirect('tenant:no_dorm-messages')
+    return redirect('tenant:has_dorm-messages')
+
+# NOTE For Viewing Purposes only
+class TenantIndMessages(TemplateView):
+    template_name = 'tenant/tenant_ind_messages.html'

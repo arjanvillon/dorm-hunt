@@ -46,7 +46,7 @@
         <div class="toolbar tabbar toolbar-bottom ">
           <div class="toolbar-inner">
               <a href="{% url 'tenant:tenant' %}" class="tab-link external home-tab"><i class="f7-icons">house_alt_fill</i></a >
-              <a href="#tab-2" class="tab-link external message-tab"><i class="f7-icons">envelope</i></a>
+              <a href="{% url 'tenant:messages' %}" class="tab-link external message-tab"><i class="f7-icons">envelope_fill</i></a>
               <a href="{% url 'tenant:tenant_favorites' %}" class="tab-link external favorite-tab"><i class="f7-icons">heart_fill</i></a>
               <a href="{% url 'tenant:dorm_search' %}" class="tab-link external search-tab"><i class="f7-icons">search</i></a>
           </div>

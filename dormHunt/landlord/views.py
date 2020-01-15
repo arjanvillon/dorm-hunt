@@ -60,7 +60,6 @@ class PropertyDetailView(DetailView):
     model = Property
 
 
-# NOTE For viewing purposes only
 class LandlordMessages(ListView):
     template_name = 'landlord/landlord_messages.html'
     model = Property

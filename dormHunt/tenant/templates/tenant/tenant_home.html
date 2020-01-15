@@ -181,17 +181,31 @@
                         </div>
                     </div><!--col-20-->
                     <div class="col-50 no-padding no-margin align-self-center">
-                        <span class="dorm-name">BlackClaw's</span>
+                        <span class="dorm-name">Blackclaws</span>
                     </div><!--col-50-->
                     <div class="col-30 align-self-center">
-                        <i class="f7-icons text-size-35">envelope_circle_fill</i>
-                        <i class="f7-icons text-size-35">phone_circle_fill</i>
+                      <a href="#" class="link external text-color-white"><i class="f7-icons text-size-35">envelope_circle_fill</i></a>
+                      <a class="sheet-open text-color-white" href="#" data-sheet=".my-sheet-swipe-to-close"><i class="f7-icons text-size-35">info_circle_fill</i></a>
+                        
                     </div><!--col-50-->
                 </div><!--row end-->
             </div><!--dorm-info-container end-->
         </div><!--col-100-->
     </div><!--row end-->
     <!-- SECTION Home Menu end -->
+    <!-- ANCHOR Dorm Info -->
+    <div class="sheet-modal my-sheet-swipe-to-close" style="height:auto; --f7-sheet-bg-color: #fff;">
+      <div class="sheet-modal-inner">
+        <div class="page-content">
+          <div class="block-title block-title-large">Dorm Info</div>
+          <div class="block">
+            <p><b>dorm info</b></p>
+            <p>Dorm info...</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
 
     <!-- SECTION Room Information -->
     <div class="row padding-horizontal">
@@ -201,6 +215,7 @@
                 <div class="room-content padding-left padding-top-half">
                     <i class="fas fa-door-open"></i>
                     Room 102 Bed A
+                    {{ addtenant.room_description }}
                 </div><!--room-content end --> 
             </div><!--dorm-info-container end-->
         </div><!--col-100-->
