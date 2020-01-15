@@ -26,9 +26,14 @@ from django.core.exceptions import ObjectDoesNotExist
 class no_dorm(TemplateView):
     template_name = 'tenant/tenant_home_no_dorm.html'
 
-class has_dorm(ListView):
-    model = AddTenant
+class has_dorm(TemplateView):
     template_name = 'tenant/tenant_home.html'
+
+    def get_context_data(self, **kwargs):
+        context = super(has_dorm, self).get_context_data(**kwargs)
+        details = get_object_or_404(AddTenant, account_user=self.request.user.email)
+        context['details'] = details
+        return context
 
 def Home_Tenant(request):
     try:
