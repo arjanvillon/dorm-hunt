@@ -9,15 +9,30 @@ import folium
 import requests
 import json
 
-# SECTION Import Model
-from landlord.models import Property
+# SECTION Import Models
+from landlord.models import Property, AddTenant
 from tenant.models import Application
+from user.models import User
+
+# SECTION Import Forms
 from tenant.forms import ApplicationForm
+
+from django.core.exceptions import ObjectDoesNotExist
 
 
 # Create your views here.
-class Tenant(TemplateView):
+class no_dorm(TemplateView):
     template_name = 'tenant/tenant_home_no_dorm.html'
+
+class has_dorm(TemplateView):
+    template_name = 'tenant/tenant_home.html'
+
+def Home_Tenant(request):
+    try:
+       tenant_email = AddTenant.objects.get(account_user=request.user.email)
+    except ObjectDoesNotExist:
+        return redirect('tenant:no_dorm')
+    return redirect('tenant:has_dorm')
 
 class TenantFavorites(TemplateView):
     template_name = 'tenant/tenant_favorites.html'
@@ -38,6 +53,16 @@ class TenantFavorites(TemplateView):
         context = super().get_context_data(**kwargs)
         context["favorites"] = favorites
         return context
+    
+def favorite_property(request, pk):
+    current_property = get_object_or_404(Property, pk=pk)
+    this_property = Property.objects.get(pk=current_property.pk)
+
+    if current_property.favorite.filter(pk=request.user.pk).exists():
+        this_property.favorite.remove(request.user)
+    else:
+        this_property.favorite.add(request.user)
+    return redirect('tenant:view_property', pk=current_property.pk)
     
 
 class TenantDormSearch(ListView):
@@ -79,16 +104,6 @@ class ViewPropertyDetailView(DetailView):
         context["users"] = users
         return context
 
-def favorite_property(request, pk):
-    current_property = get_object_or_404(Property, pk=pk)
-    this_property = Property.objects.get(pk=current_property.pk)
-
-    if current_property.favorite.filter(pk=request.user.pk).exists():
-        this_property.favorite.remove(request.user)
-    else:
-        this_property.favorite.add(request.user)
-    return redirect('tenant:view_property', pk=current_property.pk)
-    
 
 
 # NOTE Temporary, created so i can view my template

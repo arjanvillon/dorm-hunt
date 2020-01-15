@@ -4,7 +4,11 @@ from tenant import views
 app_name = 'tenant'
 
 urlpatterns = [
-    path('', views.Tenant.as_view(), name='tenant'),
+    path('', views.Home_Tenant, name='tenant'),
+    path('no-dorm', views.no_dorm.as_view(), name='no_dorm'),
+    path('dorm', views.has_dorm.as_view(), name='has_dorm'),
+
+
     path('favorites/', views.TenantFavorites.as_view(), name='tenant_favorites'),
     path('search/', views.TenantDormSearch.as_view(), name='dorm_search'),
     path('search/map/', views.tenant_map, name='tenant_map'),
