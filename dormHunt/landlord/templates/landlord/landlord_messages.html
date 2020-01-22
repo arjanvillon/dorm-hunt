@@ -93,167 +93,201 @@ img.property-sms-img {
             <div class="float-right">
                 <div class="float-right margin-right margin-top">
                     <a href="{% url 'user:user_profile' pk=user.pk %}" class="link external">
-                        <img src="{% static 'home/images/user-icon.png' %}" alt="View User">
+                        <img src="{{ user.userprofile.picture55.url }}" alt="View User">
                     </a>
                 </div>
             </div>
         </div><!--col-100 end-->
     </div><!--row end--> 
 
-    <div class="toolbar tabbar message-toolbar">
-        <div class="toolbar-inner message-tab">
-            <!-- SECTION Unread -->
-            <a href="#tab-1" class="tab-link text-lowercase tab-link-active">
-                <div class="row">
-                    <div class="col-60 ">
-                        <strong>inbox</strong>
+    
+    {% if property_list %}
+        <div class="toolbar tabbar message-toolbar">
+            <div class="toolbar-inner message-tab">
+                <!-- SECTION Unread -->
+                <a href="#tab-1" class="tab-link text-lowercase tab-link-active">
+                    <div class="row">
+                        <div class="col-60 ">
+                            <strong>inbox</strong>
+                        </div>
+                        <div class="col-40 float-left">
+                            <span class="badge color-blue">{{ property_list.count }}</span>
+                        </div>
                     </div>
-                    <div class="col-40 float-left">
-                        <span class="badge color-blue">2</span>
+                </a>
+                <!-- SECTION Unread end -->
+                <!-- SECTION read -->
+                <a href="#tab-2" class="tab-link text-lowercase">
+                    <div class="row">
+                        <div class="col-75 ">
+                            <strong>applications</strong>
+                        </div>
+                        <div class="col-25 float-left">
+                            <span class="badge color-blue">{{ application_count }}</span>
+                        </div>
                     </div>
-                </div>
-            </a>
-            <!-- SECTION Unread end -->
-            <!-- SECTION read -->
-            <a href="#tab-2" class="tab-link text-lowercase">
-                <div class="row">
-                    <div class="col-60 ">
-                        <strong>applications</strong>
-                    </div>
-                </div>
-            </a>
-            <!-- SECTION read end -->
+                </a>
+                <!-- SECTION read end -->
+            </div>
         </div>
-      </div>
-    <div class="tabs-swipeable-wrap">
-        <div class="tabs">
-            <div id="tab-1" class="page-content tab tab-active">
-
-                <!-- SECTION Create a Reminder or a New Message -->
-                <div class="row">
-                    <div class="col-50 padding-horizontal text-align-right">
-                        <a href="{% url 'landlord:reminder_create' %}" class="link external">
+        <div class="tabs-swipeable-wrap">
+            <div class="tabs">
+                <div id="tab-1" class="page-content tab tab-active">
+                    <!-- SECTION Create a Reminder or a New Message -->
+                    <div class="row">
+                        <div class="col-50 padding-horizontal text-align-right">
+                            <a href="{% url 'landlord:reminder_create' %}" class="link external">
+                                <div class="chip chip-color">
+                                    <div class="chip-media chip-color">
+                                        <i class="icon f7-icons">bell_circle</i>
+                                    </div>
+                                    <div class="chip-label">New Reminder</div>
+                                </div>
+                            </a><!--link end-->
+                        </div><!--col-50 end-->
+                        <div class="col-50 text-align-left">
+                            <a href="{% url 'landlord:due_date' %}" class="link external">
                             <div class="chip chip-color">
                                 <div class="chip-media chip-color">
-                                    <i class="icon f7-icons">bell_circle</i>
+                                    <i class="icon f7-icons">envelope_circle</i>
                                 </div>
-                                <div class="chip-label">New Reminder</div>
+                                <div class="chip-label">Notify Due Date</div>
                             </div>
-                        </a><!--link end-->
-                    </div><!--col-50 end-->
-                    <div class="col-50 text-align-left">
-                        <div class="chip chip-color">
-                            <div class="chip-media chip-color">
-                                <i class="icon f7-icons">envelope_circle</i>
-                            </div>
-                            <div class="chip-label">Notify Due Date</div>
-                        </div>
-                    </div><!--col-50 end-->
-                </div><!--row end-->
-                <!-- SECTION Create a Reminder or a New Message end-->
+                            </a>
+                        </div><!--col-50 end-->
+                    </div><!--row end-->
+                    <!-- SECTION Create a Reminder or a New Message end-->
 
-                <!-- SECTION Messages -->
-                <div class="block">    
-                    {% for property in property_list %}
-                        <div class="property-container padding-half margin-bottom-half">
-                            <a href="#" class="link external room-name-submit">
+                    <!-- SECTION Messages -->
+                    <div class="block">    
+                        {% for property in property_list %}
+                            <div class="property-container padding-half margin-bottom-half">
+                                <a href="#" class="link external room-name-submit">
+                                    <div class="row">
+                                        <div class="col-20">
+                                            <div class="image-cropper align-self-center">
+                                                <img class="property-sms-img" src="{{ property.thumbnail.url }}" class="rounded" />
+                                            </div>
+                                        </div><!--col-20 end-->
+                                        <div class="col-80 align-self-center property-name">
+                                            <p class="no-margin room-name">{{ property.messageroom.name }}</p>
+                                            <div class="message-time padding-bottom-half">
+                                                5 minutes ago
+                                            </div>
+                                            <div class="message-preview">
+                                                <!-- Preview of last message -->
+                                                Initial message Lorem ipsum dolor sit amet consectetur ...
+                                            </div>
+                                        </div><!--col-80 end-->
+                                    </div><!--row end-->
+                                </a><!--a end-->
+                            </div><!--property-container end-->
+                        {% endfor %}
+                    </div>
+                </div>
+                <div id="tab-2" class="page-content tab">
+                    <div class="block">
+                        
+                        {% for application in application_list %}
+                            <div class="property-container padding-half margin-bottom-half">
                                 <div class="row">
                                     <div class="col-20">
                                         <div class="image-cropper align-self-center">
-                                            <img class="property-sms-img" src="{{ property.thumbnail.url }}" class="rounded" />
+                                            <img class="property-sms-img" src="{{ application.tenant.userprofile.picture.url }}" class="rounded" />
                                         </div>
                                     </div><!--col-20 end-->
                                     <div class="col-80 align-self-center property-name">
-                                        <p class="no-margin room-name">{{ property.messageroom.name }}</p>
+                                        {{ application.tenant.userprofile.first_name }} {{ application.tenant.userprofile.last_name }}
                                         <div class="message-time padding-bottom-half">
-                                            5 minutes ago
+                                            {{ application.created_at }}
                                         </div>
                                         <div class="message-preview">
                                             <!-- Preview of last message -->
-                                            Initial message Lorem ipsum dolor sit amet consectetur ...
+                                            <span class="text-view-details sheet-open" data-sheet=".my-sheet-swipe-to-close">View Details</span>
                                         </div>
                                     </div><!--col-80 end-->
                                 </div><!--row end-->
-                            </a><!--a end-->
-                        </div><!--property-container end-->
-                    {% endfor %}
-                        
-              </div>
-            </div>
-            <div id="tab-2" class="page-content tab">
-                <div class="block">
-                    
-                    {% for application in application_list %}
-                        <div class="property-container padding-half margin-bottom-half">
-                            <div class="row">
-                                <div class="col-20">
-                                    <div class="image-cropper align-self-center">
-                                        <img class="property-sms-img" src="{{ application.tenant.userprofile.picture.url }}" class="rounded" />
-                                    </div>
-                                </div><!--col-20 end-->
-                                <div class="col-80 align-self-center property-name">
-                                    {{ application.tenant.userprofile.first_name }} {{ application.tenant.userprofile.last_name }}
-                                    <div class="message-time padding-bottom-half">
-                                        {{ application.created_at }}
-                                    </div>
-                                    <div class="message-preview">
-                                        <!-- Preview of last message -->
-                                        <span class="text-view-details sheet-open" data-sheet=".my-sheet-swipe-to-close">View Details</span>
-                                    </div>
-                                </div><!--col-80 end-->
-                            </div><!--row end-->
-                        </div><!--property-container end--> 
+                            </div><!--property-container end--> 
 
-                        <div class="sheet-modal my-sheet-swipe-to-close" style="height:auto; --f7-sheet-bg-color: #fff;">
-                            <div class="sheet-modal-inner">
-                                <div class="page-content">
-                                    <div class="row">
-                                        <div class="col-70">
-                                            <div class="block-title block-title-large no-margin-bottom">{{ application.tenant.userprofile.first_name }} {{ application.tenant.userprofile.last_name }}</div>
-                                            <b class="padding-left">{{ application.tenant.userprofile.birthday}}</b>
-                                        </div><!--col-70 end-->
-                                        <div class="col-30 padding">
-                                            <div class="padding-top image-cropper-user align-self-center">
-                                                <img class="property-sms-img" src="{{ application.tenant.userprofile.picture.url }}" class="rounded" />
+                            <div class="sheet-modal my-sheet-swipe-to-close" style="height:auto; --f7-sheet-bg-color: #fff;">
+                                <div class="sheet-modal-inner">
+                                    <div class="page-content">
+                                        <div class="row">
+                                            <div class="col-70">
+                                                <div class="block-title block-title-large no-margin-bottom">{{ application.tenant.userprofile.first_name }} {{ application.tenant.userprofile.last_name }}</div>
+                                                <b class="padding-left">{{ application.tenant.userprofile.birthday}}</b>
+                                            </div><!--col-70 end-->
+                                            <div class="col-30 padding">
+                                                <div class="padding-top image-cropper-user align-self-center">
+                                                    <img class="property-sms-img" src="{{ application.tenant.userprofile.picture.url }}" class="rounded" />
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div><!--row end-->
-                                    <div class="block no-margin-top">
-                                        <p><b>Email: </b><b class="color-scheme1">{{ application.tenant.email }}</b></p>
-                                        <p><b>Phone Number: </b><b class="color-scheme1">{{ application.tenant.userprofile.number }}</b></p>
-                                        <p><b>Preferred Move in Date: </b><b class="color-scheme1">{{ application.move_in_date }}</b></p>
-                                        <b>Short Bio:</b>
-                                        <div class="short-bio">
-                                            {{ application.bio }}
-                                        </div><!--short-bio end-->
-                                        <!-- SECTION Approve Disapprove -->
-                                        <div class="row padding-top">
-                                            <div class="col-50 padding-left">
-                                                <a class="link external" href="{% url 'landlord:disapprove_application' pk=application.pk %}">
-                                                    <button class="col button button-raised button-fill color-red">Disapprove</button>
-                                                </a>
-                                            </div><!--col-50 end-->
-                                            <div class="col-50 padding-left">
-                                                <a class="link external" href="{% url 'landlord:approve_application' pk=application.pk %}">
-                                                    <button class="col button button-raised button-fill">Approve</button>
-                                                </a>
-                                            </div><!--col-50 end-->
                                         </div><!--row end-->
-                                    </div><!--block end-->
-                                </div><!--page-content end-->
-                                </div><!--sheet-modal-inner end-->
-                          </div><!--sheet-modal end-->
-                    {% endfor %}
+                                        <div class="block no-margin-top">
+                                            <p><b>Email: </b><b class="color-scheme1">{{ application.tenant.email }}</b></p>
+                                            <p><b>Phone Number: </b><b class="color-scheme1">{{ application.tenant.userprofile.number }}</b></p>
+                                            <p><b>Preferred Move in Date: </b><b class="color-scheme1">{{ application.move_in_date }}</b></p>
+                                            <b>Short Bio:</b>
+                                            <div class="short-bio">
+                                                {{ application.bio }}
+                                            </div><!--short-bio end-->
+                                            <!-- SECTION Approve Disapprove -->
+                                            <div class="row padding-top">
+                                                <div class="col-50 padding-left">
+                                                    <a class="link external" href="{% url 'landlord:disapprove_application' pk=application.pk %}">
+                                                        <button class="col button button-raised button-fill color-red">Disapprove</button>
+                                                    </a>
+                                                </div><!--col-50 end-->
+                                                <div class="col-50 padding-left">
+                                                    <a class="link external" href="{% url 'landlord:approve_application' pk=application.pk %}">
+                                                        <button class="col button button-raised button-fill">Approve</button>
+                                                    </a>
+                                                </div><!--col-50 end-->
+                                            </div><!--row end-->
+                                        </div><!--block end-->
+                                    </div><!--page-content end-->
+                                    </div><!--sheet-modal-inner end-->
+                            </div><!--sheet-modal end-->
+                        {% endfor %}
                         
-
-
-
-                </div>
-
+                    </div>
+                </div><!--tab2 end-->
+            </div><!--tabs end-->
+        </div><!--tabs-swieable-wrap end-->
+    {% else %}
+        <!-- SECTION Image -->
+        <div class="row padding-vertical">
+            <div class="col-100 text-align-center">
+                <img src="{% static 'home/images/empty-messages.png' %}" alt="Empty Message Image">
+            </div>
+        </div><!--row end-->
+        <!-- SECTION Empty Home -->
+        <div class="row text-align-center">
+            <div class="col-100">
+                <h2>No Messages</h2>
+            </div>
+        
+        </div><!--end row-->
+        <div class="row">
+            <div class="col-100">
                 
-            </div><!--tab2 end-->
-        </div><!--tabs end-->
-    </div><!--tabs-swieable-wrap end-->
+                <div class="text-align-center home-subtext margin-horizontal no-margin margin-bottom-half">
+                    Market your property and connect with your tenants now!
+                </div>
+            </div>
+        </div>
+        <!-- SECTION Button -->
+        <div class="row color-scheme1">
+            <div class="col-100 text-align-center no-margin-right no-padding-right">
+                <a href="{% url 'landlord:property_create' %}" class="link external">
+                    <span class="search-text">Create Property &#8921;</span>
+                </a>
+            </div>
+        </div><!--row end-->
+    {% endif %}
+        
+
+
         
 </div><!--page-content end-->
 {% endblock landlord_content %}

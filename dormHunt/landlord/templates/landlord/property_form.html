@@ -50,7 +50,21 @@
                                     </div>
                                 </div>
                             </li>
-                            <!-- SECTION Property Name end-->
+                            <!-- SECTION Property Type end-->
+
+                            <!-- SECTION Property Name -->
+                            <li class="item-content item-input item-input-outline">
+                                <div class="item-inner">
+                                    <div class="item-title item-floating-label margin-bottom-half signin-label">
+                                        {{ form.property_type.label_tag }}
+                                        
+                                    </div>
+                                    <div class="item-input-wrap">
+                                        {{form.property_type}}
+                                    </div>
+                                </div>
+                            </li>
+                            <!-- SECTION Property Type end-->
 
                             <!-- SECTION Address -->
                             <li class="item-content item-input item-input-outline">
@@ -163,6 +177,12 @@
 
 
                             <!-- SECTION Short Description -->
+                            <li class="padding-horizontal padding-top-half">
+                                <h4 class="no-padding no-margin">Tagline</h4>
+                                <span class="helping-text">
+                                    This will be your Dormitory tagline and wil appear when browsing dormitories
+                                </span>
+                            </li>
                             <li class="item-content item-input item-input-outline">
                                 <div class="item-inner">
                                     <div class="item-title item-floating-label margin-bottom-half signin-label">{{ form.tagline.label_tag }}
@@ -456,6 +476,15 @@
         readURL(this);
     });
 
+    var pickerPropertyType = app.picker.create({
+    inputEl: '#id_property_type',
+    cols: [
+      {
+        textAlign: 'center',
+        values: ['Solo Rooms', 'Bed Spacer', 'Mixed']
+      }
+    ]
+    });
     // item-content item-input item-input-outline
     // $('#id_is_air_conditioned').parent().parent().parent().removeClass('item-content item-input item-input-outline');
     // alert($('#id_is_air_conditioned').parent().parent().parent().html());

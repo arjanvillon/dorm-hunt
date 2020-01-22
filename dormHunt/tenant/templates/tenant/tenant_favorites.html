@@ -42,7 +42,7 @@
                         <div class="float-right">
                             <div class="float-right margin-right margin-top">
                                 <a href="{% url 'home:view_user' %}" class="link external">
-                                    <img src="{% static 'home/images/user-icon.png' %}" alt="View User">
+                                    <img src="{{ user.userprofile.picture55.url }}" alt="View User">
                                 </a>
                             </div>
                         </div>

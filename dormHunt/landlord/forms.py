@@ -5,7 +5,7 @@ class PropertyForm(forms.ModelForm):
 
     class Meta():
         model = Property
-        fields = ('name',  'address', 'latitude', 'longitude', 'capacity', 'deposit', 'price', 'thumbnail', 'description', 'tagline', 'is_air_conditioned', 'is_ceiling_fans', 'is_sink', 'is_garbage_disposal', 'is_hardwood_floors', 'is_internet', 'is_microwave', 'is_refrigerator', 'is_storage', 'is_stove', 'is_telephone', 'is_tile', 'is_window_covering', 'is_laundry', 'is_parking', 'is_elevator', 'is_furnished', 'is_pets_allowed')
+        fields = ('name',  'address', 'latitude', 'longitude', 'capacity', 'deposit', 'property_type', 'price', 'thumbnail', 'description', 'tagline', 'is_air_conditioned', 'is_ceiling_fans', 'is_sink', 'is_garbage_disposal', 'is_hardwood_floors', 'is_internet', 'is_microwave', 'is_refrigerator', 'is_storage', 'is_stove', 'is_telephone', 'is_tile', 'is_window_covering', 'is_laundry', 'is_parking', 'is_elevator', 'is_furnished', 'is_pets_allowed')
 
         labels = {
             "name": "Property Name" ,
@@ -38,6 +38,8 @@ class PropertyForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         kwargs.setdefault('label_suffix', '')  # globally override the Django >=1.6 default of ':'
         super(PropertyForm, self).__init__(*args, **kwargs)
+        self.fields['capacity'].widget.attrs['placeholder'] = 'Slots Available in your Dormitory'
+        self.fields['tagline'].widget.attrs['placeholder'] = 'E.g. Quality rooms at affordable prices'
 
 class ReminderForm(forms.ModelForm):
 
@@ -51,7 +53,7 @@ class ReminderForm(forms.ModelForm):
 
 class AddTenantForm(forms.ModelForm):
     account_user = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Enter Email of tenant'}))
-
+    room_description = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'E.g. Room #1'}))
     class Meta():
         model = AddTenant
         fields = ('account_user', 'dorm', 'room_description')

@@ -41,6 +41,7 @@ class PropertyCreateView(CreateView):
 
     def form_valid(self, form):
         form.instance.owner = self.request.user
+        form.instance.slots = form.instance.capacity
         return super().form_valid(form)
 
 class PropertyDetailView(DetailView):
@@ -73,10 +74,11 @@ class LandlordMessages(ListView):
 
     def get_context_data(self, **kwargs):
         properties = self.request.user.property_set.all()
+
         application_list = []
         room_list = []
 
-        try:
+        if properties:
             for p in properties:
                 applications = Application.objects.filter(dorm=p, is_approved=False, is_disapproved=False)
                 room = MessageRoom.objects.filter(dorm=p)
@@ -85,8 +87,10 @@ class LandlordMessages(ListView):
                     application_list.append(application)
             print(len(application_list))
             application_count = len(application_list)
-        except ObjectDoesNotExist:
+        else:
             application_list = ''
+            application_count = 0
+            room_list = 0
 
         context = super().get_context_data(**kwargs)
         context["application_list"] = application_list
@@ -143,6 +147,8 @@ class TenantAddCreateView(CreateView):
             print(query)
             form.instance.account = query
             this_property = Property.objects.get(pk=form.instance.dorm.pk)
+            this_property.slots -= 1
+            this_property.save()
             print(this_property)
             room = MessageRoom.objects.get(dorm=this_property)
             room.members.add(query)
@@ -176,6 +182,18 @@ def mark_tenant_paid(request, pk):
     tenant = get_object_or_404(AddTenant, pk=pk)
     tenant.paid()
     return redirect('landlord:payment')
+
+def due_date(request):
+    properties = Property.objects.filter(owner=request.user)
+
+    for p in properties:
+        tenants = p.addtenant_set.all()
+        for tenant in tenants:
+            tenant.unpaid(p.price)
+    
+    return redirect('landlord:landlord_messages')
+
+
 
 # def mark_tenant_unpaid(request, pk):
 #     application = get_object_or_404(Application, pk=pk)

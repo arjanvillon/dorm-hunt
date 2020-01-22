@@ -31,6 +31,7 @@ var app = new Framework7({
     ]
   });
 
+
   var pickerDevice = app.picker.create({
     inputEl: '#id_days_before',
     cols: [

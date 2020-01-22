@@ -49,22 +49,22 @@
     </div>
 </div>
 <!-- SECTION Sign In and Forgot Password -->
-<div class="row">
-    <div class="col-50">
-        <div class="float-left">
+<div class="row text-align-center"">
+    <div class="col-100">
+        <div>
             <a class="link external" data-transistion="f7-flip" href="{% url 'user:user_login' %}">
                 <span class="block-title signin-link">Sign In</span>
             </a>
         </div>
-</div>
-<div class="col-50 float-right">
+    </div>
+    <!-- <div class="col-50 float-right">
     <div class="float-right">
         <a class="link external" data-transistion="f7-flip" href="{% url 'user:user_forgot_password' %}">
             <span class="block-title signin-link">Forgot Password</span>
         </a>
     </div>
-    </div>
-
+    </div> -->
+</div>
 {% block custom_js %}
     <script src="{% static 'user/js/register.js' %}"></script>
 {% endblock custom_js %}

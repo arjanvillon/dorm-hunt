@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import login, logout, authenticate
-from django.views.generic import UpdateView
+from django.views.generic.edit import UpdateView
 from user.forms import RegistrationForm, UserAuthenticationForm, UserProfileForm
 from user.models import User, UserProfile
 from django.core.exceptions import ObjectDoesNotExist
@@ -9,6 +9,10 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from PIL import Image
+from io import BytesIO
+from django.core.files.uploadedfile import InMemoryUploadedFile
+import sys
 
 # Create your views here.
 
@@ -103,3 +107,26 @@ class UserProfileUpdateView(UpdateView):
     context_object_name = 'user_profile'
     form_class = UserProfileForm
     model = UserProfile
+
+    def form_valid(self, form):
+        user_profile = UserProfile.objects.get(user=self.request.user)
+
+        # form.instance.picture55 = form.instance.picture
+		#Opening the uploaded image
+        try:
+            img = Image.open(form.instance.picture)
+            output = BytesIO()
+
+            #Resize/modify the image
+            img = img.resize((55,55))
+
+            #after modifications, save it to the output
+            img.save(output, format='JPEG', quality=100)
+            output.seek(0)
+
+            #change the imagefield value to be the newley modifed image value
+            form.instance.picture55 = InMemoryUploadedFile(output,'ImageField', "%s.jpg" %form.instance.picture.name.split('.')[0], 'image/jpeg', sys.getsizeof(output), None)
+        except:
+            pass
+
+        return super(UserProfileUpdateView, self).form_valid(form)

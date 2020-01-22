@@ -5,6 +5,7 @@ from django.utils.translation import gettext as _
 from django.db import models
 from django.utils import timezone
 from django.urls import reverse
+from django_resized import ResizedImageField
 
 
 
@@ -21,12 +22,14 @@ class Property(models.Model):
 
     deposit             = models.FloatField()
     price               = models.FloatField()
-    thumbnail           = models.ImageField(default='property_thumbnails/default.png', upload_to='property_thumbnails')
+    thumbnail           = ResizedImageField(size=[1000,950], crop=['middle','center'], default='property_thumbnails/default.png', upload_to='property_thumbnails', blank=True)
+    # thumbnail           = models.ImageField(default='property_thumbnails/default.png', upload_to='property_thumbnails')
     tagline             = models.CharField(max_length=40, null=True)
     description         = models.TextField(blank=True)
     
     favorite            = models.ManyToManyField(User, related_name='favorite', verbose_name='users that likes the property', blank=True)
     property_type       = models.CharField(max_length=30, blank=True)
+    slots               = models.IntegerField(null=True)
     capacity            = models.IntegerField()
     bathroom            = models.IntegerField(default=0)
 
@@ -54,7 +57,7 @@ class Property(models.Model):
     is_elevator         = models.BooleanField(default=False)
 
     terms_of_agreement  = models.TextField(blank=True)
-    views               = models.IntegerField(null=True)
+    views               = models.IntegerField(default=0)
     # Geopy
     latitude            = models.FloatField(null=True, blank=True)
     longitude           = models.FloatField(null=True, blank=True)
@@ -98,6 +101,11 @@ class AddTenant(models.Model):
     def paid(self):
         self.is_paid = True
         self.date_paid = date.today()
+        self.save()
+
+    def unpaid(self, price):
+        self.is_paid = False
+        self.balance += price
         self.save()
 
     
