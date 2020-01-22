@@ -3,33 +3,49 @@
 
 {% block css %}
     <style>
-    img.property-sms-img {
-        display: inline;
-        margin: 0 auto;
-        height: 100%;
-        width: auto;
-    }
-    .image-cropper-ind {
-        width: 50px;
-        height: 50px;
-        position: relative;
-        overflow: hidden;
-        border-radius: 10px;
-        /* border: 2px solid white; */
-    }
+        img.property-sms-img {
+            display: inline;
+            margin: 0 auto;
+            height: 100%;
+            width: auto;
+        }
+        .image-cropper-ind {
+            width: 50px;
+            height: 50px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            /* border: 2px solid white; */
+        }
+        .message-avatar{
+            opacity: 100 !important;
+        }
+        .message-name{
+            display: block !important;
+        }
+        .toolbar-bottom{
+            display: none !important;
+        }
     </style>
 {% endblock css %}
     
 
 {% block home_content %}
-<div class="page-content">
+
+<div class="page-content no-padding">
     <!-- SECTION Back Button -->
      <div class="row">
          <div class="col-15 padding-top-half padding-left">
              <div class="padding-top">
              <!-- TODO Create a function to return to previous link -->
              <!-- NOTE This a link is just temporary -->
-                 <a href="{% url 'tenant:messages' %}" class="link external">
+                
+                {% if user.user_type == "Landlord" %}
+                <a href="{% url 'landlord:landlord_messages' %}" class="link external">
+                {% else %}
+                <a href="{% url 'tenant:messages' %}" class="link external">
+                {% endif %}
+                    
                      <div class="row back-btn">
                          <div class="col-10">
                              <i class="f7-icons">chevron_left</i>
@@ -42,13 +58,13 @@
              <div class="row">
                  <div class="col-20">
                      <div class="image-cropper-ind align-self-center">
-                         <img class="property-sms-img" src="{% static 'tenant/images/contact-property-default.png' %}" class="rounded" />
+                         <img class="property-sms-img" src="{{ dorm.dorm.thumbnail.url }}" class="rounded" />
                      </div>
                  </div><!--ccol-30 end-->
                  <div class="col-80 align-self-center">
                      <div class="row">
                          <div class="col-100">
-                             <b class="text-capitalize text-size-large">blackClaw's</b>
+                             <b class="text-capitalize text-size-large">{{ room_name }}</b>
                          </div>
                          <div class="col-100">
                              <span class="online-label">online</span>
@@ -65,141 +81,119 @@
     <!-- SECTION First Convo -->
     <!-- <div class="page"> -->
  
-     <div class="page-content messages-content">
-       <div class="messages">
-         <!-- Messages title -->
-         <div class="messages-title"><b>Sunday, Feb 9,</b> 12:58</div>
-         <!-- Full layout sent message -->
-         <div class="message message-sent">
-           <div class="message-avatar" style="background-image:url(https://cdn.framework7.io/placeholder/people-100x100-7.jpg);"></div>
-           <div class="message-content">
-             <div class="message-name">John Doe</div>
-             <div class="message-header">Message header</div>
-             <div class="message-bubble">
-               <div class="message-text-header">Text header</div>
-               <div class="message-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
-               <div class="message-text-footer">Text footer</div>
-             </div>
-             <div class="message-footer">Message footer</div>
-           </div>
-         </div>
-         <!-- Full layout received message -->
-         <div class="message message-received">
-           <div class="message-avatar" style="background-image:url(https://cdn.framework7.io/placeholder/people-100x100-7.jpg);"></div>
-           <div class="message-content">
-             <div class="message-name">John Doe</div>
-             <div class="message-header">Message header</div>
-             <div class="message-bubble">
-               <div class="message-text-header">Text header</div>
-               <div class="message-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit.</div>
-               <div class="message-text-footer">Text footer</div>
-             </div>
-             <div class="message-footer">Message footer</div>
-           </div>
-         </div>
-         <!-- Messages -->
-         <div class="message message-sent">
-           <div class="message-content">
-             <div class="message-bubble">
-               <div class="message-text">Hi, Kate</div>
-             </div>
-           </div>
-         </div>
-         <div class="message message-sent">
-           <div class="message-content">
-             <div class="message-bubble">
-               <div class="message-text">How are you?</div>
-             </div>
-           </div>
-         </div>
-         <div class="message message-received">
-           <div class="message-avatar" style="background-image:url(https://cdn.framework7.io/placeholder/people-100x100-9.jpg);"></div>
-           <div class="message-content">
-             <div class="message-name">Kate</div>
-             <div class="message-bubble">
-               <div class="message-text">Hi, I am good!</div>
-             </div>
-           </div>
-         </div>
-         <div class="message message-received">
-           <div class="message-avatar" style="background-image:url(https://cdn.framework7.io/placeholder/people-100x100-7.jpg);"></div>
-           <div class="message-content">
-             <div class="message-name">Blue Ninja</div>
-             <div class="message-bubble">
-               <div class="message-text">Hi there, I am also fine, thanks! And how are you?</div>
-             </div>
-           </div>
-         </div>
-         <div class="message message-sent">
-           <div class="message-content">
-             <div class="message-bubble">
-               <div class="message-text">Hey, Blue Ninja! Glad to see you ;)</div>
-             </div>
-           </div>
-         </div>
-         <div class="message message-sent">
-           <div class="message-content">
-             <div class="message-bubble">
-               <div class="message-text">Hey, look, cutest kitten ever!</div>
-             </div>
-           </div>
-         </div>
-         <div class="message message-sent">
-           <div class="message-content">
-             <div class="message-bubble">
-               <div class="message-image"><img src="https://cdn.framework7.io/placeholder/cats-200x260-4.jpg" style="width:200px; height: 260px;"></div>
-             </div>
-           </div>
-         </div>
-         <div class="message message-received">
-           <div class="message-avatar" style="background-image:url(https://cdn.framework7.io/placeholder/people-100x100-9.jpg);"></div>
-           <div class="message-content">
-             <div class="message-name">Kate</div>
-             <div class="message-bubble">
-               <div class="message-text">Nice!</div>
-             </div>
-           </div>
-         </div>
-         <div class="message message-received">
-           <div class="message-avatar" style="background-image:url(https://cdn.framework7.io/placeholder/people-100x100-9.jpg);"></div>
-           <div class="message-content">
-             <div class="message-name">Kate</div>
-             <div class="message-bubble">
-               <div class="message-text">Like it very much!</div>
-             </div>
-           </div>
-         </div>
-         <div class="message message-received">
-           <div class="message-avatar" style="background-image:url(https://cdn.framework7.io/placeholder/people-100x100-7.jpg);"></div>
-           <div class="message-content">
-             <div class="message-name">Blue Ninja</div>
-             <div class="message-bubble">
-               <div class="message-text">Awesome!</div>
-             </div>
-           </div>
-         </div>
-       </div>
-     </div>
-     <div class="toolbar messagebar">
-         <div class="toolbar-inner">
-           <div class="messagebar-area">
-             <textarea class="resizable" placeholder="Message"></textarea>
-           </div><a class="link send-link" href="#">Send</a>
-         </div>
-       </div>
+    <div class="page-content messages-content no-padding">
+        <div class="messages" id="chat-log">
+            <!-- Messages -->
+
+        </div>
+    </div>
+    <div class="toolbar messagebar">
+        <div class="toolbar-inner">
+            <div class="messagebar-area">
+                <textarea id="chat-message-input" class="resizable" placeholder="Message"></textarea>
+            </div>
+            <input id="chat-message-submit" type="button" class="link send-link" value="Send"></input>
+        </div>
+    </div>
    <!-- </div> -->
     <!-- SECTION First Convo end -->
  </div><!--page-content end-->
+
+
 {% endblock home_content %}
 
 {% block homeJs %}
-<script src="{% static '/plugins/jquery/jquery.js' %}"></script>
-<script>
-    $(document).ready(function(){
-
-        $('a.message-tab').addClass('tab-link-active');
-        $('.tab-link-highlight').remove();
-    });
+<script src="{% static 'tenant/js/reconnecting-websocket.js' %}"></script>
     
+<script>
+    var roomName = "{{ room_name|escapejs }}";
+    var username = "{{ username|escapejs }}";
+
+    var chatSocket = new ReconnectingWebSocket(
+        'ws://' + window.location.host +
+        '/ws/tenant/dorm/messages/' + roomName + '/');
+
+    chatSocket.onopen = function(e){
+        fetchMessages();
+    }
+
+    chatSocket.onmessage = function(e) {
+        var data = JSON.parse(e.data);
+        if(data['command'] === 'messages'){
+            msgLength = data['messages'].length;
+
+            for(let i=0; i < msgLength; i++){
+                createMessage(data['messages'][i]);
+            } 
+        } else if (data['command'] === 'new_message') {
+                createMessage(data['message']);
+        }
+    };
+
+    chatSocket.onclose = function(e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+
+    document.querySelector('#chat-message-input').focus();
+    document.querySelector('#chat-message-input').onkeyup = function(e) {
+        if (e.keyCode === 13) {  // enter, return
+            document.querySelector('#chat-message-submit').click();
+        }
+    };
+
+    document.querySelector('#chat-message-submit').onclick = function(e) {
+        var messageInputDom = document.querySelector('#chat-message-input');
+        var message = messageInputDom.value;
+        chatSocket.send(JSON.stringify({
+            'command': 'new_message',
+            'message': message,
+            'from' : username,
+            'room': roomName,
+        }));
+
+        messageInputDom.value = '';
+    };
+
+    function createMessage(data){
+        // var data = JSON.parse(e.data);
+        // var message = data['message'];
+        var author = data['author'];
+
+        var msg = document.createElement('div');
+        var msgImage = document.createElement('img');
+        msgImage.setAttribute('class', 'message-avatar');
+        var msgContent = document.createElement('div');
+        msgContent.setAttribute('class', 'message-content');
+        msgName = document.createElement('div');
+        msgName.setAttribute('class', 'message-name');
+        var msgBubble = document.createElement('div');
+        msgBubble.setAttribute('class', 'message-bubble');
+        var msgText = document.createElement('div');
+        msgText.setAttribute('class', 'message-text');
+        msgText.textContent = data.content;
+
+        if(author === username){
+            msg.className = 'message message-sent';
+        } else {
+            msg.className = 'message message-received';
+        }
+        msgImage.src = "{{ user.userprofile.picture.url|escapejs }}";
+        msg.appendChild(msgImage);
+        
+        msgBubble.appendChild(msgText);
+        msgContent.appendChild(msgBubble);
+        msg.appendChild(msgContent);
+
+        document.querySelector('#chat-log').appendChild(msg);
+    };
+
+    function fetchMessages(){
+        chatSocket.send(JSON.stringify({
+            'command': 'fetch_messages',
+            'room': roomName
+        }));
+    };
+
 </script>
+  
 {% endblock homeJs %}

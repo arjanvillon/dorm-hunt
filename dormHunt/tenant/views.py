@@ -13,7 +13,7 @@ import json
 
 # SECTION Import Models
 from landlord.models import Property, AddTenant, Reminder
-from tenant.models import Application
+from tenant.models import Application, MessageRoom
 from user.models import User
 
 # SECTION Import Forms
@@ -117,7 +117,7 @@ def tenant_map(request):
         folium.Marker([marker.latitude, marker.longitude], 
                       popup= folium.Popup("""   <a href="/tenant/search/property/{}" target="_self"> <h4 style="margin-bottom:0;">{}</h4> </a>
                                                 <p style="margin-top:0;">{}</p>
-                                                <img src="{}" alt="Dorm" width="250" height="150"> """.format(marker.pk, marker.name, marker.address, marker.thumbnail.url)),
+                                                <img src="{}" alt="Dorm" width="250" height="150">""".format(marker.pk, marker.name, marker.address, marker.thumbnail.url)),
                       icon=folium.Icon(icon='home', color='blue')).add_to(tenant_map),
 
     # folium.CircleMarker(location=[latitude, longitude], radius=30, popup='Your Location', color='#3186cc', fill=True, fill_color='#3186cc').add_to(tenant_map),
@@ -183,9 +183,19 @@ def Messages_Tenant(request):
         return redirect('tenant:no_dorm-messages')
     return redirect('tenant:has_dorm-messages')
 
-# NOTE For Viewing Purposes only
-class TenantIndMessages(TemplateView):
-    template_name = 'tenant/tenant_ind_messages.html'
+# def messages_list(request):
+def tenant_ind_messages(request, room_name):
+    dorm = MessageRoom.objects.filter(name=room_name)[0]
 
+    return render(request, 'tenant/tenant_ind_messages.html', {
+        'room_name': room_name,
+        'username': request.user.username,
+        'dorm': dorm,
+    })
+
+# NOTE For Viewing Purposes only
 class Request(TemplateView):
     template_name = 'tenant/request.html'
+# class TenantIndMessages(TemplateView):
+#     template_name = 'tenant/tenant_ind_messages.html'
+

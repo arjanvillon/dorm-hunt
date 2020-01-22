@@ -156,7 +156,7 @@ img.property-sms-img {
                 <div class="block">    
                     {% for property in property_list %}
                         <div class="property-container padding-half margin-bottom-half">
-                            <a href="{% url 'landlord:individual_messages' %}" class="link external">
+                            <a href="#" class="link external room-name-submit">
                                 <div class="row">
                                     <div class="col-20">
                                         <div class="image-cropper align-self-center">
@@ -164,7 +164,7 @@ img.property-sms-img {
                                         </div>
                                     </div><!--col-20 end-->
                                     <div class="col-80 align-self-center property-name">
-                                        {{ property.name }}
+                                        <p class="no-margin room-name">{{ property.messageroom.name }}</p>
                                         <div class="message-time padding-bottom-half">
                                             5 minutes ago
                                         </div>
@@ -268,7 +268,22 @@ img.property-sms-img {
         $('a.message-tab').addClass('tab-link-active');
         $('a.message-tab i.f7-icons').addClass('size-40');
         $('.tab-link-highlight').remove();
+
+
+        $('.room-name-submit').click(function(){
+            this_room_first = $(this)
+            room = this_room_first.find('.room-name').html();
+            console.log(room);
+            redirectToRoom(room);
+        });
+
+        function redirectToRoom(roomName){
+            window.location.pathname = '/tenant/dorm/messages/' + roomName + '/';
+        }
+
+
     });
+
     
 </script>
 {% endblock landlordJs %}

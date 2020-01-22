@@ -1,7 +1,7 @@
 var today = new Date()
 
 var moveInCalendar = app.calendar.create({
-    inputEl: '#id_move_in_date',
+    inputEl: '#id_next_service',
     openIn: 'customModal',
     header: true,
     footer: true,
