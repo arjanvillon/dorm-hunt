@@ -43,13 +43,14 @@ class ReminderForm(forms.ModelForm):
 
     class Meta():
         model = Reminder
-        fields = ('property_name', 'category', 'sub_category', 'issue', 'next_service', 'days_before', 'description')
+        fields = ('property_name', 'category', 'sub_category', 'issue', 'next_service', 'description')
 
     def __init__(self, *args, **kwargs):
         kwargs.setdefault('label_suffix', '')  # globally override the Django >=1.6 default of ':'
         super(ReminderForm, self).__init__(*args, **kwargs)
 
 class AddTenantForm(forms.ModelForm):
+    account_user = forms.EmailField(widget=forms.EmailInput(attrs={'placeholder': 'Enter Email of tenant'}))
 
     class Meta():
         model = AddTenant

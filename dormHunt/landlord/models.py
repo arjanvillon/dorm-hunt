@@ -1,3 +1,4 @@
+from datetime import date
 import datetime
 from django.utils.translation import gettext as _
 
@@ -73,19 +74,32 @@ class Reminder(models.Model):
     issue               = models.CharField(max_length=80, blank=True)
     # gen info
     next_service        = models.DateField(_("Date"), default=datetime.date.today)
-    days_before         = models.CharField(max_length=30)
     description         = models.TextField(blank=True)
 
+    def __str__(self):
+        return self.issue
+    
+
 class AddTenant(models.Model):
-    # account_user        = models.ForeignKey(User, on_delete=models.CASCADE)
-    account_user        = models.EmailField(max_length=60)
+    account             = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    account_user        = models.EmailField(max_length=60, default='defatult@gmail.com')
     dorm                = models.ForeignKey(Property, on_delete=models.CASCADE)
     room_description    = models.CharField(max_length=80)
+
+    balance             = models.IntegerField(null=True)
+    is_paid             = models.BooleanField(default=False)
+    date_paid           = models.DateField(null=True)
+
+    def __str__(self):
+        return self.account_user
 
     def get_absolute_url(self):
         return reverse('landlord:landlord_home')
 
-
+    def paid(self):
+        self.is_paid = True
+        self.date_paid = date.today()
+        self.save()
 
     
     

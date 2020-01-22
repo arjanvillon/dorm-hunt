@@ -241,7 +241,7 @@
                           <span class="feature-icon"><img src="{% static 'tenant/images/features/bed.png' %}" alt="bed image"></span>
                       </div><!--col-100 end-->
                       <div class="col-100">
-                          <span class="feature-detail">{{ details.dorm..capacity }}</span>
+                          <span class="feature-detail">{{ details.dorm.capacity }}</span>
                       </div><!--col-100 end-->
                   </div><!--row end-->
                   <!-- SECTION Feature 2 end -->
@@ -313,29 +313,64 @@
       </div><!--sheet modal inner end-->
     </div><!--sheet modal end-->
 
+    <!-- SECTION Reminder and Room Information -->
+    <div class="row margin-horizontal margin-top">
+      <div class="col-50">
+        <div class="room-info-container padding">
+          <span class="room-title">Payment Details</span>
+          <div class="room-content padding-left padding-top-half text-capitalize">
+              <i class="fas fa-calendar-alt"></i>
+              Next Payment due on January 21, 2020
+          </div><!--room-content end --> 
+      </div><!--dorm-info-container end-->
+      </div><!--col-50 end-->
+      <div class="col-50">
+        <div class="room-info-container padding">
+            <span class="room-title">Room Information</span>
+            <div class="room-content padding-left padding-top-half text-capitalize">
+                <i class="fas fa-door-open"></i>
+                {{ details.room_description }}
+            </div><!--room-content end --> 
+        </div><!--dorm-info-container end-->
+      </div><!--col-50 end-->
+    </div><!--row end-->
+    <!-- SECTION Reminder and Room Information end -->
 
     <!-- SECTION Room Information -->
-    <div class="row padding-horizontal">
+    <!-- <div class="row padding-horizontal">
         <div class="col-100 padding-horizontal padding-top">
             <div class="room-info-container padding">
                 <span class="room-title">Room Information</span>
                 <div class="room-content padding-left padding-top-half text-capitalize">
                     <i class="fas fa-door-open"></i>
-                    {{ details.room_description }}
-                </div><!--room-content end --> 
-            </div><!--dorm-info-container end-->
-        </div><!--col-100-->
-    </div><!--row end-->
+                    {{ details.room_description }} -->
+                <!--</div><room-content end --> 
+                <!-- <div class="room-content padding-left padding-top-half text-capitalize">
+                    <i class="fas fa-door-open"></i>
+                    {{reminders.issue}} -->
+               <!-- </div>room-content end --> 
+         <!--   </div><!-dorm-info-container end-->
+        <!--</div><!-col-100-->
+    <!--</div><!-row end-->
     <!-- SECTION Room Information end -->
 
     <!-- SECTION Payment Information -->
-    <div class="row padding-horizontal">
+    <div class="row">
         <div class="col-100 padding-horizontal padding-top">
-            <div class="room-info-container padding">
-                <span class="room-title">Payment Details</span>
+            <div class="reminder-info-container padding">
+                <span class="room-title">Reminders</span>
                 <div class="room-content padding-left padding-top-half">
-                    <i class="fas fa-calendar-alt"></i>
-                    Next Payment due on January 21, 2020
+                  
+                  {% if reminders %}
+                    
+                    {% for reminder in reminders %}
+                      <i class="fas fa-bell"></i>
+                      {{ reminder.issue }}
+                    {% endfor %}
+                  {% else %}
+                    No Reminder for Today
+                  {% endif %}
+                    
                 </div><!--room-content end --> 
             </div><!--dorm-info-container end-->
         </div><!--col-100-->
@@ -350,7 +385,7 @@
         </a>
       
         <menu class="items-wrapper">
-          <a href="#" class="menu-item fas fa-tools"></a>
+          <a href="{% url 'tenant:request' %}" class="link external menu-item fas fa-tools"></a>
           <a href="#" class="menu-item fas fa-broom"></a>
           <!-- <a href="#" class="menu-item fas fa-google-plus"></a>
           <a href="#" class="menu-item fas fa-linkedin"></a> -->

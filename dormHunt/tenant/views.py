@@ -6,12 +6,13 @@ from django.views.generic import (
     CreateView
     )
 from django.core.exceptions import ObjectDoesNotExist
+from datetime import date
 import folium
 import requests
 import json
 
 # SECTION Import Models
-from landlord.models import Property, AddTenant
+from landlord.models import Property, AddTenant, Reminder
 from tenant.models import Application
 from user.models import User
 
@@ -30,9 +31,17 @@ class has_dorm(TemplateView):
     template_name = 'tenant/tenant_home.html'
 
     def get_context_data(self, **kwargs):
-        context = super(has_dorm, self).get_context_data(**kwargs)
         details = get_object_or_404(AddTenant, account_user=self.request.user.email)
+        
+        user = AddTenant.objects.get(account_user=self.request.user.email)
+        reminders = Reminder.objects.filter(property_name=user.dorm, next_service=date.today())
+        print(user.dorm)
+        print(reminders)
+        
+
+        context = super(has_dorm, self).get_context_data(**kwargs)
         context['details'] = details
+        context["reminders"] = reminders
         return context
 
 def Home_Tenant(request):
@@ -177,3 +186,6 @@ def Messages_Tenant(request):
 # NOTE For Viewing Purposes only
 class TenantIndMessages(TemplateView):
     template_name = 'tenant/tenant_ind_messages.html'
+
+class Request(TemplateView):
+    template_name = 'tenant/request.html'

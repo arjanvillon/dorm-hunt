@@ -72,6 +72,7 @@
 
     </div><!--page-content-->
 </div><!--swipeable wrap-->
+
 {% endblock landlord_content %}
 
 
@@ -79,7 +80,22 @@
 <script src="/plugins/select2/js/select2.js"></script>
 <script src="/static/landlord/js/reminder.js"></script>
 <script>
-    
+    // $('#id_property_name option:gt(0)').remove();
+
+    var newOptions = {
+        {% for property in property_name %}
+            "{{property.name|escape|safe }}" : '{{property.name|escape|safe }}',
+        {% endfor %}
+    };
+
+    var $el = $("#id_property_name");
+    //$el.empty(); // remove old options
+    $('#id_property_name option:gt(0)').remove();
+
+    $.each(newOptions, function(key,value) {
+        $el.append($("<option></option>")
+            .attr("value", value).text(key));
+    });
 
     $('#id_thumbnail').parent().addClass('image-upload-container');
     $('.image-custom-upload').insertBefore('#id_thumbnail');

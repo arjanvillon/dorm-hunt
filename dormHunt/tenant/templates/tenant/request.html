@@ -1,0 +1,25 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block home_content %}
+   
+{% endblock home_content %}
+    
+
+
+{% block homeJs %}
+<script src="{% static '/plugins/jquery/jquery.js' %}"></script>
+<script>
+    $(document).ready(function(){
+        if ($('#circularMenu').hasClass('active')) {
+            $('.page-content').addClass('on-hover');
+            alert('yow');
+        }
+
+        $('a.home-tab').addClass('tab-link-active');
+        $('.tab-link-highlight').remove();
+    });
+    
+</script>
+{% endblock homeJs %}
+    

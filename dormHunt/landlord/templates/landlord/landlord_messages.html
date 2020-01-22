@@ -16,7 +16,7 @@
 .tab-link-active strong:after {
     content:""; 
     float:left; 
-    background: #2c9bf3; 
+    background: #007aff; 
     width:120%; 
     height:3px; 
     border-radius: 3px;
@@ -59,7 +59,7 @@ img.property-sms-img {
     line-height: 1;
 }
 .message-time {
-    color: #2c9bf3;
+    color: #007aff;
     font-weight: 600;
     font-size: x-small;
 }
@@ -68,12 +68,16 @@ img.property-sms-img {
     font-size: small;
 }
 .text-view-details:hover {
-    color: #2c9bf3;
+    color: #007aff;
 }
 .short-bio {
     border: 1px solid #c4c4c4;
     padding: 10px;
     border-radius: 5px;
+}
+.chip-color {
+    background: #007aff;
+    color: #fff;
 }
 </style>
 {% endblock messageCss %}
@@ -129,8 +133,8 @@ img.property-sms-img {
                 <div class="row">
                     <div class="col-50 padding-horizontal text-align-right">
                         <a href="{% url 'landlord:reminder_create' %}" class="link external">
-                            <div class="chip color-blue">
-                                <div class="chip-media bg-color-blue">
+                            <div class="chip chip-color">
+                                <div class="chip-media chip-color">
                                     <i class="icon f7-icons">bell_circle</i>
                                 </div>
                                 <div class="chip-label">New Reminder</div>
@@ -138,8 +142,8 @@ img.property-sms-img {
                         </a><!--link end-->
                     </div><!--col-50 end-->
                     <div class="col-50 text-align-left">
-                        <div class="chip color-blue">
-                            <div class="chip-media bg-color-blue">
+                        <div class="chip chip-color">
+                            <div class="chip-media chip-color">
                                 <i class="icon f7-icons">envelope_circle</i>
                             </div>
                             <div class="chip-label">Notify Due Date</div>

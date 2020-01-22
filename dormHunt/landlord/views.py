@@ -1,6 +1,8 @@
 from django.http import JsonResponse
 from django.contrib import messages
+from django.utils.html import escape
 
+import datetime
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import (TemplateView, ListView, CreateView, DetailView)
@@ -96,6 +98,8 @@ def disapprove_application(request, pk):
     application = get_object_or_404(Application, pk=pk)
     application.disapprove()
     return redirect('landlord:landlord_messages')
+
+
 class LandlordIndividualMessages(TemplateView):
     template_name = 'landlord/landlord_ind_messages.html'
 
@@ -105,16 +109,34 @@ class ReminderCreateView(CreateView):
     form_class = ReminderForm
     model = Reminder
 
+    def get_context_data(self, **kwargs):
+        context = super(ReminderCreateView, self).get_context_data(**kwargs)
+        property_name = Property.objects.filter(owner=self.request.user)
+        context['property_name'] = property_name
+        
+        return context
+    
+    
+
 
 # Add to Tenant
 class TenantAddCreateView(CreateView):
     model = AddTenant
     form_class = AddTenantForm
 
-    def form_valid(self, form):
-        
+    def get_context_data(self, **kwargs):
+        properties = Property.objects.filter(owner=self.request.user)
+
+        context = super(TenantAddCreateView, self).get_context_data(**kwargs)
+        context['properties'] = properties
+        return context
+    
+
+    def form_valid(self, form):        
         try:
             query = User.objects.get(email=form.instance.account_user)
+            print(query)
+            form.instance.account = query
         except ObjectDoesNotExist:
             messages.add_message(self.request, messages.INFO, 'The email you entered is not yet a user of this application. Do advise your tenant to sign up to our application for your convenience. Thank you!')
             return redirect('landlord:add_tenant')
@@ -123,5 +145,30 @@ class TenantAddCreateView(CreateView):
 # NOTE for viewing purposes only
 class Payment(TemplateView):
     template_name = 'landlord/payment.html'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        user = self.request.user
+        properties = Property.objects.filter(owner=user)
+        tenants = AddTenant.objects.all()
+        month_today = datetime.datetime.now().strftime("%B")
+
+        context['property_numbers'] = properties.count()
+        context['property_list'] = properties
+        context['tenants'] = tenants
+        context['month_today'] = month_today
+
+        return context
+
+def mark_tenant_paid(request, pk):
+    tenant = get_object_or_404(AddTenant, pk=pk)
+    tenant.paid()
+    return redirect('landlord:payment')
+
+# def mark_tenant_unpaid(request, pk):
+#     application = get_object_or_404(Application, pk=pk)
+#     application.disapprove()
+#     return redirect('landlord:landlord_messages')
 
 

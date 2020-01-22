@@ -38,7 +38,7 @@
 }
 
 .accordion__item {
-    border-bottom: 1px solid #3a4ba4;
+    border-bottom: 1px solid #007aff;
 }
 
 .accordion__item .accordion__item {
@@ -87,7 +87,7 @@
 }
 
 .accordion__item.active .accordion-header {
-  background: #2D3D99;
+  background: #007aff;
 }
 
 .accordion__item .accordion__item .accordion-header {
@@ -128,7 +128,7 @@
             <!--SECTION QUICK BUTTONS -->
             <div class="row justify-content-center text-align-center padding-top">
                 <!-- SECTION Add Tenant -->
-                <div class="col-33">
+                <div class="col-50">
                     <a href="{% url 'landlord:add_tenant' %}" class="link external">
                         <div class="row">
                             <div class="col-100">
@@ -143,22 +143,22 @@
                     </a>
                 </div>
                 <!-- SECTION Add Expense -->
-                <div class="col-33">
+                <!-- <div class="col-33">
                     <a href="#" class="link external">
                         <div class="row">
                             <div class="col-100">
                                 <img src="{% static 'landlord/images/buttons/add_new_expense.png' %}" alt="Add New Expense">
-                            </div><!--col-100 end-->
+                            </div>
                             <div class="col-100">
                                 <span class="quick-btn-text">
                                     add new <br> expense
                                 </span>
-                            </div><!--col-100 end-->
-                        </div><!--row end-->
+                            </div>
+                        </div>
                     </a>
-                </div>
+                </div> -->
                 <!-- SECTION Add Property -->
-                <div class="col-33">
+                <div class="col-50">
                     <a href="{% url 'landlord:property_create' %}" class="link external">
                         <div class="row">
                             <div class="col-100">

@@ -22,4 +22,5 @@ urlpatterns = [
     path('message/application/disapprove/<int:pk>/', views.disapprove_application, name='disapprove_application'),
     path('message/individual', views.LandlordIndividualMessages.as_view(), name='individual_messages'),
     path('payment/', views.Payment.as_view(), name='payment'),
+    path('payment/paid/<int:pk>', views.mark_tenant_paid, name='payment_paid'),
 ]

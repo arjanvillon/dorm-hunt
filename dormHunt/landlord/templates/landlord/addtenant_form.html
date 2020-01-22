@@ -5,6 +5,11 @@
 {% block landlordCss %}
         <!-- SECTION Select2 -->
         <!-- <link rel="stylesheet" href="{% static '/plugins/select2/css/select2.css' %}"> -->
+        <style>
+            .color-gray {
+                color: #c4c4c4 !important;
+            }
+        </style>
 {% endblock landlordCss %}
     
 {% block landlord_content %}
@@ -58,7 +63,29 @@
 
                                             </div>
                                             <div class="item-input-wrap">
-                                                {{field}}
+                                                
+                                                {% if field.label == 'Property' %}
+                                                <a class="item-link smart-select smart-select-init" data-open-in="sheet">
+                                                    <select id="{{field.auto_id}}" name="{{field.html_name}}">
+                                                        
+                                                        {% for property in properties %}
+                                                            <option value="{{ property.pk }}" selected>{{ property.name }}</option>
+                                                            
+                                                        {% endfor %}
+                                                    </select>
+                                                    <div class="item-content">
+                                                        <div class="item-inner">
+                                                            <div class="item-title color-gray">Select from your properties</div>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                                {% else %}
+                                                    {{field}}
+                                                {% endif %}
+                                                    
+                                                
+                                            
+                                              
                                             </div>
                                         </div>
                                     </li>
@@ -85,6 +112,8 @@
 {% block landlordJs %}
 <!-- <script src="{% static '/plugins/select2/js/select2.js' %}"></script> -->
 <script>
+
+    
     $('a.home-tab').addClass('tab-link-active');
     $('a.home-tab i.f7-icons').addClass('size-40');
     $('.tab-link-highlight').remove();
