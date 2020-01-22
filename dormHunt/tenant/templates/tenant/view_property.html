@@ -185,83 +185,99 @@
         <div class="col-100 padding-top-half padding-left inclusions">
             {% if property.is_laundry %}
                 <i class="fas fa-check padding-right"></i>
+                Laundry Area 
+                <br>
             {% endif %}
-            Laundry Area 
-            <br>
+            
             {% if property.is_parking %}
                 <i class="fas fa-check padding-right"></i>
+                Parking
+                <br>
             {% endif %}
-            Parking
-            <br>
+           
             {% if property.is_storage %}
                 <i class="fas fa-check padding-right"></i>
+                Storage
+                <br>
             {% endif %}
-            Storage
-            <br>
+            
             {% if property.is_air_conditioned %}
                 <i class="fas fa-check padding-right"></i>
+                Air conditioning
+                <br>
             {% endif %}
-            Air conditioning
-            <br>
+            
             {% if property.is_ceiling_fans %}
                 <i class="fas fa-check padding-right"></i>
+                Ceiling Fans
+                <br>
             {% endif %}
-            Ceiling Fans
-            <br>
+            
+            
             {% if property.is_sink %}
                 <i class="fas fa-check padding-right"></i>
+                Sink
+                <br>
             {% endif %}
-            Sink
-            <br>
+            
             {% if property.is_garbage_disposal %}
                 <i class="fas fa-check padding-right"></i>
+                Garbage Disposal System
+                <br>
             {% endif %}
-            Garbage Disposal System
-            <br>
+            
             {% if property.is_hardwood_floors %}
                 <i class="fas fa-check padding-right"></i>
+                Hardwood floors
+                <br>
             {% endif %}
-            Hardwood floors
-            <br>
+            
             {% if property.is_internet%}
                 <i class="fas fa-check padding-right"></i>
+                Internet
+                <br>
             {% endif %}
-            Internet
-            <br>
+            
             {% if property.is_microwave %}
                 <i class="fas fa-check padding-right"></i>
+                Microwave
+                <br>
             {% endif %}
-            Microwave
-            <br>
+            
             {% if property.is_refrigerator %}
                 <i class="fas fa-check padding-right"></i>
+                Refrigerator
+                <br>
             {% endif %}
-            Refrigerator
-            <br>
+
+
             {% if property.is_stove %}
                 <i class="fas fa-check padding-right"></i>
+                Stove
+                <br>
             {% endif %}
-            Stove
-            <br>
+           
             {% if property.is_telephone %}
                 <i class="fas fa-check padding-right"></i>
+                Telephone
+                <br>
             {% endif %}
-            Telephone
-            <br>
+            
+            
             {% if property.is_tile %}
-                <i class="fas fa-check padding-right"></i>
+                <i class="fas fa-check padding-right"></i>Tile
+                <br>
             {% endif %}
-            Tile
-            <br>
+            
+        
             {% if property.is_window_covering %}
-                <i class="fas fa-check padding-right"></i>
+                <i class="fas fa-check padding-right"></i>Window Coverings
+                <br>
             {% endif %}
-            Window Coverings
-            <br>
+
             {% if property.is_elevator %}
-                <i class="fas fa-check padding-right"></i>
+                <i class="fas fa-check padding-right"></i>Elevator
             {% endif %}
-            Elevator
         </div><!--col-100 end-->
     </div><!--row end-->
     <!-- SECTION Features and Amenities end-->
@@ -317,4 +333,14 @@
 
 </div>
 {% endblock home_content %}
+
+
+{% block homeJs %}
+    <script src="{% static '/plugins/jquery/jquery.js' %}"></script>
+    <script src="{% static '/tenant/js/tenant.js' %}"></script>
+    <script>
+        $('a.search-tab').addClass('tab-link-active');
+        $('.tab-link-highlight').remove();
+    </script>
+{% endblock homeJs %}
     

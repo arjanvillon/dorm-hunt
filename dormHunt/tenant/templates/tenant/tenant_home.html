@@ -147,6 +147,13 @@
 .on-hover {
     background: rgba(0, 0, 0, 0.75);
 }
+
+.text-capitalize {
+  text-transform: capitalize;
+}
+.text-medium {
+  font-size: large;
+}
 </style>
 {% endblock css %}
     
@@ -181,10 +188,10 @@
                         </div>
                     </div><!--col-20-->
                     <div class="col-50 no-padding no-margin align-self-center">
-                        <span class="dorm-name">Blackclaws</span>
+                        <span class="dorm-name">{{ details.dorm }}</span>
                     </div><!--col-50-->
                     <div class="col-30 align-self-center">
-                      <a href="#" class="link external text-color-white"><i class="f7-icons text-size-35">envelope_circle_fill</i></a>
+                      <a href="{% url 'tenant:messages' %}" class="link external text-color-white"><i class="f7-icons text-size-35">envelope_circle_fill</i></a>
                       <a class="sheet-open text-color-white" href="#" data-sheet=".my-sheet-swipe-to-close"><i class="f7-icons text-size-35">info_circle_fill</i></a>
                         
                     </div><!--col-50-->
@@ -197,14 +204,114 @@
     <div class="sheet-modal my-sheet-swipe-to-close" style="height:auto; --f7-sheet-bg-color: #fff;">
       <div class="sheet-modal-inner">
         <div class="page-content">
-          <div class="block-title block-title-large">Dorm Info</div>
+          <div class="block-title block-title-large">{{details.dorm}} <span class="float-right text-medium padding-top-half"><strong>Php {{ details.dorm.price }}</strong></span></div>
           <div class="block">
-            <p><b>dorm info</b></p>
-            <p>Dorm info...</p>
-          </div>
-        </div>
-      </div>
-    </div>
+            <p><b>{{details.dorm.description}}</b></p>
+            
+            <p>Contact Information: </p>
+              <div>Landlord: {{ details.dorm.owner }}</div>
+              <div> Number: {{ details.dorm.number }}</div>
+              <div>Email: {{ details.dorm.email }}</div>
+              
+            <p>Dorm Information: </p>
+             <!-- SECTION Important Features -->
+            <div class="row padding-top">
+              <div class="col-33">
+                  <!-- SECTION Feature 1 -->
+                  <div class="row text-align-center">
+                      <div class="col-100">
+                          <span class="feature-name">TYPE</span>
+                      </div><!--col-100 end-->
+                      <div class="col-100 padding-vertical-half">
+                          <span class="feature-icon"><img src="{% static 'tenant/images/features/home.png' %}" alt="type image"></span>
+                      </div><!--col-100 end-->
+                      <div class="col-100">
+                          <span class="feature-detail">{{ details.dorm.property_type }}</span>
+                      </div><!--col-100 end-->
+                  </div><!--row end-->
+                  <!-- SECTION Feature 1 end -->
+              </div><!--col-33 end-->
+              <div class="col-33">
+                  <!-- SECTION Feature 2 -->
+                  <div class="row text-align-center">
+                      <div class="col-100">
+                          <span class="feature-name">BEDS</span>
+                      </div><!--col-100 end-->
+                      <div class="col-100 padding-vertical-half">
+                          <span class="feature-icon"><img src="{% static 'tenant/images/features/bed.png' %}" alt="bed image"></span>
+                      </div><!--col-100 end-->
+                      <div class="col-100">
+                          <span class="feature-detail">{{ details.dorm..capacity }}</span>
+                      </div><!--col-100 end-->
+                  </div><!--row end-->
+                  <!-- SECTION Feature 2 end -->
+              </div><!--col-33 end-->
+              <div class="col-33">
+                  <!-- SECTION Feature 3 -->
+                  <div class="row text-align-center">
+                      <div class="col-100">
+                          <span class="feature-name">BATHS</span>
+                      </div><!--col-100 end-->
+                      <div class="col-100 padding-vertical-half">
+                          <span class="feature-icon"><img src="{% static 'tenant/images/features/water-drop.png' %}" alt="bath image"></span>
+                      </div><!--col-100 end-->
+                      <div class="col-100">
+                          <span class="feature-detail">{{ details.dorm.bathroom }}</span>
+                      </div><!--col-100 end-->
+                  </div><!--row end-->
+                  <!-- SECTION Feature 3 end -->
+              </div><!--col-33 end-->
+          </div><!--row end-->
+          <!-- SECTION Second row -->
+          <div class="row padding-top ">
+              <div class="col-50 text-align-center justify-content-center">
+                  <!-- SECTION Feature 1 -->
+                  <div class="row ">
+                      <div class="col-100">
+                          <span class="feature-name-two">Furnished</span>
+                      </div><!--col-100 end-->
+                      <div class="col-50 padding-top-half text-align-right">
+                          <span class="feature-icon"><img src="{% static 'tenant/images/features/shelf.png' %}" alt="furnished image"></span>
+                      </div><!--col-100 end-->
+                      <div class="col-50 justify-content-center text-align-left padding-top">
+                          <span class="feature-answer-two">
+                              {% if details.dorm.is_furnished %}
+                                  Yes
+                              {% else %}
+                                  No
+                              {% endif %}
+                          </span>
+                      </div><!--col-100 end-->
+                  </div><!--row end-->
+                  <!-- SECTION Feature 1 end -->
+              </div><!--col-50 end-->
+              <div class="col-50 text-align-center justify-content-center">
+                  <!-- SECTION Feature 2 -->
+                  <div class="row ">
+                      <div class="col-100">
+                          <span class="feature-name-two">Pets Allowed</span>
+                      </div><!--col-100 end-->
+                      <div class="col-50 padding-top-half text-align-right">
+                          <span class="feature-icon"><img src="{% static 'tenant/images/features/paw.png' %}" alt="furnished image"></span>
+                      </div><!--col-100 end-->
+                      <div class="col-50 justify-content-center text-align-left padding-top">
+                          <span class="feature-answer-two">
+                              {% if details.dorm.is_pets_allowed %}
+                                  Yes
+                              {% else %}
+                                  No
+                              {% endif %}
+                          </span>
+                      </div><!--col-100 end-->
+                  </div><!--row end-->
+                  <!-- SECTION Feature 2 end -->
+              </div><!--col-50 end-->
+          </div><!--row end-->
+          <!-- SECTION Important Features -->
+          </div><!--block end-->
+        </div><!--page-content end-->
+      </div><!--sheet modal inner end-->
+    </div><!--sheet modal end-->
 
 
     <!-- SECTION Room Information -->
@@ -212,10 +319,9 @@
         <div class="col-100 padding-horizontal padding-top">
             <div class="room-info-container padding">
                 <span class="room-title">Room Information</span>
-                <div class="room-content padding-left padding-top-half">
+                <div class="room-content padding-left padding-top-half text-capitalize">
                     <i class="fas fa-door-open"></i>
-                    Room 102 Bed A
-                    {{ addtenant.room_description }}
+                    {{ details.room_description }}
                 </div><!--room-content end --> 
             </div><!--dorm-info-container end-->
         </div><!--col-100-->
