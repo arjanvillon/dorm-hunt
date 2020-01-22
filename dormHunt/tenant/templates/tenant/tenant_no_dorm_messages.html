@@ -3,6 +3,99 @@
 
 
 {% block home_content %}
-    no dorm messages
+    <div class="page-content">
+        <div class="block">
+            <!-- SECTION User Greetings and User Icon -->
+            <div class="row">
+                <div class="col-25">
+
+                </div>
+                <div class="col-50">
+                    <h1>Messages</h1>
+                </div>
+                <div class="col-25">
+                    <div class="float-right">
+                        <div class="float-right margin-right margin-top">
+                            <a href="{% url 'tenant:messages' %}" class="link external">
+                                <img src="{{ user.userprofile.picture55.url }}" alt="View User" style="border-radius: 50%;">
+                            </a>
+                        </div>
+                    </div>
+                </div><!--col-100 end-->
+            </div><!--row end--> 
+
+            {% if not favorites %}
+                <!-- SECTION Image -->
+                <div class="row padding-vertical">
+                    <div class="col-100 text-align-center">
+                        <img src="{% static 'home/images/empty-messages.png' %}" alt="Empty Message Image">
+                    </div>
+                </div><!--row end-->
+                <!-- SECTION Empty Home -->
+                <div class="row text-align-center">
+                    <div class="col-100">
+                        <h2>No Messages</h2>
+                    </div>
+                
+                </div><!--end row-->
+                <div class="row">
+                    <div class="col-100">
+                        
+                        <div class="text-align-center home-subtext margin-horizontal no-margin margin-bottom-half">
+                            Be part of a messaging group when you are added to a dorm. Go and search now!
+                        </div>
+                    </div>
+                </div>
+                <!-- SECTION Button -->
+                <div class="row color-scheme1">
+                    <div class="col-100 text-align-center no-margin-right no-padding-right">
+                        <a href="{% url 'tenant:dorm_search' order=0 %}" class="link external">
+                            <span class="search-text">Search for dormitory &#8921;</span>
+                        </a>
+                    </div>
+                </div><!--row end-->
+
+            {% else %}
+                <div class="list">
+
+                <ul>
+                {% for property in favorites %}
+                    <div class="line-fave">
+                        <li class="item-content">
+                            <div class="item-inner">
+                                <a href="{% url 'tenant:view_property' pk=property.pk %}" class="link external">
+                                    <div class="row">
+                                        <div class="col-30">
+                                            <img src="{{ property.thumbnail.url }}" alt="Property Image-{{ property.name }}" class="property-image-default">
+                                        </div>
+                                        <div class="col-70">
+                                            <div class="item-title">{{ property.name }}</div>
+                                            <div class="property-support-label">{{ property.tagline }}</div>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                        </li>
+
+                    </div>
+                {% endfor %}
+                </ul>
+                </div>
+
+            {% endif %}
+                
+
+        </div><!--block end-->
+    </div>
 {% endblock home_content %}
+
+
+{% block homeJs %}
+    <script src="{% static '/plugins/jquery/jquery.js' %}"></script>
+    <script>
+        $('a.message-tab').addClass('tab-link-active');
+        $('.tab-link-highlight').remove();
+    </script>
+{% endblock homeJs %}
+    
     

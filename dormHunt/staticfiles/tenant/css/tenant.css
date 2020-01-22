@@ -330,9 +330,22 @@ img.home-dorm {
     background-color: #fff;
     border-radius: 14px;
     box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+    max-height: 100px;
+    height: 100px;
 }
 
 .room-info-container:hover {
+    box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.5);
+}
+
+.reminder-info-container {
+    background-color: #fff;
+    border-radius: 14px;
+    box-shadow: 0px 6px 10px rgba(0, 0, 0, 0.3);
+
+}
+
+.reminder-info-container:hover {
     box-shadow: 0px 6px 8px rgba(0, 0, 0, 0.5);
 }
 

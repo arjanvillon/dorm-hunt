@@ -168,7 +168,7 @@
             <div class="float-right">
                 <div class="float-right margin-right margin-top">
                     <a href="{% url 'user:user_profile' pk=user.pk %}" class="link external">
-                        <img src="{% static 'home/images/user-icon.png' %}" alt="View User">
+                        <img src="{{ user.userprofile.picture55.url }}" alt="View User" style="border-radius: 50%;">
                     </a>
                 </div>
             </div>
@@ -184,7 +184,7 @@
                 <div class="row">
                     <div class="col-20">
                         <div class="image-cropper align-self-center">
-                            <img class="home-dorm" src="{% static 'landlord/images/properties/dorm-sample.jpg' %}" class="rounded" />
+                            <img class="home-dorm" src="{{ details.dorm.thumbnail.url }}" class="rounded" />
                         </div>
                     </div><!--col-20-->
                     <div class="col-50 no-padding no-margin align-self-center">
@@ -253,7 +253,7 @@
                           <span class="feature-icon"><img src="{% static 'tenant/images/features/bed.png' %}" alt="bed image"></span>
                       </div><!--col-100 end-->
                       <div class="col-100">
-                          <span class="feature-detail">{{ details.dorm.capacity }}</span>
+                          <span class="feature-detail">{{ details.dorm.slots }} / {{ details.dorm.capacity }} slots left</span>
                       </div><!--col-100 end-->
                   </div><!--row end-->
                   <!-- SECTION Feature 2 end -->
@@ -330,9 +330,15 @@
       <div class="col-50">
         <div class="room-info-container padding">
           <span class="room-title">Payment Details</span>
-          <div class="room-content padding-left padding-top-half text-capitalize">
-              <i class="fas fa-calendar-alt"></i>
-              Next Payment due on January 21, 2020
+          <div class="room-content padding-left-half padding-top-half text-capitalize">
+              
+              {% if details.is_paid %}
+                <p class="no-margin"><i class="fas fa-check"></i> You already paid your rent! Awesome</p>
+              {% else %}
+                <p class="no-margin"><i class="fas fa-calendar-alt"></i> You haven't paid your rent yet! <br> Balance: {{details.balance}}</p>
+              {% endif %}
+                
+              
           </div><!--room-content end --> 
       </div><!--dorm-info-container end-->
       </div><!--col-50 end-->

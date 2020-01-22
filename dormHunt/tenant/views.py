@@ -35,9 +35,6 @@ class has_dorm(TemplateView):
         
         user = AddTenant.objects.get(account_user=self.request.user.email)
         reminders = Reminder.objects.filter(property_name=user.dorm, next_service=date.today())
-        print(user.dorm)
-        print(reminders)
-        
 
         context = super(has_dorm, self).get_context_data(**kwargs)
         context['details'] = details
@@ -131,6 +128,14 @@ class ViewPropertyDetailView(DetailView):
     template_name = 'tenant/view_property.html'
 
     def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        try:
+            tenant = AddTenant.objects.get(account=self.request.user)
+            context['tenant'] = tenant
+        except ObjectDoesNotExist:
+            pass
+
         pk = self.kwargs['pk']
         query = Property.objects.get(pk=pk)
         users = query.favorite.all()
@@ -139,7 +144,7 @@ class ViewPropertyDetailView(DetailView):
         query.views += 1
         query.save()
 
-        context = super().get_context_data(**kwargs)
+
         context["users"] = users
         return context
 

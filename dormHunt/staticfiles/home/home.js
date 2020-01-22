@@ -4,7 +4,7 @@ var app = new Framework7({
   // App Name
   name: 'My App',
   // App id
-  id: 'com.myapp.test',
+  id: 'com.dormhunt.app',
   // Enable swipe panel
   panel: {
     swipe: 'left',
@@ -14,6 +14,9 @@ var app = new Framework7({
     {
       path: '/about/',
       url: 'about.html',
+      options: {
+        transition: 'f7-cover',
+      },
     },
     {
       // Page main route

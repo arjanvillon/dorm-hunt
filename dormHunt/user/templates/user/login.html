@@ -41,21 +41,21 @@
         </div><!--col-100-->
     </div><!--row end-->
 <!-- SECTION Create Account and Forgot Password -->
-<div class="row keep-bottom">
-    <div class="col-50">
-        <div class="float-left">
+<div class="row keep-bottom text-align-center">
+    <div class="col-100">
+        <div>
             <a class="link external" data-transistion="f7-flip" href="{% url 'user:register' %}">
                 <span class="block-title signin-link">Create Account</span>
             </a>
+        </div> 
+    </div>
+    <!-- <div class="col-50 float-right">
+        <div class="float-right">
+            <a class="link external" data-transistion="f7-flip" href="{% url 'user:user_forgot_password' %}">
+                <span class="block-title signin-link">Forgot Password</span>
+            </a>
         </div>
-</div>
-<div class="col-50 float-right">
-    <div class="float-right">
-        <a class="link external" data-transistion="f7-flip" href="{% url 'user:user_forgot_password' %}">
-            <span class="block-title signin-link">Forgot Password</span>
-        </a>
-    </div>
-    </div>
+    </div> -->
 </div>
     
 {% endblock content %}

@@ -118,7 +118,7 @@
                     <div class="float-right">
                         <div class="float-right margin-right margin-top">
                             <a href="{% url 'user:user_profile' pk=user.pk %}" class="link external">
-                                <img src="{% static 'home/images/user-icon.png' %}" alt="View User">
+                                <img src="{{ user.userprofile.picture55.url }}" alt="View User" style="border-radius: 50%;">
                             </a>
                         </div>
                     </div>
@@ -132,7 +132,7 @@
                     <a href="{% url 'landlord:add_tenant' %}" class="link external">
                         <div class="row">
                             <div class="col-100">
-                                <img src="{% static 'landlord/images/buttons/add_new_tenant.png' %}" alt="Add New Tenant">
+                                <img src="{% static 'landlord/images/buttons/add_new_tenant.png' %}" alt="Add New Tenant" style="border-radius: 50%;">
                             </div><!--col-100 end-->
                             <div class="col-100">
                                 <span class="quick-btn-text">
@@ -240,7 +240,7 @@
                                     <br>
                                     <strong>Capacity: </strong>
                                     {{ property.capacity }}
-                                    <a href="" class="view-slots-left">10 slots left</a>
+                                    <a href="" class="view-slots-left">{{ property.slots }} slots left</a>
                                 </div><!-- end of sub accordion item body contents -->
                             </div><!-- end of sub accordion item body -->
                         </div><!-- end of sub accordion item -->
@@ -256,8 +256,91 @@
 
                     </div>
               </div><!--accordion item end-->
+
+              <!-- SECTION Tenant List-->
+              <div class="accordion js-accordion padding-top-half">
+                <div class="accordion__item js-accordion-item active">
+                  <div class="accordion-header js-accordion-header properties">TENANTS <span class="badge color-blue">{{ property_numbers }}</span></div> 
+                <div class="accordion-body js-accordion-body">
+                  <!-- <div class="accordion-body__contents">
+                        <strong>Total Properties : </strong>21
+                  </div> -->
+                    <div class="accordion js-accordion">
+                        {% for property in property_list %}     
+                        <div class="accordion__item js-accordion-item">
+                          <div class="accordion-header js-accordion-header color-scheme1">{{ property.name }}</div> 
+                          <div class="accordion-body js-accordion-body">
+                              <div class="accordion-body__contents">
+                                  
+                                  {% if property.addtenant_set.all %}
+                                    {% for tenant in property.addtenant_set.all %}
+                                      <div class="row padding" style="border-bottom: 3px solid #c4c4c4;">
+                                        <div class="col-70">
+                                          <a class="sheet-open tenant-sheet" href="#" data-sheet=".my-sheet-swipe-to-step-profile">
+                                            {% if tenant.account.userprofile.last_name and tenant.account.userprofile.first_name %}
+                                              {{tenant.account.userprofile.last_name }}, {{tenant.account.userprofile.first_name }} 
+                                            {% else %}
+                                              {{tenant.account.email}}
+                                            {% endif %}   
+                                          </a>
+                                          <!-- Swipe to step sheet -->
+                                          <div class="sheet-modal my-sheet-swipe-to-step-profile" style="height:auto; --f7-sheet-bg-color: #fff;">
+                                            <div class="sheet-modal-inner">
+                                              <div class="sheet-modal-swipe-step">
+                                                  <div class="display-flex padding justify-content-space-between align-items-center">
+                                                    <div class="block-title block-title-medium margin-half "><b>
+                                                      {{ tenant.account.userprofile.first_name }} {{tenant.account.userprofile.last_name }}</b></div>
+                                                    <div class="float-right" ><img src="{{ tenant.account.userprofile.picture55.url }}" alt="" class="margin-half" style="border-radius: 50%;"></div>
+                                                  </div>
+                                                  <div class="padding-horizontal padding-bottom">
+                                                    <p class="no-margin"><b>Email: </b><b class="color-scheme1">{{ tenant.account.email }}</b></p>
+                                                    <p class="no-margin"><b>Phone Number: </b><b class="color-scheme1">{{ tenant.account.userprofile.number }}</b></p>
+                                                    <p class="no-margin"><b>Guardian's Name: </b><b class="color-scheme1">{{ tenant.account.userprofile.emergency_name }}</b></p>
+                                                    <p class="no-margin"><b>Guardian's Number: </b><b class="color-scheme1">{{ tenant.account.userprofile.emergency_phone }}</b></p>
+                                                  </div>
+                                                  <div class="row">
+                                                    <div class="col-100 padding">
+                                                        <a class="link external col-100" href="#" style="width: 100%;">
+                                                            <button class="col button button-raised button-fill button-large color-red" style="width: 100%;">Disapprove</button>
+                                                        </a>
+                                                    </div><!--col-50 end-->
+                                                </div><!--row end-->
+                                              </div>
+                                            </div>
+                                          </div>
+                                        
+                                        </div>
+                                        <div class="col-30">
+                                          
+                                          <span class="badge color-green padding-horizontal-half">{{ tenant.room_description }}</span>
+                                            
+                                        </div>
+                                      </div><!-- end of sub accordion item body contents -->
+
+                                    {% endfor %}
+                                  {% else %}
+                                    no tenant                                  
+                                  {% endif %}
+                                    
+
+                                    
+                                </div><!-- end of sub accordion item body contents -->
+                                
+                              </div><!-- end of sub accordion item body -->
+                          </div><!-- end of sub accordion item -->
+
+                        {% endfor %}
+                    </div>
+                  </div><!-- end of accordion body -->
+                </div><!-- end of accordion item -->
+
+              </div><!--accordion item end-->
+            </div><!--accordion end-->
+          <!-- SECTION Tenant List -->
+
             </div><!--accordion end-->
           <!-- SECTION Property List -->
+            
         </div><!--block end-->
     </div><!--page-content-->
 </div><!--swipeable wrap-->
@@ -322,6 +405,20 @@ var accordion = (function(){
 $(document).ready(function(){
   accordion.init({ speed: 500, oneOpen: true });
 });
+
+    // Create swipe-to-step Sheet
+app.sheet.create({
+  el: '.my-sheet-swipe-to-step-profile',
+  swipeToClose: true,
+  swipeToStep: true,
+  backdrop: true,
+  on:{
+    opened: function(){
+      console.log(document.getElementsByClassName('.my-sheet-swipe-to-step-profile').innerHTML)
+    }
+  }
+});
+
   
 </script>
 {% endblock landlordJs %}

@@ -96,7 +96,7 @@
                     <span class="feature-icon"><img src="{% static 'tenant/images/features/bed.png' %}" alt="bed image"></span>
                 </div><!--col-100 end-->
                 <div class="col-100">
-                    <span class="feature-detail">{{ property.capacity }}</span>
+                    <span class="feature-detail">{{ property.slots }} / {{ property.capacity }} left</span>
                 </div><!--col-100 end-->
             </div><!--row end-->
             <!-- SECTION Feature 2 end -->
@@ -309,7 +309,7 @@
             <span class="feature-name-two">CONTACT PERSON</span>
         </div><!--col-100 end-->
         <div class="col-40 text-align-center padding">
-            <img src="{{ property.owner.userprofile.picture.url }}" alt="{{ property.name }}" width="75" height="75">
+            <img src="{{ property.owner.userprofile.picture.url }}" alt="{{ property.name }}" width="75" height="75" style="border-radius: 50%;">
         </div><!--col-30 end-->
         <div class="col-60 padding">
             <span class="contact-property-name">{{ property.name }}</span>
@@ -320,13 +320,30 @@
     <!-- SECTION Contact Person end -->
 
     <!-- SECTION Apply Button -->
-    <div class="row text-align-center">
-        <div class="col-100 padding">
-            <a class="link external" href="{% url 'tenant:application_form' pk=property.pk %}">
-                <button class="button button-round apply-btn">Apply Now</button>
-            </a>
-        </div><!--col-100-->
-    </div><!--row end-->
+    
+    {% if tenant.account %}
+        <div class="row">
+            <div class="col-100 margin padding-left" style="background-color: #EA4D5E; color: #fff;border-radius: 15px;">
+                <h5>You are currently applied to a dorm</h5>
+            </div><!--col-100 end-->
+        </div><!--row end-->
+    {% elif property.slots == 0 %}
+        <div class="row">
+            <div class="col-100 margin padding-left" style="background-color: #EA4D5E; color: #fff;border-radius: 15px;">
+                <h5>This dorm is not accepting applications</h5>
+            </div><!--col-100 end-->
+        </div><!--row end-->
+    {% else %}
+        <div class="row text-align-center">
+            <div class="col-100 padding">
+                <a class="link external" href="{% url 'tenant:application_form' pk=property.pk %}">
+                    <button class="button button-round apply-btn">Apply Now</button>
+                </a>
+            </div><!--col-100-->
+        </div><!--row end-->
+    {% endif %}
+        
+
     <!-- SECTION Apply Button end -->
 
 

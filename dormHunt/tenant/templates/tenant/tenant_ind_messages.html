@@ -181,6 +181,7 @@
         // var data = JSON.parse(e.data);
         // var message = data['message'];
         var author = data['author'];
+        var picture = data['picture'];
 
         var msg = document.createElement('div');
         var msgImage = document.createElement('img');
@@ -241,7 +242,8 @@
             }
             
             
-            msgImage.src = "{{ user.userprofile.picture.url|escapejs }}";
+            // msgImage.src = "{{ user.userprofile.picture55.url|escapejs }}";
+            msgImage.src = picture;
             msg.appendChild(msgImage);
             
             msgBubble.appendChild(msgText);
