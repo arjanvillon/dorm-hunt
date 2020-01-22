@@ -2,7 +2,6 @@ import datetime
 from django.utils.translation import gettext as _
 
 from django.db import models
-from user.models import User
 from django.utils import timezone
 from django.urls import reverse
 
@@ -54,7 +53,7 @@ class Property(models.Model):
     is_elevator         = models.BooleanField(default=False)
 
     terms_of_agreement  = models.TextField(blank=True)
-    views               = models.IntegerField()
+    views               = models.IntegerField(null=True)
     # Geopy
     latitude            = models.FloatField(null=True, blank=True)
     longitude           = models.FloatField(null=True, blank=True)
@@ -64,7 +63,7 @@ class Property(models.Model):
         return self.name
 
     def get_absolute_url(self):
-        return reverse("landlord:landlord_home")
+        return reverse("landlord:property_detail", kwargs={"pk": self.pk})
 
 class Reminder(models.Model):
     property_name       = models.ForeignKey(Property, on_delete=models.CASCADE)

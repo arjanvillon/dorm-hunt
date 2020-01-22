@@ -12,7 +12,7 @@ $(document).ready(function(){
     $('#id_latitude').parent().parent().parent().hide()
     $('#id_longitude').parent().parent().parent().hide();
     
-    $('#id_address').attr('autocomplete', 'false');
+    $('#id_address').attr('autocomplete', 'off');
     $('#id_address').attr('type', 'search');
 });
 
@@ -20,7 +20,7 @@ $(document).ready(function(){
 var address = places({
     appId: 'plG0SZE6PIBV',
     apiKey: 'dea587bdeb69aa54404efbc5b73b6f62',
-    container: document.getElementById('id_address'),
+    container: document.querySelector('#id_address'),
 });
 
 // const fixedOptions = {

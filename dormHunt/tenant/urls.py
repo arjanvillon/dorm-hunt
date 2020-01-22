@@ -22,5 +22,7 @@ urlpatterns = [
 
     # NOTE Temporary, created so i can view my template
     path('search/property/application/<int:pk>', views.Application.as_view(), name='application_form'),
-    path('dorm/messages/individual', views.TenantIndMessages.as_view(), name='individual_messages'),
+    # path('dorm/messages/individual', views.TenantIndMessages.as_view(), name='individual_messages'),
+    path('dorm/messages/<str:room_name>/', views.tenant_ind_messages, name='room'),
+
 ]

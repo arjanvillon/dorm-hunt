@@ -15,7 +15,7 @@ from landlord.forms import PropertyForm, ReminderForm, AddTenantForm
 #SECTION Import Models
 from landlord.models import Property, Reminder, AddTenant
 from user.models import User, UserProfile
-from tenant.models import Application
+from tenant.models import Application, MessageRoom
 
 # Create your views here.
 class LandlordListView(ListView):
@@ -39,25 +39,27 @@ class PropertyCreateView(CreateView):
 
     def form_valid(self, form):
         form.instance.owner = self.request.user
-        # Address
-        # address = "{0}, {1}, {2}, Metro Manila, {3}, Philippines".format(form.instance.street, form.instance.barangay, form.instance.city, form.instance.zip_code)
-        # address = form.instance.address
-        # # Function to store Latitude and Longitude
-        # geolocator = Nominatim(user_agent="dormHunt", timeout=None)
-        # location = geolocator.geocode(address)
-
-        # if location.latitude != None and location.longitude != None:
-        #     form.instance.latitude = location.latitude
-        #     form.instance.longitude = location.longitude
-        # else:
-        #     form.instance.latitude = None
-        #     form.instance.longitude = None
-
-        # form.instance.address = "{0} {1}".format(form.instance.house_number, address)
         return super().form_valid(form)
 
 class PropertyDetailView(DetailView):
     model = Property
+
+    def get_context_data(self, **kwargs):
+        pk = self.kwargs['pk']
+        this_property = get_object_or_404(Property, pk=pk)
+        try:
+            room = MessageRoom.objects.get(dorm=this_property)
+        except ObjectDoesNotExist:
+            room_name = this_property.name.replace(' ', '').lower()
+            print(room_name)
+
+            room = MessageRoom.objects.create(name=room_name, dorm=this_property)
+            room.members.add(this_property.owner)
+
+        context = super().get_context_data(**kwargs)
+        context["room"] = room 
+        return context
+    
 
 
 class LandlordMessages(ListView):
@@ -70,21 +72,24 @@ class LandlordMessages(ListView):
     def get_context_data(self, **kwargs):
         properties = self.request.user.property_set.all()
         application_list = []
+        room_list = []
 
         try:
             for p in properties:
                 applications = Application.objects.filter(dorm=p, is_approved=False, is_disapproved=False)
+                room = MessageRoom.objects.filter(dorm=p)
+                room_list.append(room)
                 for application in applications:
                     application_list.append(application)
             print(len(application_list))
             application_count = len(application_list)
-
         except ObjectDoesNotExist:
             application_list = ''
 
         context = super().get_context_data(**kwargs)
         context["application_list"] = application_list
         context["application_count"] = application_count
+        context["room_list"] = room_list
         return context
 
 def approve_application(request, pk):
@@ -115,6 +120,12 @@ class TenantAddCreateView(CreateView):
         
         try:
             query = User.objects.get(email=form.instance.account_user)
+            this_property = Property.objects.get(pk=form.instance.dorm.pk)
+            print(this_property)
+            room = MessageRoom.objects.get(dorm=this_property)
+            room.members.add(query)
+            print(room.members.all())
+
         except ObjectDoesNotExist:
             messages.add_message(self.request, messages.INFO, 'The email you entered is not yet a user of this application. Do advise your tenant to sign up to our application for your convenience. Thank you!')
             return redirect('landlord:add_tenant')

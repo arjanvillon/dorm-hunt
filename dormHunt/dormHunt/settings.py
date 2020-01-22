@@ -11,11 +11,15 @@ https://docs.djangoproject.com/en/2.2/ref/settings/
 """
 
 import os
+import asyncio
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # STATIC_DIR = os.path.join(BASE_DIR, 'static')
 # MEDIA_DIR = os.path.join(BASE_DIR, 'media')
+
+#error with asyncio FIXME
+asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
 
 
 
@@ -34,6 +38,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'channels',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -77,7 +82,15 @@ TEMPLATES = [
 AUTH_USER_MODEL = 'user.User'
 
 WSGI_APPLICATION = 'dormHunt.wsgi.application'
-
+ASGI_APPLICATION = 'dormHunt.routing.application'
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels_redis.core.RedisChannelLayer',
+        'CONFIG': {
+            "hosts": [('127.0.0.1', 6379)],
+        },
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/2.2/ref/settings/#databases
