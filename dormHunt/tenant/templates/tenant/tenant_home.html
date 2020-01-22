@@ -209,9 +209,21 @@
             <p><b>{{details.dorm.description}}</b></p>
             
             <p>Contact Information: </p>
-              <div>Landlord: {{ details.dorm.owner }}</div>
-              <div> Number: {{ details.dorm.number }}</div>
-              <div>Email: {{ details.dorm.email }}</div>
+              
+              {% if details.dorm.owner.userprofile.first_name and details.dorm.owner.userprofile.last_name %}
+                <div>Landlord: {{ details.dorm.owner.userprofile.first_name }} {{ details.dorm.owner.userprofile.last_name }}</div>
+              {% else %}
+                <div>Landlord: {{ details.dorm.owner }}</div>  
+              {% endif %}
+                
+              
+              {% if details.dorm.number %}
+                <div> Number: {{ details.dorm.number }}</div>              
+              {% endif %}
+
+
+                
+              <div>Email: {{ details.dorm.owner.email }}</div>
               
             <p>Dorm Information: </p>
              <!-- SECTION Important Features -->
@@ -378,7 +390,7 @@
     <!-- SECTION Payment Information end -->
 
     <!-- SECTION Circular Menu -->
-    <div id="circularMenu" class="circular-menu">
+    <!-- <div id="circularMenu" class="circular-menu">
 
         <a class="floating-btn" onclick="document.getElementById('circularMenu').classList.toggle('active');">
           <i class="fa fa-plus"></i>
@@ -387,11 +399,9 @@
         <menu class="items-wrapper">
           <a href="{% url 'tenant:request' %}" class="link external menu-item fas fa-tools"></a>
           <a href="#" class="menu-item fas fa-broom"></a>
-          <!-- <a href="#" class="menu-item fas fa-google-plus"></a>
-          <a href="#" class="menu-item fas fa-linkedin"></a> -->
         </menu>
       
-      </div>
+      </div> -->
     <!-- SECTION Circular Menu end-->
 </div><!--page-content end-->
 {% endblock home_content %}

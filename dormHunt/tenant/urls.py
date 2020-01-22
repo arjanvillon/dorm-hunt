@@ -13,6 +13,7 @@ urlpatterns = [
     path('messages/', views.Messages_Tenant, name='messages'),
     path('no-dorm/messages', views.No_Dorm_Messages.as_view(), name='no_dorm-messages'),
     path('dorm/messages', views.Has_Dorm_Messages.as_view(), name='has_dorm-messages'),
+    path('dorm/messages/list', views.messages_list, name='messages_list'),
 
     path('favorites/', views.TenantFavorites.as_view(), name='tenant_favorites'),
     path('search/<int:order>/', views.TenantDormSearch.as_view(), name='dorm_search'),

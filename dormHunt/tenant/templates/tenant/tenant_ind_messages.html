@@ -26,6 +26,27 @@
         .toolbar-bottom{
             display: none !important;
         }
+        .send-name, .receive-name {
+            display: none !important;
+        }
+        /* .remove-name {
+            display: none !important;
+        } */
+        .display-name {
+            display: inline-block !important;
+        }
+        #chat-message-submit {
+            background: #007aff;
+            color: #fff;
+            border: 0;
+        }
+        .toolbar {
+            bottom: 0;
+            position: fixed;
+        }
+        .md .messagebar-area {
+            margin: 0 !important;
+        } 
     </style>
 {% endblock css %}
     
@@ -67,7 +88,7 @@
                              <b class="text-capitalize text-size-large">{{ room_name }}</b>
                          </div>
                          <div class="col-100">
-                             <span class="online-label">online</span>
+                             <span class="online-label"></span>
                          </div>
                      </div>
                      
@@ -80,29 +101,29 @@
  
     <!-- SECTION First Convo -->
     <!-- <div class="page"> -->
- 
     <div class="page-content messages-content no-padding">
         <div class="messages" id="chat-log">
             <!-- Messages -->
 
         </div>
     </div>
-    <div class="toolbar messagebar">
-        <div class="toolbar-inner">
-            <div class="messagebar-area">
-                <textarea id="chat-message-input" class="resizable" placeholder="Message"></textarea>
+</div><!--page-content end-->
+            <div class="toolbar messagebar">
+                <div class="toolbar-inner">
+                    <div class="messagebar-area">
+                        <textarea id="chat-message-input" class="resizable" placeholder="Message"></textarea>
+                    </div>
+                        <input id="chat-message-submit" type="button" class="link send-link" value="Send"></input>
+                </div>
             </div>
-            <input id="chat-message-submit" type="button" class="link send-link" value="Send"></input>
-        </div>
-    </div>
    <!-- </div> -->
     <!-- SECTION First Convo end -->
- </div><!--page-content end-->
 
 
 {% endblock home_content %}
 
 {% block homeJs %}
+<script src="{% static 'plugins/jquery/jquery.js' %}"></script>
 <script src="{% static 'tenant/js/reconnecting-websocket.js' %}"></script>
     
 <script>
@@ -115,6 +136,8 @@
 
     chatSocket.onopen = function(e){
         fetchMessages();
+        var scrollBottom = $(window).scrollTop() + $(window).height();
+        $('.page-content').animate({ scrollTop: $('.page-content').offset().top }, 'slow');
     }
 
     chatSocket.onmessage = function(e) {
@@ -165,35 +188,82 @@
         var msgContent = document.createElement('div');
         msgContent.setAttribute('class', 'message-content');
         msgName = document.createElement('div');
-        msgName.setAttribute('class', 'message-name');
+       
         var msgBubble = document.createElement('div');
         msgBubble.setAttribute('class', 'message-bubble');
         var msgText = document.createElement('div');
         msgText.setAttribute('class', 'message-text');
         msgText.textContent = data.content;
-
+        
+        
         if(author === username){
             msg.className = 'message message-sent';
-        } else {
-            msg.className = 'message message-received';
-        }
-        msgImage.src = "{{ user.userprofile.picture.url|escapejs }}";
-        msg.appendChild(msgImage);
+            authorSend = author;
+            msgName.textContent = authorSend;
+            msgName.setAttribute('class', 'message-name send-name');
+            
+            // to detect the 2nd to the last child
+            $('#chat-log div.message-sent:nth-last-of-type(1)').addClass('second_to_last');
+            $('#chat-log div.message-sent:nth-last-of-type(2)').removeClass('second_to_last');
+            // to get the last child
+            // $('#chat-log div.message-sent:last-child').find('.send-name').removeClass('send-name');
+            $('#chat-log div.message-sent').find('.send-name').removeClass('send-name');
+            
+            // var $content = $("#chat-log div.message-sent").filter(function() {
+                //     return $(this).contents().length === 1;
+                // }).find('.send-name').removeClass("send-name");
+                
+                // to detect the 2nd to the last child
+                if ( $('#chat-log div.message-sent:nth-last-of-type(2)').is('.message-sent') ) {
+                    $('#chat-log div.message-sent:nth-last-of-type(1)').find('.message-name').remove();
+                }
+                
+                
+            } else {
+                msg.className = 'message message-received';
+                authorReceived = author;
+                msgName.textContent = authorReceived;
+                msgName.setAttribute('class', 'message-name receive-name');
+                
+                // to detect the 2nd to the last child
+                $('#chat-log div.message-received:nth-last-of-type(1)').addClass('second_to_last');
+                $('#chat-log div.message-received:nth-last-of-type(2)').removeClass('second_to_last');
+                // to get the last child
+                // $('#chat-log div.message-received:last-child').find('.receive-name').removeClass('receive-name');
+                $('#chat-log div.message-received').find('.receive-name').removeClass('receive-name');
+                
+                
+                
+                // to detect the 2nd to the last child
+                if ( $('#chat-log div.message-received:nth-last-of-type(2)').is('.message-received') ) {
+                    $('#chat-log div.message-received:nth-last-of-type(1)').find('.message-name').remove();
+                }
+            }
+            
+            
+            msgImage.src = "{{ user.userprofile.picture.url|escapejs }}";
+            msg.appendChild(msgImage);
+            
+            msgBubble.appendChild(msgText);
+            msgContent.appendChild(msgName);
+            
+            msgContent.appendChild(msgBubble);
+            msg.appendChild(msgContent);
+            
+            document.querySelector('#chat-log').appendChild(msg);
+         
+
+        };
         
-        msgBubble.appendChild(msgText);
-        msgContent.appendChild(msgBubble);
-        msg.appendChild(msgContent);
-
-        document.querySelector('#chat-log').appendChild(msg);
-    };
-
-    function fetchMessages(){
-        chatSocket.send(JSON.stringify({
-            'command': 'fetch_messages',
-            'room': roomName
-        }));
-    };
-
-</script>
-  
-{% endblock homeJs %}
+        function fetchMessages(){
+            chatSocket.send(JSON.stringify({
+                'command': 'fetch_messages',
+                'room': roomName
+            }));
+        };
+        
+        
+          
+        </script>
+    
+  {% endblock homeJs %}

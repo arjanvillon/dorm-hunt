@@ -46,7 +46,8 @@ class has_dorm(TemplateView):
 
 def Home_Tenant(request):
     try:
-       tenant_email = AddTenant.objects.get(account_user=request.user.email)
+       tenant = AddTenant.objects.get(account=request.user)
+       print(tenant)
     except ObjectDoesNotExist:
         return redirect('tenant:no_dorm')
     return redirect('tenant:has_dorm')
@@ -181,9 +182,18 @@ def Messages_Tenant(request):
        tenant_email = AddTenant.objects.get(account_user=request.user.email)
     except ObjectDoesNotExist:
         return redirect('tenant:no_dorm-messages')
-    return redirect('tenant:has_dorm-messages')
+    return redirect('tenant:messages_list')
 
-# def messages_list(request):
+def messages_list(request):
+    context = {}
+
+    user = request.user
+    tenant = AddTenant.objects.get(account=user)
+    rooms = MessageRoom.objects.filter(dorm=tenant.dorm)
+    context['rooms'] = rooms
+
+    return render(request, 'tenant/tenant_has_dorm_messages.html', context)
+
 def tenant_ind_messages(request, room_name):
     dorm = MessageRoom.objects.filter(name=room_name)[0]
 

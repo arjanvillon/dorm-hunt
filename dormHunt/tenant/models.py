@@ -54,6 +54,6 @@ class Message(models.Model):
 
     def last_messages(this_room):
         message_room = MessageRoom.objects.filter(name=this_room)[0]
-        messages = Message.objects.filter(room=message_room)[:10]
-        return messages
+        messages = Message.objects.filter(room=message_room).order_by('-created_at')[:10]
+        return reversed(messages)
     
