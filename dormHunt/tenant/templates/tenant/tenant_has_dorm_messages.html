@@ -86,7 +86,7 @@
             <div class="float-right">
                 <div class="float-right margin-right margin-top">
                     <a href="{% url 'user:user_profile' pk=user.pk %}" class="link external">
-                        <img src="{{ user.userprofile.picture55.url }}" alt="View User">
+                        <img src="{{ user.userprofile.picture55.url }}" alt="View User" style="border-radius: 50%;">
                     </a>
                 </div>
             </div>
@@ -97,7 +97,7 @@
         <div class="row">
             <div class="col-100 padding-left">
                 <div class="inbox">
-                    <strong class="line-under padding-right-half">inbox</strong><span class="badge color-blue">2</span>
+                    <strong class="line-under padding-right-half">inbox</strong><span class="badge color-blue">1</span>
                 </div>
             </div>
         </div>
@@ -107,51 +107,57 @@
 
         <!-- SECTION Messages -->
         <div class="block">    
+            {% for room in rooms %}
                 <div class="property-container padding-half margin-bottom-half">
-                    <a href="#" class="link external">
+                    <a id="room-name-submit" href="#" class="link external">
                         <div class="row">
-                            <div class="col-20">
+                            <div class="col-40">
                                 <div class="image-cropper align-self-center">
-                                    <img class="property-sms-img" src="{{ property.thumbnail.url }}" class="rounded" />
+                                    <img class="property-sms-img" src="{{ room.dorm.thumbnail.url }}" class="rounded" />
                                 </div>
                             </div><!--col-20 end-->
-                            <div class="col-80 align-self-center property-name">
-                                {{ property.name }}Blackclaw's
-                                <div class="message-time padding-bottom-half">
+                            <div class="col-60 property-name align-self-center">
+                                <div id="room-name-input">{{ room.name }}</div>
+                                <!-- <div class="message-time padding-bottom-half">
                                     5 minutes ago
-                                </div>
-                                <div class="message-preview">
+                                </div> -->
+                                <!-- <div class="message-preview"> -->
                                     <!-- Preview of last message -->
-                                    Initial message Lorem ipsum dolor sit amet consectetur ...
-                                </div>
+                                    <!-- Initial message Lorem ipsum dolor sit amet consectetur ... -->
+                                <!-- </div> -->
                             </div><!--col-80 end-->
                         </div><!--row end-->
                     </a><!--a end-->
                 </div><!--property-container end-->
+            {% endfor %}
                 
+
         </div><!--block end-->
 
-What chat room would you like to enter?<br/>
+<!-- What chat room would you like to enter?<br/>
 <input id="room-name-input" type="text" size="100"/><br/>
-<input id="room-name-submit" type="button" value="Enter"/>
+<input id="room-name-submit" type="button" value="Enter"/> -->
 
 {% endblock home_content %}
 
 {% block homeJs %}
 
-
+<script src="{% static '/plugins/jquery/jquery.js' %}"></script>
 <script>
-  document.querySelector('#room-name-input').focus();
-  document.querySelector('#room-name-input').onkeyup = function(e) {
-      if (e.keyCode === 13) {  // enter, return
-          document.querySelector('#room-name-submit').click();
-      }
-  };
+    $('a.message-tab').addClass('tab-link-active');
+    $('.tab-link-highlight').remove();
+    document.querySelector('#room-name-input').focus();
+    document.querySelector('#room-name-input').onkeyup = function(e) {
+        if (e.keyCode === 13) {  // enter, return
+            document.querySelector('#room-name-submit').click();
+        }
+    };
 
-  document.querySelector('#room-name-submit').onclick = function(e) {
-      var roomName = document.querySelector('#room-name-input').value;
-      window.location.pathname = '/tenant/dorm/messages/' + roomName + '/';
-  };
+    document.querySelector('#room-name-submit').onclick = function(e) {
+        var roomName = document.querySelector('#room-name-input').textContent;
+        window.location.pathname = '/tenant/dorm/messages/' + roomName + '/';
+    };
+
 </script>
   
 {% endblock homeJs %}

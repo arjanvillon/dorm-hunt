@@ -40,6 +40,7 @@ class ChatConsumer(WebsocketConsumer):
         return {
             'author' : message.author.username,
             'content' : message.content,
+            'picture' : message.author.userprofile.picture.url,
             'created_at' : str(message.created_at)
         }
 

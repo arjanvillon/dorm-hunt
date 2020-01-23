@@ -58,7 +58,7 @@
                     <div class="float-right">
                         <div class="float-right margin-right margin-top">
                             <a href="{% url 'user:user_profile' pk=user.pk %}" class="link external">
-                                <img src="{{ user.userprofile.picture55.url }}" alt="View User">
+                                <img src="{{ user.userprofile.picture55.url }}" alt="View User" style="border-radius: 50%;">
                             </a>
                         </div>
                     </div>
@@ -66,112 +66,148 @@
             </div><!--row end-->
             <!-- SECTION User Greetings and Link to User Profile end-->
             <!-- ANCHOR Break -->
-            <!-- SECTION Search Options -->
-            <div class="row padding-horizontal no-margin-left no-padding-left">
-                <!-- SECTION Search Bar -->
-                <div class="col-70 no-margin-left no-padding-left">
-                    <form class="searchbar">
-                        <div class="searchbar-inner">
-                            <div class="searchbar-input-wrap ">
-                                <input type="search" class="searchbar-filter" placeholder="Search">
-                                <i class="searchbar-icon"></i>
-                                <span class="input-clear-button"></span>
+
+            
+            {% if user.userprofile.first_name %}
+                <!-- SECTION Search Options -->
+                <div class="row padding-horizontal no-margin-left no-padding-left">
+                    <!-- SECTION Search Bar -->
+                    <div class="col-70 no-margin-left no-padding-left">
+                        <form class="searchbar">
+                            <div class="searchbar-inner">
+                                <div class="searchbar-input-wrap ">
+                                    <input type="search" class="searchbar-filter" placeholder="Search">
+                                    <i class="searchbar-icon"></i>
+                                    <span class="input-clear-button"></span>
+                                </div>
+                                <span class="searchbar-disable-button if-not-aurora">Cancel</span>
                             </div>
-                            <span class="searchbar-disable-button if-not-aurora">Cancel</span>
-                        </div>
-                    </form>                    
-                </div><!--col-60 end-->
-                <!-- SECTION Search Bar end -->
+                        </form>                    
+                    </div><!--col-60 end-->
+                    <!-- SECTION Search Bar end -->
 
-                <!-- SECTION Search by Filter -->
+                    <!-- SECTION Search by Filter -->
 
-                <div class="col-15 margin-right padding-top-half ">
-                    <div class="search-container">
-                        <div class="menu-item menu-item-dropdown">
-                            <div class="menu-item-content no-padding">
-                                <i class="fas fa-filter"></i>
+                    <div class="col-15 margin-right padding-top-half ">
+                        <div class="search-container">
+                            <div class="menu-item menu-item-dropdown">
+                                <div class="menu-item-content no-padding">
+                                    <i class="fas fa-filter"></i>
 
-                            </div>
-                            <div class="menu-dropdown menu-dropdown-right">
-                                <div class="menu-dropdown-content">
-                                    <a href="{% url 'tenant:dorm_search' order=1 %}" class="menu-dropdown-link menu-close link external">
-                                        <span>Newest</span>
-                                    </a>
-                                    <a href="{% url 'tenant:dorm_search' order=2 %}" class="menu-dropdown-link menu-close link external">
-                                        <span>Popular</span>
-                                    </a>
+                                </div>
+                                <div class="menu-dropdown menu-dropdown-right">
+                                    <div class="menu-dropdown-content">
+                                        <a href="{% url 'tenant:dorm_search' order=1 %}" class="menu-dropdown-link menu-close link external">
+                                            <span>Newest</span>
+                                        </a>
+                                        <a href="{% url 'tenant:dorm_search' order=2 %}" class="menu-dropdown-link menu-close link external">
+                                            <span>Popular</span>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
+
                         </div>
+                    </div><!--col-20 end-->
+                    <!-- SECTION Search by Filter end-->
+                    
+                    <!-- SECTION Search through Map -->
+                    <div class="col-15 padding-top-half">
+                        <a class="link external" href="{% url 'tenant:tenant_map' %}">
+                        <div class="search-container">
+                            <i class="fas fa-map-marked"></i>
+                        </div>
+                        </a>
+                    </div><!--col-20 end-->
+                    <!-- SECTION Search through Map -->
 
+
+
+                </div><!--row end-->
+
+                <!-- SECTION Search Options end -->
+                <!-- SECTION Search Bar Find -->
+                <!-- Searchbar backdrop -->
+                <div class="searchbar-backdrop"></div>
+                <!-- search target list -->
+                <div class="row">
+                    <div class="col-100">
+                        <h2 class="text-align-center margin-half">
+                            {% if order == 1 %}
+                                Newest Dorms
+                            {% elif order == 2 %}
+                                Popular Dorms
+                            {% else %}
+                                Available Dorms
+                            {% endif %}
+                        </h2>
                     </div>
-                </div><!--col-20 end-->
-                <!-- SECTION Search by Filter end-->
-                
-                <!-- SECTION Search through Map -->
-                <div class="col-15 padding-top-half">
-                    <a class="link external" href="{% url 'tenant:tenant_map' %}">
-                    <div class="search-container">
-                        <i class="fas fa-map-marked"></i>
-                    </div>
-                    </a>
-                </div><!--col-20 end-->
-                <!-- SECTION Search through Map -->
-
-
-
-            </div><!--row end-->
-
-            <!-- SECTION Search Options end -->
-            <!-- SECTION Search Bar Find -->
-            <!-- Searchbar backdrop -->
-            <div class="searchbar-backdrop"></div>
-            <!-- search target list -->
-            <div class="row">
-                <div class="col-100">
-                    <h2 class="text-align-center margin-half">
-                        {% if order == 1 %}
-                            Newest Dorms
-                        {% elif order == 2 %}
-                            Popular Dorms
-                        {% else %}
-                            Available Dorms
-                        {% endif %}
-                    </h2>
                 </div>
-            </div>
 
-            <div class="list searchbar-found margin-top-half">
-            <ul>
-                <!-- SECTION dorm -->
-                
-                {% for property in property_list %}
-                    <div class="line-search">
-                        <li class="item-content">
-                            <div class="item-inner">
-                                <a href="{% url 'tenant:view_property' pk=property.pk %}" class="link external">
-                                    <div class="row">
-                                        <div class="col-30">
-                                            <img src="{{ property.thumbnail.url }}" alt="Property Image-{{ property.name }}" class="property-image-default">
+                <div class="list searchbar-found margin-top-half">
+                <ul>
+                    <!-- SECTION dorm -->
+                    
+                    {% for property in property_list %}
+                        <div class="line-search">
+                            <li class="item-content">
+                                <div class="item-inner">
+                                    <a href="{% url 'tenant:view_property' pk=property.pk %}" class="link external">
+                                        <div class="row">
+                                            <div class="col-30">
+                                                <img src="{{ property.thumbnail.url }}" alt="Property Image-{{ property.name }}" class="property-image-default">
+                                            </div>
+                                            <div class="col-70">
+                                                <div class="item-title">{{ property.name }}</div>
+                                                <div class="property-support-label">{{ property.tagline }}</div>
+                                            </div>
                                         </div>
-                                        <div class="col-70">
-                                            <div class="item-title">{{ property.name }}</div>
-                                            <div class="property-support-label">{{ property.tagline }}</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
+                                    </a>
+                                </div>
+                            </li>
+                        </div>
+                    {% endfor %}
+                    <!-- SECTION dorm end -->
+                </ul>
+                </div>
+                <!-- Nothing found message -->
+                <div class="block searchbar-not-found">
+                <div class="block-inner">Nothing found</div>
+                </div>
+            <!-- SECTION Search Bar Find -->
+            {% else %}
+                 <!-- SECTION Image -->
+                 <div class="row padding-vertical">
+                    <div class="col-100 text-align-center">
+                        <img src="{% static 'home/images/update-profile.png' %}" alt="Update Profile Image">
                     </div>
-                {% endfor %}
-                <!-- SECTION dorm end -->
-            </ul>
-            </div>
-            <!-- Nothing found message -->
-            <div class="block searchbar-not-found">
-            <div class="block-inner">Nothing found</div>
-            </div>
-        <!-- SECTION Search Bar Find -->
+                </div><!--row end-->
+                <!-- SECTION Empty Home -->
+                <div class="row text-align-center">
+                    <div class="col-100">
+                        <h2>Update Profile</h2>
+                    </div>
+                
+                </div><!--end row-->
+                <div class="row">
+                    <div class="col-100">
+                        
+                        <div class="text-align-center home-subtext margin-horizontal no-margin margin-bottom-half">
+                            Before browsing dormitories let us know more about you by updating your profile information. Thank you!
+                        </div>
+                    </div>
+                </div>
+                <!-- SECTION Button -->
+                <div class="row color-scheme1">
+                    <div class="col-100 text-align-center no-margin-right no-padding-right">
+                        <a href="{% url 'user:edit_profile' pk=user.userprofile.pk %}" class="link external">
+                            <span class="search-text">Update Profile Here &#8921;</span>
+                        </a>
+                    </div>
+                </div><!--row end-->
+            {% endif %}
+                
+            
 
         </div><!--block end-->
     </div> <!--page content end-->

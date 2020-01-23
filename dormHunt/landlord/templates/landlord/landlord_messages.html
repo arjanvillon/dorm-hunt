@@ -93,7 +93,7 @@ img.property-sms-img {
             <div class="float-right">
                 <div class="float-right margin-right margin-top">
                     <a href="{% url 'user:user_profile' pk=user.pk %}" class="link external">
-                        <img src="{{ user.userprofile.picture55.url }}" alt="View User">
+                        <img src="{{ user.userprofile.picture55.url }}" alt="View User" style="border-radius: 50%;">
                     </a>
                 </div>
             </div>
@@ -158,69 +158,103 @@ img.property-sms-img {
                     </div><!--row end-->
                     <!-- SECTION Create a Reminder or a New Message end-->
 
-                    <!-- SECTION Messages -->
-                    <div class="block">    
-                        {% for property in property_list %}
-                            <div class="property-container padding-half margin-bottom-half">
-                                <a href="#" class="link external room-name-submit">
-                                    <div class="row">
-                                        <div class="col-20">
-                                            <div class="image-cropper align-self-center">
-                                                <img class="property-sms-img" src="{{ property.thumbnail.url }}" class="rounded" />
+                <!-- SECTION Messages -->
+                <div class="block">    
+                    {% for property in property_list %}
+                        <div class="property-container padding-half margin-bottom-half">
+                            <div class="row">
+                                <div class="col-20">
+                                    <div class="image-cropper align-self-center">
+                                        <img class="property-sms-img" src="{{ property.thumbnail.url }}" class="rounded" />
+                                    </div>
+                                </div><!--col-20 end-->
+                                <div class="col-80 property-name">
+                                    <a href="#" class="link external room-name-submit">
+                                        <div class="row">
+                                            <div class="col-100">
+                                                <p class="no-margin room-name">{{ property.messageroom.name }}</p>
                                             </div>
-                                        </div><!--col-20 end-->
-                                        <div class="col-80 align-self-center property-name">
-                                            <p class="no-margin room-name">{{ property.messageroom.name }}</p>
-                                            <div class="message-time padding-bottom-half">
-                                                5 minutes ago
+                                            <div class="col-100">
+                                                <div class="message-time padding-bottom-half">
+                                                    
+                                                    {% if property.messageroom.message_set.last.created_at %}
+                                                        {{ property.messageroom.message_set.last.created_at }}
+                                                    {% else %}
+                                                        {{ property.messageroom.created_at }}
+                                                    {% endif %}
+                                                        
+                                                </div>
                                             </div>
-                                            <div class="message-preview">
-                                                <!-- Preview of last message -->
-                                                Initial message Lorem ipsum dolor sit amet consectetur ...
+                                            <div class="col-100">
+                                                <div class="message-preview">
+                                                    <!-- Preview of last message -->
+                                                    
+                                                    {% if property.messageroom.message_set.last.content %}
+                                                        {{ property.messageroom.message_set.last.content }}
+                                                    {% else %}
+                                                        No new messages.
+                                                    {% endif %}
+                                                        
+                                                </div>
                                             </div>
-                                        </div><!--col-80 end-->
-                                    </div><!--row end-->
-                                </a><!--a end-->
-                            </div><!--property-container end-->
-                        {% endfor %}
-                    </div>
-                </div>
-                <div id="tab-2" class="page-content tab">
-                    <div class="block">
-                        
-                        {% for application in application_list %}
-                            <div class="property-container padding-half margin-bottom-half">
-                                <div class="row">
-                                    <div class="col-20">
-                                        <div class="image-cropper align-self-center">
-                                            <img class="property-sms-img" src="{{ application.tenant.userprofile.picture.url }}" class="rounded" />
                                         </div>
-                                    </div><!--col-20 end-->
-                                    <div class="col-80 align-self-center property-name">
-                                        {{ application.tenant.userprofile.first_name }} {{ application.tenant.userprofile.last_name }}
-                                        <div class="message-time padding-bottom-half">
-                                            {{ application.created_at }}
-                                        </div>
-                                        <div class="message-preview">
-                                            <!-- Preview of last message -->
-                                            <span class="text-view-details sheet-open" data-sheet=".my-sheet-swipe-to-close">View Details</span>
-                                        </div>
+                                    </a><!--a end-->
+
+
                                     </div><!--col-80 end-->
                                 </div><!--row end-->
-                            </div><!--property-container end--> 
+                        </div><!--property-container end-->
+                    {% endfor %}
+                        
+              </div>
+            </div>
+            <div id="tab-2" class="page-content tab">
+                <div class="block">
+                    
+                    {% for application in application_list %}
+                        <div class="property-container padding-half margin-bottom-half">
+                            <div class="row">
+                                <div class="col-20">
+                                    <div class="image-cropper align-self-center">
+                                        <img class="property-sms-img" src="{{ application.tenant.userprofile.picture.url }}" class="rounded" />
+                                    </div>
+                                </div><!--col-20 end-->
+                                <div class="col-80 align-self-center property-name">
+                                    {% if application.tenant.userprofile.first_name and application.tenant.userprofile.last_name %}
+                                        {{ application.tenant.userprofile.first_name }} {{ application.tenant.userprofile.last_name }}
+                                    {% else %}
+                                        {{ application.tenant.userprofile.user }}
+                                    {% endif %}
+                                    
+                                    <div class="message-time padding-bottom-half">
+                                        {{ application.created_at }}
+                                    </div>
+                                    <div class="message-preview">
+                                        <!-- Preview of last message -->
+                                        <span class="text-view-details sheet-open" data-sheet=".my-sheet-swipe-to-close">View Details</span>
+                                    </div>
+                                </div><!--col-80 end-->
+                            </div><!--row end-->
+                        </div><!--property-container end--> 
 
-                            <div class="sheet-modal my-sheet-swipe-to-close" style="height:auto; --f7-sheet-bg-color: #fff;">
-                                <div class="sheet-modal-inner">
-                                    <div class="page-content">
-                                        <div class="row">
-                                            <div class="col-70">
-                                                <div class="block-title block-title-large no-margin-bottom">{{ application.tenant.userprofile.first_name }} {{ application.tenant.userprofile.last_name }}</div>
-                                                <b class="padding-left">{{ application.tenant.userprofile.birthday}}</b>
-                                            </div><!--col-70 end-->
-                                            <div class="col-30 padding">
-                                                <div class="padding-top image-cropper-user align-self-center">
-                                                    <img class="property-sms-img" src="{{ application.tenant.userprofile.picture.url }}" class="rounded" />
-                                                </div>
+                        <div class="sheet-modal my-sheet-swipe-to-close" style="height:auto; --f7-sheet-bg-color: #fff;">
+                            <div class="sheet-modal-inner">
+                                <div class="page-content">
+                                    <div class="row">
+                                        <div class="col-70">
+                                            <div class="block-title block-title-large no-margin-bottom">
+                                                
+                                                {% if application.tenant.userprofile.first_name and application.tenant.userprofile.last_name %}
+                                                    {{ application.tenant.userprofile.first_name }} {{ application.tenant.userprofile.last_name }}</div>
+                                                {% else %}
+                                                    {{ application.tenant.userprofile.user }}
+                                                {% endif %}
+                                                    
+                                            <b class="padding-left">{{ application.tenant.userprofile.birthday}}</b>
+                                        </div><!--col-70 end-->
+                                        <div class="col-30 padding">
+                                            <div class="padding-top image-cropper-user align-self-center">
+                                                <img class="property-sms-img" src="{{ application.tenant.userprofile.picture.url }}" class="rounded" />
                                             </div>
                                         </div><!--row end-->
                                         <div class="block no-margin-top">
