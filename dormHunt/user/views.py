@@ -58,6 +58,16 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request, user)
+                # if not user.userprofile:
+                #     profile = UserProfile(user=user)
+                #     profile.save()
+                try:
+                    user.userprofile
+                    pass
+                except ObjectDoesNotExist:
+                    profile = User.objects.get(username=username)
+                    user_profile = UserProfile(user=profile)
+                    user_profile.save()
                 if user.user_type == "Landlord":
                     return redirect('landlord:landlord_home')
                 else:

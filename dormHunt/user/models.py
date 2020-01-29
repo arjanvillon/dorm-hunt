@@ -81,7 +81,7 @@ class UserProfile(models.Model):
     emergency_name  = models.CharField(max_length=60, blank=True)
     emergency_phone = models.CharField(max_length=15, blank=True)
     picture         = ResizedImageField(size=[150,150], crop=['middle','center'], default='profile_pictures/default.png', upload_to='profile_pictures', blank=True)
-    picture55       = ResizedImageField(size=[55,55], crop=['middle','center'], default='profile_pictures/default.png', upload_to='profile_pictures', blank=True)
+    picture55       = ResizedImageField(size=[55,55], crop=['middle','center'], default='profile_pictures/default_55.png', upload_to='profile_pictures', blank=True)
     # picture         = models.ImageField(default='profile_pictures/default.png', upload_to='profile_pictures', blank=True)
 
     def __str__(self):

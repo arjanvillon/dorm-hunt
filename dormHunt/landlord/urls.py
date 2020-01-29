@@ -15,6 +15,7 @@ urlpatterns = [
 
     # Add Tenant
     path('add-tenant', views.TenantAddCreateView.as_view(), name='add_tenant'),
+    path('remove-tenant/<int:pk>', views.remove_tenant, name='remove_tenant'),
 
     # NOTE For viewing purposes only
     path('message/', views.LandlordMessages.as_view(), name='landlord_messages'),

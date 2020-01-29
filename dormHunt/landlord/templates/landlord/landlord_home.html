@@ -118,7 +118,11 @@
                     <div class="float-right">
                         <div class="float-right margin-right margin-top">
                             <a href="{% url 'user:user_profile' pk=user.pk %}" class="link external">
-                                <img src="{{ user.userprofile.picture55.url }}" alt="View User" style="border-radius: 50%;">
+                                {% if user.userprofile.picture55.url %}
+                                  <img src="{{ user.userprofile.picture55.url }}" alt="View User" style="border-radius: 50%;">
+                                {% else %}
+                                  <img src="{% static 'user/images/default-user-profile-image.png' %}" alt="View User" style="border-radius: 50%;">
+                                {% endif %}
                             </a>
                         </div>
                     </div>
@@ -260,7 +264,7 @@
               <!-- SECTION Tenant List-->
               <div class="accordion js-accordion padding-top-half">
                 <div class="accordion__item js-accordion-item active">
-                  <div class="accordion-header js-accordion-header properties">TENANTS <span class="badge color-blue">{{ property_numbers }}</span></div> 
+                  <div class="accordion-header js-accordion-header properties">TENANTS</div> 
                 <div class="accordion-body js-accordion-body">
                   <!-- <div class="accordion-body__contents">
                         <strong>Total Properties : </strong>21
@@ -290,7 +294,13 @@
                                                   <div class="display-flex padding justify-content-space-between align-items-center">
                                                     <div class="block-title block-title-medium margin-half "><b>
                                                       {{ tenant.account.userprofile.first_name }} {{tenant.account.userprofile.last_name }}</b></div>
-                                                    <div class="float-right" ><img src="{{ tenant.account.userprofile.picture55.url }}" alt="" class="margin-half" style="border-radius: 50%;"></div>
+                                                    <div class="float-right" >
+                                                      {% if tenant.account.userprofile.picture55.url %}
+                                                        <img src="{{ tenant.account.userprofile.picture55.url }}" alt="View User" style="border-radius: 50%;">
+                                                      {% else %}
+                                                        <img src="{% static 'user/images/default-user-profile-image.png' %}" alt="View User" style="border-radius: 50%;">
+                                                      {% endif %}
+                                                    </div>
                                                   </div>
                                                   <div class="padding-horizontal padding-bottom">
                                                     <p class="no-margin"><b>Email: </b><b class="color-scheme1">{{ tenant.account.email }}</b></p>
@@ -300,8 +310,8 @@
                                                   </div>
                                                   <div class="row">
                                                     <div class="col-100 padding">
-                                                        <a class="link external col-100" href="#" style="width: 100%;">
-                                                            <button class="col button button-raised button-fill button-large color-red" style="width: 100%;">Disapprove</button>
+                                                        <a class="link external col-100" href="{% url 'landlord:remove_tenant' pk=tenant.pk %}" style="width: 100%;">
+                                                            <button class="col button button-raised button-fill button-large color-red" style="width: 100%;">Remove Tenant</button>
                                                         </a>
                                                     </div><!--col-50 end-->
                                                 </div><!--row end-->

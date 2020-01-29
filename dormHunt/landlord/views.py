@@ -78,7 +78,7 @@ class LandlordMessages(ListView):
         application_list = []
         room_list = []
 
-        if properties:
+        try:
             for p in properties:
                 applications = Application.objects.filter(dorm=p, is_approved=False, is_disapproved=False)
                 room = MessageRoom.objects.filter(dorm=p)
@@ -87,7 +87,7 @@ class LandlordMessages(ListView):
                     application_list.append(application)
             print(len(application_list))
             application_count = len(application_list)
-        else:
+        except ObjectDoesNotExist:
             application_list = ''
             application_count = 0
             room_list = 0
@@ -192,6 +192,21 @@ def due_date(request):
             tenant.unpaid(p.price)
     
     return redirect('landlord:landlord_messages')
+
+def remove_tenant(request, pk):
+    tenant = get_object_or_404(AddTenant, pk=pk)
+    room = MessageRoom.objects.get(dorm=tenant.dorm)
+
+    if room.members.filter(pk=tenant.account.pk).exists():
+        room.members.remove(tenant.account)
+    else:
+        print('none')
+    tenant.delete()
+
+    return redirect('landlord:landlord_home')
+
+
+    
 
 
 

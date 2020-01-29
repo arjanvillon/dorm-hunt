@@ -64,7 +64,7 @@ class Property(models.Model):
     created_at          = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return self.name
+        return str(self.name)
 
     def get_absolute_url(self):
         return reverse("landlord:property_detail", kwargs={"pk": self.pk})
@@ -88,7 +88,7 @@ class AddTenant(models.Model):
     dorm                = models.ForeignKey(Property, on_delete=models.CASCADE)
     room_description    = models.CharField(max_length=80)
 
-    balance             = models.IntegerField(null=True)
+    balance             = models.IntegerField(default=0)
     is_paid             = models.BooleanField(default=False)
     date_paid           = models.DateField(null=True)
 

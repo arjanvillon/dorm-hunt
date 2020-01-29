@@ -94,6 +94,7 @@ img.property-sms-img {
                 <div class="float-right margin-right margin-top">
                     <a href="{% url 'user:user_profile' pk=user.pk %}" class="link external">
                         <img src="{{ user.userprofile.picture55.url }}" alt="View User" style="border-radius: 50%;">
+                 
                     </a>
                 </div>
             </div>
@@ -220,7 +221,7 @@ img.property-sms-img {
                                     </div>
                                 </div><!--col-20 end-->
                                 <div class="col-80 align-self-center property-name">
-                                    {% if application.tenant.userprofile.first_name and application.tenant.userprofile.last_name %}
+                                    {% if application.tenant.userprofile.first_name %}
                                         {{ application.tenant.userprofile.first_name }} {{ application.tenant.userprofile.last_name }}
                                     {% else %}
                                         {{ application.tenant.userprofile.user }}
@@ -244,13 +245,13 @@ img.property-sms-img {
                                         <div class="col-70">
                                             <div class="block-title block-title-large no-margin-bottom">
                                                 
-                                                {% if application.tenant.userprofile.first_name and application.tenant.userprofile.last_name %}
+                                                {% if application.tenant.userprofile.first_name %}
                                                     {{ application.tenant.userprofile.first_name }} {{ application.tenant.userprofile.last_name }}</div>
                                                 {% else %}
                                                     {{ application.tenant.userprofile.user }}
                                                 {% endif %}
                                                     
-                                            <b class="padding-left">{{ application.tenant.userprofile.birthday}}</b>
+                                            <b class="padding-left">{{ application.tenant.userprofile.birthday }}</b>
                                         </div><!--col-70 end-->
                                         <div class="col-30 padding">
                                             <div class="padding-top image-cropper-user align-self-center">
