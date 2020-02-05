@@ -37,7 +37,3 @@ var address = places({
 
 address.on('change', e => document.getElementById('id_latitude').value = e.suggestion.latlng.lat);
 address.on('change', e => document.getElementById('id_longitude').value = e.suggestion.latlng.lng);
-
-$("#algolia-places-listbox-0").on("click", function(){
-    alert("hello");
-});

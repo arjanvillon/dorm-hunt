@@ -196,9 +196,11 @@ def due_date(request):
 def remove_tenant(request, pk):
     tenant = get_object_or_404(AddTenant, pk=pk)
     room = MessageRoom.objects.get(dorm=tenant.dorm)
+    dorm = Property.objects.get(pk=tenant.dorm.pk)
 
     if room.members.filter(pk=tenant.account.pk).exists():
         room.members.remove(tenant.account)
+        dorm.slots += 1
     else:
         print('none')
     tenant.delete()

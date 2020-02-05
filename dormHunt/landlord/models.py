@@ -29,7 +29,7 @@ class Property(models.Model):
     
     favorite            = models.ManyToManyField(User, related_name='favorite', verbose_name='users that likes the property', blank=True)
     property_type       = models.CharField(max_length=30, blank=True)
-    slots               = models.IntegerField(null=True)
+    slots               = models.IntegerField(default=0)
     capacity            = models.IntegerField()
     bathroom            = models.IntegerField(default=0)
 
