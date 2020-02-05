@@ -64,7 +64,7 @@ class Property(models.Model):
     created_at          = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return str(self.name)
+        return self.name
 
     def get_absolute_url(self):
         return reverse("landlord:property_detail", kwargs={"pk": self.pk})
@@ -90,7 +90,7 @@ class AddTenant(models.Model):
 
     balance             = models.IntegerField(default=0)
     is_paid             = models.BooleanField(default=False)
-    date_paid           = models.DateField(null=True)
+    date_paid           = models.DateField(default=datetime.date.today)
 
     def __str__(self):
         return self.account_user
