@@ -18,7 +18,7 @@ class Application(models.Model):
     schedule        = models.DateField(blank=True, null=True)
 
     created_at      = models.DateTimeField(default=timezone.now)
-
+    
     def __str__(self):
         return self.tenant
 

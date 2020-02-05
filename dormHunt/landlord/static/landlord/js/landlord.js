@@ -42,10 +42,3 @@ var app = new Framework7({
     ]
   });
 
-// Create swipe-to-step Sheet
-app.sheet.create({
-  el: '.my-sheet-swipe-to-step',
-  swipeToClose: true,
-  swipeToStep: true,
-  backdrop: true,
-});

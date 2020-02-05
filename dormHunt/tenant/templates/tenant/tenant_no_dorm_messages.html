@@ -5,6 +5,9 @@
 {% block home_content %}
     <div class="page-content">
         <div class="block">
+            
+            {% if not application %}
+                
             <!-- SECTION User Greetings and User Icon -->
             <div class="row">
                 <div class="col-25">
@@ -28,7 +31,6 @@
                 </div><!--col-100 end-->
             </div><!--row end--> 
 
-            {% if not favorites %}
                 <!-- SECTION Image -->
                 <div class="row padding-vertical">
                     <div class="col-100 text-align-center">
@@ -60,36 +62,13 @@
                 </div><!--row end-->
 
             {% else %}
-                <div class="list">
+            applications
 
-                <ul>
-                {% for property in favorites %}
-                    <div class="line-fave">
-                        <li class="item-content">
-                            <div class="item-inner">
-                                <a href="{% url 'tenant:view_property' pk=property.pk %}" class="link external">
-                                    <div class="row">
-                                        <div class="col-30">
-                                            <img src="{{ property.thumbnail.url }}" alt="Property Image-{{ property.name }}" class="property-image-default">
-                                        </div>
-                                        <div class="col-70">
-                                            <div class="item-title">{{ property.name }}</div>
-                                            <div class="property-support-label">{{ property.tagline }}</div>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </li>
-
-                    </div>
-                {% endfor %}
-                </ul>
-                </div>
-
-            {% endif %}
-                
+        {% endif %}
 
         </div><!--block end-->
+
+
     </div>
 {% endblock home_content %}
 
