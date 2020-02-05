@@ -151,7 +151,7 @@ class ViewPropertyDetailView(DetailView):
 
 
 # NOTE Temporary, created so i can view my template
-class Application(CreateView):
+class ApplicationCreateView(CreateView):
     form_class = ApplicationForm
     model = Application
     template_name = 'tenant/application_form.html'
@@ -178,6 +178,17 @@ class Application(CreateView):
 
 class No_Dorm_Messages(TemplateView):
     template_name = 'tenant/tenant_no_dorm_messages.html'
+
+    def get_context_data(self, **kwargs):
+        try:
+            applicatons = Application.objects.filter(tenant=self.request.user)
+        except ObjectDoesNotExist:
+            applicatons = False
+
+        context = super().get_context_data(**kwargs)
+        context["applications"] = applicatons 
+        return context
+    
 
     # def get_context_data(self, **kwargs): 
 

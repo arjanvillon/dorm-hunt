@@ -22,7 +22,7 @@ urlpatterns = [
     path('search/property/favorite/<int:pk>/', views.favorite_property, name='favorite_property'),
 
     # NOTE Temporary, created so i can view my template
-    path('search/property/application/<int:pk>', views.Application.as_view(), name='application_form'),
+    path('search/property/application/<int:pk>', views.ApplicationCreateView.as_view(), name='application_form'),
     path('dorm/request', views.Request.as_view(), name='request'),
     
     # path('dorm/messages/individual', views.TenantIndMessages.as_view(), name='individual_messages'),
