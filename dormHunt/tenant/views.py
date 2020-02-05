@@ -185,43 +185,10 @@ class No_Dorm_Messages(TemplateView):
         except ObjectDoesNotExist:
             applicatons = False
 
-        context = super().get_context_data(**kwargs)
+        context = super(No_Dorm_Messages, self).get_context_data(**kwargs)
         context["applications"] = applicatons 
         return context
-    
-
-    # def get_context_data(self, **kwargs): 
-
-        # tenant = AddTenant.objects.get(account_user=self.request.user)
-        
-        # context = super(No_Dorm_Messages, self).get_context_data(**kwargs)
-
-        # context['application'] = tenant
-        # return context
-
-    # def get_context_data(self, **kwargs):
-    #     user = self.request.user
-    #     # application = Application.objects.filter(tenant=user)
-    #     application = Application.objects.all()
-    #     print(application)
-    #     context = super(No_Dorm_Messages, self).get_context_data(**kwargs)
-    #     context['application'] = application
-    #     return context
-
-
-
-    # def get_context_data(self, **kwargs):
-    #     application = Application.objects.all()
-
-    #     # if not application:
-    #     #     print(False)
-    #     # else:
-    #     #     print(True)
-
-    #     print(application)
-    #     context = super(No_Dorm_Messages, self).get_context_data(**kwargs)
-    #     context["application"] = application
-    #     return context
+   
 
 class Has_Dorm_Messages(TemplateView):
     template_name = 'tenant/tenant_has_dorm_messages.html'

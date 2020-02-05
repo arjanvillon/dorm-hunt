@@ -1,6 +1,45 @@
 {% extends 'home/base.html' %}
 {% load static %}
 
+{% block css %}
+<style>
+.property-container {
+    background-color: aliceblue;
+    border-radius: 3px;
+}
+.image-cropper {
+    width: 50px;
+    height: 50px;
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    /* border: 2px solid white; */
+}
+
+img.property-sms-img {
+    display: inline;
+    margin: 0 auto;
+    height: 100%;
+    width: auto;
+}
+.property-name {
+    text-transform: capitalize !important;
+    font-weight: bold;
+}
+.application-title {
+    color: #007aff;
+    font-weight: bold;
+    font-size: medium;
+}
+.application-dorm {
+    color: #007aff;
+    font-weight: bold;
+    font-size: small;
+}
+</style>
+{% endblock css %}
+    
+
 
 {% block home_content %}
     <div class="page-content">
@@ -10,9 +49,6 @@
                 
             <!-- SECTION User Greetings and User Icon -->
             <div class="row">
-                <div class="col-25">
-
-                </div>
                 <div class="col-50">
                     <h1>Messages</h1>
                 </div>
@@ -62,8 +98,74 @@
                 </div><!--row end-->
 
             {% else %}
-            applications
-
+            <!-- SECTION User Greetings and User Icon -->
+            <div class="row">
+                <div class="col-50">
+                    <h1>Applications</h1>
+                </div>
+                <div class="col-50">
+                    <div class="float-right">
+                        <div class="float-right margin-right margin-top">
+                            <a href="{% url 'tenant:messages' %}" class="link external">
+                                {% if user.userprofile %}
+                                    <img src="{{ user.userprofile.picture55.url }}" alt="View User" style="border-radius: 50%;">
+                                {% else %}
+                                    <img src="{% static 'user/images/default-user-profile-image.png' %}" alt="View User" style="border-radius: 50%;">
+                                {% endif %}
+                            </a>
+                        </div>
+                    </div>
+                </div><!--col-100 end-->
+            </div><!--row end--> 
+            <!-- SECTION Applications -->
+            <div class="application-title padding-bottom-half">
+                You applied for these dormitories:
+            </div>
+            {% for application in applications %}    
+            <div class="property-container padding-half margin-bottom-half">
+                <div class="row">
+                    <div class="col-20">
+                        <div class="image-cropper align-self-center margin-top-half">
+                            <img class="property-sms-img" src="{{ application.dorm.thumbnail.url }}" class="rounded" />
+                        </div>
+                    </div><!--col-20 end-->
+                    <div class="col-80 align-self-center property-name">
+                        <div class="row">
+                            <div class="col-100">
+                                <a class="application-dorm link external" href="{% url 'tenant:view_property' pk=application.dorm.pk %}" >
+                                    {{ application.dorm.name }}
+                                </a>
+                            </div><!--col-100 end-->
+                            <div class="col-100">
+                                <div class="message-time">
+                                    {{ application.created_at }}
+                                </div>
+                            </div><!--col-100-end-->
+                            <div class="col-100">
+                                <div class="message-preview">
+                                    <div class="application-status">
+                                        
+                                        
+                                        {% if not application.is_approved %}
+                                            
+                                            {% if application.is_disapproved %}
+                                                <span class="badge color-red padding-horizontal-half">Disapproved</span>
+                                            {% else %}
+                                                <span class="badge color-deeporange padding-horizontal-half">Pending</span>
+                                            {% endif %}
+                                                
+                                        {% endif %}
+                                            
+                                        
+                                            
+                                    </div>
+                                </div>
+                            </div><!--col-100-end-->
+                        </div><!--row end-->
+                    </div><!--col-80 end-->
+                </div><!--row end-->
+            </div><!--property-container end--> 
+            {% endfor %}
         {% endif %}
 
         </div><!--block end-->
