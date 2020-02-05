@@ -256,7 +256,6 @@ img.property-sms-img {
                                                 <img class="property-sms-img" src="{{ application.tenant.userprofile.picture.url }}" class="rounded" />
                                             </div>
                                         </div><!--row end-->
-<<<<<<< HEAD
                                         <div class="col-100">
                                             <div class="block no-margin-top">
                                                 <p><b>Email: </b><b class="color-scheme1">{{ application.tenant.email }}</b></p>
@@ -287,37 +286,6 @@ img.property-sms-img {
                         </div>
                         {% endfor %}
                         
-=======
-                                        <div class="block no-margin-top">
-                                            <p><b>Email: </b><b class="color-scheme1">{{ application.tenant.email }}</b></p>
-                                            <p><b>Phone Number: </b><b class="color-scheme1">{{ application.tenant.userprofile.number }}</b></p>
-                                            <p><b>Preferred Move in Date: </b><b class="color-scheme1">{{ application.move_in_date }}</b></p>
-                                            <b>Short Bio:</b>
-                                            <div class="short-bio">
-                                                {{ application.bio }}
-                                            </div><!--short-bio end-->
-                                            <!-- SECTION Approve Disapprove -->
-                                            <div class="row padding-top">
-                                                <div class="col-50 padding-left">
-                                                    <a class="link external" href="{% url 'landlord:disapprove_application' pk=application.pk %}">
-                                                        <button class="col button button-raised button-fill color-red">Disapprove</button>
-                                                    </a>
-                                                </div><!--col-50 end-->
-                                                <div class="col-50 padding-left">
-                                                    <a class="link external" href="{% url 'landlord:approve_application' pk=application.pk %}">
-                                                        <button class="col button button-raised button-fill">Approve</button>
-                                                    </a>
-                                                </div><!--col-50 end-->
-                                            </div><!--row end-->
-                                        </div><!--block end-->
-                                    </div><!--row end-->
-                                </div><!--page-content end-->
-                            </div><!--sheet-modal-inner end-->
-                        </div><!--sheet-modal end-->
-                        
-                        {% endfor %}
-                    </div><!--block end-->
->>>>>>> 8e492d5c01a512a6f25fe0c5b0928e2364726df2
                 </div><!--tab2 end-->
             </div><!--tabs end-->
         </div><!--tabs-swieable-wrap end-->
