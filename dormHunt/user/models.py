@@ -6,6 +6,7 @@ from django.contrib.auth.models import (
     BaseUserManager
 )
 from django_resized import ResizedImageField
+import datetime
 
 # NOTE I changed the the choices to picker
 # from user.choices import USER_TYPE_CHOICES
@@ -76,8 +77,8 @@ class UserProfile(models.Model):
     first_name      = models.CharField(max_length=30, blank=True)
     last_name       = models.CharField(max_length=30, blank=True)
     number          = models.CharField(max_length=15, blank=True)
-    birthday        = models.DateField(null=True, blank=True)
-    age             = models.IntegerField(null=True, blank=True)
+    birthday        = models.DateField(default=datetime.date.today)
+    age             = models.IntegerField(default=0)
     emergency_name  = models.CharField(max_length=60, blank=True)
     emergency_phone = models.CharField(max_length=15, blank=True)
     picture         = ResizedImageField(size=[150,150], crop=['middle','center'], default='profile_pictures/default.png', upload_to='profile_pictures', blank=True)
