@@ -232,13 +232,13 @@ img.property-sms-img {
                                     </div>
                                     <div class="message-preview">
                                         <!-- Preview of last message -->
-                                        <span class="text-view-details sheet-open" data-sheet=".my-sheet-swipe-to-close">View Details</span>
+                                        <span class="text-view-details sheet-open" data-sheet=".my-sheet-swipe-to-view-details">View Details</span>
                                     </div>
                                 </div><!--col-80 end-->
                             </div><!--row end-->
                         </div><!--property-container end--> 
 
-                        <div class="sheet-modal my-sheet-swipe-to-close" style="height:auto; --f7-sheet-bg-color: #fff;">
+                        <div class="sheet-modal my-sheet-swipe-to-view-details" style="height:auto; --f7-sheet-bg-color: #fff;">
                             <div class="sheet-modal-inner">
                                 <div class="page-content">
                                     <div class="row">
@@ -280,12 +280,13 @@ img.property-sms-img {
                                                 </div><!--col-50 end-->
                                             </div><!--row end-->
                                         </div><!--block end-->
-                                    </div><!--page-content end-->
-                                    </div><!--sheet-modal-inner end-->
-                            </div><!--sheet-modal end-->
-                        {% endfor %}
+                                    </div><!--row end-->
+                                </div><!--page-content end-->
+                            </div><!--sheet-modal-inner end-->
+                        </div><!--sheet-modal end-->
                         
-                    </div>
+                        {% endfor %}
+                    </div><!--block end-->
                 </div><!--tab2 end-->
             </div><!--tabs end-->
         </div><!--tabs-swieable-wrap end-->
@@ -352,6 +353,13 @@ img.property-sms-img {
 
 
     });
+
+app.sheet.create({
+  el: '.my-sheet-swipe-to-view-details',
+  swipeToClose: true,
+  swipeToStep: true,
+  backdrop: true,
+});
 
     
 </script>
