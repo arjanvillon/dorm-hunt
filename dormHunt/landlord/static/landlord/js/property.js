@@ -39,5 +39,5 @@ address.on('change', e => document.getElementById('id_latitude').value = e.sugge
 address.on('change', e => document.getElementById('id_longitude').value = e.suggestion.latlng.lng);
 
 $("#algolia-places-listbox-0").on("click", function(){
-    alert("hello");
+    // alert("hello");
 });

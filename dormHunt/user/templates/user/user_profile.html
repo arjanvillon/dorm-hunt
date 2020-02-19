@@ -39,9 +39,9 @@
                             <!-- TODO Create a function to return to previous link -->
                             <!-- NOTE This a link is just temporary -->
                                 {% if user.user_type == "Landlord" %}
-                                <a href="{% url 'landlord:landlord_home' %}" class="link external">
+                                <a href="javascript:history.go(-1)" class="link external">
                                 {% else %}
-                                <a href="{% url 'tenant:tenant' %}" class="link external">
+                                <a href="javascript:history.go(-1)" class="link external">
                                 {% endif%}
                                     <div class="row back-btn">
                                         <div class="col-10">

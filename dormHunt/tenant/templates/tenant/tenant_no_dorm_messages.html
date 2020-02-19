@@ -55,7 +55,7 @@ img.property-sms-img {
                 <div class="col-25">
                     <div class="float-right">
                         <div class="float-right margin-right margin-top">
-                            <a href="{% url 'tenant:messages' %}" class="link external">
+                            <a href="{% url 'user:user_profile' pk=user.pk %}" class="link external">
                                 {% if user.userprofile %}
                                     <img src="{{ user.userprofile.picture55.url }}" alt="View User" style="border-radius: 50%;">
                                 {% else %}
@@ -106,7 +106,7 @@ img.property-sms-img {
                 <div class="col-50">
                     <div class="float-right">
                         <div class="float-right margin-right margin-top">
-                            <a href="{% url 'tenant:messages' %}" class="link external">
+                            <a href="{% url 'user:user_profile' pk=user.pk %}" class="link external">
                                 {% if user.userprofile %}
                                     <img src="{{ user.userprofile.picture55.url }}" alt="View User" style="border-radius: 50%;">
                                 {% else %}
@@ -146,15 +146,16 @@ img.property-sms-img {
                                     <div class="application-status">
                                         
                                         
-                                        {% if not application.is_approved %}
                                             
                                             {% if application.is_disapproved %}
                                                 <span class="badge color-red padding-horizontal-half">Disapproved</span>
+                                            {% elif application.is_approved %}
+                                            <span class="badge color-green padding-horizontal-half">Approved</span>
+
                                             {% else %}
                                                 <span class="badge color-deeporange padding-horizontal-half">Pending</span>
                                             {% endif %}
                                                 
-                                        {% endif %}
                                             
                                         
                                             

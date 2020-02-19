@@ -218,12 +218,58 @@
                                                           </div>
                                                           <div class="display-flex padding justify-content-space-between align-items-center">
                                                             <div style="font-size: 18px"><b>Total:</b></div>
-                                                            <div style="font-size: 22px"><b>Php {{ tenant.dorm.price}}</b></div>
+                                                            <div style="font-size: 22px"><b>Php {{ tenant.balance }}</b></div>
                                                           </div>
-                                                          <div class="padding-horizontal padding-bottom">
-                                                            <a href="{% url 'landlord:payment_paid' pk=tenant.pk %}" class="link external button button-large button-fill">Mark as Paid</a>
-                                                          <!-- <div class="margin-top text-align-center">Swipe up for more details</div> -->
+                                                          <div class="row">
+                                                            <div class="col-100">
+                                                              <form action="{% url 'landlord:payment_paid' pk=tenant.pk %}" method="POST">
+                                                                {% csrf_token %}
+                                                                  <div class="list margin-vertical-half no-margin-top">
+                                                                    <ul>
+                                                                      <li class="item-content item-input item-input-outline">
+                                                                        <div class="item-inner">
+                                                                          <div class="item-title item-label no-padding-left">
+                                                                            Amount
+                                                                          </div>
+                                                                          <div class="item-input-wrap">
+                                                                            <div class="item-input-wrap">
+                                                                              <input type="number" name="amount">
+                                                                              <span class="input-clear-button"></span>
+                                                                            </div>
+                                                                          </div>
+                                                                        </div>
+                                                                      </li>
+                                                                    </ul>
+                                                                  </div>
+
+                                                                <!-- <ul>
+                                                                  {% for field in form %}
+                                                                    <li class="item-content item-input item-input-outline">
+                                                                      <div class="item-inner">
+                                                                          <div class="item-title item-floating-label margin-bottom-half signin-label">{{ field.label }}
+                                                                              
+                                                                          </div>
+                                                                          <div class="item-input-wrap">
+                                                                              {{ field }}
+                                                                          </div>
+                                                                      </div>
+                                                                    </li>
+                                                                  {% endfor %}
+                                                                </ul> -->
+                                                                <div class="row">
+                                                                  <div class="col-100">
+                                                                    <div class="padding-horizontal padding-bottom">
+                                                                      <!-- <a href="{% url 'landlord:payment_paid' pk=tenant.pk %}" class="link external button button-large button-fill">Mark as Paid</a> -->
+                                                                      <input class=" button button-large button-fill" type="submit" value="Mark as Paid">
+                                                                    <!-- <div class="margin-top text-align-center">Swipe up for more details</div> -->
+                                                                    </div>
+                                                                  </div>
+                                                                </div>
+                                                              </form>
+                                                            </div>
                                                           </div>
+                                                          
+                                                          
                                                       </div>
                                                       <!-- <div class="block-title block-title-medium margin-top">Details:</div>
                                                       <div class="list no-hairlines">

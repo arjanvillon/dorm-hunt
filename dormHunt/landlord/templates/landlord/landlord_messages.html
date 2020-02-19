@@ -212,7 +212,7 @@ img.property-sms-img {
             <div id="tab-2" class="page-content tab">
                 <div class="block">
                     {% for property in property_list %}
-                        {% if property.application_set.all %}
+                        {% if property.name in active_applications %}
                             <div class="margin-bottom-half" style="font-size: 20px;">
                                 <b>{{ property.name }}</b>
                             </div>
@@ -289,10 +289,11 @@ img.property-sms-img {
                                             </div><!--sheet-modal-inner end-->
                                         </div><!--sheet-modal end-->
                                     </div>
+                                
                                 {% endif %}
 
                             {% endfor %}
-                                       
+                                   
                         {% endif %}
                     {% endfor %}
                         

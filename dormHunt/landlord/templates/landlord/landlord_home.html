@@ -280,7 +280,7 @@
                                     {% for tenant in property.addtenant_set.all %}
                                       <div class="row padding" style="border-bottom: 3px solid #c4c4c4;">
                                         <div class="col-70">
-                                          <a class="sheet-open tenant-sheet" href="#" data-sheet=".my-sheet-swipe-to-step-profile">
+                                          <a class="sheet-open tenant-sheet" href="#" data-sheet=".my-sheet-swipe-to-step-profile{{ tenant.pk }}">
                                             {% if tenant.account.userprofile.last_name and tenant.account.userprofile.first_name %}
                                               {{tenant.account.userprofile.last_name }}, {{tenant.account.userprofile.first_name }} 
                                             {% else %}
@@ -288,7 +288,7 @@
                                             {% endif %}   
                                           </a>
                                           <!-- Swipe to step sheet -->
-                                          <div class="sheet-modal my-sheet-swipe-to-step-profile" style="height:auto; --f7-sheet-bg-color: #fff;">
+                                          <div class="sheet-modal my-sheet-swipe-to-step-profile{{ tenant.pk }}" style="height:auto; --f7-sheet-bg-color: #fff;">
                                             <div class="sheet-modal-inner">
                                               <div class="sheet-modal-swipe-step">
                                                   <div class="display-flex padding justify-content-space-between align-items-center">
@@ -329,7 +329,7 @@
 
                                     {% endfor %}
                                   {% else %}
-                                    No Tenant                                 
+                                    No Tenant in this Property                             
                                   {% endif %}
                                     
 

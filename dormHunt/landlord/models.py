@@ -80,6 +80,9 @@ class Reminder(models.Model):
 
     def __str__(self):
         return self.issue
+
+    def get_absolute_url(self):
+        return reverse("landlord:landlord_messages")
     
 
 class AddTenant(models.Model):
@@ -89,7 +92,7 @@ class AddTenant(models.Model):
     room_description    = models.CharField(max_length=80)
 
     balance             = models.IntegerField(default=0)
-    is_paid             = models.BooleanField(default=False)
+    is_paid             = models.BooleanField(default=True)
     date_paid           = models.DateField(default=datetime.date.today)
 
     def __str__(self):
@@ -98,9 +101,14 @@ class AddTenant(models.Model):
     def get_absolute_url(self):
         return reverse('landlord:landlord_home')
 
-    def paid(self):
-        self.is_paid = True
-        self.date_paid = date.today()
+    def paid(self, price):
+        self.balance = self.balance - price
+        print(self.balance)
+        if self.balance <= 0:
+            self.is_paid = True
+            self.date_paid = date.today()
+        else:
+            self.is_paid = False
         self.save()
 
     def unpaid(self, price):

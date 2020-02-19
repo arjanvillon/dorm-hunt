@@ -387,7 +387,19 @@
                     
                     {% for reminder in reminders %}
                       <i class="fas fa-bell"></i>
-                      {{ reminder.issue }}
+                      <a class="sheet-open text-capitalize" href="#" data-sheet=".my-sheet-swipe-to-reminder">{{ reminder.issue }}</a>
+                      
+                      <div class="sheet-modal my-sheet-swipe-to-reminder" style="height:auto; --f7-sheet-bg-color: #fff;">
+                        <div class="sheet-modal-inner">
+                          <div class="page-content">
+                            <div class="block-title block-title-large text-capitalize">{{ reminder.issue }}</div>
+                            <div class="block">
+                              <p><b>{{ reminder.category }} > {{ reminder.sub_category }}</b></p>
+                              <p>{{ reminder.description }}</p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     {% endfor %}
                   {% else %}
                     No Reminder for Today
@@ -422,7 +434,7 @@
     $(document).ready(function(){
         if ($('#circularMenu').hasClass('active')) {
             $('.page-content').addClass('on-hover');
-            alert('yow');
+            // alert('yow');
         }
 
         $('a.home-tab').addClass('tab-link-active');

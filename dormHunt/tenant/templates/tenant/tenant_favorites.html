@@ -41,7 +41,7 @@
                     <div class="col-25">
                         <div class="float-right">
                             <div class="float-right margin-right margin-top">
-                                <a href="{% url 'home:view_user' %}" class="link external">
+                                <a href="{% url 'user:user_profile' pk=user.pk %}" class="link external">
                                     {% if user.userprofile %}
                                         <img src="{{ user.userprofile.picture55.url }}" alt="View User" style="border-radius: 50%;">
                                     {% else %}
