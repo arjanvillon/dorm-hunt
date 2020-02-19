@@ -26,12 +26,12 @@
         .toolbar-bottom{
             display: none !important;
         }
-        /* .send-name, .receive-name {
-            display: none !important;
-        } */
-        .remove-name {
+        .send-name, .receive-name {
             display: none !important;
         }
+        /* .remove-name {
+            display: none !important;
+        } */
         .display-name {
             display: inline-block !important;
         }
@@ -201,10 +201,6 @@
         messageInputDom.value = '';
     };
 
-    // $( document ).ready(function() {
-     
-    // });
-
     function createMessage(data){
         // var data = JSON.parse(e.data);
         // var message = data['message'];
@@ -212,91 +208,64 @@
         var picture = data['picture'];
 
         var msg = document.createElement('div');
-
-        // for displaying profile image of the sender and receiver
         var msgImage = document.createElement('img');
-            msgImage.setAttribute('class', 'message-avatar');
-
-        // for displaying the message contents including author and message text
+        msgImage.setAttribute('class', 'message-avatar');
         var msgContent = document.createElement('div');
-            msgContent.setAttribute('class', 'message-content');
+        msgContent.setAttribute('class', 'message-content');
+        msgName = document.createElement('div');
 
-        // for displaying the name of the send and receiver
-        var msgName = document.createElement('div');
-            msgName.setAttribute('class', 'message-name');
-
-        // for displaying the message container
         var msgBubble = document.createElement('div');
-            msgBubble.setAttribute('class', 'message-bubble');
-    
-        // for displaying the message text of the sender and receiver
+        msgBubble.setAttribute('class', 'message-bubble');
         var msgText = document.createElement('div');
-            msgText.setAttribute('class', 'message-text');
-            msgText.textContent = data.content;
+        msgText.setAttribute('class', 'message-text');
+        msgText.textContent = data.content;
         
-        // for displaying the delete on footer
-        var msgDelete = document.createElement('div');
-            msgDelete.setAttribute('class', 'message-footer padding-bottom-half');
-            msgDelete.textContent = 'Remove';
-            
         
         if(author === username){
             msg.className = 'message message-sent';
             authorSend = author;
             msgName.textContent = authorSend;
+            msgName.setAttribute('class', 'message-name send-name');
             
-            // $(".message-sent").each(function(){
-            //     var last = $(this).siblings(':last');
-
-            //     last.addClass('last');
-            //     $(".last").each(function(){                    
-            //         if ($(this).hasClass("message-received")) {
-            //             $(this).removeClass('last');
-            //         }
-            //     });
-            //     // if (!$(this).hasClass("last")) {
-            //     //     $(this).addClass('add-name');
-            //     // }
-            // });
-            // $("#chat-log").children().each(function(){   
-            //     // var first = $(this).siblings(':las');
-                
-            //     $(this).addClass('last');
-            //     if ($(this).hasClass('message-sent')){
-            //         $(this).addClass('sent');
-            //         $(this).removeClass('last');
-            //     }
-            //     if ($(this).hasClass('message-received')){
-            //         $(this).addClass('received');
-            //         $(this).removeClass('last');
-            //     }
-            //     if($(this).hasClass('sent') && !$(this).hasClass('message-received')){
-            //         $(this).children(':last').children(':first').addClass('remove-name');
-            //         if ($(this).is(':first')){
-            //             // $(this).removeClass('remove-name');
-            //         }
-            //     }
-            // });
-            
-            if ( $('#chat-log div.message-sent:nth-last-of-type(2)').is('.message-sent') ) {
-                $('#chat-log div.message-sent:nth-last-of-type(1)').find('.message-name').remove();
-            }
-
-            // $('.sent:first').children(':last').children(':first').removeClass('remove-name');
-            
-        }
-        else {
-            msg.className = 'message message-received';
-            authorReceived = author;
-            msgName.textContent = authorReceived;
-
             // to detect the 2nd to the last child
-            if ( $('#chat-log div.message-received:nth-last-of-type(2)').is('.message-received') ) {
-                $('#chat-log div.message-received:nth-last-of-type(1)').find('.message-name').remove();
-            }
+            $('#chat-log div.message-sent:nth-last-of-type(1)').addClass('second_to_last');
+            $('#chat-log div.message-sent:nth-last-of-type(2)').removeClass('second_to_last');
+            // to get the last child
+            // $('#chat-log div.message-sent:last-child').find('.send-name').removeClass('send-name');
+            $('#chat-log div.message-sent').find('.send-name').removeClass('send-name');
+            
+            // var $content = $("#chat-log div.message-sent").filter(function() {
+                //     return $(this).contents().length === 1;
+                // }).find('.send-name').removeClass("send-name");
                 
-        }
-
+                // to detect the 2nd to the last child
+                if ( $('#chat-log div.message-sent:nth-last-of-type(2)').is('.message-sent') ) {
+                    $('#chat-log div.message-sent:nth-last-of-type(1)').find('.message-name').remove();
+                }
+                
+                
+            } else {
+                msg.className = 'message message-received';
+                authorReceived = author;
+                msgName.textContent = authorReceived;
+                msgName.setAttribute('class', 'message-name receive-name');
+                
+                // to detect the 2nd to the last child
+                $('#chat-log div.message-received:nth-last-of-type(1)').addClass('second_to_last');
+                $('#chat-log div.message-received:nth-last-of-type(2)').removeClass('second_to_last');
+                // to get the last child
+                // $('#chat-log div.message-received:last-child').find('.receive-name').removeClass('receive-name');
+                $('#chat-log div.message-received').find('.receive-name').removeClass('receive-name');
+                
+                
+                
+                // to detect the 2nd to the last child
+                if ( $('#chat-log div.message-received:nth-last-of-type(2)').is('.message-received') ) {
+                    $('#chat-log div.message-received:nth-last-of-type(1)').find('.message-name').remove();
+                }
+            }
+            
+            
             // msgImage.src = "{{ user.userprofile.picture55.url|escapejs }}";
             msgImage.src = picture;
             msg.appendChild(msgImage);
@@ -305,7 +274,6 @@
             msgContent.appendChild(msgName);
             
             msgContent.appendChild(msgBubble);
-            // msgContent.appendChild(msgDelete);
             msg.appendChild(msgContent);
             
             document.querySelector('#chat-log').appendChild(msg);
