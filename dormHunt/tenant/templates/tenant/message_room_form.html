@@ -1,0 +1,74 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block home_content %}
+    <div class="row padding-horizontal padding-top">
+        <div class="col-100">
+            <div class="float-left">
+                <h1 class="username">Create New Conversation</h1>
+            </div>
+        </div><!--col-100 end-->
+    </div><!--row end-->
+
+    <div class="row">
+        <div class="col-100">
+            <form action="{% url 'tenant:create_room' %}" method="POST">
+                {% csrf_token %}
+                <div class="list no-hairlines-md no-margin-top margin-bottom">
+                    <ul>
+                        <li class="item-content item-input item-input-outline">
+                            <div class="item-inner">
+                                <div class="item-title margin-bottom-half signin-label">
+                                    <label for="recipient">Email of recipient</label>
+                                </div>
+                                <div class="item-input-wrap">
+                                    <input type="email" id="id_recipient" name="recipient" placeholder="juan.delacruz@gmail.com" validate required>
+                                </div>
+                            </div>
+                        </li>
+
+                        <li class="item-content item-input item-input-outline">
+                            <div class="item-inner">
+                                <div class="item-title margin-bottom-half signin-label">
+                                    <label for="recipient">Message</label>
+                                </div>
+                                <div class="item-input-wrap">
+                                    <textarea name="message" id="id_message" placeholder="Hello!"></textarea>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                
+                <div class="row">
+                    <div class="col-5"></div>
+                    <div class="col-90 text-align-center">
+                        <input type="submit" class="submit-btn button button-raised button-fill button-round" value="Submit">
+
+                    </div>
+                    <div class="col-5"></div>
+                </div>
+            </form>
+        </div>
+    </div>
+
+{% endblock home_content %}
+
+{% block homeJs %}
+<script>
+    var $$ = Dom7;
+    {% if messages %}
+        {% for message in messages %}
+            var toastMessage = "{{ message|escapejs }}"
+        {% endfor %}
+        var toastLargeMessage = app.toast.create({
+            text: toastMessage,
+            closeButton: true,
+        });
+        toastLargeMessage.open()
+    {% endif %}
+
+</script>
+
+{% endblock homeJs %}
+    

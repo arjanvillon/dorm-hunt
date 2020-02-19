@@ -98,30 +98,42 @@
     </div><!--row end-->
 
     <!-- SECTION Unread -->
-        <div class="row">
-            <div class="col-100 padding-left">
+        <div class="row padding-horizontal padding-top">
+            <div class="col-75 padding-left">
                 <div class="inbox">
-                    <strong class="line-under padding-right-half">inbox</strong><span class="badge color-blue">1</span>
+                    <strong class="line-under padding-right-half">inbox</strong><span class="badge color-blue">{{ rooms.count }}</span>
                 </div>
+            </div>
+
+            <div class="col-25">
+                <a href="{% url 'tenant:create_room' %}" class="link external float-right"><i class="f7-icons float-right padding-right">plus</i></a>
             </div>
         </div>
     <!-- SECTION Unread end -->
-           
-               
 
         <!-- SECTION Messages -->
         <div class="block">    
             {% for room in rooms %}
                 <div class="property-container padding-half margin-bottom-half">
-                    <a id="room-name-submit" href="#" class="link external">
+                    <a href="#" class="link external room-name-submit">
                         <div class="row">
                             <div class="col-40">
                                 <div class="image-cropper align-self-center">
-                                    <img class="property-sms-img" src="{{ room.dorm.thumbnail.url }}" class="rounded" />
+                                    
+                                    {% if not room.dorm %}
+                                        {% for member in room.members.all %}
+                                            {% if member != user %}
+                                                <img class="property-sms-img" src="{{ member.userprofile.picture.url }}" class="rounded" />
+                                            {% endif %}
+                                        {% endfor %}
+                                    {% else %}
+                                        <img class="property-sms-img" src="{{ room.dorm.thumbnail.url }}" class="rounded" />
+                                    {% endif %}
+                                        
                                 </div>
                             </div><!--col-20 end-->
                             <div class="col-60 property-name align-self-center">
-                                <div id="room-name-input">{{ room.name }}</div>
+                                <p class="room-name">{{ room.name }}</p>
                                 <!-- <div class="message-time padding-bottom-half">
                                     5 minutes ago
                                 </div> -->
@@ -148,21 +160,25 @@
 
 <script src="{% static '/plugins/jquery/jquery.js' %}"></script>
 <script>
-    $('a.message-tab').addClass('tab-link-active');
-    $('.tab-link-highlight').remove();
-    document.querySelector('#room-name-input').focus();
-    document.querySelector('#room-name-input').onkeyup = function(e) {
-        if (e.keyCode === 13) {  // enter, return
-            document.querySelector('#room-name-submit').click();
-        }
-    };
+    $(document).ready(function(){
+        $('a.message-tab').addClass('tab-link-active');
+        $('a.message-tab i.f7-icons').addClass('size-40');
+        $('.tab-link-highlight').remove();
 
-    document.querySelector('#room-name-submit').onclick = function(e) {
-        var roomName = document.querySelector('#room-name-input').textContent;
-        window.location.pathname = '/tenant/dorm/messages/' + roomName + '/';
-    };
+
+        $('.room-name-submit').click(function(){
+            this_room_first = $(this)
+            room = this_room_first.find('.room-name').html();
+            console.log(room);
+            redirectToRoom(room);
+        });
+
+        function redirectToRoom(roomName){
+            window.location.pathname = '/tenant/dorm/messages/' + roomName + '/';
+        }
+
+
+    });
 
 </script>
-  
 {% endblock homeJs %}
-  

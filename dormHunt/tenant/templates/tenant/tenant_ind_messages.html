@@ -55,50 +55,64 @@
 
 <div class="page-content no-padding">
     <!-- SECTION Back Button -->
-     <div class="row">
-         <div class="col-15 padding-top-half padding-left">
-             <div class="padding-top">
-             <!-- TODO Create a function to return to previous link -->
-             <!-- NOTE This a link is just temporary -->
-                
+    <div class="row">
+        <div class="col-15 padding-top-half padding-left">
+            <div class="padding-top">
+            <!-- TODO Create a function to return to previous link -->
+            <!-- NOTE This a link is just temporary -->
                 {% if user.user_type == "Landlord" %}
-                <a href="{% url 'landlord:landlord_messages' %}" class="link external">
+                    <a href="{% url 'landlord:landlord_messages' %}" class="link external">
                 {% else %}
-                <a href="{% url 'tenant:messages' %}" class="link external">
+                    <a href="{% url 'tenant:messages' %}" class="link external">
                 {% endif %}
                     
-                     <div class="row back-btn">
-                         <div class="col-10">
-                             <i class="f7-icons">chevron_left</i>
-                         </div>
-                     </div>
-                 </a>
-             </div>
-         </div><!--col-25 end-->
-         <div class="col-85 padding-top">
-             <div class="row">
-                 <div class="col-20">
-                     <div class="image-cropper-ind align-self-center">
-                         <img class="property-sms-img" src="{{ dorm.dorm.thumbnail.url }}" class="rounded" />
-                     </div>
-                 </div><!--ccol-30 end-->
-                 <div class="col-80 align-self-center">
-                     <div class="row">
-                         <div class="col-100">
-                             <b class="text-capitalize text-size-large">{{ room_name }}</b>
-                         </div>
-                         <div class="col-100">
-                             <span class="online-label"></span>
-                         </div>
-                     </div>
-                     
-                 </div><!--ccol-30 end-->
-             </div><!--row end-->
-         </div><!--col-25 end-->
-     </div><!--row end-->
+                <div class="row back-btn">
+                    <div class="col-10">
+                        <i class="f7-icons">chevron_left</i>
+                    </div>
+                </div>
+                </a>
+            </div>
+        </div><!--col-25 end-->
+        <div class="col-85 padding-top">
+            <div class="row">
+                <div class="col-20">
+                    <div class="image-cropper-ind align-self-center">
+                        {% if not dorm.dorm %}
+                            {% for member in dorm.members.all %}
+                                {% if member != user %}
+                                    <img class="property-sms-img" src="{{ member.userprofile.picture.url }}" class="rounded" />
+                                {% endif %}
+                            {% endfor %}
+                        {% else %}
+                            <img class="property-sms-img" src="{{ dorm.dorm.thumbnail.url }}" class="rounded" />
+                        {% endif %}
+                    </div>
+                </div><!--ccol-30 end-->
+                <div class="col-80 align-self-center">
+                    <div class="row">
+                        <div class="col-100">
+                            {% if not dorm.dorm %}
+                            {% for member in dorm.members.all %}
+                                {% if member != user %}
+                                    <b class="text-capitalize text-size-large">{{ member.userprofile.first_name }} {{ member.userprofile.last_name }}</b>
+                                {% endif %}
+                            {% endfor %}
+                            {% else %}
+                                <b class="text-capitalize text-size-large">{{ room_name }}</b>
+                            {% endif %}
+                        </div>
+                        <div class="col-100">
+                            <span class="online-label"></span>
+                        </div>
+                    </div>
+                    
+                </div><!--ccol-30 end-->
+            </div><!--row end-->
+        </div><!--col-25 end-->
+    </div><!--row end-->
     <!-- SECTION Back Button end -->
- 
- 
+
     <!-- SECTION First Convo -->
     <!-- <div class="page"> -->
     <div class="page-content messages-content no-padding">
@@ -108,15 +122,16 @@
         </div>
     </div>
 </div><!--page-content end-->
-            <div class="toolbar messagebar">
-                <div class="toolbar-inner">
-                    <div class="messagebar-area">
-                        <textarea id="chat-message-input" class="resizable" placeholder="Message"></textarea>
-                    </div>
-                        <input id="chat-message-submit" type="button" class="link send-link" value="Send"></input>
-                </div>
-            </div>
-   <!-- </div> -->
+
+<div class="toolbar messagebar">
+    <div class="toolbar-inner">
+        <div class="messagebar-area">
+            <textarea id="chat-message-input" class="resizable" placeholder="Message"></textarea>
+        </div>
+            <input id="chat-message-submit" type="button" class="link send-link" value="Send"></input>
+    </div>
+</div>
+<!-- </div> -->
     <!-- SECTION First Convo end -->
 
 
@@ -253,7 +268,7 @@
             msg.appendChild(msgContent);
             
             document.querySelector('#chat-log').appendChild(msg);
-         
+
 
         };
         
@@ -265,7 +280,6 @@
         };
         
         
-          
         </script>
     
-  {% endblock homeJs %}
+{% endblock homeJs %}

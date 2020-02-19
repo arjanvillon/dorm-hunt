@@ -7,13 +7,14 @@ from django.views.generic import (
     )
 from django.core.exceptions import ObjectDoesNotExist
 from datetime import date
+from django.contrib import messages
 import folium
 import requests
 import json
 
 # SECTION Import Models
 from landlord.models import Property, AddTenant, Reminder
-from tenant.models import Application, MessageRoom
+from tenant.models import Application, MessageRoom, Message
 from user.models import User
 
 # SECTION Import Forms
@@ -195,7 +196,7 @@ class Has_Dorm_Messages(TemplateView):
 
 def Messages_Tenant(request):
     try:
-       tenant_email = AddTenant.objects.get(account_user=request.user.email)
+        tenant_email = AddTenant.objects.get(account_user=request.user.email)
     except ObjectDoesNotExist:
         return redirect('tenant:no_dorm-messages')
     return redirect('tenant:messages_list')
@@ -204,8 +205,8 @@ def messages_list(request):
     context = {}
 
     user = request.user
-    tenant = AddTenant.objects.get(account=user)
-    rooms = MessageRoom.objects.filter(dorm=tenant.dorm)
+    # tenant = AddTenant.objects.get(account=user)
+    rooms = MessageRoom.objects.filter(members=request.user)
     context['rooms'] = rooms
 
     return render(request, 'tenant/tenant_has_dorm_messages.html', context)
@@ -218,6 +219,43 @@ def tenant_ind_messages(request, room_name):
         'username': request.user.username,
         'dorm': dorm,
     })
+
+def create_room(request):
+    if request.method == "POST":
+        recipient = request.POST.get('recipient')
+        message = request.POST.get('message')
+
+        if User.objects.filter(email=recipient).exists():
+            user = User.objects.get(email=recipient)
+
+            if user == request.user:
+                messages.error(request, "You cannot send a message to yourself!")
+                return redirect('tenant:create_room')
+            else:
+                room_name = "{}{}".format(user.username, request.user.username)
+                room_name = room_name.replace(" ", "")
+                # print(room_name)
+                room = MessageRoom.objects.create(
+                    name = room_name,
+                )
+                room.save()
+                room.members.add(user)
+                room.members.add(request.user)
+
+                first_message = Message.objects.create(
+                    room = room,
+                    author = request.user,
+                    content = message,
+                )
+
+                return redirect('tenant:messages')
+                
+        else:
+            messages.error(request, "The recipient does not exist!")
+            return redirect('tenant:create_room')
+
+    else:
+        return render(request, 'tenant/message_room_form.html')
 
 # NOTE For Viewing Purposes only
 class Request(TemplateView):

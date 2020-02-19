@@ -35,8 +35,8 @@ class Application(models.Model):
         self.save()
 
 class MessageRoom(models.Model):
-    name        = models.CharField(max_length=15, default='defaultRoom')
-    dorm        = models.OneToOneField(Property, on_delete=models.CASCADE, null=True)
+    name        = models.CharField(max_length=30, default='defaultRoom')
+    dorm        = models.OneToOneField(Property, on_delete=models.CASCADE, null=True, blank=True)
     members     = models.ManyToManyField(User, related_name='members', verbose_name='members of this room')
     created_at  = models.DateTimeField(default=timezone.now)
 

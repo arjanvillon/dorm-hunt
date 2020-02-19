@@ -112,7 +112,7 @@ img.property-sms-img {
                             <strong>inbox</strong>
                         </div>
                         <div class="col-40 float-left">
-                            <span class="badge color-blue">{{ property_list.count }}</span>
+                            <span class="badge color-blue">{{ room_list.count }}</span>
                         </div>
                     </div>
                 </a>
@@ -161,27 +161,35 @@ img.property-sms-img {
 
                 <!-- SECTION Messages -->
                 <div class="block">    
-                    {% for property in property_list %}
+                    {% for room in room_list %}
                         <div class="property-container padding-half margin-bottom-half">
                             <div class="row">
                                 <div class="col-20">
                                     <div class="image-cropper align-self-center">
-                                        <img class="property-sms-img" src="{{ property.thumbnail.url }}" class="rounded" />
+                                        {% if not room.dorm %}
+                                            {% for member in room.members.all %}
+                                                {% if member != user %}
+                                                    <img class="property-sms-img" src="{{ member.userprofile.picture.url }}" class="rounded" />
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% else %}
+                                            <img class="property-sms-img" src="{{ room.dorm.thumbnail.url }}" class="rounded" />
+                                        {% endif %}
                                     </div>
                                 </div><!--col-20 end-->
                                 <div class="col-80 property-name">
                                     <a href="#" class="link external room-name-submit">
                                         <div class="row">
                                             <div class="col-100">
-                                                <p class="no-margin room-name">{{ property.messageroom.name }}</p>
+                                                <p class="no-margin room-name">{{ room.name }}</p>
                                             </div>
                                             <div class="col-100">
                                                 <div class="message-time padding-bottom-half">
                                                     
-                                                    {% if property.messageroom.message_set.last.created_at %}
-                                                        {{ property.messageroom.message_set.last.created_at }}
+                                                    {% if room.message_set.last.created_at %}
+                                                        {{ room.message_set.last.created_at }}
                                                     {% else %}
-                                                        {{ property.messageroom.created_at }}
+                                                        {{ room.created_at }}
                                                     {% endif %}
                                                         
                                                 </div>
@@ -190,8 +198,8 @@ img.property-sms-img {
                                                 <div class="message-preview">
                                                     <!-- Preview of last message -->
                                                     
-                                                    {% if property.messageroom.message_set.last.content %}
-                                                        {{ property.messageroom.message_set.last.content }}
+                                                    {% if room.message_set.last.content %}
+                                                        {{ room.message_set.last.content }}
                                                     {% else %}
                                                         No new messages.
                                                     {% endif %}

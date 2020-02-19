@@ -88,11 +88,11 @@ class LandlordMessages(ListView):
                     active_applications.append(p.name)
                     print(active_applications)
 
-                room = MessageRoom.objects.filter(dorm=p)
-                room_list.append(room)
+                # room_list.append(room)
                 for application in applications:
                     application_list.append(application)
-            print(len(application_list))
+            room_list = MessageRoom.objects.filter(members=self.request.user)
+            print(room_list)
             application_count = len(application_list)
         except ObjectDoesNotExist:
             application_list = ''

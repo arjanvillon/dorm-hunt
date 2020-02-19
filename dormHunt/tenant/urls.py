@@ -27,5 +27,6 @@ urlpatterns = [
     
     # path('dorm/messages/individual', views.TenantIndMessages.as_view(), name='individual_messages'),
     path('dorm/messages/<str:room_name>/', views.tenant_ind_messages, name='room'),
+    path('dorm/messages/room/create/', views.create_room, name='create_room'),
 
 ]
