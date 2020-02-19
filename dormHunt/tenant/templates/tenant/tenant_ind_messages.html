@@ -47,6 +47,11 @@
         .md .messagebar-area {
             margin: 0 !important;
         } 
+
+        .hidden{
+            display: none;
+            /* -webkit-transition-duration: .8s; */
+        }
     </style>
 {% endblock css %}
     
@@ -228,6 +233,7 @@
         // for displaying the message container
         var msgBubble = document.createElement('div');
             msgBubble.setAttribute('class', 'message-bubble');
+            msgBubble.setAttribute('onclick', 'removeHiddenFooter(event)');
     
         // for displaying the message text of the sender and receiver
         var msgText = document.createElement('div');
@@ -236,7 +242,7 @@
         
         // for displaying the delete on footer
         var msgDelete = document.createElement('div');
-            msgDelete.setAttribute('class', 'message-footer padding-bottom-half');
+            msgDelete.setAttribute('class', 'message-footer hidden');
             msgDelete.textContent = 'Remove';
             
         
@@ -305,7 +311,7 @@
             msgContent.appendChild(msgName);
             
             msgContent.appendChild(msgBubble);
-            // msgContent.appendChild(msgDelete);
+            msgContent.appendChild(msgDelete);
             msg.appendChild(msgContent);
             
             document.querySelector('#chat-log').appendChild(msg);
@@ -319,8 +325,12 @@
                 'room': roomName
             }));
         };
+
+        function removeHiddenFooter(event){
+            var bubble = event.target.parentElement;
+            var footer = bubble.nextElementSibling;
+            footer.classList.toggle('hidden');
+        };
         
-        
-        </script>
-    
+</script>
 {% endblock homeJs %}
