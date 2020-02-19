@@ -42,7 +42,9 @@
             {% block logo %}
             <div class="row">
                 <div class="col-100 text-align-center">
-                    <img class="margin-vertical" src="{% static 'user/images/white-logo.png' %}" height="100" width="100" alt="">
+                    <a href="{% url 'user:register' %}" class="link external">
+                        <img class="margin-vertical" src="{% static 'user/images/white-logo.png' %}" height="100" width="100" alt="">
+                    </a>
                 </div>
             </div>
             {% endblock logo %}

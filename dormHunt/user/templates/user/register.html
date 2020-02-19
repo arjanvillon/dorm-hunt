@@ -15,56 +15,54 @@
                 <div class="card-content padding-half">
                     <form method="POST" id="registration_form">
                         {% csrf_token %}
-                            <div class="list">
-                                <ul>
-                                    
-                                    {% for field in registration_form %}
-                                    <li class="item-content item-input item-input-outline">
-                                        <div class="item-inner">
-                                            <div class="item-title margin-bottom-half signin-label">{{ field.label_tag }}</div>
-                                            <div class="item-input-wrap">
-                                                {{field}}
-                                            </div>
+                        <div class="list">
+                            <ul>
+                                
+                                {% for field in registration_form %}
+                                <li class="item-content item-input item-input-outline">
+                                    <div class="item-inner">
+                                        <div class="item-title margin-bottom-half signin-label">{{ field.label_tag }}</div>
+                                        <div class="item-input-wrap">
+                                            {{field}}
                                         </div>
-                                    </li>
-                                        {% for error in field.errors %}
-                                            <small class="text-color-red padding-left">{{error}}</small>
-                                        {% endfor %}
-
+                                    </div>
+                                </li>
+                                    {% for error in field.errors %}
+                                        <small class="text-color-red padding-left">{{error}}</small>
                                     {% endfor %}
+                                {% endfor %}
+                            </ul>
+                        </div>
 
-                                    
-
-
-
-                                        
-
-                                </ul>
+                        <div class="row">
+                            <div class="col-100 text-align-center padding-horizontal">
+                                <small>By clicking ENTER, you agree to our <a href="{% url 'user:terms' %}" class="link external">Terms of Service</a> and <a href="{% url 'user:privacy' %}" class="link external" >Data Policy</a></p>
                             </div>
+                        </div>
 
-                    <input type="submit" value="ENTER" class="button text-color-black block-title margin-vertical submit-btn"></input>
-                </form>
+                        <input type="submit" value="ENTER" class="button text-color-black block-title margin-vertical submit-btn"></input>
+                    </form>
+                </div>
             </div>
         </div>
     </div>
-</div>
 <!-- SECTION Sign In and Forgot Password -->
-<div class="row text-align-center"">
-    <div class="col-100">
-        <div>
-            <a class="link external" data-transistion="f7-flip" href="{% url 'user:user_login' %}">
-                <span class="block-title signin-link">Sign In</span>
+    <div class="row text-align-center"">
+        <div class="col-100">
+            <div>
+                <a class="link external" data-transistion="f7-flip" href="{% url 'user:user_login' %}">
+                    <span class="block-title signin-link">Sign In</span>
+                </a>
+            </div>
+        </div>
+        <!-- <div class="col-50 float-right">
+        <div class="float-right">
+            <a class="link external" data-transistion="f7-flip" href="{% url 'user:user_forgot_password' %}">
+                <span class="block-title signin-link">Forgot Password</span>
             </a>
         </div>
+        </div> -->
     </div>
-    <!-- <div class="col-50 float-right">
-    <div class="float-right">
-        <a class="link external" data-transistion="f7-flip" href="{% url 'user:user_forgot_password' %}">
-            <span class="block-title signin-link">Forgot Password</span>
-        </a>
-    </div>
-    </div> -->
-</div>
 {% block custom_js %}
     <script src="{% static 'user/js/register.js' %}"></script>
 {% endblock custom_js %}

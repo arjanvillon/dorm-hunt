@@ -140,3 +140,9 @@ class UserProfileUpdateView(UpdateView):
             pass
 
         return super(UserProfileUpdateView, self).form_valid(form)
+
+def terms_of_services(request):
+    return render(request, 'user/terms.html')
+
+def privacy_policy(request):
+    return render(request, 'user/privacy.html')
