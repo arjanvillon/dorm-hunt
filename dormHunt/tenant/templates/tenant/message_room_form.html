@@ -55,6 +55,7 @@
 {% endblock home_content %}
 
 {% block homeJs %}
+<script src="{% static '/plugins/jquery/jquery.js' %}"></script>
 <script>
     var $$ = Dom7;
     {% if messages %}
@@ -67,7 +68,10 @@
         });
         toastLargeMessage.open()
     {% endif %}
-
+    
+    $('a.message-tab').addClass('tab-link-active');
+    $('a.message-tab i.f7-icons').addClass('size-40');
+    $('.tab-link-highlight').remove();
 </script>
 
 {% endblock homeJs %}

@@ -116,8 +116,8 @@
             {% for room in rooms %}
                 <div class="property-container padding-half margin-bottom-half">
                     <a href="#" class="link external room-name-submit">
-                        <div class="row">
-                            <div class="col-40">
+                        <div class="row  margin-nega-25 padding-half">
+                            <div class="col-20">
                                 <div class="image-cropper align-self-center">
                                     
                                     {% if not room.dorm %}
@@ -132,16 +132,43 @@
                                         
                                 </div>
                             </div><!--col-20 end-->
-                            <div class="col-60 property-name align-self-center">
-                                <p class="room-name">{{ room.name }}</p>
-                                <!-- <div class="message-time padding-bottom-half">
-                                    5 minutes ago
-                                </div> -->
-                                <!-- <div class="message-preview"> -->
-                                    <!-- Preview of last message -->
-                                    <!-- Initial message Lorem ipsum dolor sit amet consectetur ... -->
-                                <!-- </div> -->
-                            </div><!--col-80 end-->
+
+                            <div class="col-80 property-name">
+                                <a href="#" class="link external room-name-submit">
+                                    <div class="row">
+                                        <div class="col-100">
+                                            <p class="no-margin room-name">{{ room.name }}</p>
+                                        </div>
+                                        <div class="col-100">
+                                            <div class="message-time padding-bottom-half">
+                                                
+                                                {% if room.message_set.last.created_at %}
+                                                    {{ room.message_set.last.created_at }}
+                                                {% else %}
+                                                    {{ room.created_at }}
+                                                {% endif %}
+                                                    
+                                            </div>
+                                        </div>
+                                        <div class="col-100">
+                                            <div class="message-preview">
+                                                <!-- Preview of last message -->
+                                                
+                                                {% if room.message_set.last.content %}
+                                                    {{ room.message_set.last.content }}
+                                                {% else %}
+                                                    No new messages.
+                                                {% endif %}
+                                                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </a><!--a end-->
+
+
+                                </div><!--col-80 end-->
+
+
                         </div><!--row end-->
                     </a><!--a end-->
                 </div><!--property-container end-->
