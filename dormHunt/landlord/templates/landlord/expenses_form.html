@@ -1,0 +1,94 @@
+{% extends 'landlord/base.html' %}
+{% load static %}
+
+{% block landlordCss %}
+    <link rel="stylesheet" href="{% static '/plugins/select2/css/select2.css' %}">
+{% endblock landlordCss %}
+    
+{% block landlord_content %}
+<div class="tabs-swipeable-wrap">
+    <div class="page-content">
+
+        <div class="row">
+            <div class="col-25">
+                <div class="padding">
+                <!-- TODO Create a function to return to previous link -->
+                <!-- NOTE This a link is just temporary -->
+                    <a href="{% url 'landlord:landlord_messages' %}" class="link external">
+                        <div class="row back-btn">
+                            <div class="col-10">
+                                <i class="f7-icons">chevron_left</i>
+                            </div>
+                            <div class="col-90 padding-left text-large">
+                                Back
+                            </div>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <div class="col-50 text-align-center">
+                <div class="padding">
+                    <h3 class="no-margin">Add Expenses</h3>
+                </div>
+            </div>
+
+            <div class="col-25"></div>
+        </div>
+
+        <div class="row ">
+            <div class="col-100 add-property-margin">
+                <form method="POST" enctype="multipart/form-data" id="create_property_form">
+                    {% csrf_token %}
+
+                        <div class="list no-hairlines-md no-margin-bottom">
+                            <ul>
+                                {% for field in form %}
+                                    <li class="item-content item-input item-input-outline">
+                                        <div class="item-inner">
+                                            <div class="item-title item-floating-label margin-bottom-half signin-label">
+
+                                                {{ field.label_tag }}
+
+                                            </div>
+                                            <div class="item-input-wrap">
+                                                {{field}}
+                                            </div>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div><!--list-->
+                        
+                    <!-- SECTION Submit Button -->
+                    <div class="text-align-center padding-vertical submit-btn-container">
+                        <input type="submit" class="submit-btn button button-raised button-fill button-round" value="Submit"> 
+                    </div>
+
+                    </form>
+                    
+            </div>
+        </div>
+
+    </div><!--page-content-->
+</div><!--swipeable wrap-->
+
+{% endblock landlord_content %}
+
+
+{% block landlordJs %}
+<script src="{% static '/plugins/select2/js/select2.js' %}"></script>
+<script>
+    
+    $(document).ready(function() {
+        $('a.home-tab').addClass('tab-link-active');
+        $('a.home-tab i.f7-icons').addClass('size-40');
+        $('.tab-link-highlight').remove();
+
+        // init select
+        // $('select2').select2();
+    });
+
+</script>
+{% endblock landlordJs %}
+    

@@ -212,25 +212,39 @@
           <div class="block">
             <p><b>{{details.dorm.description}}</b></p>
             
-            <p>Contact Information: </p>
+            <strong>Contact Information: </strong>
               
               {% if details.dorm.owner.userprofile.first_name and details.dorm.owner.userprofile.last_name %}
-                <div>Landlord: {{ details.dorm.owner.userprofile.first_name }} {{ details.dorm.owner.userprofile.last_name }}</div>
+                <div class="padding-left">
+                  Landlord: 
+                  <span class="color-scheme1">{{ details.dorm.owner.userprofile.first_name }} {{ details.dorm.owner.userprofile.last_name }}</span>
+                </div>
               {% else %}
-                <div>Landlord: {{ details.dorm.owner }}</div>  
+                <div class="padding-left">
+                  Landlord: 
+                  <span class="color-scheme1">{{ details.dorm.owner }}</span>
+                </div>  
               {% endif %}
                 
               
               {% if details.dorm.number %}
-                <div> Number: {{ details.dorm.number }}</div>              
+                <div class="padding-left"> Number: 
+                  <span class="color-scheme1">
+                    {{ details.dorm.number }}
+                  </span>
+                </div>              
               {% endif %}
 
 
                 
-              <div>Email: {{ details.dorm.owner.email }}</div>
+              <div class="padding-left">Email: 
+                <span class="color-scheme1">
+                  {{ details.dorm.owner.email }}
+                </span>  
+              </div>
               
             <p>Dorm Information: </p>
-             <!-- SECTION Important Features -->
+            <!-- SECTION Important Features -->
             <div class="row padding-top">
               <div class="col-33">
                   <!-- SECTION Feature 1 -->
@@ -332,15 +346,46 @@
     <!-- SECTION Reminder and Room Information -->
     <div class="row margin-horizontal margin-top">
       <div class="col-50">
-        <div class="room-info-container padding">
+        <div class="room-info-container padding-vertical padding-horizontal">
           <span class="room-title">Payment Details</span>
-          <div class="room-content padding-left-half padding-top-half text-capitalize">
+          <div class="room-content padding-top-half text-capitalize">
               
-              {% if details.is_paid %}
+              {% if details.is_paid and details.expense_is_paid %}
+                <p class="no-margin"><i class="fas fa-check"></i> You already paid your rent and expenses! Great!</p>
+              {% elif details.is_paid and details.expense_is_paid == False %}
+                <p class="no-margin">
+                  <i class="fas fa-calendar-alt"></i>
+                  {{ details.expense_balance }} 
+                  <br> Expenses: <span class="badge color-red">Unpaid</span>
+                  <br> Rent: <span class="badge color-green">Paid</span>
+                </p>
+              {% elif details.is_paid == False and details.expense_is_paid %}
+                <p class="no-margin">
+                  <i class="fas fa-calendar-alt"></i>
+                  {{ details.balance }} 
+                  <br> Expenses: <span class="badge color-green">Paid</span>
+                  <br> Rent: <span class="badge color-red">Unpaid</span>
+                </p>
+              {% elif details.is_paid == False and details.expense_is_paid == False %}
+                <p class="no-margin">
+                  <i class="fas fa-calendar-alt"></i>
+                  {{ total_balance }} 
+                  <br> Expenses: <span class="badge color-red">Unpaid</span>
+                  <br> Rent: <span class="badge color-red">Unpaid</span>
+                </p>
+                
+              {% endif %}
+                
+
+              <!-- {% if details.is_paid %}
                 <p class="no-margin"><i class="fas fa-check"></i> You already paid your rent! Awesome</p>
+                {% if expenses.is_paid %}
+                  
+                {% endif %}
+                  
               {% else %}
                 <p class="no-margin"><i class="fas fa-calendar-alt"></i> You haven't paid your rent yet! <br> Balance: {{details.balance}}</p>
-              {% endif %}
+              {% endif %} -->
                 
               
           </div><!--room-content end --> 
@@ -370,8 +415,8 @@
                 <!-- <div class="room-content padding-left padding-top-half text-capitalize">
                     <i class="fas fa-door-open"></i>
                     {{reminders.issue}} -->
-               <!-- </div>room-content end --> 
-         <!--   </div><!-dorm-info-container end-->
+                <!-- </div>room-content end --> 
+          <!--   </div><!-dorm-info-container end-->
         <!--</div><!-col-100-->
     <!--</div><!-row end-->
     <!-- SECTION Room Information end -->

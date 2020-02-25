@@ -1,23 +1,27 @@
 /* SECTION FONTS */
 /* TODO Download all this fonts */
-@import url('https://fonts.googleapis.com/css?family=PT+Sans&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Roboto&display=swap');
-@import url('https://fonts.googleapis.com/css?family=PT+Sans+Caption&display=swap');
-@import url('https://fonts.googleapis.com/css?family=Rambla&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Lato|Montserrat|Muli|Open+Sans|Playfair+Display|Rambla|Roboto&display=swap');
+
+/* ANCHOR Root Variables */
+:root {
+  --primary-color:                #5660f1;
+  --color-gray:                   #c4c4c4; 
+  --color-black:                  #000000;      
+}
 
 /* SECTION COLORS  */
 .color-scheme1 { 
-    color: #5660F1;
+    color: var(--primary-color);
 }
 
 
 /* SECTION CUSTOM TABS */
 .tab-link {
-    color: #C4C4C4 !important;
+    color: var(--color-gray) !important;
 }
 
 .tab-link-active {
-    color: #5660F1 !important;
+    color: var(--primary-color) !important;
 }
 
 /* SECTION BACKGROUND */
@@ -38,7 +42,7 @@
 /* ANCHOR TRANSITION */
 .router-transition-f7-cover-forward,
 .router-transition-f7-cover-backward {
-  background: #000;
+  background: var(--color-black);
   perspective: 1200px;
 }
 .router-transition-f7-cover-forward .page-next {
@@ -107,18 +111,18 @@
 
 /* Back Button */
 .back-btn {
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'Muli', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: 19px;
     line-height: 25px;
     letter-spacing: -0.06em;
-    color: #5660F1;
+    color: var(--primary-color);
 }
 
 /* Log Out Button */
 .logout-btn {
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'Muli', sans-serif;
     font-style: normal;
     line-height: 20px;
     letter-spacing: 0.1em;
@@ -127,15 +131,15 @@
     font-weight: 900 !important;
 }
 .logout-btn:hover {
-    color: #5660F1;
+    color: var(--primary-color);
 }
 
 /* LABELS */
 .account-type-label {
     background: rgba(87, 204, 242, 0.25);
-    color: #5660F1;
+    color: var(--primary-color);
     border-radius: 33px;
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'Muli', sans-serif;
     font-style: normal;
     font-weight: bold;
     line-height: 25px;
@@ -145,7 +149,7 @@
 
 /* SECTION TYPOGRAPHY */
 .email-profile {
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'Muli', sans-serif;
     font-style: normal;
     font-weight: normal;
     letter-spacing: 0.1em;

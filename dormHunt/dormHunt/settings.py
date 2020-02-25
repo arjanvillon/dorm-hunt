@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'home.apps.HomeConfig',
     'user',
     'tenant',
-    'landlord',
+    'landlord'
 ]
 
 MIDDLEWARE = [

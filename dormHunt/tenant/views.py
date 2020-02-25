@@ -13,7 +13,7 @@ import requests
 import json
 
 # SECTION Import Models
-from landlord.models import Property, AddTenant, Reminder
+from landlord.models import Property, AddTenant, Reminder, Expenses
 from tenant.models import Application, MessageRoom, Message
 from user.models import User
 
@@ -32,20 +32,26 @@ class has_dorm(TemplateView):
     template_name = 'tenant/tenant_home.html'
 
     def get_context_data(self, **kwargs):
-        details = get_object_or_404(AddTenant, account_user=self.request.user.email)
-        
         user = AddTenant.objects.get(account_user=self.request.user.email)
+        
+        details = get_object_or_404(AddTenant, account_user=self.request.user.email)
+        expenses = Expenses.objects.filter(property_name=user.dorm, date=date.today())
         reminders = Reminder.objects.filter(property_name=user.dorm, next_service=date.today())
 
         context = super(has_dorm, self).get_context_data(**kwargs)
+        if details.is_paid == False and details.expense_is_paid == False:
+            total_balance = details.balance + details.expense_balance
+            context['total_balance'] = total_balance
+        
+        context['expenses'] = expenses
         context['details'] = details
         context["reminders"] = reminders
         return context
 
 def Home_Tenant(request):
     try:
-       tenant = AddTenant.objects.get(account=request.user)
-       print(tenant)
+        tenant = AddTenant.objects.get(account=request.user)
+        print(tenant)
     except ObjectDoesNotExist:
         return redirect('tenant:no_dorm')
     return redirect('tenant:has_dorm')
@@ -189,7 +195,7 @@ class No_Dorm_Messages(TemplateView):
         context = super(No_Dorm_Messages, self).get_context_data(**kwargs)
         context["applications"] = applicatons 
         return context
-   
+
 
 class Has_Dorm_Messages(TemplateView):
     template_name = 'tenant/tenant_has_dorm_messages.html'

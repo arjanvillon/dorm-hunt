@@ -156,14 +156,24 @@
                                                 <div class="col-70">
                                                   
                                                   {% if tenant.is_paid %}
-                                                    <a class="sheet-open" href="#" data-sheet=".my-sheet-swipe-to-step-paid{{ tenant.pk }}">
-                                                      {% if tenant.account.userprofile.last_name and tenant.account.userprofile.first_name %}
-                                                        {{tenant.account.userprofile.last_name }}, {{tenant.account.userprofile.first_name }} 
-                                                      {% else %}
-                                                        {{tenant.account.email}}
-                                                      {% endif %}   
-                                                    </a>
+                                                    {% if tenant.expense_is_paid %}
+                                                      <a class="sheet-open" href="#" data-sheet=".my-sheet-swipe-to-step-paid{{ tenant.pk }}">
+                                                        {% if tenant.account.userprofile.last_name and tenant.account.userprofile.first_name %}
+                                                          {{tenant.account.userprofile.last_name }}, {{tenant.account.userprofile.first_name }} 
+                                                        {% else %}
+                                                          {{tenant.account.email}}
+                                                        {% endif %}   
+                                                      </a>
                                                     {% else %}
+                                                      <a class="sheet-open" href="#" data-sheet=".my-sheet-swipe-to-step-unpaid{{ tenant.pk }}">
+                                                        {% if tenant.account.userprofile.last_name and tenant.account.userprofile.first_name %}
+                                                          {{tenant.account.userprofile.last_name }}, {{tenant.account.userprofile.first_name }} 
+                                                        {% else %}
+                                                          {{tenant.account.email}}
+                                                        {% endif %}   
+                                                      </a>
+                                                    {% endif %} 
+                                                  {% else %}
                                                       <a class="sheet-open" href="#" data-sheet=".my-sheet-swipe-to-step-unpaid{{ tenant.pk }}">
                                                         {% if tenant.account.userprofile.last_name and tenant.account.userprofile.first_name %}
                                                           {{tenant.account.userprofile.last_name }}, {{tenant.account.userprofile.first_name }} 
@@ -178,37 +188,123 @@
                                                       <!-- Swipe to step sheet -->
                                                     
                                                     {% if tenant.is_paid %}
-                                                      <div class="sheet-modal my-sheet-swipe-to-step-paid{{ tenant.pk }}" style="height:auto; --f7-sheet-bg-color: #fff;">
-                                                        <div class="sheet-modal-inner">
-                                                        <div class="sheet-modal-swipe-step">
-                                                            <div class="display-flex padding justify-content-space-between align-items-center">
-                                                            <div style="font-size: 18px"><b>Balance:</b></div>
-                                                            <!-- FIXME Static palang to -->
-                                                            <div style="font-size: 22px"><b>Php 0.0</b></div>
-                                                            </div>
-                                                            <div class="padding-horizontal padding-bottom">
-                                                            <!-- <div class="margin-top text-align-center">Swipe up to see payment history</div> -->
-                                                            </div>
+                                                      {% if tenant.expense_is_paid  %}
+                                                        <div class="sheet-modal my-sheet-swipe-to-step-paid{{ tenant.pk }}" style="height:auto; --f7-sheet-bg-color: #fff;">
+                                                          <div class="sheet-modal-inner">
+                                                          <div class="sheet-modal-swipe-step">
+                                                              <div class="display-flex padding justify-content-space-between align-items-center">
+                                                              <div style="font-size: 18px"><b>Balance:</b></div>
+                                                              <!-- FIXME Static palang to -->
+                                                              <div style="font-size: 22px"><b>Php 0.0</b></div>
+                                                              </div>
+                                                              <div class="padding-horizontal padding-bottom">
+                                                              <!-- <div class="margin-top text-align-center">Swipe up to see payment history</div> -->
+                                                              </div>
+                                                          </div>
+                                                          <!-- <div class="block-title block-title-medium margin-top">History:</div>
+                                                          <div class="list no-hairlines">
+                                                              <ul>
+                                                              <li class="item-content">
+                                                                  <div class="item-inner">
+                                                                  <div class="item-title">{{ month_today }}</div>
+                                                                  <div class="item-after text-color-black"><b>Php {{ tenant.dorm.price}}</b></div>
+                                                                  </div>
+                                                              </li>
+                                                              <li class="item-content">
+                                                                  <div class="item-inner">
+                                                                  <div class="item-title">Bills</div>
+                                                                  <div class="item-after text-color-black"><b>Php 700</b></div>
+                                                                  </div>
+                                                              </li>
+                                                              </ul>
+                                                          </div> -->
+                                                          </div> 
                                                         </div>
-                                                        <!-- <div class="block-title block-title-medium margin-top">History:</div>
-                                                        <div class="list no-hairlines">
-                                                            <ul>
-                                                            <li class="item-content">
-                                                                <div class="item-inner">
-                                                                <div class="item-title">{{ month_today }}</div>
-                                                                <div class="item-after text-color-black"><b>Php {{ tenant.dorm.price}}</b></div>
+                                                        {% else %}
+                                                        <div class="sheet-modal my-sheet-swipe-to-step-unpaid{{ tenant.pk }}" style="height:auto; --f7-sheet-bg-color: #fff;">
+                                                          <div class="sheet-modal-inner">
+                                                          <div class="sheet-modal-swipe-step">
+                                                              <div class="display-flex padding justify-content-space-between align-items-center">
+                                                                <div style="font-size: 18px"><b>{{tenant.account.userprofile.last_name }}, {{tenant.account.userprofile.first_name }} </b></div>
+                                                              </div>
+                                                              <div class="display-flex padding justify-content-space-between align-items-center">
+                                                                <div style="font-size: 18px"><b>Total:</b></div>
+                                                                
+                                                                {% if tenant.is_inclusive == 'Inclusive' %}
+                                                                  <div style="font-size: 22px"><b>Php {{ tenant.balance }}</b></div>
+                                                                {% elif tenant.is_inclusive == 'Not Inclusive' %}
+                                                                  <div style="font-size: 22px"><b>Php {{ tenant.balance | add:tenant.expense_balance }}</b></div>
+                                                                {% endif %}
+                                                                  
+                                                              </div>
+                                                              <div class="row">
+                                                                <div class="col-100">
+                                                                  <form action="{% url 'landlord:payment_paid' pk=tenant.pk %}" method="POST">
+                                                                    {% csrf_token %}
+                                                                    
+                                                                    {% if tenant.is_inclusive == 'Not Inclusive' %}
+                                                                      <div class="list margin-vertical-half no-margin-top">
+                                                                        <ul>
+                                                                          <li class="item-content item-input item-input-outline">
+                                                                            <div class="item-inner">
+                                                                              <div class="item-title item-label no-padding-left">
+                                                                                Amount
+                                                                              </div>
+                                                                              <div class="item-input-wrap">
+                                                                                <div class="item-input-wrap">
+                                                                                  <input type="number" name="amount">
+                                                                                  <span class="input-clear-button"></span>
+                                                                                </div>
+                                                                              </div>
+                                                                            </div>
+                                                                          </li>
+                                                                        </ul>
+                                                                      </div>
+                                                                    
+                                                                    {% endif %}
+                                                                    <div class="row">
+                                                                      <div class="col-100">
+                                                                        <div class="padding-horizontal padding-bottom">
+                                                                          <!-- <div class="margin-top text-align-center">Swipe up for more details</div> -->
+                                                                          
+                                                                          {% if tenant.is_inclusive == 'Inclusive' %}
+                                                                          <a href="{% url 'landlord:payment_paid_bedspace' pk=tenant.pk %}" class="link external button button-large button-fill">Mark as Paid</a>
+                                                                          {% elif tenant.is_inclusive == 'Not Inclusive' %}
+                                                                          <input class=" button button-large button-fill" type="submit" value="Mark as Paid">
+                                                                          {% endif %}
+                                                                            
+                                                                        </div>
+                                                                      </div>
+                                                                    </div>
+    
+                                                                  </form>
                                                                 </div>
-                                                            </li>
-                                                            <li class="item-content">
-                                                                <div class="item-inner">
-                                                                <div class="item-title">Bills</div>
-                                                                <div class="item-after text-color-black"><b>Php 700</b></div>
-                                                                </div>
-                                                            </li>
-                                                            </ul>
-                                                        </div> -->
-                                                        </div> 
+                                                              </div>
+                                                              
+                                                              
+                                                          </div>
+                                                          <!-- <div class="block-title block-title-medium margin-top">Details:</div>
+                                                          <div class="list no-hairlines">
+                                                              <ul>
+                                                              <li class="item-content">
+                                                                  <div class="item-inner">
+                                                                  <div class="item-title">{{ month_today }}</div>
+                                                                  <div class="item-after text-color-black"><b>Php {{ tenant.dorm.price}}</b></div>
+                                                                  </div>
+                                                              </li>
+                                                              <li class="item-content">
+                                                                  <div class="item-inner">
+                                                                  <div class="item-title">Bills</div>
+                                                                  <div class="item-after text-color-black"><b>Php 700</b></div>
+                                                                  </div>
+                                                              </li>
+                                                              </ul>
+                                                          </div> -->
+                                                          </div>
                                                       </div>
+                                                      {% endif %}
+                                                        
+                                                      
                                                     {% else %}
                                                     <div class="sheet-modal my-sheet-swipe-to-step-unpaid{{ tenant.pk }}" style="height:auto; --f7-sheet-bg-color: #fff;">
                                                       <div class="sheet-modal-inner">
@@ -218,12 +314,20 @@
                                                           </div>
                                                           <div class="display-flex padding justify-content-space-between align-items-center">
                                                             <div style="font-size: 18px"><b>Total:</b></div>
-                                                            <div style="font-size: 22px"><b>Php {{ tenant.balance }}</b></div>
+                                                            
+                                                            {% if tenant.is_inclusive == 'Inclusive' %}
+                                                              <div style="font-size: 22px"><b>Php {{ tenant.balance }}</b></div>
+                                                            {% elif tenant.is_inclusive == 'Not Inclusive' %}
+                                                              <div style="font-size: 22px"><b>Php {{ tenant.balance | add:tenant.expense_balance }}</b></div>
+                                                            {% endif %}
+                                                              
                                                           </div>
                                                           <div class="row">
                                                             <div class="col-100">
                                                               <form action="{% url 'landlord:payment_paid' pk=tenant.pk %}" method="POST">
                                                                 {% csrf_token %}
+                                                                
+                                                                {% if tenant.is_inclusive == 'Not Inclusive' %}
                                                                   <div class="list margin-vertical-half no-margin-top">
                                                                     <ul>
                                                                       <li class="item-content item-input item-input-outline">
@@ -241,30 +345,23 @@
                                                                       </li>
                                                                     </ul>
                                                                   </div>
-
-                                                                <!-- <ul>
-                                                                  {% for field in form %}
-                                                                    <li class="item-content item-input item-input-outline">
-                                                                      <div class="item-inner">
-                                                                          <div class="item-title item-floating-label margin-bottom-half signin-label">{{ field.label }}
-                                                                              
-                                                                          </div>
-                                                                          <div class="item-input-wrap">
-                                                                              {{ field }}
-                                                                          </div>
-                                                                      </div>
-                                                                    </li>
-                                                                  {% endfor %}
-                                                                </ul> -->
+                                                                
+                                                                {% endif %}
                                                                 <div class="row">
                                                                   <div class="col-100">
                                                                     <div class="padding-horizontal padding-bottom">
-                                                                      <!-- <a href="{% url 'landlord:payment_paid' pk=tenant.pk %}" class="link external button button-large button-fill">Mark as Paid</a> -->
+                                                                      <!-- <div class="margin-top text-align-center">Swipe up for more details</div> -->
+                                                                      
+                                                                      {% if tenant.is_inclusive == 'Inclusive' %}
+                                                                      <a href="{% url 'landlord:payment_paid_bedspace' pk=tenant.pk %}" class="link external button button-large button-fill">Mark as Paid</a>
+                                                                      {% elif tenant.is_inclusive == 'Not Inclusive' %}
                                                                       <input class=" button button-large button-fill" type="submit" value="Mark as Paid">
-                                                                    <!-- <div class="margin-top text-align-center">Swipe up for more details</div> -->
+                                                                      {% endif %}
+                                                                        
                                                                     </div>
                                                                   </div>
                                                                 </div>
+
                                                               </form>
                                                             </div>
                                                           </div>
@@ -280,7 +377,7 @@
                                                               <div class="item-after text-color-black"><b>Php {{ tenant.dorm.price}}</b></div>
                                                               </div>
                                                           </li>
-                                                           <li class="item-content">
+                                                          <li class="item-content">
                                                               <div class="item-inner">
                                                               <div class="item-title">Bills</div>
                                                               <div class="item-after text-color-black"><b>Php 700</b></div>
@@ -294,13 +391,17 @@
                                                       
                                                 </div>
                                                 <div class="col-30">
-                                                  
-                                                  {% if tenant.is_paid %}
+
+                                                  {% if tenant.is_paid and tenant.expense_is_paid %}
                                                     <span class="badge color-green padding-horizontal-half">PAID</span>
+                                                  {% elif tenant.is_paid and not tenant.expense_is_paid %}
+                                                    <span class="badge color-red padding-horizontal-half">UNPAID</span>
+                                                  {% elif not tenant.is_paid and tenant.expense_is_paid %}
+                                                    <span class="badge color-red padding-horizontal-half">UNPAID</span>
                                                   {% else %}
                                                     <span class="badge color-red padding-horizontal-half">UNPAID</span>
-                                                    {% endif %}
-                                                    
+                                                  {% endif %}
+
                                                 </div>
                                               </div><!--row end-->
                                             {% endif %}
@@ -350,7 +451,7 @@
   var $accordion = $('.js-accordion');
   var $accordion_header = $accordion.find('.js-accordion-header');
   var $accordion_item = $('.js-accordion-item');
- 
+
   // default settings 
   var settings = {
     // animation speed
@@ -381,10 +482,10 @@
             
       if(settings.oneOpen && $this[0] != $this.closest('.js-accordion').find('> .js-accordion-item.active > .js-accordion-header')[0]) {
         $this.closest('.js-accordion')
-               .find('> .js-accordion-item') 
-               .removeClass('active')
-               .find('.js-accordion-body')
-               .slideUp()
+                .find('> .js-accordion-item') 
+                .removeClass('active')
+                .find('.js-accordion-body')
+                .slideUp()
       }
       
       // show/hide the clicked accordion item

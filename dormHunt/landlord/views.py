@@ -12,10 +12,10 @@ from django.core.exceptions import ObjectDoesNotExist
 
 
 # SECTION Import Forms
-from landlord.forms import PropertyForm, ReminderForm, AddTenantForm
+from landlord.forms import PropertyForm, ReminderForm, AddTenantForm, AddExpenseForm
 
 #SECTION Import Models
-from landlord.models import Property, Reminder, AddTenant
+from landlord.models import Property, Reminder, AddTenant, Expenses
 from user.models import User, UserProfile
 from tenant.models import Application, MessageRoom
 
@@ -188,6 +188,10 @@ class Payment(TemplateView):
         tenants = AddTenant.objects.all()
         month_today = datetime.datetime.now().strftime("%B")
 
+        
+        # STUB Get Total Balance 
+        
+        
         context['property_numbers'] = properties.count()
         context['property_list'] = properties
         context['tenants'] = tenants
@@ -201,6 +205,13 @@ def mark_tenant_paid(request, pk):
         amount = request.POST.get('amount')
         tenant.paid(int(amount))
     # tenant.paid(tenant.dorm.price)
+    return redirect('landlord:payment')
+
+def mark_tenant_paid_bedspace(request, pk):
+    tenant = get_object_or_404(AddTenant, pk=pk)
+    tenant.is_paid = True
+    tenant.save()
+    
     return redirect('landlord:payment')
 
 def due_date(request):
@@ -230,14 +241,19 @@ def remove_tenant(request, pk):
 
     return redirect('landlord:landlord_home')
 
+# class AddExpenseView(TemplateView):
+#     template_name = 'landlord/add_expense.html'
 
+class AddExpenseCreateView(CreateView):
     
-
-
-
-# def mark_tenant_unpaid(request, pk):
-#     application = get_object_or_404(Application, pk=pk)
-#     application.disapprove()
-#     return redirect('landlord:landlord_messages')
-
-
+    form_class = AddExpenseForm
+    model = Expenses
+    
+    def get_form_kwargs(self):
+        kwargs = super().get_form_kwargs()
+        kwargs['user'] = self.request.user
+        return kwargs
+    
+    def form_valid(self, form):
+        print('valid')
+        return super().form_valid(form)

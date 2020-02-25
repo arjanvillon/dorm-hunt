@@ -2,7 +2,7 @@
 /* SECTION Buttons */
 /* Log Out Button */
 .logout-btn {
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'Muli', sans-serif;
     font-style: normal;
     line-height: 20px;
     letter-spacing: 0.1em;
@@ -33,7 +33,7 @@
     background: rgba(87, 204, 242, 0.25);
     color: #5660F1;
     border-radius: 33px;
-    font-family: 'PT Sans', sans-serif;
+    font-family: 'Muli', sans-serif;
     font-style: normal;
     font-weight: bold;
     line-height: 25px;

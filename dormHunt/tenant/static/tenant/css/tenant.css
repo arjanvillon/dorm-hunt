@@ -2,7 +2,7 @@
 /* SECTION Text Styles */
 .search-text {
     font-weight: bold !important;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Muli', sans-serif;
     font-size: larger;
 }
 
@@ -10,11 +10,11 @@
     font-weight: bold !important;
     font-size: larger !important;
     letter-spacing: -0.06em !important;
-    font-family: 'PT Sans Caption', sans-serif !important;
+    font-family: 'Muli', sans-serif !important;
 }
 
 .property-support-label {
-    font-family: 'PT Sans Caption', sans-serif !important;
+    font-family: 'Muli', sans-serif !important;
     font-style: normal;
     font-weight: normal;
     font-size: medium !important;
@@ -27,7 +27,7 @@
 }
 
 .property-title {
-    font-family: 'PT Sans Caption', sans-serif;
+    font-family: 'Muli', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: x-large;
@@ -36,7 +36,7 @@
 }
 
 .property-address {
-    font-family: 'PT Sans Caption', sans-serif;
+    font-family: 'Muli', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: large;
@@ -46,12 +46,12 @@
 }
 
 .property-price {
-    font-family: 'PT Sans Caption', sans-serif;
+    font-family: 'Muli', sans-serif;
     font-style: normal;
     font-size: large;
     line-height: 23px;
     letter-spacing: -0.02em;
-    color: #000000;
+    color: var(--color-black);
 }
 
 
@@ -112,7 +112,7 @@ form.searchbar {
 
 /* SECTION Features */
 .feature-name, .feature-detail {
-    font-family: 'PT Sans Caption', sans-serif;
+    font-family: 'Muli', sans-serif;
     font-style: normal;
     font-weight: 700 ;
     font-size: small;
@@ -125,7 +125,7 @@ form.searchbar {
 }
 
 .feature-name-two {
-    font-family: 'PT Sans Caption', sans-serif;
+    font-family: 'Muli', sans-serif;
     font-style: normal;
     font-weight: 800;
     font-size: medium;
@@ -135,7 +135,7 @@ form.searchbar {
 }
 
 .feature-answer-two {
-    font-family: 'PT Sans Caption', sans-serif;
+    font-family: 'Muli', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: large;
@@ -145,7 +145,7 @@ form.searchbar {
 }
 
 .description-content {
-    font-family: 'PT Sans Caption', sans-serif;
+    font-family: 'Muli', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: medium;
@@ -157,7 +157,7 @@ form.searchbar {
 }
 
 .inclusions {
-    font-family: 'PT Sans Caption', sans-serif;
+    font-family: 'Muli', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: medium;
@@ -167,7 +167,7 @@ form.searchbar {
 }
 
 .finance-details {
-    font-family: 'PT Sans Caption', sans-serif;
+    font-family: 'Muli', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: medium;
@@ -181,7 +181,7 @@ form.searchbar {
 }
 
 .contact-property-name {
-    font-family:'PT Sans Caption', sans-serif;
+    font-family:'Muli', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: large;
@@ -189,20 +189,23 @@ form.searchbar {
     line-height: 19px;
     letter-spacing: -0.06em;
     color: #000000;
+    word-wrap: break-word;
 }
 
 .contact-property-link {
-    font-family: 'PT Sans Caption', sans-serif;
+    font-family: 'Muli', sans-serif;
     font-style: normal;
     font-weight: normal;
     font-size: large;
     line-height: 18px;
     letter-spacing: -0.06em;
     color: #5660F1;
+    word-wrap: break-word;
+
 }
 
 .request-btn {
-    font-family: 'PT Sans Caption', sans-serif;
+    font-family: 'Muli', sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: large;
@@ -211,7 +214,7 @@ form.searchbar {
 }
 
 .apply-btn {
-    font-family: 'PT Sans Caption', sans-serif;
+    font-family: 'Muli', sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: large;
@@ -228,7 +231,7 @@ form.searchbar {
 }
 
 .listing-label {
-    font-family:' Roboto', sans-serif;
+    font-family:' Muli', sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: large;
@@ -250,7 +253,7 @@ form.searchbar {
 }
 
 .application-label {
-    font-family: Roboto;
+    font-family: Muli;
     font-style: normal;
     font-weight: bold;
     font-size: large;
@@ -261,7 +264,7 @@ form.searchbar {
 }
 
 .application-instruction {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Muli', sans-serif;
     font-style: normal;
     font-weight: 300;
     font-size: medium;
@@ -270,7 +273,7 @@ form.searchbar {
 }
 
 .sub-instruction-label {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Muli', sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: medium;
@@ -281,7 +284,7 @@ form.searchbar {
 }
 
 .sub-instruction-content {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Muli', sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: small;
@@ -321,6 +324,7 @@ img.home-dorm {
 .dorm-name {
     font-size: large;
     font-weight: bold;
+    font-family: 'Muli', sans-serif;
 }
 
 .text-size-35 {

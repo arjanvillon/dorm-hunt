@@ -42,3 +42,21 @@ var app = new Framework7({
     ]
   });
 
+  var calendarDefault = app.calendar.create({
+    inputEl: '#id_date',
+    openIn: 'customModal',
+    header: true,
+    footer: true,
+    dateFormat: 'yyyy-mm-dd',
+  });
+  
+  var picker = app.picker.create({
+    inputEl: '#id_is_inclusive',
+    cols: [
+      { 
+        textAlign: 'center',
+        values: ['Inclusive', 'Not Inclusive'],
+        displayValues: ['Inclusive', 'Not Inclusive'],
+      }
+    ]
+  });

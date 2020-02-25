@@ -132,7 +132,7 @@
             <!--SECTION QUICK BUTTONS -->
             <div class="row justify-content-center text-align-center padding-top">
                 <!-- SECTION Add Tenant -->
-                <div class="col-50">
+                <div class="col-33">
                     <a href="{% url 'landlord:add_tenant' %}" class="link external">
                         <div class="row">
                             <div class="col-100">
@@ -147,8 +147,8 @@
                     </a>
                 </div>
                 <!-- SECTION Add Expense -->
-                <!-- <div class="col-33">
-                    <a href="#" class="link external">
+                <div class="col-33">
+                    <a href="{% url 'landlord:add_payment' %}" class="link external">
                         <div class="row">
                             <div class="col-100">
                                 <img src="{% static 'landlord/images/buttons/add_new_expense.png' %}" alt="Add New Expense">
@@ -160,9 +160,9 @@
                             </div>
                         </div>
                     </a>
-                </div> -->
+                </div>
                 <!-- SECTION Add Property -->
-                <div class="col-50">
+                <div class="col-33">
                     <a href="{% url 'landlord:property_create' %}" class="link external">
                         <div class="row">
                             <div class="col-100">
@@ -286,7 +286,7 @@
                                             {% else %}
                                               {{tenant.account.email}}
                                             {% endif %}   
-                                          </a>
+                                ]          </a>  
                                           <!-- Swipe to step sheet -->
                                           <div class="sheet-modal my-sheet-swipe-to-step-profile{{ tenant.pk }}" style="height:auto; --f7-sheet-bg-color: #fff;">
                                             <div class="sheet-modal-inner">
@@ -368,7 +368,7 @@ var accordion = (function(){
   var $accordion = $('.js-accordion');
   var $accordion_header = $accordion.find('.js-accordion-header');
   var $accordion_item = $('.js-accordion-item');
- 
+
   // default settings 
   var settings = {
     // animation speed
@@ -399,10 +399,10 @@ var accordion = (function(){
             
       if(settings.oneOpen && $this[0] != $this.closest('.js-accordion').find('> .js-accordion-item.active > .js-accordion-header')[0]) {
         $this.closest('.js-accordion')
-               .find('> .js-accordion-item') 
-               .removeClass('active')
-               .find('.js-accordion-body')
-               .slideUp()
+                .find('> .js-accordion-item') 
+                .removeClass('active')
+                .find('.js-accordion-body')
+                .slideUp()
       }
       
       // show/hide the clicked accordion item

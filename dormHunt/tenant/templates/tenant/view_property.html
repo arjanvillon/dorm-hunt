@@ -309,14 +309,20 @@
         <div class="col-100 padding-left">
             <span class="feature-name-two">CONTACT PERSON</span>
         </div><!--col-100 end-->
-        <div class="col-40 text-align-center padding">
-            <img src="{{ property.owner.userprofile.picture.url }}" alt="{{ property.name }}" width="75" height="75" style="border-radius: 50%;">
+    </div>
+    <div class="row">
+        <div class="col-40 text-align-center">
+            <div class="padding">
+                <img src="{{ property.owner.userprofile.picture.url }}" alt="{{ property.name }}" width="75" height="75" style="border-radius: 50%;">
+            </div>
         </div><!--col-30 end-->
         <div class="col-60 padding">
             <span class="contact-property-name">{{ property.name }}</span>
-            <span class="contact-property-link">{{ property.owner.email }}</span>
+            <br>
+            <span class="contact-property-link word-limit">{{ property.owner.email }}</span>
+            <br>
             <span class="contact-property-link">{{ property.owner.userprofile.number }}</span>
-        </div><!--col-70 end-->
+        </div>
     </div><!--row end-->
     <!-- SECTION Contact Person end -->
 
@@ -325,7 +331,7 @@
     {% if tenant.account %}
         <div class="row">
             <div class="col-100 margin padding-left" style="background-color: #EA4D5E; color: #fff;border-radius: 15px;">
-                <h5>You are currently applied to a dorm</h5>
+                <h5>You are currently applied to a dormitory</h5>
             </div><!--col-100 end-->
         </div><!--row end-->
     {% elif property.slots == 0 %}

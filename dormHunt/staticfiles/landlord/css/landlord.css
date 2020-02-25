@@ -56,13 +56,13 @@
     background-color: #5660F1;
 }
 .card-label {
-    font-family: 'PT Sans Caption', sans-serif;
+    font-family: 'Muli', sans-serif;
     border-bottom: 3px solid #fff;
     padding-bottom: 3px;
     width: 40%;
 }
 .card-label-small {
-    font-family:'PT Sans Caption', sans-serif;
+    font-family:'Muli', sans-serif;
     font-style: normal;
     font-weight: bold;
     font-size: small;

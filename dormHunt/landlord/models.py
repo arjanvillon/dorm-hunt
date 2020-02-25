@@ -90,22 +90,55 @@ class AddTenant(models.Model):
     account_user        = models.EmailField(max_length=60, default='defatult@gmail.com')
     dorm                = models.ForeignKey(Property, on_delete=models.CASCADE)
     room_description    = models.CharField(max_length=80)
-
+    is_inclusive        = models.CharField(max_length=80, default='Inclusive')
+    
+    # rent
     balance             = models.IntegerField(default=0)
     is_paid             = models.BooleanField(default=True)
     date_paid           = models.DateField(default=datetime.date.today)
 
+    # expenses
+    expense_balance             = models.IntegerField(default=0)
+    expense_is_paid             = models.BooleanField(default=True)
+    expense_date_paid           = models.DateField(default=datetime.date.today)
+    
     def __str__(self):
         return self.account_user
 
     def get_absolute_url(self):
         return reverse('landlord:landlord_home')
 
+    # rent
     def paid(self, price):
         self.balance = self.balance - price
         print(self.balance)
-        if self.balance <= 0:
+        if self.balance == 0 and self.expense_balance == 0:
             self.is_paid = True
+            self.expense_is_paid = True
+            self.balance = 0
+            self.expense_balance =0
+        if self.balance == 0:
+            self.balance = 0
+            self.is_paid = True
+        elif self.balance < 0:
+            self.is_paid = True
+            price = self.balance * (-1)
+            self.balance = 0
+            self.expense_balance = self.expense_balance - price
+            if self.expense_balance <= 0:
+                self.is_paid = True
+                self.expense_is_paid = True
+                
+        # if self.balance <= 0:
+        #     if self.balance == 0:
+        #         self.is_paid = True
+        #     if self.balance < 0:
+        #         print('subtract to expenses')
+        #         self.expense_balance = self.expense_balance - price
+        #         if self.expense_balance <= 0:
+        #             self.expense_is_paid = True
+        #             self.balance = True
+                
             self.date_paid = date.today()
         else:
             self.is_paid = False
@@ -115,6 +148,33 @@ class AddTenant(models.Model):
         self.is_paid = False
         self.balance += price
         self.save()
+    
+    # expenses
+    def expense_paid(self, amount):
+        self.expense_balance = self.expense_balance - amount
+        print(self.expense_balance)
+        if self.expense_balance <= 0:
+            self.expense_is_paid = True
+            self.expense_date_paid = date.today()
+        else:
+            self.expense_is_paid = False
+            self.save()
 
-    
-    
+    def expense_unpaid(self, amount):
+        self.expense_is_paid = False
+        self.expense_balance += amount
+        self.save()
+
+
+# SECTION ADD EXPENSES
+class Expenses(models.Model):
+    property_name       = models.ForeignKey(Property, on_delete=models.CASCADE)
+    name                = models.CharField(max_length=50)
+    amount              = models.IntegerField()
+    date                = models.DateField(_("Date"), default=datetime.date.today)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse("landlord:landlord_home")

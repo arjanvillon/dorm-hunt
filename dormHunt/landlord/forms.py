@@ -1,5 +1,5 @@
 from django import forms
-from landlord.models import Property, Reminder, AddTenant
+from landlord.models import Property, Reminder, AddTenant, Expenses
 
 class PropertyForm(forms.ModelForm):
 
@@ -56,16 +56,32 @@ class AddTenantForm(forms.ModelForm):
     room_description = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'E.g. Room #1'}))
     class Meta():
         model = AddTenant
-        fields = ('account_user', 'dorm', 'room_description')
+        fields = ('account_user', 'dorm', 'room_description', 'is_inclusive')
         labels = {
             "account_user": "Email Address",
             "dorm": "Property",
             "room_description": "Room Description",
+            "is_inclusive": "Inclusive of Water and Electric Bills?",
         }
 
     def __init__(self, *args, **kwargs):
         kwargs.setdefault('label_suffix', '')  # globally override the Django >=1.6 default of ':'
         super(AddTenantForm, self).__init__(*args, **kwargs)
 
+class AddExpenseForm(forms.ModelForm):
+    class Meta():
+        model = Expenses
+        fields = ('property_name', 'name', 'amount', 'date')
+        labels = {
+            "property_name": "Property Name",
+            "name": "Expense Name",
+            "amount": "Amount",
+            "date": "Due Date",
+        }
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
         
-        
+        kwargs.setdefault('label_suffix', '')  # globally override the Django >=1.6 default of ':'
+        super(AddExpenseForm, self).__init__(*args, **kwargs)
+        self.fields['property_name'].queryset = Property.objects.filter(owner=user)
