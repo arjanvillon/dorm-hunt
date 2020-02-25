@@ -191,16 +191,22 @@ class Payment(TemplateView):
         month_today = datetime.datetime.now().strftime("%B")
         now=datetime.datetime.now()
         now_formatted = now.strftime("%Y-%m-%d")
+        
         expenses = Expenses.objects.filter(date=now_formatted)
 
-        for tenant in tenants:
-            for expense in expenses:
+        for expense in expenses:
+            for tenant in tenants:
                 if tenant.dorm == expense.property_name:
-                    tenant.expense_is_paid = False
-                    tenant.save()
+                    if expense.repeat == True:
+                        tenant.expense_balance = expense.amount
+                        tenant.expense_is_paid = False
+                        print('HEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE')
+                        tenant.save()
+                    else:     
+                        print('FAAAALSEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEEE')
+            expense.repeat = False
+            expense.save()
 
-        print(expenses)
-        
         context['expenses'] = expenses
         context['property_numbers'] = properties.count()
         context['property_list'] = properties

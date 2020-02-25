@@ -102,6 +102,7 @@ class AddTenant(models.Model):
     expense_is_paid             = models.BooleanField(default=True)
     expense_date_paid           = models.DateField(default=datetime.date.today)
     
+
     def __str__(self):
         return self.account_user
 
@@ -175,7 +176,8 @@ class Expenses(models.Model):
     name                = models.CharField(max_length=50)
     amount              = models.IntegerField()
     date                = models.DateField(_("Date"), default=datetime.date.today)
-
+    repeat              = models.BooleanField(default=False)
+    
     def __str__(self):
         return self.name
 
