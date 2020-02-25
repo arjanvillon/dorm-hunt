@@ -71,6 +71,10 @@
         color: #2c9bf3;
         font-weight: bolder;
     }
+
+    .hidden{
+        display: none;
+    }
 </style>
 {% endblock css %}
     
@@ -137,7 +141,18 @@
                                 <a href="#" class="link external room-name-submit">
                                     <div class="row">
                                         <div class="col-100">
-                                            <p class="no-margin room-name">{{ room.name }}</p>
+                                            {% if not room.dorm %}
+                                                {% for member in room.members.all %}
+                                                    {% if member != user %}
+                                                        <p class="no-margin">{{ member.userprofile.first_name }} {{ member.userprofile.last_name }}</p>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% else %}
+                                                <p class="no-margin">{{ room.name }}</p>
+                                            {% endif %}
+                                        </div>
+                                        <div class="col-100">
+                                            <p class="message-preview room-name no-margin hidden">{{ room.name }}</p>
                                         </div>
                                         <div class="col-100">
                                             <div class="message-time padding-bottom-half">
@@ -150,6 +165,7 @@
                                                     
                                             </div>
                                         </div>
+
                                         <div class="col-100">
                                             <div class="message-preview">
                                                 <!-- Preview of last message -->

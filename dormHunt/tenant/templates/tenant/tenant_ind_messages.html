@@ -215,8 +215,10 @@
         // var message = data['message'];
         var author = data['author'];
         var picture = data['picture'];
+        var primaryKey = data['id'];
 
         var msg = document.createElement('div');
+        msg.setAttribute('id', primaryKey);
 
         // for displaying profile image of the sender and receiver
         var msgImage = document.createElement('img');
@@ -242,7 +244,8 @@
         
         // for displaying the delete on footer
         var msgDelete = document.createElement('div');
-            msgDelete.setAttribute('class', 'message-footer hidden');
+            msgDelete.setAttribute('class', 'message-footer hidden text-color-red');
+            msgDelete.setAttribute('onclick', 'removeMessage(event)');
             msgDelete.textContent = 'Remove';
             
         
@@ -284,9 +287,9 @@
             //     }
             // });
             
-            if ( $('#chat-log div.message-sent:nth-last-of-type(2)').is('.message-sent') ) {
-                $('#chat-log div.message-sent:nth-last-of-type(1)').find('.message-name').remove();
-            }
+            // if ( $('#chat-log div.message-sent:nth-last-of-type(2)').is('.message-sent') ) {
+            //     $('#chat-log div.message-sent:nth-last-of-type(1)').find('.message-name').remove();
+            // }
 
             // $('.sent:first').children(':last').children(':first').removeClass('remove-name');
             
@@ -297,9 +300,9 @@
             msgName.textContent = authorReceived;
 
             // to detect the 2nd to the last child
-            if ( $('#chat-log div.message-received:nth-last-of-type(2)').is('.message-received') ) {
-                $('#chat-log div.message-received:nth-last-of-type(1)').find('.message-name').remove();
-            }
+            // if ( $('#chat-log div.message-received:nth-last-of-type(2)').is('.message-received') ) {
+            //     $('#chat-log div.message-received:nth-last-of-type(1)').find('.message-name').remove();
+            // }
                 
         }
 
@@ -330,6 +333,17 @@
             var bubble = event.target.parentElement;
             var footer = bubble.nextElementSibling;
             footer.classList.toggle('hidden');
+            // chatSocket.send(JSON.stringify({'command': 'delete_message', 'message'}))
+        };
+
+        function removeMessage(event){
+            var this_message = event.target.parentElement.parentElement.id;
+            chatSocket.send(JSON.stringify({
+                'command': 'remove_message',
+                'room': roomName,
+                'message': this_message,
+            }));
+            location.reload();
         };
         
 </script>
