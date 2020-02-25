@@ -30,6 +30,12 @@ class ChatConsumer(WebsocketConsumer):
         }
         return self.send_chat_message(content)
 
+    def delete_message(self, data):
+        message_pk = data['message']
+        this_message = Message.objects.get(pk=message_pk)
+        this_message.delete()
+        # print(data['message'])
+
     def messages_to_json(self, messages):
         result = []
         for message in messages:
@@ -38,6 +44,7 @@ class ChatConsumer(WebsocketConsumer):
 
     def message_to_json(self, message):
         return {
+            'id': message.pk,
             'author' : message.author.username,
             'content' : message.content,
             'picture' : message.author.userprofile.picture.url,
@@ -47,8 +54,11 @@ class ChatConsumer(WebsocketConsumer):
 
     commands = {
         'fetch_messages' : fetch_messages,
-        'new_message' : new_message
+        'new_message' : new_message,
+        'remove_message': delete_message,
     }
+
+
 
     def connect(self):
         self.room_name = self.scope['url_route']['kwargs']['room_name']
