@@ -120,6 +120,9 @@ class AddTenant(models.Model):
         if self.balance == 0:
             self.balance = 0
             self.is_paid = True
+        if self.expense_balance == 0:
+            self.expense_balance = 0
+            self.expense_is_paid = True
         elif self.balance < 0:
             self.is_paid = True
             price = self.balance * (-1)

@@ -2,7 +2,9 @@ from django.http import JsonResponse
 from django.contrib import messages
 from django.utils.html import escape
 
+from datetime import date
 import datetime
+
 
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic import (TemplateView, ListView, CreateView, DetailView)
@@ -187,11 +189,19 @@ class Payment(TemplateView):
         properties = Property.objects.filter(owner=user)
         tenants = AddTenant.objects.all()
         month_today = datetime.datetime.now().strftime("%B")
+        now=datetime.datetime.now()
+        now_formatted = now.strftime("%Y-%m-%d")
+        expenses = Expenses.objects.filter(date=now_formatted)
 
+        for tenant in tenants:
+            for expense in expenses:
+                if tenant.dorm == expense.property_name:
+                    tenant.expense_is_paid = False
+                    tenant.save()
+
+        print(expenses)
         
-        # STUB Get Total Balance 
-        
-        
+        context['expenses'] = expenses
         context['property_numbers'] = properties.count()
         context['property_list'] = properties
         context['tenants'] = tenants

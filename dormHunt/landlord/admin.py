@@ -24,7 +24,7 @@ admin.site.register(Reminder, ReminderAdmin)
 
 
 class AddTenantAdmin(admin.ModelAdmin):
-    list_display = ('account', 'dorm', 'room_description', 'is_paid', 'balance', 'is_inclusive')
+    list_display = ('account', 'dorm', 'room_description', 'is_paid', 'balance', 'is_inclusive', 'expense_balance')
     search_fields = ('account', 'dorm', 'room_description')
     readonly_fields = ()
     filter_horizontal = ()
