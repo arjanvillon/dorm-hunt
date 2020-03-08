@@ -1,5 +1,5 @@
 {
-    "python.pythonPath": "D:\\Program Files\\Python\\Python38\\python.exe",
+    "python.pythonPath": "/home/heaven/Documents/anaconda3/envs/dormEnv/bin/python",
     "python.linting.pylintEnabled": true,
     "python.linting.enabled": true
 }
