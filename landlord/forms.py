@@ -71,12 +71,11 @@ class AddTenantForm(forms.ModelForm):
 class AddExpenseForm(forms.ModelForm):
     class Meta():
         model = Expenses
-        fields = ('property_name', 'name', 'amount', 'date')
+        fields = ('property_name', 'name', 'amount')
         labels = {
             "property_name": "Property Name",
             "name": "Expense Name",
             "amount": "Amount",
-            "date": "Due Date",
         }
 
     def __init__(self, *args, **kwargs):

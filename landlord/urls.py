@@ -24,7 +24,7 @@ urlpatterns = [
     path('message/due_date', views.due_date, name='due_date'),
     path('payment/', views.Payment.as_view(), name='payment'),
     path('payment/paid/<int:pk>', views.mark_tenant_paid, name='payment_paid'),
-    path('payment/paid-bedspace/<int:pk>', views.mark_tenant_paid_bedspace, name='payment_paid_bedspace'),
+    # path('payment/paid-bedspace/<int:pk>', views.mark_tenant_paid_bedspace, name='payment_paid_bedspace'),
     
     # NOTE For viewing purposes only
     path('add-payment/',views.AddExpenseCreateView.as_view(), name='add_payment'),

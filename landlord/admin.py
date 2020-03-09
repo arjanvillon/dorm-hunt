@@ -35,7 +35,7 @@ admin.site.register(AddTenant, AddTenantAdmin)
 
 
 class AddExpensesAdmin(admin.ModelAdmin):
-    list_display = ('property_name', 'name', 'amount', 'date')
+    list_display = ('property_name', 'name', 'amount')
     search_fields = ('property_name', 'name', 'amount')
     readonly_fields = ()
     filter_horizontal = ()

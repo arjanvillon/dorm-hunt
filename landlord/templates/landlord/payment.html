@@ -170,7 +170,7 @@
                                                     {% else %}
                                                       <a class="sheet-open" href="#" data-sheet=".my-sheet-swipe-to-step-unpaid{{ tenant.pk }}">
                                                         {% if tenant.account.userprofile.last_name and tenant.account.userprofile.first_name %}
-                                                          {{tenant.account.userprofile.last_name }}, {{tenant.account.userprofile.first_name }} 
+                                                          {{tenant.account.userprofile.last_name }}, {{tenant.account.userprofile.first_name }}
                                                         {% else %}
                                                           {{tenant.account.email}}
                                                         {% endif %}   
@@ -196,9 +196,13 @@
                                                           <div class="sheet-modal-inner">
                                                           <div class="sheet-modal-swipe-step">
                                                               <div class="display-flex padding justify-content-space-between align-items-center">
-                                                              <div style="font-size: 18px"><b>Balance:</b></div>
-                                                              <!-- FIXME Static palang to -->
-                                                              <div style="font-size: 22px"><b>Php 0.0</b></div>
+                                                                <div style="font-size: 18px"><b>Balance:</b></div>
+                                                                
+                                                                <div style="font-size: 22px"><b><u>Php {{ tenant.balance }}</u></b></div>
+
+                                                                <div style="font-size: 18px"><b>Wallet:</b></div>
+                                                                
+                                                                <div style="font-size: 22px"><b><u>Php {{ tenant.wallet }}</u></b></div>
                                                               </div>
                                                               <div class="padding-horizontal padding-bottom">
                                                               <!-- <div class="margin-top text-align-center">Swipe up to see payment history</div> -->
@@ -228,7 +232,16 @@
                                                           <div class="sheet-modal-inner">
                                                           <div class="sheet-modal-swipe-step">
                                                               <div class="display-flex padding justify-content-space-between align-items-center">
-                                                                <div style="font-size: 18px"><b>{{tenant.account.userprofile.last_name }}, {{tenant.account.userprofile.first_name }} </b></div>
+                                                                <div style="font-size: 18px"><b>
+                                                                  
+                                                                  {% if tenant.account.userprofile.first_name %}
+                                                                    {{tenant.account.userprofile.last_name }}, {{tenant.account.userprofile.first_name }}
+                                                                  {% else %}
+                                                                    {{tenant.account.email}}
+                                                                  {% endif %}
+                                                                    
+                                                                </b>
+                                                              </div>
                                                               </div>
                                                               <div class="display-flex padding justify-content-space-between align-items-center">
                                                                 <div style="font-size: 18px"><b>Total:</b></div>
@@ -270,11 +283,7 @@
                                                                         <div class="padding-horizontal padding-bottom">
                                                                           <!-- <div class="margin-top text-align-center">Swipe up for more details</div> -->
                                                                           
-                                                                          {% if tenant.is_inclusive == 'Inclusive' %}
-                                                                          <a href="{% url 'landlord:payment_paid_bedspace' pk=tenant.pk %}" class="link external button button-large button-fill">Mark as Paid</a>
-                                                                          {% elif tenant.is_inclusive == 'Not Inclusive' %}
                                                                           <input class=" button button-large button-fill" type="submit" value="Mark as Paid">
-                                                                          {% endif %}
                                                                             
                                                                         </div>
                                                                       </div>
@@ -313,16 +322,23 @@
                                                       <div class="sheet-modal-inner">
                                                       <div class="sheet-modal-swipe-step">
                                                           <div class="display-flex padding justify-content-space-between align-items-center">
-                                                            <div style="font-size: 18px"><b>{{tenant.account.userprofile.last_name }}, {{tenant.account.userprofile.first_name }} </b></div>
+                                                            <div style="font-size: 18px">
+                                                              <b>
+                                                                
+                                                                {% if tenant.account.userprofile.first_name %}
+                                                                  {{tenant.account.userprofile.last_name }}, {{tenant.account.userprofile.first_name }} 
+                                                                {% else %}
+                                                                  {{tenant.account.email}}
+                                                                {% endif %}
+                                                                  
+                                                            </b>
+                                                          </div>
                                                           </div>
                                                           <div class="display-flex padding justify-content-space-between align-items-center">
                                                             <div style="font-size: 18px"><b>Total:</b></div>
                                                             
-                                                            {% if tenant.is_inclusive == 'Inclusive' %}
                                                               <div style="font-size: 22px"><b>Php {{ tenant.balance }}</b></div>
-                                                            {% elif tenant.is_inclusive == 'Not Inclusive' %}
-                                                              <div style="font-size: 22px"><b>Php {{ tenant.balance | add:tenant.expense_balance }}</b></div>
-                                                            {% endif %}
+
                                                               
                                                           </div>
                                                           <div class="row">
@@ -330,7 +346,6 @@
                                                               <form action="{% url 'landlord:payment_paid' pk=tenant.pk %}" method="POST">
                                                                 {% csrf_token %}
                                                                 
-                                                                {% if tenant.is_inclusive == 'Not Inclusive' %}
                                                                   <div class="list margin-vertical-half no-margin-top">
                                                                     <ul>
                                                                       <li class="item-content item-input item-input-outline">
@@ -349,18 +364,13 @@
                                                                     </ul>
                                                                   </div>
                                                                 
-                                                                {% endif %}
                                                                 <div class="row">
                                                                   <div class="col-100">
                                                                     <div class="padding-horizontal padding-bottom">
                                                                       <!-- <div class="margin-top text-align-center">Swipe up for more details</div> -->
                                                                       
-                                                                      {% if tenant.is_inclusive == 'Inclusive' %}
-                                                                      <a href="{% url 'landlord:payment_paid_bedspace' pk=tenant.pk %}" class="link external button button-large button-fill">Mark as Paid</a>
-                                                                      {% elif tenant.is_inclusive == 'Not Inclusive' %}
                                                                       <input class=" button button-large button-fill" type="submit" value="Mark as Paid">
-                                                                      {% endif %}
-                                                                        
+
                                                                     </div>
                                                                   </div>
                                                                 </div>

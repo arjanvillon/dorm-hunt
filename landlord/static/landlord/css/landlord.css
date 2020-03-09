@@ -134,3 +134,10 @@
     color: #444;
     font-size: small;
 }
+
+.note-container {
+    background-color: rgb(86, 96, 241);
+    border-radius: 10px;
+    font-size: medium;
+    color: #fff;
+}

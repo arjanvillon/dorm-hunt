@@ -307,4 +307,11 @@
 
 </div>
 {% endblock landlord_content %}
-    
+
+{% block landlordJs %}
+    <script>
+        $('a.home-tab').addClass('tab-link-active');
+        $('a.home-tab i.f7-icons').addClass('size-40');
+        $('.tab-link-highlight').remove();
+    </script>
+{% endblock landlordJs %}

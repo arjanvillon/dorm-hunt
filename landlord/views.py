@@ -223,12 +223,6 @@ def mark_tenant_paid(request, pk):
     # tenant.paid(tenant.dorm.price)
     return redirect('landlord:payment')
 
-def mark_tenant_paid_bedspace(request, pk):
-    tenant = get_object_or_404(AddTenant, pk=pk)
-    tenant.is_paid = True
-    tenant.save()
-    
-    return redirect('landlord:payment')
 
 def due_date(request):
     properties = Property.objects.filter(owner=request.user)
@@ -272,4 +266,24 @@ class AddExpenseCreateView(CreateView):
     
     def form_valid(self, form):
         print('valid')
+        tenants = AddTenant.objects.filter(dorm=form.instance.property_name)
+        
+        for tenant in tenants:
+            tenant.expense_balance += form.instance.amount
+            tenant.expense_is_paid = False
+            
+            if tenant.is_inclusive == 'Inclusive':
+                tenant.expense_balance = 0
+                tenant.expense_is_paid = True
+                
+            if tenant.wallet > 0:
+                tenant.expense_balance -= tenant.wallet
+                if tenant.expense_balance <= 0:
+                    tenant.wallet = (-1) * tenant.expense_balance
+                    tenant.expense_balance = 0
+                    tenant.expense_is_paid = True
+                else:
+                    tenant.wallet = 0
+                
+            tenant.save()
         return super().form_valid(form)

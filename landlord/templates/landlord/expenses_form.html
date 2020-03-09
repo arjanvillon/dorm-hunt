@@ -59,7 +59,11 @@
                                 {% endfor %}
                             </ul>
                         </div><!--list-->
-                        
+                    <div class="row margin padding-left note-container">
+                        <div class="col-100">
+                            <p><strong>Note:</strong> When you click submit button, the expense will be automatically added to the expenses of your tenants.</p>
+                        </div>
+                    </div>
                     <!-- SECTION Submit Button -->
                     <div class="text-align-center padding-vertical submit-btn-container">
                         <input type="submit" class="submit-btn button button-raised button-fill button-round" value="Submit"> 
@@ -86,7 +90,8 @@
         $('.tab-link-highlight').remove();
 
         // init select
-        // $('select2').select2();
+        // $('select').select2();
+
     });
 
 </script>

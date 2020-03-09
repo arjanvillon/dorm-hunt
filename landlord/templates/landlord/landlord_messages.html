@@ -147,13 +147,13 @@ img.property-sms-img {
                             </a><!--link end-->
                         </div><!--col-50 end-->
                         <div class="col-50 text-align-left">
-                            <a href="{% url 'landlord:due_date' %}" class="link external">
-                            <div class="chip chip-color">
-                                <div class="chip-media chip-color">
-                                    <i class="icon f7-icons">envelope_circle</i>
+                            <a href="#" class="notify-due-date link external">
+                                <div class="chip chip-color">
+                                    <div class="chip-media chip-color">
+                                        <i class="icon f7-icons">envelope_circle</i>
+                                    </div>
+                                    <div class="chip-label">Notify Due Date</div>
                                 </div>
-                                <div class="chip-label">Notify Due Date</div>
-                            </div>
                             </a>
                         </div><!--col-50 end-->
                     </div><!--row end-->
@@ -372,12 +372,30 @@ img.property-sms-img {
     });
 
 app.sheet.create({
-  el: '.my-sheet-swipe-to-view-details',
-  swipeToClose: true,
-  swipeToStep: true,
-  backdrop: true,
+    el: '.my-sheet-swipe-to-view-details',
+    swipeToClose: true,
+    swipeToStep: true,
+    backdrop: true,
 });
 
-    
+// var $$ = Dom7;
+//         var toastMessage = "Your tenants have been notified about their payments."
+
+//         $('.notify-due-date').click(function(){
+//             var toastLargeMessage = app.toast.create({
+//                 text: toastMessage,
+//                 closeButton: true,
+//             });
+//             toastLargeMessage.open();
+//         });
+
+// Confirm
+$$('.notify-due-date').on('click', function () {
+    app.dialog.confirm('You are about to notify all your tenants about their payment due date. Keep in mind that once you confirm, the amount will be automatically to their balance. Notify? ', function () {
+        app.dialog.alert('Your tenants are notified');
+        window.location.replace("{% url 'landlord:due_date' %}");
+        // {% url 'landlord:due_date' %}
+    });
+});
 </script>
 {% endblock landlordJs %}
