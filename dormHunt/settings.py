@@ -100,9 +100,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'dormhuntdb',
         'USER': 'postgres',
-        'PASSWORD': '@dmin123',
+        'PASSWORD': 'iamcarrots21',
         'HOST': '127.0.0.1',
-        'PORT': '5000',
+        'PORT': '5432',
     }
 }
 
