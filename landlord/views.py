@@ -17,7 +17,7 @@ from django.core.exceptions import ObjectDoesNotExist
 from landlord.forms import PropertyForm, ReminderForm, AddTenantForm, AddExpenseForm
 
 #SECTION Import Models
-from landlord.models import Property, Reminder, AddTenant, Expenses
+from landlord.models import Property, Reminder, AddTenant, Expenses, History
 from user.models import User, UserProfile
 from tenant.models import Application, MessageRoom
 
@@ -189,10 +189,10 @@ class Payment(TemplateView):
         properties = Property.objects.filter(owner=user)
         tenants = AddTenant.objects.all()
         month_today = datetime.datetime.now().strftime("%B")
-        now=datetime.datetime.now()
-        now_formatted = now.strftime("%Y-%m-%d")
+        # now=datetime.datetime.now()
+        # now_formatted = now.strftime("%Y-%m-%d")
         
-        expenses = Expenses.objects.filter(date=now_formatted)
+        expenses = Expenses.objects.all()
 
         for expense in expenses:
             for tenant in tenants:
@@ -220,6 +220,9 @@ def mark_tenant_paid(request, pk):
     if request.method == "POST":
         amount = request.POST.get('amount')
         tenant.paid(int(amount))
+
+        history = History.objects.create(tenant=tenant.account, dorm=tenant.dorm, amount=amount)
+
     # tenant.paid(tenant.dorm.price)
     return redirect('landlord:payment')
 

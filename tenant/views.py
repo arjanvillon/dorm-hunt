@@ -35,7 +35,7 @@ class has_dorm(TemplateView):
         user = AddTenant.objects.get(account_user=self.request.user.email)
         
         details = get_object_or_404(AddTenant, account_user=self.request.user.email)
-        expenses = Expenses.objects.filter(property_name=user.dorm, date=date.today())
+        expenses = Expenses.objects.filter(property_name=user.dorm)
         reminders = Reminder.objects.filter(property_name=user.dorm, next_service=date.today())
 
         context = super(has_dorm, self).get_context_data(**kwargs)

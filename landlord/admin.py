@@ -1,5 +1,5 @@
 from django.contrib import admin
-from landlord.models import Property, AddTenant, Reminder, Expenses
+from landlord.models import Property, AddTenant, Reminder, Expenses, History
 # Register your models here.
 
 class PropertyAdmin(admin.ModelAdmin):
@@ -43,5 +43,15 @@ class AddExpensesAdmin(admin.ModelAdmin):
     fieldsets = ()
 
 admin.site.register(Expenses, AddExpensesAdmin)
+
+class HistoryAdmin(admin.ModelAdmin):
+    list_display = ('tenant', 'dorm', 'amount', 'date_paid')
+    search_fields = ('tenant', 'dorm')
+    readonly_fields = ()
+    filter_horizontal = ()
+    list_filter = ()
+    fieldsets = ()
+
+admin.site.register(History, HistoryAdmin)
 
 

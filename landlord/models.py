@@ -168,7 +168,6 @@ class Expenses(models.Model):
     property_name       = models.ForeignKey(Property, on_delete=models.CASCADE)
     name                = models.CharField(max_length=50)
     amount              = models.IntegerField()
-    # date                = models.DateField(_("Date"), default=datetime.date.today)
     repeat              = models.BooleanField(default=False)
     
     def __str__(self):
@@ -177,4 +176,11 @@ class Expenses(models.Model):
     def get_absolute_url(self):
         return reverse("landlord:landlord_home")
     
-    
+class History(models.Model):
+    tenant      = models.ForeignKey(User, on_delete=models.CASCADE)
+    dorm        = models.ForeignKey(Property, on_delete=models.CASCADE)
+    amount      = models.IntegerField()
+    date_paid   = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return self.tenant.username
