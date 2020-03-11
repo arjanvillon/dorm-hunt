@@ -183,7 +183,7 @@
     <!-- SECTION Home Menu -->
     <div class="row">
         <div class="col-100 padding-horizontal">
-            <h2>Home</h2>
+            <h2 class="margin-half">Home</h2>
             <div class="dorm-info-container padding">
                 <div class="row">
                     <div class="col-20">
@@ -455,6 +455,28 @@
         </div><!--col-100-->
     </div><!--row end-->
     <!-- SECTION Payment Information end -->
+
+    <div class="row">
+      <div class="col-100 padding-horizontal padding-top">
+        <div class="reminder-info-container padding">
+          <span class="room-title">Payment history</span>
+          
+          {% if histories %}
+            {% for history in histories %}
+              <span class="padding">You paid ₱{{ history.amount }} last {{ history.date_paid.date }}.</span>
+              <div class="row">
+                <div class="col-100">
+                  <a href="{% url 'tenant:payment_history' %}" class="button link external">View full history</a>
+                </div>
+              </div>
+            {% endfor %}
+          {% else %}
+            You haven't paid any bill yet
+          {% endif %}
+            
+        </div>
+      </div><!--col-100-->
+    </div>
 
     <!-- SECTION Circular Menu -->
     <!-- <div id="circularMenu" class="circular-menu">

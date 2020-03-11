@@ -302,6 +302,13 @@
                                                       {% endif %}
                                                     </div>
                                                   </div>
+                                                  <div class="row">
+                                                    <div class="col-100 padding">
+                                                      <a class="link external col-100" href="{% url 'landlord:payment_history' pk=tenant.pk %}" style="width: 100%;">
+                                                        <button class="col button button-raised button-fill button-large color-green" style="width: 100%;">View Payment History</button>
+                                                      </a>
+                                                    </div>
+                                                  </div>
                                                   <div class="padding-horizontal padding-bottom">
                                                     <p class="no-margin"><b>Email: </b><b class="color-scheme1">{{ tenant.account.email }}</b></p>
                                                     <p class="no-margin"><b>Phone Number: </b><b class="color-scheme1">{{ tenant.account.userprofile.number }}</b></p>

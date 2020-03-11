@@ -183,4 +183,4 @@ class History(models.Model):
     date_paid   = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
-        return self.tenant.username
+        return self.dorm.name

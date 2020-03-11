@@ -290,3 +290,11 @@ class AddExpenseCreateView(CreateView):
                 
             tenant.save()
         return super().form_valid(form)
+
+class HistoryListView(ListView):
+    template_name = "landlord/payment_history.html"
+
+    def get_queryset(self):
+        pk = self.kwargs['pk']
+        tenant = AddTenant.objects.get(pk=pk)
+        return History.objects.filter(tenant=tenant.account).order_by('-date_paid')

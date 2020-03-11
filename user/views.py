@@ -68,6 +68,7 @@ def user_login(request):
                     profile = User.objects.get(username=username)
                     user_profile = UserProfile(user=profile)
                     user_profile.save()
+                    
                 if user.user_type == "Landlord":
                     return redirect('landlord:landlord_home')
                 else:

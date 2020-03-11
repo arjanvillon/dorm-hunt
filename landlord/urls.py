@@ -28,4 +28,5 @@ urlpatterns = [
     
     # NOTE For viewing purposes only
     path('add-payment/',views.AddExpenseCreateView.as_view(), name='add_payment'),
+    path('history/<int:pk>', views.HistoryListView.as_view(), name='payment_history'),
 ]

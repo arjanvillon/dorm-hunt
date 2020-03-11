@@ -1,0 +1,53 @@
+{% extends 'landlord/base.html' %}
+{% load static %}
+
+{% block propertyCss %}
+<style>
+    .card{
+        width: 100%;
+    }    
+</style>
+{% endblock propertyCss %}
+    
+
+{% block landlord_content %}
+<div class="page-content">
+    <div class="row">
+        <div class="col-25">
+            <div class="padding">
+                <a href="{% url 'landlord:landlord_home' %}" class="link external">
+                    <div class="row back-btn">
+                        <div class="col-10">
+                            <i class="f7-icons">chevron_left</i>
+                        </div>
+                        <div class="col-90 padding-left">
+                            Back
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    
+    {% if history_list %} 
+        {% for history in history_list %}
+            <div class="row">
+                <div class="card">
+                    <div class="card-header">{{ history.date_paid.date }}</div>
+                    <div class="card-content card-content-padding">
+                        {{ history.tenant.userprofile.first_name }} paid ₱{{ history.amount }} to your dorm: {{ history.dorm }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}        
+    {% else %}
+        No history of payment yet
+    {% endif %}
+
+        
+
+</div>
+
+
+{% endblock landlord_content %}

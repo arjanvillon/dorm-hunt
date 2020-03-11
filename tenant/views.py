@@ -13,7 +13,7 @@ import requests
 import json
 
 # SECTION Import Models
-from landlord.models import Property, AddTenant, Reminder, Expenses
+from landlord.models import Property, AddTenant, Reminder, Expenses, History
 from tenant.models import Application, MessageRoom, Message
 from user.models import User
 
@@ -37,6 +37,7 @@ class has_dorm(TemplateView):
         details = get_object_or_404(AddTenant, account_user=self.request.user.email)
         expenses = Expenses.objects.filter(property_name=user.dorm)
         reminders = Reminder.objects.filter(property_name=user.dorm, next_service=date.today())
+        histories = History.objects.filter(tenant=self.request.user).order_by('-date_paid')[:1]
 
         context = super(has_dorm, self).get_context_data(**kwargs)
         if details.is_paid == False and details.expense_is_paid == False:
@@ -46,6 +47,7 @@ class has_dorm(TemplateView):
         context['expenses'] = expenses
         context['details'] = details
         context["reminders"] = reminders
+        context['histories'] = histories
         return context
 
 def Home_Tenant(request):
@@ -269,3 +271,11 @@ class Request(TemplateView):
 # class TenantIndMessages(TemplateView):
 #     template_name = 'tenant/tenant_ind_messages.html'
 
+class HistoryListView(ListView):
+    # model = History
+    template_name = 'tenant/payment_history.html'
+
+    def get_queryset(self):
+        return History.objects.filter(tenant=self.request.user).order_by('-date_paid')
+        
+    

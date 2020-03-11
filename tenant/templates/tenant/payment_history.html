@@ -1,0 +1,55 @@
+{% extends 'home/base.html' %}
+{% load static %}
+
+{% block css %}
+<style>
+    .card{
+        width: 100%;
+    }    
+</style>
+{% endblock css %}
+    
+
+{% block home_content %}
+<div class="page-content">
+    <div class="row">
+        <div class="col-25">
+            <div class="padding">
+                <a href="{% url 'tenant:has_dorm' %}" class="link external">
+                    <div class="row back-btn">
+                        <div class="col-10">
+                            <i class="f7-icons">chevron_left</i>
+                        </div>
+                        <div class="col-90 padding-left">
+                            Back
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    
+    {% if history_list %}
+        {% for history in history_list %}
+            <div class="row">
+                <div class="card">
+                    <div class="card-header">{{ history.date_paid.date }}</div>
+                    <div class="card-content card-content-padding">
+                        You paid ₱{{ history.amount }} to {{ history.dorm }}
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        No history of payment yet
+    {% endif %}
+
+        
+
+</div>
+
+
+{% endblock home_content %}
+
+    
