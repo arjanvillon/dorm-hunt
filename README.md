@@ -1,6 +1,6 @@
 # Dorm Hunt Application
-> Full Stack Django application that helps people find their next home.
-> Used Framework7 for the frontend.
+> Full Stack Django application that helps people find their next home.\
+> Used Framework7 for the frontend.\
 > A project for created for our Elective 4 Subject
 
 ## Quick Start
