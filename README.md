@@ -4,6 +4,7 @@
 > A project for created for our Elective 4 Subject
 
 ## Quick Start
+```bash
 pip install -r requirements.txt
 python manage.py runserver
 
@@ -12,3 +13,4 @@ python manage.py runserver
 Contributors
 Abarca, Nikki G.
 Villon, Arjan Heaven E.
+```
