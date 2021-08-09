@@ -75,7 +75,7 @@ pyOpenSSL==19.1.0
 pyrsistent==0.15.7
 python-dateutil==2.8.1
 pytz==2019.3
-pywin32==227
+pywin32==301
 pywinpty==0.5.7
 pyzmq==18.1.1
 requests==2.22.0
